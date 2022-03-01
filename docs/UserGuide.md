@@ -5,9 +5,28 @@ title: User Guide
 
 onlyFAs is for high achieving financial advisors looking to maintain and develop good relationships with current and potential clients. It allows users to maintain an all-encompassing client manager app that can easily arrange for meetups with clients. Currently, financial advisors might have to rely on apps like Google Calendar, and do not have a dedicated platform catered to helping them manage their clientele.
 
-
-- Table of Contents
-  {:toc}
+- [Quick start](#quick-start)
+- [Features](#features)
+    * [Viewing help : `help`](#viewing-help----help-)
+    * [Add client: `client`](#add-client---client-)
+    * [Add notes for client: `note`](#add-notes-for-client---note-)
+    * [Add policy: `policy`](#add-policy---policy-)
+    * [Add preferences to client: `preference`](#add-preferences-to-client---preference-)
+    * [Add meeting: `meeting`](#add-meeting---meeting-)
+    * [Delete client: `delete client`](#delete-client---delete-client-)
+    * [View client: `view client`](#view-client---view-client-)
+    * [Update client: `update client`](#update-client---update-client-)
+    * [Listing All Meetings: `list meetings`](#listing-all-meetings---list-meetings-)
+    * [View Meeting with Client : `view meeting`](#view-meeting-with-client----view-meeting-)
+    * [Update Meeting Details: `update meeting`](#update-meeting-details---update-meeting-)
+    * [Clearing all entries : `clear`](#clearing-all-entries----clear-)
+    * [Exiting the program : `exit`](#exiting-the-program----exit-)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+    * [Archiving data files `[coming in v2.0]`](#archiving-data-files---coming-in-v20--)
+- [FAQ](#faq)
+- [Mockups](#mockups)
+- [Command summary](#command-summary)
 
 ---
 
