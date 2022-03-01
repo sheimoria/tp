@@ -25,15 +25,15 @@ onlyFAs is for high achieving financial advisors looking to maintain and develop
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all contacts.
+    - **`list`** : Lists all contacts.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to your contact list.
+    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to your contact list.
 
-   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   - **`clear`** : Deletes all contacts.
+    - **`clear`** : Deletes all contacts.
 
-   - **`exit`** : Exits the app.
+    - **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -72,6 +72,48 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+### Add client: `client`
+
+Adds a client to the list of managed clients
+
+Format: `client e/EMAIL no/NUMBER n/NAME`
+
+Examples:
+
+- `client e/vijay@gmail.com no/99134234 n/N Vijay Narayanan`
+- `client e/zechary@yeemail.com no/92144213 n/Zechary Au Jun Wen`
+
+### Add notes for client: `note`
+
+Adds a plaintext note to a specific client
+
+Format: `note e/EMAIL nt/NOTE`
+
+- `note e/vijay@gmail.com nt/Commando NSF with high risk of injury`
+- `note e/zechary@yeemail.com nt/Look up on policies for emergency care`
+
+### Add policy: `policy`
+
+Adds an insurance policy to a specific client
+
+Format: `policy e/EMAIL t/TITLE v/VALUE d/DESCRIPTION`
+
+Examples:
+
+- `policy e/vijay@gmail.com t/Medicare Plus v/1 million dollars d/Payment until 25`
+- `policy e/zechary@yeemail.com t/Car Insurance v/100 thousand d/250 each month`
+
+### Add preferences to client: `preference`
+
+Adds a preference to a specific client
+
+Format: `preference e/EMAIL tag/TAG d/DESCRIPTION`
+
+Examples:
+
+- `preference e/vijay@gmail.com tag/Drink d/Coke`
+- `preference e/zechary@yeemail.com tag/Cigarettes d/Malboro`
 
 ### Add meeting: `meeting`
 
@@ -159,18 +201,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                   |
-|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| **z 1**           | `` <br> e.g., ``                                                                                                                   |
-| **z 2**           | `` <br> e.g., ``                                                                                                                   |
-| **z 3**           | `` <br> e.g., ``                                                                                                                   |
-| **z 4**           | `` <br> e.g., ``                                                                                                                   |
-| **meeting**       | `meeting e/EMAIL d/DATE t/TIME` <br> e.g., `meeting e/vijay@email.com d/14/12/2022 t/1400`                                         |
-| **delete client** | `delete client EMAIL` <br> e.g., `delete 1`                                                                                        |
-| **view client**   | `view client EMAIL`<br> e.g., `view 1`                                                                                             |
+| Action            | Format, Examples                                                                                                                  |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **client**        | `client e/EMAIL no/NUMBER n/NAME` <br> e.g., `e/vijay@gmail.com no/99134234 n/N Vijay Narayanan`                                                                                                                  |
+| **note**          | `note e/EMAIL nt/NOTE` <br> e.g., `note e/vijay@gmail.com nt/Commando NSF with high risk of injury`                                                                                                                  |
+| **policy**        | `policy e/EMAIL t/TITLE v/VALUE d/DESCRIPTION` <br> e.g., `policy e/zechary@yeemail.com t/Car Insurance v/100 thousand d/250 each month`                                                                                                                  |
+| **preference**    | `preference e/EMAIL tag/TAG d/DESCRIPTION` <br> e.g., `preference e/zechary@yeemail.com tag/Cigarettes d/Malboro`                                                                                                                  |
+| **meeting**       | `meeting e/EMAIL d/DATE t/TIME` <br> e.g., `meeting e/vijay@email.com d/14/12/2022 t/1400`                                        |
+| **delete client** | `delete client EMAIL` <br> e.g., `delete 1`                                                                                       |
+| **view client**   | `view client EMAIL`<br> e.g., `view 1`                                                                                            |
 | **update client** | `update client e/EMAIL [nn/NEW_NAME np/NEW_PHONE_NUMBER ne/NEW_EMAIL]`<br> e.g.,`update client e/vijay@email.com ne/new@email.com` |
-| **j 1**           | `` <br> e.g., ``                                                                                                                   |
-| **j 2**           | `` <br> e.g., ``                                                                                                                   |
-| **j 3**           | `` <br> e.g., ``                                                                                                                   |
-| **j 4**           | `` <br> e.g., ``                                                                                                                   |
-| **Help**          | `help`                                                                                                                             |
+| **j 1**           | `` <br> e.g., ``                                                                                                                  |
+| **j 2**           | `` <br> e.g., ``                                                                                                                  |
+| **j 3**           | `` <br> e.g., ``                                                                                                                  |
+| **j 4**           | `` <br> e.g., ``                                                                                                                  |
+| **Help**          | `help`                                                                                                                            |
