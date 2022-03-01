@@ -2,11 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* onlyFAs is for **high achieving financial advisors** looking to maintain and develop good relationships with current 
-  and potential clients. It allows them to maintain an all-encompassing client manager app that can easily arrange for 
-  meetups with clients. Currently, target users might have to rely on apps like Google Calendar, and do not have a 
-  dedicated platform catered to helping them manage their clientele.
-  <br>
+* onlyFAs is for **high achieving financial advisors** looking to maintain and develop good relationships with current and potential clients. It allows them to maintain an all-encompassing client manager app that can easily arrange for meetups with clients. Currently, target users might have to rely on apps like Google Calendar, and do not have a dedicated platform catered to helping them manage their clientele.<br>
   Example usages:
   * as a place to store all your client details
   * as a scheduler for your client meetings
