@@ -238,8 +238,8 @@ _Details coming soon ..._
 | **policy**         | `policy e/EMAIL t/TITLE v/VALUE d/DESCRIPTION` <br> e.g., `policy e/zechary@yeemail.com t/Car Insurance v/100 thousand d/250 each month` |
 | **preference**     | `preference e/EMAIL tag/TAG d/DESCRIPTION` <br> e.g., `preference e/zechary@yeemail.com tag/Cigarettes d/Malboro`                        |
 | **meeting**        | `meeting e/EMAIL d/DATE t/TIME` <br> e.g., `meeting e/vijay@email.com d/14/12/2022 t/1400`                                               |
-| **delete client**  | `delete client EMAIL` <br> e.g., `delete 1`                                                                                              |
-| **view client**    | `view client EMAIL`<br> e.g., `view 1`                                                                                                   |
+| **delete client**  | `delete client EMAIL` <br> e.g., `delete vijay@email.com`                                                                                |
+| **view client**    | `view client EMAIL`<br> e.g., `view vijay@email.com`                                                                                     |
 | **update client**  | `update client e/EMAIL [nn/NEW_NAME np/NEW_PHONE_NUMBER ne/NEW_EMAIL]`<br> e.g.,`update client e/vijay@email.com ne/new@email.com`       |
 | **list meetings**  | `shows all upcoming meetings` <br> e.g., `list meetings`                                                                                 |
 | **view meeting**   | `view meeting INDEX` <br> e.g., `view meeting 9`                                                                                         |
