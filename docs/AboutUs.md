@@ -11,7 +11,7 @@ You can reach us at the email `n.vijay.narayanan@u.nus.edu.sg`
 
 ### N Vijay Narayanan
 
-<img src="images/myc37.jpg" width="200px">
+<img src="images/myc37.png" width="200px">
 
 [[github](http://github.com/myc37)]
 [[portfolio](team/myc37.md)]
@@ -21,7 +21,7 @@ You can reach us at the email `n.vijay.narayanan@u.nus.edu.sg`
 
 ### Loh Jia Ming, Rayner
 
-<img src="images/raynerljm.jpg" width="200px">
+<img src="images/raynerljm.png" width="200px">
 
 [[github](http://github.com/raynerljm)] [[portfolio](team/myc37.md)]
 
@@ -30,7 +30,7 @@ You can reach us at the email `n.vijay.narayanan@u.nus.edu.sg`
 
 ### Wong Jun Yong, Joel
 
-<img src="images/joelwongjy.jpeg" width="200px">
+<img src="images/joelwongjy.png" width="200px">
 
 [[github](http://github.com/joelwongjy)]
 [[portfolio](team/joelwongjy.md)]
@@ -40,7 +40,7 @@ You can reach us at the email `n.vijay.narayanan@u.nus.edu.sg`
 
 ### Au Jun Wen, Zechary
 
-<img src="images/zechajw.jpg" width="200px">
+<img src="images/zechajw.png" width="200px">
 
 [[github](http://github.com/zechajw)]
 [[portfolio](team/zechajw.md)]
