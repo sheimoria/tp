@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `n.vijay.narayanan@u.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### N Vijay Narayanan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/myc37.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/myc37)]
+[[portfolio](team/myc37.md)]
 
 * Role: Team Lead
+* Responsibilities: CI/CD + Dev Ops
+
+### Loh Jia Ming, Rayner
+
+<img src="images/raynerljm.jpg" width="200px">
+
+[[github](http://github.com/raynerljm)] [[portfolio](team/myc37.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Wong Jun Yong, Joel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/joelwongjy.jpeg" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/joelwongjy)]
+[[portfolio](team/joelwongjy.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### Au Jun Wen, Zechary
+
+<img src="images/zechajw.jpg" width="200px">
+
+[[github](http://github.com/zechajw)]
+[[portfolio](team/zechajw.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Maleriado Shem Limos
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sheimoria.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sheimoria)]
+[[portfolio](team/sheimoria.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: CI/CD + Dev Ops
