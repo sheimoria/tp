@@ -136,7 +136,7 @@ Examples:
 
 - `delete client vijay@email.com`
 
-### Delete client: `view client`
+### View client: `view client`
 
 View a client in your address book.
 
@@ -146,7 +146,7 @@ Examples:
 
 - `view client vijay@email.com`
 
-### Delete client: `update client`
+### Update client: `update client`
 
 Update a client from in your address book.
 
@@ -155,6 +155,36 @@ Format: `update client e/EMAIL [nn/NEW_NAME np/NEW_PHONE_NUMBER ne/NEW_EMAIL]`
 Examples:
 
 - `update client e/vijay@email.com ne/new@email.com`
+
+### Listing All Meetings: `list meetings`
+
+Shows all upcoming meetings.
+
+Format: `list meetings`
+
+### View Meeting with Client : `view meeting`
+
+View details of a particular meeting.
+
+Format: `view meeting meetingId`
+
+Examples:
+
+- `view meeting 9`
+
+### Update Meeting Details: `update meeting`
+
+Update details of a particular meeting.
+
+Format: `update meeting meetingId`
+
+Examples:
+
+- `update meeting 9`
+
+###Save to hard drive
+
+OnlyFAs’s data is saved in the hard drive automatically after any command that changes the data. There is no need to save manually.
 
 ### Clearing all entries : `clear`
 
@@ -201,18 +231,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                  |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **client**        | `client e/EMAIL no/NUMBER n/NAME` <br> e.g., `e/vijay@gmail.com no/99134234 n/N Vijay Narayanan`                                                                                                                  |
-| **note**          | `note e/EMAIL nt/NOTE` <br> e.g., `note e/vijay@gmail.com nt/Commando NSF with high risk of injury`                                                                                                                  |
-| **policy**        | `policy e/EMAIL t/TITLE v/VALUE d/DESCRIPTION` <br> e.g., `policy e/zechary@yeemail.com t/Car Insurance v/100 thousand d/250 each month`                                                                                                                  |
-| **preference**    | `preference e/EMAIL tag/TAG d/DESCRIPTION` <br> e.g., `preference e/zechary@yeemail.com tag/Cigarettes d/Malboro`                                                                                                                  |
-| **meeting**       | `meeting e/EMAIL d/DATE t/TIME` <br> e.g., `meeting e/vijay@email.com d/14/12/2022 t/1400`                                        |
-| **delete client** | `delete client EMAIL` <br> e.g., `delete 1`                                                                                       |
-| **view client**   | `view client EMAIL`<br> e.g., `view 1`                                                                                            |
-| **update client** | `update client e/EMAIL [nn/NEW_NAME np/NEW_PHONE_NUMBER ne/NEW_EMAIL]`<br> e.g.,`update client e/vijay@email.com ne/new@email.com` |
-| **j 1**           | `` <br> e.g., ``                                                                                                                  |
-| **j 2**           | `` <br> e.g., ``                                                                                                                  |
-| **j 3**           | `` <br> e.g., ``                                                                                                                  |
-| **j 4**           | `` <br> e.g., ``                                                                                                                  |
-| **Help**          | `help`                                                                                                                            |
+| Action             | Format, Examples                                                                                                                         |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| **client**         | `client e/EMAIL no/NUMBER n/NAME` <br> e.g., `e/vijay@gmail.com no/99134234 n/N Vijay Narayanan`                                         |
+| **note**           | `note e/EMAIL nt/NOTE` <br> e.g., `note e/vijay@gmail.com nt/Commando NSF with high risk of injury`                                      |
+| **policy**         | `policy e/EMAIL t/TITLE v/VALUE d/DESCRIPTION` <br> e.g., `policy e/zechary@yeemail.com t/Car Insurance v/100 thousand d/250 each month` |
+| **preference**     | `preference e/EMAIL tag/TAG d/DESCRIPTION` <br> e.g., `preference e/zechary@yeemail.com tag/Cigarettes d/Malboro`                        |
+| **meeting**        | `meeting e/EMAIL d/DATE t/TIME` <br> e.g., `meeting e/vijay@email.com d/14/12/2022 t/1400`                                               |
+| **delete client**  | `delete client EMAIL` <br> e.g., `delete 1`                                                                                              |
+| **view client**    | `view client EMAIL`<br> e.g., `view 1`                                                                                                   |
+| **update client**  | `update client e/EMAIL [nn/NEW_NAME np/NEW_PHONE_NUMBER ne/NEW_EMAIL]`<br> e.g.,`update client e/vijay@email.com ne/new@email.com`       |
+| **list meetings**  | `shows all upcoming meetings` <br> e.g., `list meetings`                                                                                 |
+| **view meeting**   | `view meeting INDEX` <br> e.g., `view meeting 9`                                                                                         |
+| **update meeting** | `update meeting INDEX` <br> e.g., `update meeting 9`                                                                                     |
+| **Help**           | `help`                                                                                                                                   |
