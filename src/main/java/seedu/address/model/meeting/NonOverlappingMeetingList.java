@@ -21,7 +21,7 @@ import seedu.address.model.meeting.exceptions.OverlappingMeetingsException;
  *
  * @see Meeting#isOverlapping(Meeting)
  */
-public class UniqueMeetingList implements Iterable<Meeting> {
+public class NonOverlappingMeetingList implements Iterable<Meeting> {
 
     private final ObservableList<Meeting> internalList = FXCollections.observableArrayList();
     private final ObservableList<Meeting> internalUnmodifiableList =
@@ -73,8 +73,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueMeetingList // instanceof handles nulls
-                        && internalList.equals(((UniqueMeetingList) other).internalList));
+                || (other instanceof NonOverlappingMeetingList // instanceof handles nulls
+                        && internalList.equals(((NonOverlappingMeetingList) other).internalList));
     }
 
     @Override

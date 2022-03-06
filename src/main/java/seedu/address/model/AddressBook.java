@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.NonOverlappingMeetingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final NonOverlappingMeetingList meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        meetings = new NonOverlappingMeetingList();
     }
 
     public AddressBook() {}
@@ -91,6 +95,22 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Returns true if a meeting overlaps with {@code meeting} in the address book.
+     */
+    public boolean isOverlapping(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.overlaps(meeting);
+    }
+
+    /**
+     * Adds a meeting to the address book.
+     * The meeting must not be overlapping with other meetings in the address book.
+     */
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
     }
 
     //// util methods

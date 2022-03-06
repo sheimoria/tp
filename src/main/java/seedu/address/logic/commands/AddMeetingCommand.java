@@ -29,6 +29,11 @@ public class AddMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.isOverlapping(toAdd)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_MEETING);
+        }
+
         model.addMeeting(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

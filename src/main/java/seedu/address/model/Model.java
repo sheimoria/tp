@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Adds the given meeting.
+     * {@code meeting} must not overlap with existing meetings.
+     */
+    void addMeeting(Meeting meeting);
+
+    /**
+     * Returns true if there is a meeting that overlaps with {@code meeting} in the addres book.
+     */
+    boolean isOverlapping(Meeting meeting);
 }
