@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -13,6 +14,14 @@ public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addMeeting";
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the person specified "
+            + "by the index number used in the displayed person list.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_START_DATETIME + "START_DATE] "
+            + "[" + PREFIX_END_DATETIME + "END_DATE] "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_START_DATETIME + "123"
+            + PREFIX_END_DATETIME + "123";
     public static final String MESSAGE_OVERLAPPING_MEETING = "There is an existing"
            + " meeting overlapping with this meeting.";
 
