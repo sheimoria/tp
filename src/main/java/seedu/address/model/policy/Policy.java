@@ -1,4 +1,4 @@
-package seedu.address.model.person.policy;
+package seedu.address.model.policy;
 
 import java.util.Objects;
 
