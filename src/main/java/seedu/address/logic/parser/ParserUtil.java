@@ -135,7 +135,7 @@ public class ParserUtil {
     public static LocalDateTime parseDateTime(String stringDateTime) throws ParseException {
         requireNonNull(stringDateTime);
         String trimmedStringDateTime = stringDateTime.trim();
-        String[] splitStringDateTime = trimmedStringDateTime.split(" ");
+        String[] splitStringDateTime = trimmedStringDateTime.split(",");
 
         // Only date was input
         if (splitStringDateTime.length == 1) {

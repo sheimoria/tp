@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PARAMETERS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 
@@ -28,8 +29,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_START_DATETIME, PREFIX_END_DATETIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATETIME, PREFIX_END_DATETIME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATETIME, PREFIX_END_DATETIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
@@ -45,9 +45,14 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         LocalDateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATETIME).get());
         LocalDateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATETIME).get());
-        Meeting meeting = new Meeting(startDateTime, endDateTime);
-        // TODO: WHERE TO PUT INDEX OF PERSON?
-        return new AddMeetingCommand(meeting);
+
+        if (!Meeting.isValidMeeting(startDateTime, endDateTime)) {
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_PARAMETERS,
+                    AddMeetingCommand.MESSAGE_INVALID_DATETIME));
+        }
+
+        return new AddMeetingCommand(index, startDateTime, endDateTime);
     }
 
     /**
