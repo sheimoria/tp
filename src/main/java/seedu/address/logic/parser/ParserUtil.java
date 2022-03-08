@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -120,5 +124,33 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String input} into an {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static LocalDateTime parseDateTime(String stringDateTime) throws ParseException {
+        requireNonNull(stringDateTime);
+        String trimmedStringDateTime = stringDateTime.trim();
+        String[] splitStringDateTime = trimmedStringDateTime.split(",");
+
+        // Only date was input
+        if (splitStringDateTime.length == 1) {
+            if (!Meeting.isValidDate(splitStringDateTime[0])) {
+                throw new ParseException(Meeting.DATETIME_MESSAGE_CONSTRAINTS);
+            }
+
+            return LocalDateTime.of(LocalDate.parse(splitStringDateTime[0]), LocalTime.now());
+        }
+
+        // Both date and time was input
+        if (!Meeting.isValidDate(splitStringDateTime[0]) || !Meeting.isValidTime(splitStringDateTime[1])) {
+            throw new ParseException(Meeting.DATETIME_MESSAGE_CONSTRAINTS);
+        }
+
+        return LocalDateTime.of(LocalDate.parse(splitStringDateTime[0]), LocalTime.parse((splitStringDateTime[1])));
     }
 }
