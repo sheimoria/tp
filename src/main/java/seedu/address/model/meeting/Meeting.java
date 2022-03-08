@@ -44,7 +44,7 @@ public class Meeting {
         } else if (startDateTime.compareTo(otherMeeting.startDateTime) > 0) {
             return startDateTime.compareTo(otherMeeting.endDateTime) < 0;
         } else {
-            return false;
+            return true;
         }
     }
 
