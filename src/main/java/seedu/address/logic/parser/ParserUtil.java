@@ -16,6 +16,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.policy.Premium;
 import seedu.address.model.tag.Tag;
@@ -168,5 +169,15 @@ public class ParserUtil {
             throw new ParseException(Premium.MESSAGE_CONSTRAINTS);
         }
         return new Premium(trimmedPremium);
+    }
+
+    /**
+     * Parses a {@code String note} into a {@code Note}
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Note parseNote(String note) {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        return new Note(trimmedNote);
     }
 }
