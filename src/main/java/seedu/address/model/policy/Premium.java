@@ -9,21 +9,20 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Premium {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-            "premium amount should only contain numbers";
+            "Premium amount should only contain numbers";
     public static final String VALIDATION_REGEX = "\\d+";
     public final String value;
 
     /**
      * Constructs a {@code Premium}.
      *
-     * @param Premium A valid premium amount.
+     * @param premium A valid premium amount.
      */
-    public Premium(String Premium) {
-        requireNonNull(Premium);
-        checkArgument(isValidPremium(Premium), MESSAGE_CONSTRAINTS);
-        value = Premium;
+    public Premium(String premium) {
+        requireNonNull(premium);
+        checkArgument(isValidPremium(premium), MESSAGE_CONSTRAINTS);
+        value = premium;
     }
 
     /**

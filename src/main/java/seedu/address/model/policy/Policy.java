@@ -71,13 +71,15 @@ public class Policy {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("{")
+                .append(getName())
                 .append("; Company: ")
                 .append(getCompany())
                 .append("; Policy Manager: ")
                 .append(getPolicyManager())
                 .append("; Premium: ")
-                .append(getPremium());
+                .append(getPremium())
+                .append("}");
         return builder.toString();
     }
 
