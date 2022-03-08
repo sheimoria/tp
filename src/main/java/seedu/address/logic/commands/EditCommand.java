@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.policy.Policy;
@@ -150,6 +151,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Policy policy;
+        private Note note;
 
         public EditPersonDescriptor() {}
 
@@ -164,6 +166,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setPolicy(toCopy.policy);
+            setNote(toCopy.note);
         }
 
         /**
@@ -230,6 +233,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(policy);
         }
 
+        public void setNote(Note note) {
+            this.note = note;
+        }
+
+        public Optional<Note> getNote() {
+            return Optional.ofNullable(note);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -250,7 +261,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getPolicy().equals(e.getPolicy());
+                    && getPolicy().equals(e.getPolicy())
+                    && getNote().equals(e.getNote());
         }
     }
 }

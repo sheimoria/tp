@@ -25,6 +25,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Policy> policies = new HashSet<>();
+    private Note note = new Note("");
 
     /**
      * Every field must be present and not null.
@@ -37,6 +38,20 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.policies.addAll(policies);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Policy> policies,
+        Note note) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.policies.addAll(policies);
+        this.note = note;
     }
 
     /**
@@ -84,6 +99,12 @@ public class Person {
         return policies;
     }
 
+    /**
+     * Returns a note
+     */
+    public Note getNote() {
+        return note;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -136,7 +157,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Policies: ")
-                .append(getPolicies().size());
+                .append(getPolicies().size())
+                .append("; Note: ")
+                .append(getNote());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
