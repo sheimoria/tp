@@ -127,7 +127,7 @@ public class ParserUtil {
         return tagSet;
     }
 
-     /**
+    /**
      * Parses a {@code String input} into an {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
