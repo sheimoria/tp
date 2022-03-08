@@ -24,6 +24,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -75,7 +77,13 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson;
+
+        try {
+            editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        } catch (DuplicatePolicyException dpe) {
+            throw new CommandException(dpe.getMessage());
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -90,7 +98,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws
+            DuplicatePolicyException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -99,7 +108,17 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Set<Policy> updatedPolicies = personToEdit.getPolicies();
+        if (editPersonDescriptor.getPolicy().isEmpty()) {
+            return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPolicies);
+        }
+
+        Policy updatedPolicy = editPersonDescriptor.getPolicy().get();
+        if (updatedPolicies.contains(updatedPolicy)) {
+            throw new DuplicatePolicyException();
+        }
+        updatedPolicies.add(updatedPolicy);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPolicies);
     }
 
     @Override
@@ -130,6 +149,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Policy policy;
 
         public EditPersonDescriptor() {}
 
@@ -143,6 +163,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPolicy(toCopy.policy);
         }
 
         /**
@@ -201,6 +222,14 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setPolicy(Policy policy) {
+            this.policy = policy;
+        }
+
+        public Optional<Policy> getPolicy() {
+            return Optional.ofNullable(policy);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -220,7 +249,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getPolicy().equals(e.getPolicy());
         }
     }
 }

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.policy.Policy;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,9 +24,24 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Policy> policies = new HashSet<>();
 
     /**
      * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Policy> policies) {
+        requireAllNonNull(name, phone, email, address, tags, policies);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.policies.addAll(policies);
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor for AddCommand
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -58,6 +74,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable policy set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Policy> getPolicies() {
+        return policies;
     }
 
     /**
@@ -110,7 +134,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Policies: ")
+                .append(getPolicies().size());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -119,5 +145,4 @@ public class Person {
         }
         return builder.toString();
     }
-
 }
