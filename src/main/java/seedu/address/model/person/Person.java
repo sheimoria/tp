@@ -42,9 +42,11 @@ public class Person {
 
     /**
      * Every field must be present and not null.
+     * For NoteCommand
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Policy> policies,
         Note note) {
+        requireAllNonNull(name, phone, email, address, tags, policies);
         this.name = name;
         this.phone = phone;
         this.email = email;
