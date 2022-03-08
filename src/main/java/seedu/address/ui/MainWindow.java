@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TutorialWindow tutorialWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        tutorialWindow = new TutorialWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -116,6 +118,11 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        if (logic.getFilteredPersonList().size() == 0) {
+            resultDisplay.setFeedbackToUser("Add client by using the add command!");
+            tutorialWindow.show();
+        }
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -144,6 +151,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the tutorial window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleTutorial() {
+        if (!tutorialWindow.isShowing()) {
+            tutorialWindow.show();
+        } else {
+            tutorialWindow.focus();
         }
     }
 
@@ -180,6 +199,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowTutorial()) {
+                handleTutorial();
             }
 
             if (commandResult.isExit()) {
