@@ -20,15 +20,43 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Address address;
 
     // Data fields
-    private final Address address;
+    private DateTime lastContacted;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Policy> policies = new HashSet<>();
     private Note note = new Note("");
 
     /**
      * Every field must be present and not null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor for LastContactedCommand.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, DateTime lastContacted, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, lastContacted, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.lastContacted = lastContacted;
+        this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor for AddPolicyCommand.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Policy> policies) {
         requireAllNonNull(name, phone, email, address, tags, policies);
@@ -42,31 +70,16 @@ public class Person {
 
     /**
      * Every field must be present and not null.
-     * For NoteCommand
+     * Overloaded constructor for NoteCommand.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Policy> policies,
-        Note note) {
-        requireAllNonNull(name, phone, email, address, tags, policies);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Note note) {
+        requireAllNonNull(name, phone, email, address, tags, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.policies.addAll(policies);
         this.note = note;
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for AddCommand
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -83,6 +96,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public DateTime getLastContacted() {
+        return lastContacted;
     }
 
     /**
@@ -158,6 +175,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Last Contacted: ")
+                .append(getLastContacted())
                 .append("; Policies: ")
                 .append(getPolicies().size())
                 .append("; Note: ")
