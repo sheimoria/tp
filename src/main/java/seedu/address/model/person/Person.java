@@ -21,9 +21,9 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Address address;
+    private DateTime lastContacted;
 
     // Data fields
-    private DateTime lastContacted;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Policy> policies = new HashSet<>();
     private Note note = new Note("");
@@ -37,20 +37,6 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for LastContactedCommand.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, DateTime lastContacted, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, lastContacted, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.lastContacted = lastContacted;
         this.tags.addAll(tags);
     }
 
@@ -79,6 +65,23 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.note = note;
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor for all commands.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, DateTime lastContacted, Set<Tag> tags,
+                  Set<Policy> policies, Note note) {
+        requireAllNonNull(name, phone, email, address, tags, note);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.lastContacted = lastContacted;
+        this.tags.addAll(tags);
+        this.policies.addAll(policies);
         this.note = note;
     }
 
