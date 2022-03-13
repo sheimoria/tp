@@ -27,6 +27,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Policy> policies = new HashSet<>();
     private Note note = new Note("");
+    private final PreferenceMap preferences = new PreferenceMap();
 
     /**
      * Every field must be present and not null.
@@ -73,7 +74,7 @@ public class Person {
      * Overloaded constructor for all commands.
      */
     public Person(Name name, Phone phone, Email email, Address address, DateTime lastContacted, Set<Tag> tags,
-                  Set<Policy> policies, Note note) {
+                  Set<Policy> policies, Note note, PreferenceMap preferences) {
         requireAllNonNull(name, phone, email, address, tags, note);
         this.name = name;
         this.phone = phone;
@@ -83,6 +84,7 @@ public class Person {
         this.tags.addAll(tags);
         this.policies.addAll(policies);
         this.note = note;
+        this.preferences.addAllPreferences(preferences);
     }
 
     public Name getName() {
@@ -103,6 +105,10 @@ public class Person {
 
     public DateTime getLastContacted() {
         return lastContacted;
+    }
+
+    public PreferenceMap getPreferenceMap() {
+        return this.preferences;
     }
 
     /**
@@ -183,7 +189,9 @@ public class Person {
                 .append("; Policies: ")
                 .append(getPolicies().size())
                 .append("; Note: ")
-                .append(getNote());
+                .append(getNote())
+                .append("; Preferences: ")
+                .append(getPreferenceMap().size());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
