@@ -27,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.PreferenceMap;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.tag.Tag;
@@ -114,11 +115,12 @@ public class EditCommand extends Command {
         DateTime updatedLastContacted = editPersonDescriptor.getLastContacted().orElse(personToEdit.getLastContacted());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
+        PreferenceMap preferences = editPersonDescriptor.getPreferenceMap().orElse(personToEdit.getPreferenceMap());
 
         Set<Policy> updatedPolicies = personToEdit.getPolicies();
         if (editPersonDescriptor.getPolicy().isEmpty()) {
             return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLastContacted,
-                    updatedTags, updatedPolicies, updatedNote);
+                    updatedTags, updatedPolicies, updatedNote, preferences);
         }
 
         Policy updatedPolicy = editPersonDescriptor.getPolicy().get();
@@ -127,7 +129,7 @@ public class EditCommand extends Command {
         }
         updatedPolicies.add(updatedPolicy);
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLastContacted, updatedTags,
-                updatedPolicies, updatedNote);
+                updatedPolicies, updatedNote, preferences);
     }
 
     @Override
@@ -161,6 +163,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Policy policy;
         private Note note;
+        private PreferenceMap preferences;
 
         public EditPersonDescriptor() {}
 
@@ -177,6 +180,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setPolicy(toCopy.policy);
             setNote(toCopy.note);
+            setPreferenceMap(toCopy.preferences);
         }
 
         /**
@@ -226,6 +230,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(lastContacted);
         }
 
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -257,6 +262,14 @@ public class EditCommand extends Command {
 
         public Optional<Note> getNote() {
             return Optional.ofNullable(note);
+        }
+
+        public void setPreferenceMap(PreferenceMap preferences) {
+            this.preferences = preferences;
+        }
+
+        public Optional<PreferenceMap> getPreferenceMap() {
+            return Optional.ofNullable(preferences);
         }
 
         @Override
