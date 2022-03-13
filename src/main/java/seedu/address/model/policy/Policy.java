@@ -71,7 +71,7 @@ public class Policy {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("{")
+        builder.append("[Name: ")
                 .append(getName())
                 .append("; Company: ")
                 .append(getCompany())
@@ -79,7 +79,7 @@ public class Policy {
                 .append(getPolicyManager())
                 .append("; Premium: ")
                 .append(getPremium())
-                .append("}");
+                .append("]");
         return builder.toString();
     }
 
