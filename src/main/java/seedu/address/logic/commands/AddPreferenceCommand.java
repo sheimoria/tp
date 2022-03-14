@@ -30,7 +30,7 @@ public class AddPreferenceCommand extends Command {
     private final String preferenceDetails;
 
     /**
-     *Creates an AddPreferenceCommand to add the specified preference
+     * Creates an AddPreferenceCommand to add the specified preference
      */
     public AddPreferenceCommand(Index index, String preferenceKey, String preferenceDetails) {
         requireNonNull(index);
