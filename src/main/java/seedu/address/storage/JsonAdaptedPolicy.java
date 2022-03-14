@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
@@ -28,7 +27,7 @@ class JsonAdaptedPolicy {
                       @JsonProperty("policyManager") String policyManager, @JsonProperty("premium") String premium) {
         this.policy = policy;
         this.company = company;
-        this.policyManager= policyManager;
+        this.policyManager = policyManager;
         this.premium = premium;
     }
 
