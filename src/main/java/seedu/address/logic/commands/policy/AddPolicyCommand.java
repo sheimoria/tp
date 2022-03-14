@@ -10,7 +10,7 @@ import seedu.address.logic.commands.EditCommand;
 
 public class AddPolicyCommand extends EditCommand {
 
-    public static final String COMMAND_WORD = "policy";
+    public static final String COMMAND_WORD = "addPolicy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the person identified "
             + "by the index number used in the displayed person list. "
