@@ -192,7 +192,6 @@ public class MainWindow extends UiPart<Stage> {
      * List meetings.
      */
     private void showMeetings() {
-        personListPanelPlaceholder.getChildren().clear();
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         if (logic.getFilteredMeetingList().size() == 0) {
@@ -204,7 +203,6 @@ public class MainWindow extends UiPart<Stage> {
      * List person.
      */
     private void showPersons() {
-        meetingListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         if (logic.getFilteredPersonList().size() == 0) {
