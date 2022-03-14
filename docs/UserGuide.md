@@ -7,23 +7,23 @@ onlyFAs is for high achieving financial advisors looking to maintain and develop
 
 - [Quick start](#quick-start)
 - [Features](#features)
-    * [Viewing help : `help`](#viewing-help----help-)
-    * [Add client: `client`](#add-client---client-)
-    * [Add notes for client: `note`](#add-notes-for-client---note-)
-    * [Add policy: `policy`](#add-policy---policy-)
-    * [Add preferences to client: `preference`](#add-preferences-to-client---preference-)
-    * [Add meeting: `meeting`](#add-meeting---meeting-)
-    * [Delete client: `delete client`](#delete-client---delete-client-)
-    * [View client: `view client`](#view-client---view-client-)
-    * [Update client: `update client`](#update-client---update-client-)
-    * [Listing All Meetings: `list meetings`](#listing-all-meetings---list-meetings-)
-    * [View Meeting with Client : `view meeting`](#view-meeting-with-client----view-meeting-)
-    * [Update Meeting Details: `update meeting`](#update-meeting-details---update-meeting-)
-    * [Clearing all entries : `clear`](#clearing-all-entries----clear-)
-    * [Exiting the program : `exit`](#exiting-the-program----exit-)
+    * [Viewing help : `help`](#viewing-help--help)
+    * [Add client: `addClient`](#add-client-addclient)
+    * [View client: `viewClient`](#view-client-viewclient)
+    * [Update client: `updateClient`](#update-client-updateclient)
+    * [Delete client: `deleteClient`](#delete-client-deleteclient)
+    * [Add notes for client: `addNote`](#add-note-for-client-addnote)
+    * [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
+    * [Add policy: `addPolicy`](#add-policy-addpolicy)
+    * [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+    * [View Meeting with Client : `viewMeeting`](#view-meeting-with-client--viewmeeting)
+    * [View All Meetings: `meetings`](#view-all-meetings-meetings)
+    * [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
+    * [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    * [Exiting the program : `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
-    * [Archiving data files `[coming in v2.0]`](#archiving-data-files---coming-in-v20--)
+    * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Mockups](#mockups)
 - [Command summary](#command-summary)
@@ -39,14 +39,15 @@ onlyFAs is for high achieving financial advisors looking to maintain and develop
 1. Copy the file to the folder you want to use as the **home folder** for _onlyFAs_.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/gui-sample.jpg)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     - **`list`** : Lists all contacts.
 
-    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to your contact list.
+    - **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client 
+      named `John Doe` to your contact list.
 
     - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -92,114 +93,122 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Add client: `client`
+### Add client: `addClient`
 
 Adds a client to the list of managed clients
 
-Format: `client e/EMAIL no/NUMBER n/NAME`
+Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]`
 
 Examples:
 
-- `client e/vijay@gmail.com no/99134234 n/N Vijay Narayanan`
-- `client e/zechary@yeemail.com no/92144213 n/Zechary Au Jun Wen`
+- `addClient n/N Vijay Narayanan p/99134234 a/abc street`
+- `addClient  n/Zechary Au Jun Wen p/92144213 e/zechary@yeemail.com`
 
-### Add notes for client: `note`
-
-Adds a plaintext note to a specific client
-
-Format: `note e/EMAIL nt/NOTE`
-
-- `note e/vijay@gmail.com nt/Commando NSF with high risk of injury`
-- `note e/zechary@yeemail.com nt/Look up on policies for emergency care`
-
-### Add policy: `policy`
-
-Adds an insurance policy to a specific client
-
-Format: `policy e/EMAIL t/TITLE v/VALUE d/DESCRIPTION`
-
-Examples:
-
-- `policy e/vijay@gmail.com t/Medicare Plus v/1 million dollars d/Payment until 25`
-- `policy e/zechary@yeemail.com t/Car Insurance v/100 thousand d/250 each month`
-
-### Add preferences to client: `preference`
-
-Adds a preference to a specific client
-
-Format: `preference e/EMAIL tag/TAG d/DESCRIPTION`
-
-Examples:
-
-- `preference e/vijay@gmail.com tag/Drink d/Coke`
-- `preference e/zechary@yeemail.com tag/Cigarettes d/Malboro`
-
-### Add meeting: `meeting`
-
-Add a meeting to your schedule.
-
-Format: `meeting e/EMAIL d/DATE t/TIME`
-
-Examples:
-
-- `meeting e/vijay@email.com d/2/2/2022 t/1200`
-- `meeting e/vijay@email.com d/14/12/2022 t/1400`
-
-### Delete client: `delete client`
-
-Delete a client from your address book.
-
-Format: `delete client EMAIL`
-
-Examples:
-
-- `delete client vijay@email.com`
-
-### View client: `view client`
+### View client: `viewClient`
 
 View a client in your address book.
 
-Format: `view client EMAIL`
+Format: `viewClient INDEX`
 
 Examples:
 
-- `view client vijay@email.com`
+- `viewClient 1`
 
-### Update client: `update client`
+### Update client: `updateClient`
 
 Update a client from in your address book.
 
-Format: `update client e/EMAIL [nn/NEW_NAME np/NEW_PHONE_NUMBER ne/NEW_EMAIL]`
+Format: `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`
 
 Examples:
 
-- `update client e/vijay@email.com ne/new@email.com`
+- `updateClient 1 e/new@email.com`
 
-### Listing All Meetings: `list meetings`
+### Delete client: `deleteClient`
 
-Shows all upcoming meetings.
+Delete a client from your address book.
 
-Format: `list meetings`
+Format: `deleteClient INDEX`
 
-### View Meeting with Client : `view meeting`
+Examples:
+
+- `deleteClient 1`
+
+### Add note for client: `addNote`
+
+Adds a plaintext note to a specific client
+
+Format: `addNote INDEX nt/NOTE`
+
+- `addNote 1 nt/Commando NSF with high risk of injury`
+- `addNote 2 nt/Look up on policies for emergency care`
+
+### Add preferences to client: `addPref`
+
+Adds a preference to a specific client
+
+Format: `addPref INDEX t/TAG d/DESCRIPTION`
+
+Examples:
+
+- `addPref 1 t/Drink d/Coke`
+- `addPref 2 t/Cigarettes d/Malboro`
+
+### Add policy: `addPolicy`
+
+Adds an insurance policy to a specific client
+
+Format: `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT`
+
+Examples:
+
+- `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`
+- `policy 2 n/Car Insurance c/Mercedes pm/Vijay $/250`
+
+### Add meeting: `addMeeting`
+
+Add a meeting to your schedule.
+
+Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    DATETIME format is YYYY-MM-DD,HH:mm
+</div>
+
+Examples:
+
+- `addMeeting 1 ms/2022-01-01,11:00 me/2022-01-01,12:00`
+- `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`
+
+### View Meeting with Client : `viewMeeting`
 
 View details of a particular meeting.
 
-Format: `view meeting meetingId`
+Format: `viewMeeting INDEX`
 
 Examples:
 
-- `view meeting 9`
+- `viewMeeting 1`
 
-### Update Meeting Details: `update meeting`
+### View All Meetings: `meetings`
+
+Shows all upcoming meetings.
+
+Format: `meetings`
+
+### Update Meeting Details: `updateMeeting`
 
 Update details of a particular meeting.
 
-Format: `update meeting meetingId`
+Format: `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    DATETIME format is YYYY-MM-DD,HH:mm
+</div>
 
 Examples:
 
-- `update meeting 9`
+- `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`
 
 ###Save to hard drive
 
@@ -243,24 +252,22 @@ _Details coming soon ..._
 ---
 
 ## Mockups
-
-<img src="/images/mockups/zoom-in-client.png" width="200px">
-
+![Ui](images/mockups/zoom-in-client.jpg)
 ---
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                         |
-|--------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| **client**         | `client e/EMAIL no/NUMBER n/NAME` <br> e.g., `e/vijay@gmail.com no/99134234 n/N Vijay Narayanan`                                         |
-| **note**           | `note e/EMAIL nt/NOTE` <br> e.g., `note e/vijay@gmail.com nt/Commando NSF with high risk of injury`                                      |
-| **policy**         | `policy e/EMAIL t/TITLE v/VALUE d/DESCRIPTION` <br> e.g., `policy e/zechary@yeemail.com t/Car Insurance v/100 thousand d/250 each month` |
-| **preference**     | `preference e/EMAIL tag/TAG d/DESCRIPTION` <br> e.g., `preference e/zechary@yeemail.com tag/Cigarettes d/Malboro`                        |
-| **meeting**        | `meeting e/EMAIL d/DATE t/TIME` <br> e.g., `meeting e/vijay@email.com d/14/12/2022 t/1400`                                               |
-| **delete client**  | `delete client EMAIL` <br> e.g., `delete vijay@email.com`                                                                                |
-| **view client**    | `view client EMAIL`<br> e.g., `view vijay@email.com`                                                                                     |
-| **update client**  | `update client e/EMAIL [nn/NEW_NAME np/NEW_PHONE_NUMBER ne/NEW_EMAIL]`<br> e.g.,`update client e/vijay@email.com ne/new@email.com`       |
-| **list meetings**  | `shows all upcoming meetings` <br> e.g., `list meetings`                                                                                 |
-| **view meeting**   | `view meeting INDEX` <br> e.g., `view meeting 9`                                                                                         |
-| **update meeting** | `update meeting INDEX` <br> e.g., `update meeting 9`                                                                                     |
-| **Help**           | `help`                                                                                                                                   |
+| Action            | Format, Examples                                                                                                                                       |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
+| **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
+| **updateClient**  | `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`updateClient 1 e/new@email.com`                               |
+| **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
+| **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
+| **addPref**       | `addPref INDEX t/TAG d/DESCRIPTION` <br> e.g., `addPref 1 t/Drink d/Coke`                                                                              |
+| **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
+| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`                                 |
+| **viewMeeting**   | `viewMeeting INDEX` <br> e.g., `viewMeeting 2`                                                                                                         |
+| **meetings**      | `meetings`                                                                                                                                             |
+| **updateMeeting** | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                 |
+| **help**          | `help`                                                                                                                                                 |
