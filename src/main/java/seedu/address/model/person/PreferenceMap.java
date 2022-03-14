@@ -26,6 +26,11 @@ public class PreferenceMap {
         preferences.put(key, value);
     }
 
+    public String getPreference(String key) {
+        requireNonNull(key);
+        return preferences.get(key);
+    }
+
     public void addAllPreferences(PreferenceMap preferenceMap) {
         this.preferences.putAll(preferenceMap.preferences);
     }
