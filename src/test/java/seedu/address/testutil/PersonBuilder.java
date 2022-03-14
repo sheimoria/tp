@@ -8,6 +8,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.Premium;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,11 +23,18 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
+    public static final String DEFAULT_POLICY_NAME = "Big Insurance Policy";
+    public static final String DEFAULT_COMPANY = "Big Insurance Company";
+    public static final String DEFAULT_POLICY_MANAGER = "Vijay";
+    public static final String DEFAULT_PREMIUM = "100";
+
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<Policy> policies = new HashSet<>();
+
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +45,11 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+
+        Policy defaultPolicy = new Policy(new Name(DEFAULT_POLICY_NAME), new Name(DEFAULT_COMPANY),
+                new Name(DEFAULT_POLICY_MANAGER),
+                new Premium(DEFAULT_PREMIUM));
+        policies.add(defaultPolicy);
     }
 
     /**
@@ -47,6 +61,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        policies = new HashSet<>(personToCopy.getPolicies());
     }
 
     /**
@@ -86,6 +101,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Parses the {@code policies} into a {@code Set<Policy>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPolicies(Policy ... policies) {
+        this.policies = SampleDataUtil.getPolicySet(policies);
         return this;
     }
 

@@ -279,12 +279,12 @@
     -fx-background-radius: 0;
 }
 
-#tags {
+#policies {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#tags .label {
+#policies .label {
     -fx-text-fill: white;
     -fx-background-color: #3872dd;
     -fx-padding: 1 3 1 3;
