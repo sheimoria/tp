@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TutorialWindow tutorialWindow;
@@ -44,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -115,6 +119,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -182,6 +188,28 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * List meetings.
+     */
+    private void showMeetings() {
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
+
+        if (logic.getFilteredMeetingList().size() == 0) {
+            resultDisplay.setFeedbackToUser("Add meetings by using the addMeeting command!");
+        }
+    }
+
+    /**
+     * List person.
+     */
+    private void showPersons() {
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        if (logic.getFilteredPersonList().size() == 0) {
+            resultDisplay.setFeedbackToUser("Add client by using the add command!");
+        }
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -207,6 +235,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowMeetings()) {
+                showMeetings();
+            }
+
+            if (commandResult.isShowPersons()) {
+                showPersons();
             }
 
             return commandResult;

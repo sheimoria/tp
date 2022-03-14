@@ -20,14 +20,23 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Meetings should be shown. */
+    private final boolean showMeetings;
+
+    /** Persons should be shown. */
+    private final boolean showPersons;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
+                         boolean showMeetings, boolean showPersons) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTutorial = showTutorial;
         this.exit = exit;
+        this.showMeetings = showMeetings;
+        this.showPersons = showPersons;
     }
 
     /**
@@ -35,7 +44,25 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false,
+                false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and the showPersons field set to its default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
+                         boolean showMeetings) {
+        this(feedbackToUser, showHelp, showTutorial, exit, showMeetings, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and the showMeetings and showPersons field set to its default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit) {
+        this(feedbackToUser, showHelp, showTutorial, exit, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -52,6 +79,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isShowMeetings() {
+        return showMeetings;
+    }
+
+    public boolean isShowPersons() {
+        return showPersons;
     }
 
     @Override

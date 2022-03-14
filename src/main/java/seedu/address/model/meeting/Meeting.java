@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -78,6 +79,28 @@ public class Meeting {
     public static boolean isValidMeeting(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         return startDateTime.compareTo(endDateTime) < 0;
     }
+
+    /**
+     * Returns the name of the person.
+     */
+    public Name getName() {
+        return person.getName();
+    }
+
+    /**
+     * Returns the start datetime of the meeting.
+     */
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
+
+    /**
+     * Returns the end datetime of the meeting.
+     */
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
+
 
     @Override
     public String toString() {
