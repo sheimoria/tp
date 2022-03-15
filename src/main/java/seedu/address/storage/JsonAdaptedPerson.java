@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.policy.Policy;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
+    private final String note;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +41,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("policies") List<JsonAdaptedPolicy> policies) {
+            @JsonProperty("policies") List<JsonAdaptedPolicy> policies, @JsonProperty("note") String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +51,11 @@ class JsonAdaptedPerson {
         }
         if (policies != null) {
             this.policies.addAll(policies);
+        }
+        if (note != null) {
+            this.note = note;
+        } else {
+            this.note = "";
         }
     }
 
@@ -66,6 +73,7 @@ class JsonAdaptedPerson {
         policies.addAll(source.getPolicies().stream()
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList()));
+        note = source.getNote().value;
     }
 
     /**
@@ -115,9 +123,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (note == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
+        }
+
+        final Note modelNote = new Note(note);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Policy> modelPolicies = new HashSet<>(personPolicies);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelNote);
     }
 
 }
