@@ -240,4 +240,25 @@ public class Person {
         }
         return builder.toString();
     }
+
+    /**
+     * Returns a formatted string displaying the full details of all policies purchased by this person.
+     */
+    public String displayPolicySet() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        Set<Policy> policies = getPolicies();
+        if (!policies.isEmpty()) {
+            int counter = 0;
+            for (Policy p : policies) {
+                builder.append(p.fullDetails());
+                counter++;
+                if (counter < policies.size()) {
+                    builder.append(", ");
+                }
+            }
+        }
+        builder.append("]");
+        return builder.toString();
+    }
 }
