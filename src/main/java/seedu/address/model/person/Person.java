@@ -163,6 +163,13 @@ public class Person {
     }
 
     /**
+     * Adds the key, value pair to the PreferenceMap for this person
+     */
+    public void addPreference(String key, String value) {
+        this.preferences.addPreference(key, value);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
