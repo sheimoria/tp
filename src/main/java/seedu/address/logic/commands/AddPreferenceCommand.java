@@ -53,7 +53,7 @@ public class AddPreferenceCommand extends Command {
 
         Person personToAddPreferences = lastShownList.get(index.getZeroBased());
 
-        personToAddPreferences.getPreferenceMap().addPreference(preferenceKey, preferenceDetails);
+        personToAddPreferences.addPreference(preferenceKey, preferenceDetails);
 
         return new CommandResult((String.format(MESSAGE_SUCCESS, preferenceKey, preferenceDetails)));
     }

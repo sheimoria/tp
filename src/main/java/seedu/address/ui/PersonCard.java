@@ -46,6 +46,8 @@ public class PersonCard extends UiPart<Region> {
     //    private FlowPane tags;
     @FXML
     private FlowPane policies;
+    @FXML
+    private Label note;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -74,6 +76,7 @@ public class PersonCard extends UiPart<Region> {
         person.getPolicies().stream()
                 .sorted(Comparator.comparing(policy -> policy.getPremium().value))
                 .forEach(policy -> policies.getChildren().add(new Label(policy.toString())));
+        note.setText(person.getNote().value);
     }
 
     @Override
