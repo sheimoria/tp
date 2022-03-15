@@ -89,6 +89,23 @@ public class Person {
      * Every field must be present and not null.
      * Overloaded constructor for all commands.
      */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Set<Policy> policies, Note note, PreferenceMap preferences) {
+        requireAllNonNull(name, phone, email, address, tags, note);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.policies.addAll(policies);
+        this.note = note;
+        this.preferences.addAllPreferences(preferences);
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor for all commands.
+     */
     public Person(Name name, Phone phone, Email email, Address address, DateTime lastContacted, Set<Tag> tags,
                   Set<Policy> policies, Note note, PreferenceMap preferences) {
         requireAllNonNull(name, phone, email, address, tags, note);

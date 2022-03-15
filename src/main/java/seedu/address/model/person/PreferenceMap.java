@@ -16,6 +16,10 @@ public class PreferenceMap {
         this.preferences = new HashMap<>();
     }
 
+    public PreferenceMap(HashMap<String, String> preferences) {
+        this.preferences = preferences;
+    }
+
     /**
      * Adds the preference to the specified {@code Person}
      * @param key
@@ -31,8 +35,16 @@ public class PreferenceMap {
         return preferences.get(key);
     }
 
-    public void addAllPreferences(PreferenceMap preferenceMap) {
+    public HashMap<String, String> getMap() {
+        return this.preferences;
+    }
+
+    /**
+     * Add all the preferences in the previous PreferenceMap to this PreferenceMap
+     */
+    public PreferenceMap addAllPreferences(PreferenceMap preferenceMap) {
         this.preferences.putAll(preferenceMap.preferences);
+        return this;
     }
 
     @Override
