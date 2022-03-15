@@ -58,7 +58,7 @@ public class Person {
 
     /**
      * Every field must be present and not null.
-     * Overloaded constructor for NoteCommand.
+     * Overloaded constructor for AddNoteCommand.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Note note) {
         requireAllNonNull(name, phone, email, address, tags, note);
@@ -68,6 +68,39 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.note = note;
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor for all commands except PreferenceMap.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Set<Policy> policies, Note note) {
+        requireAllNonNull(name, phone, email, address, tags, policies, note);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.policies.addAll(policies);
+        this.note = note;
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor for all commands.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Set<Policy> policies, Note note, PreferenceMap preferences) {
+        requireAllNonNull(name, phone, email, address, tags, note);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.policies.addAll(policies);
+        this.note = note;
+        this.preferences.addAllPreferences(preferences);
     }
 
     /**
@@ -170,6 +203,13 @@ public class Person {
     }
 
     /**
+     * Adds the key, value pair to the PreferenceMap for this person
+     */
+    public void addPreference(String key, String value) {
+        this.preferences.addPreference(key, value);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -223,6 +263,27 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        return builder.toString();
+    }
+
+    /**
+     * Returns a formatted string displaying the full details of all policies purchased by this person.
+     */
+    public String displayPolicySet() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        Set<Policy> policies = getPolicies();
+        if (!policies.isEmpty()) {
+            int counter = 0;
+            for (Policy p : policies) {
+                builder.append(p.fullDetails());
+                counter++;
+                if (counter < policies.size()) {
+                    builder.append(", ");
+                }
+            }
+        }
+        builder.append("]");
         return builder.toString();
     }
 }

@@ -43,6 +43,7 @@ public class TypicalPersons {
                             new Name("health insurance"), new Name("insurance company"),
                             new Name("Carl"), new Premium("15"))
                     )
+            .withNote("Test Note")
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();

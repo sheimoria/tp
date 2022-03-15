@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
+import seedu.address.logic.commands.AddNoteCommand;
 import seedu.address.logic.commands.AddPreferenceCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -19,11 +20,12 @@ import seedu.address.logic.commands.GetPreferenceCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListMeetingCommand;
-import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.commands.TutorialCommand;
 import seedu.address.logic.commands.policy.AddPolicyCommand;
+import seedu.address.logic.commands.policy.ViewPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.policy.AddPolicyCommandParser;
+import seedu.address.logic.parser.policy.ViewPolicyCommandParser;
 
 /**
  * Parses user input.
@@ -88,7 +90,10 @@ public class AddressBookParser {
         case AddPolicyCommand.COMMAND_WORD:
             return new AddPolicyCommandParser().parse(arguments);
 
-        case NoteCommand.COMMAND_WORD:
+        case ViewPolicyCommand.COMMAND_WORD:
+            return new ViewPolicyCommandParser().parse(arguments);
+
+        case AddNoteCommand.COMMAND_WORD:
             return new NoteCommandParser().parse(arguments);
 
         case AddPreferenceCommand.COMMAND_WORD:
