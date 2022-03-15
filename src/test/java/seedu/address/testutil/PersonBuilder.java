@@ -6,6 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.policy.Policy;
@@ -27,6 +28,7 @@ public class PersonBuilder {
     public static final String DEFAULT_COMPANY = "Big Insurance Company";
     public static final String DEFAULT_POLICY_MANAGER = "Vijay";
     public static final String DEFAULT_PREMIUM = "100";
+    public static final String DEFAULT_NOTE = "Test Note";
 
     private Name name;
     private Phone phone;
@@ -34,6 +36,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private Set<Policy> policies = new HashSet<>();
+    private Note note;
 
 
     /**
@@ -50,6 +53,7 @@ public class PersonBuilder {
                 new Name(DEFAULT_POLICY_MANAGER),
                 new Premium(DEFAULT_PREMIUM));
         policies.add(defaultPolicy);
+        note = new Note(DEFAULT_NOTE);
     }
 
     /**
@@ -62,6 +66,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         policies = new HashSet<>(personToCopy.getPolicies());
+        note = personToCopy.getNote();
     }
 
     /**
@@ -109,6 +114,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withPolicies(Policy ... policies) {
         this.policies = SampleDataUtil.getPolicySet(policies);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNote(String note) {
+        this.note = new Note(note);
         return this;
     }
 
