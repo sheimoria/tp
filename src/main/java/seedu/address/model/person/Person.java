@@ -21,6 +21,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Address address;
+    private Date birthday;
     private DateTime lastContacted;
 
     // Data fields
@@ -106,13 +107,31 @@ public class Person {
      * Every field must be present and not null.
      * Overloaded constructor for all commands.
      */
-    public Person(Name name, Phone phone, Email email, Address address, DateTime lastContacted, Set<Tag> tags,
-                  Set<Policy> policies, Note note, PreferenceMap preferences) {
+    public Person(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
+                  Set<Tag> tags, Set<Policy> policies) {
         requireAllNonNull(name, phone, email, address, tags, note);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
+        this.lastContacted = lastContacted;
+        this.tags.addAll(tags);
+        this.policies.addAll(policies);
+    }
+
+    /**
+     * Every field must be present and not null.
+     * Overloaded constructor for all commands.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
+                  Set<Tag> tags, Set<Policy> policies, Note note, PreferenceMap preferences) {
+        requireAllNonNull(name, phone, email, address, tags, note);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.birthday = birthday;
         this.lastContacted = lastContacted;
         this.tags.addAll(tags);
         this.policies.addAll(policies);
@@ -134,6 +153,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Date getBirthday() {
+        return birthday;
     }
 
     public DateTime getLastContacted() {
@@ -211,7 +234,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, birthday, lastContacted, tags);
     }
 
     @Override
@@ -224,6 +247,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Birthday: ")
+                .append(getBirthday())
                 .append("; Last Contacted: ")
                 .append(getLastContacted())
                 .append("; Policies: ")

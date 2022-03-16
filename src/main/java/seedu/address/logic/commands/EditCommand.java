@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,6 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Date;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -47,8 +48,9 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_LAST_CONTACTED + "LAST CONTACTED] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
+            + "[" + PREFIX_LAST_CONTACTED + "LAST CONTACTED]\n"
+            // + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
@@ -112,15 +114,16 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Date updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
         DateTime updatedLastContacted = editPersonDescriptor.getLastContacted().orElse(personToEdit.getLastContacted());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Note updatedNote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
-        PreferenceMap preferences = editPersonDescriptor.getPreferenceMap().orElse(personToEdit.getPreferenceMap());
-
+        PreferenceMap updatedPreferences = editPersonDescriptor.getPreferenceMap().orElse(personToEdit
+                .getPreferenceMap());
         Set<Policy> updatedPolicies = personToEdit.getPolicies();
         if (editPersonDescriptor.getPolicy().isEmpty()) {
-            return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLastContacted,
-                    updatedTags, updatedPolicies, updatedNote, preferences);
+            return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
+                    updatedLastContacted, updatedTags, updatedPolicies, updatedNote, updatedPreferences);
         }
 
         Policy updatedPolicy = editPersonDescriptor.getPolicy().get();
@@ -128,8 +131,8 @@ public class EditCommand extends Command {
             throw new DuplicatePolicyException();
         }
         updatedPolicies.add(updatedPolicy);
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedLastContacted, updatedTags,
-                updatedPolicies, updatedNote, preferences);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
+                updatedLastContacted, updatedTags, updatedPolicies, updatedNote, updatedPreferences);
     }
 
     @Override
@@ -159,6 +162,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Date birthday;
         private DateTime lastContacted;
         private Set<Tag> tags;
         private Policy policy;
@@ -176,6 +180,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setBirthday(toCopy.birthday);
             setLastContacted(toCopy.lastContacted);
             setTags(toCopy.tags);
             setPolicy(toCopy.policy);
@@ -187,7 +192,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, lastContacted, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, lastContacted, tags);
         }
 
         public void setName(Name name) {
@@ -220,6 +225,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setBirthday(Date birthday) {
+            this.birthday = birthday;
+        }
+
+        public Optional<Date> getBirthday() {
+            return Optional.ofNullable(birthday);
         }
 
         public void setLastContacted(DateTime lastContacted) {
@@ -291,6 +304,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getBirthday().equals(e.getBirthday())
                     && getLastContacted().equals(e.getLastContacted())
                     && getTags().equals(e.getTags())
                     && getPolicy().equals(e.getPolicy())
