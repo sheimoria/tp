@@ -94,7 +94,7 @@ public class AddressBookParser {
             return new ViewPolicyCommandParser().parse(arguments);
 
         case AddNoteCommand.COMMAND_WORD:
-            return new NoteCommandParser().parse(arguments);
+            return new AddNoteCommandParser().parse(arguments);
 
         case AddPreferenceCommand.COMMAND_WORD:
             return new AddPreferenceCommandParser().parse(arguments);
