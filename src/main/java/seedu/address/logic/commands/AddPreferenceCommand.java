@@ -10,15 +10,15 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
 
 public class AddPreferenceCommand extends Command {
 
     public static final String COMMAND_WORD = "addPreference";
     public static final String MESSAGE_SUCCESS = "New preference added: %s: %s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a preference to"
-            + "the person specified by the index number used in the displayed "
-            + "person list.\nParameters: INDEX (must be a positive integer)"
+            + "the client specified by the index number used in the displayed "
+            + "client list.\nParameters: INDEX (must be a positive integer)"
             + "[" + PREFIX_PREFERENCE_KEY + "PREFERENCE_KEY (one word with only alphabets)]"
             + "[" + PREFIX_PREFERENCE_DETAIL + "PREFERENCE_DETAILS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -45,15 +45,15 @@ public class AddPreferenceCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Person personToAddPreferences = lastShownList.get(index.getZeroBased());
+        Client clientToAddPreferences = lastShownList.get(index.getZeroBased());
 
-        personToAddPreferences.addPreference(preferenceKey, preferenceDetails);
+        clientToAddPreferences.addPreference(preferenceKey, preferenceDetails);
 
         return new CommandResult((String.format(MESSAGE_SUCCESS, preferenceKey, preferenceDetails)));
     }

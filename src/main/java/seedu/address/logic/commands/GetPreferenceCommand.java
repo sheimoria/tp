@@ -9,7 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
 
 public class GetPreferenceCommand extends Command {
 
@@ -41,8 +41,8 @@ public class GetPreferenceCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Person toGetPreference;
+        List<Client> lastShownList = model.getFilteredClientList();
+        Client toGetPreference;
         try {
             toGetPreference = lastShownList.get(index.getZeroBased());
             String name = toGetPreference.getName().toString();
@@ -54,7 +54,7 @@ public class GetPreferenceCommand extends Command {
                 return new CommandResult(String.format(MESSAGE_SUCCESS, name, preferenceKey, preferenceDetails));
             }
         } catch (IndexOutOfBoundsException ie) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
     }
 }

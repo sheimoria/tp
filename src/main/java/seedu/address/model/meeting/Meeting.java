@@ -9,11 +9,12 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Name;
+
 
 /**
-* Represents a meeting with a Person in the address book.
+* Represents a meeting with a Client in the address book.
 */
 public class Meeting {
 
@@ -21,19 +22,19 @@ public class Meeting {
             "Date times should consist of dates and times in the format of YYYY-MM-DD HH:mm";
     public final LocalDateTime startDateTime;
     public final LocalDateTime endDateTime;
-    public final Person person;
+    public final Client client;
 
     /**
     * Constructs a {@code Meeting}.
      * @param startDateTime A date time object representing the start of the meeting.
      * @param endDateTime A date time object representing the end of the meeting.
     */
-    public Meeting(LocalDateTime startDateTime, LocalDateTime endDateTime, Person person) {
+    public Meeting(LocalDateTime startDateTime, LocalDateTime endDateTime, Client client) {
         requireNonNull(startDateTime);
         requireNonNull(endDateTime);
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
-        this.person = person;
+        this.client = client;
     }
 
     /**
@@ -81,10 +82,10 @@ public class Meeting {
     }
 
     /**
-     * Returns the name of the person.
+     * Returns the name of the client.
      */
     public Name getName() {
-        return person.getName();
+        return client.getName();
     }
 
     /**
@@ -105,7 +106,7 @@ public class Meeting {
     @Override
     public String toString() {
         return String.format("Meeting with %s from %s to %s",
-                person.getName().toString(),
+                client.getName().toString(),
                 startDateTime.toString(),
                 endDateTime.toString());
     }
@@ -122,11 +123,11 @@ public class Meeting {
 
         Meeting otherMeeting = (Meeting) other;
         return otherMeeting.startDateTime.equals(startDateTime) && otherMeeting.endDateTime.equals(endDateTime)
-                && otherMeeting.person.equals(person);
+                && otherMeeting.client.equals(client);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(startDateTime, endDateTime, person);
+        return Objects.hash(startDateTime, endDateTime, client);
     }
 }

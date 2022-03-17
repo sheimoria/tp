@@ -11,9 +11,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Person;
-
 
 
 /**
@@ -23,8 +22,8 @@ public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addMeeting";
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the person specified "
-            + "by the index number used in the displayed person list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the client specified "
+            + "by the index number used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_START_DATETIME + "START_DATETIME] "
             + "[" + PREFIX_END_DATETIME + "END_DATETIME]\n"
@@ -55,15 +54,15 @@ public class AddMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Person personToMeet = lastShownList.get(index.getZeroBased());
+        Client clientToMeet = lastShownList.get(index.getZeroBased());
 
-        Meeting newMeeting = new Meeting(startDateTime, endDateTime, personToMeet);
+        Meeting newMeeting = new Meeting(startDateTime, endDateTime, clientToMeet);
 
         if (model.isOverlapping(newMeeting)) {
             throw new CommandException(MESSAGE_OVERLAPPING_MEETING);

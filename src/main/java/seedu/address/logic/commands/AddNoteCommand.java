@@ -8,13 +8,13 @@ public class AddNoteCommand extends EditCommand {
     public static final String COMMAND_WORD = "addNote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a note to client identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed client list. "
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NOTE + "NOTE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NOTE + "Likes to gym";
 
-    public AddNoteCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        super(index, editPersonDescriptor);
+    public AddNoteCommand(Index index, EditClientDescriptor editClientDescriptor) {
+        super(index, editClientDescriptor);
     }
 }

@@ -23,20 +23,20 @@ public class CommandResult {
     /** Meetings should be shown. */
     private final boolean showMeetings;
 
-    /** Persons should be shown. */
-    private final boolean showPersons;
+    /** Clients should be shown. */
+    private final boolean showClients;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
-                         boolean showMeetings, boolean showPersons) {
+                         boolean showMeetings, boolean showClients) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTutorial = showTutorial;
         this.exit = exit;
         this.showMeetings = showMeetings;
-        this.showPersons = showPersons;
+        this.showClients = showClients;
     }
 
     /**
@@ -50,7 +50,7 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and the showPersons field set to its default value.
+     * and the showClients field set to its default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
                          boolean showMeetings) {
@@ -59,7 +59,7 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and the showMeetings and showPersons field set to its default value.
+     * and the showMeetings and showClients field set to its default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit) {
         this(feedbackToUser, showHelp, showTutorial, exit, false, false);
@@ -85,8 +85,8 @@ public class CommandResult {
         return showMeetings;
     }
 
-    public boolean isShowPersons() {
-        return showPersons;
+    public boolean isShowClients() {
+        return showClients;
     }
 
     @Override
