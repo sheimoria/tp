@@ -8,7 +8,7 @@ import seedu.address.model.meeting.Meeting;
 
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Client}.
  */
 public class MeetingCard extends UiPart<Region> {
 

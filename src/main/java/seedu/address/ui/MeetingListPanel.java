@@ -12,7 +12,7 @@ import seedu.address.model.meeting.Meeting;
 
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of clients.
  */
 public class MeetingListPanel extends UiPart<Region> {
     private static final String FXML = "MeetingListPanel.fxml";
@@ -22,7 +22,7 @@ public class MeetingListPanel extends UiPart<Region> {
     private ListView<Meeting> meetingListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
     public MeetingListPanel(ObservableList<Meeting> meetingList) {
         super(FXML);

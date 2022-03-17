@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddNoteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Note;
+import seedu.address.model.client.Note;
 
 /**
  * Parses input arguments and creates a new AddNoteCommand object
@@ -37,12 +37,12 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
             throw new ParseException((String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE)));
         }
 
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+        EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
 
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
 
-        editPersonDescriptor.setNote(note);
-        return new AddNoteCommand(index, editPersonDescriptor);
+        editClientDescriptor.setNote(note);
+        return new AddNoteCommand(index, editClientDescriptor);
     }
 
     /**

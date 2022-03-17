@@ -2,7 +2,7 @@ package seedu.address.model.policy;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Name;
+import seedu.address.model.client.Name;
 
 /**
  * Represents a Policy in the address book.

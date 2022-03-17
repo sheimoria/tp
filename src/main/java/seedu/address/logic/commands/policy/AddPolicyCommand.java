@@ -12,8 +12,8 @@ public class AddPolicyCommand extends EditCommand {
 
     public static final String COMMAND_WORD = "addPolicy";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the client identified "
+            + "by the index number used in the displayed client list. "
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_COMPANY + "COMPANY] "
@@ -25,7 +25,7 @@ public class AddPolicyCommand extends EditCommand {
             + PREFIX_POLICY_MANAGER + "Me "
             + PREFIX_PREMIUM + "15";
 
-    public AddPolicyCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        super(index, editPersonDescriptor);
+    public AddPolicyCommand(Index index, EditClientDescriptor editClientDescriptor) {
+        super(index, editClientDescriptor);
     }
 }

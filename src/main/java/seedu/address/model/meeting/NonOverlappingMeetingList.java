@@ -11,11 +11,11 @@ import seedu.address.model.meeting.exceptions.OverlappingMeetingsException;
 
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of clients that enforces uniqueness between its elements and does not allow nulls.
+ * A client is considered unique by comparing using {@code Client#isSameClient(Client)}. As such, adding and updating of
+ * clients uses Client#isSameClient(Client) for equality so as to ensure that the client being added or updated is
+ * unique in terms of identity in the UniqueClientList. However, the removal of a client uses Client#equals(Object) so
+ * as to ensure that the client with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -36,8 +36,8 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a client to the list.
+     * The client must not already exist in the list.
      */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
@@ -48,8 +48,8 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent client from the list.
+     * The client must exist in the list.
      */
     public void remove(Meeting toRemove) {
         requireNonNull(toRemove);

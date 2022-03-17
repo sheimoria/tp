@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ClientListPanel clientListPanel;
     private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -44,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane clientListPanelPlaceholder;
 
     @FXML
     private StackPane meetingListPanelPlaceholder;
@@ -116,15 +116,15 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        if (logic.getFilteredPersonList().size() == 0) {
+        if (logic.getFilteredClientList().size() == 0) {
             resultDisplay.setFeedbackToUser("Add client by using the add command!");
             tutorialWindow.show();
         }
@@ -200,18 +200,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * List person.
+     * List client.
      */
-    private void showPersons() {
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    private void showClients() {
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        if (logic.getFilteredPersonList().size() == 0) {
+        if (logic.getFilteredClientList().size() == 0) {
             resultDisplay.setFeedbackToUser("Add client by using the add command!");
         }
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ClientListPanel getClientListPanel() {
+        return clientListPanel;
     }
 
     /**
@@ -241,8 +241,8 @@ public class MainWindow extends UiPart<Stage> {
                 showMeetings();
             }
 
-            if (commandResult.isShowPersons()) {
-                showPersons();
+            if (commandResult.isShowClients()) {
+                showClients();
             }
 
             return commandResult;
