@@ -32,6 +32,7 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.PreferenceMap;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
+import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -125,7 +126,7 @@ public class EditCommand extends Command {
      */
     private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor,
                                              boolean isDelete) throws
-            DuplicatePolicyException {
+            DuplicatePolicyException, InvalidPolicyIndexException {
         assert clientToEdit != null;
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
@@ -146,11 +147,11 @@ public class EditCommand extends Command {
         }
 
         if (isDelete) {
-            assert  editClientDescriptor.getPolicyIndex().isPresent();
+            assert editClientDescriptor.getPolicyIndex().isPresent();
             Index policyIndex = editClientDescriptor.getPolicyIndex().get();
             int index = policyIndex.getZeroBased();
             if (index >= updatedPolicies.size()) {
-                throw new DuplicatePolicyException();
+                throw new InvalidPolicyIndexException();
             }
             updatedPolicies.remove(index);
         } else {
