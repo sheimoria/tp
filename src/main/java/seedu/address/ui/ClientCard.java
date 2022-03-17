@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -73,9 +73,13 @@ public class ClientCard extends UiPart<Region> {
         //        Client.getTags().stream()
         //                .sorted(Comparator.comparing(tag -> tag.tagName))
         //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        AtomicInteger counter = new AtomicInteger(1);
         client.getPolicies().stream()
-                .sorted(Comparator.comparing(policy -> policy.getPremium().value))
-                .forEach(policy -> policies.getChildren().add(new Label(policy.toString())));
+                .forEach(policy -> {
+                    policies.getChildren().add(new Label(policy.toNumberedDisplay(counter.get())));
+                    counter.getAndIncrement();
+                });
         note.setText(client.getNote().value);
     }
 

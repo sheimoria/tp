@@ -146,7 +146,7 @@ class JsonAdaptedClient {
         final PreferenceMap modelPreferenceMap = preferenceMap.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        final Set<Policy> modelPolicies = new HashSet<>(clientPolicies);
+        final List<Policy> modelPolicies = new ArrayList<>(clientPolicies);
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelNote,
                 modelPreferenceMap);

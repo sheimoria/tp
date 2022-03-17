@@ -22,9 +22,11 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListMeetingCommand;
 import seedu.address.logic.commands.TutorialCommand;
 import seedu.address.logic.commands.policy.AddPolicyCommand;
+import seedu.address.logic.commands.policy.DeletePolicyCommand;
 import seedu.address.logic.commands.policy.ViewPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.policy.AddPolicyCommandParser;
+import seedu.address.logic.parser.policy.DeletePolicyCommandParser;
 import seedu.address.logic.parser.policy.ViewPolicyCommandParser;
 
 /**
@@ -101,6 +103,9 @@ public class AddressBookParser {
 
         case GetPreferenceCommand.COMMAND_WORD:
             return new GetPreferenceCommandParser().parse(arguments);
+
+        case DeletePolicyCommand.COMMAND_WORD:
+            return new DeletePolicyCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -16,7 +16,7 @@ import seedu.address.model.client.Client;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addClient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book.\n"
             + "Parameters: "

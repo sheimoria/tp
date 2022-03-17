@@ -21,4 +21,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_NOTE = new Prefix("nt/");
     public static final Prefix PREFIX_PREFERENCE_KEY = new Prefix("pk/");
     public static final Prefix PREFIX_PREFERENCE_DETAIL = new Prefix("pd/");
+    public static final Prefix PREFIX_CLIENT_INDEX = new Prefix("ci/");
+    public static final Prefix PREFIX_POLICY_INDEX = new Prefix("pi/");
 }
