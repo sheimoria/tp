@@ -19,7 +19,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Name;
-import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
 
 /**

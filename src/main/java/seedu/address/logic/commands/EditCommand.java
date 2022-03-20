@@ -148,10 +148,10 @@ public class EditCommand extends Command {
 
         if (!isDelete && !isUpdate && (
                 editClientDescriptor.getPolicyName().isEmpty()
-                        || editClientDescriptor.getCompany().isEmpty()
-                        ||editClientDescriptor.getPolicyManager().isEmpty()
-                        || editClientDescriptor.getPremium().isEmpty()
-        )) {
+                    || editClientDescriptor.getCompany().isEmpty()
+                    || editClientDescriptor.getPolicyManager().isEmpty()
+                    || editClientDescriptor.getPremium().isEmpty()
+            )) {
             return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
                     updatedLastContacted, updatedTags, updatedPolicies, updatedNote, updatedPreferences);
         }
@@ -167,6 +167,9 @@ public class EditCommand extends Command {
             updatedPolicyManager = editClientDescriptor.getPolicyManager().get();
             updatedPremium = editClientDescriptor.getPremium().get();
             updatedPolicy = new Policy(updatedPolicyName, updatedCompany, updatedPolicyManager, updatedPremium);
+            if (updatedPolicies.contains(updatedPolicy)) {
+                throw new DuplicatePolicyException();
+            }
             updatedPolicies.add(updatedPolicy);
         } else {
             assert editClientDescriptor.getPolicyIndex().isPresent();
@@ -335,9 +338,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(policyManager);
         }
 
-        public void setCompany(Name company) { this.company = company;}
+        public void setCompany(Name company) {
+            this.company = company;
+        }
 
-        public Optional<Name> getCompany() { return Optional.ofNullable(company);}
+        public Optional<Name> getCompany() {
+            return Optional.ofNullable(company);
+        }
 
         public void setPolicyManager(Name policyManager) {
             this.policyManager = policyManager;
@@ -347,9 +354,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(policyName);
         }
 
-        public void setPremium(Premium premium) {this.premium = premium;}
+        public void setPremium(Premium premium) {
+            this.premium = premium;
+        }
 
-        public Optional<Premium> getPremium() { return Optional.ofNullable(premium);}
+        public Optional<Premium> getPremium() {
+            return Optional.ofNullable(premium);
+        }
 
         public void setPolicyIndex(Index policyIndex) {
             this.policyIndex = policyIndex;
