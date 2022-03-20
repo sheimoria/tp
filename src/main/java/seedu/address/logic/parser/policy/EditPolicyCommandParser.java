@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.policy;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
@@ -33,17 +32,23 @@ public class EditPolicyCommandParser implements Parser<EditPolicyCommand> {
      */
     public EditPolicyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX, PREFIX_POLICY_INDEX, PREFIX_NAME,
+                ArgumentTokenizer.tokenize(args, PREFIX_POLICY_INDEX, PREFIX_NAME,
                         PREFIX_COMPANY, PREFIX_POLICY_MANAGER, PREFIX_PREMIUM);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX, PREFIX_POLICY_INDEX)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_POLICY_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPolicyCommand.MESSAGE_USAGE));
+        }
+        Index policyIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_POLICY_INDEX).get());
+        Index clientIndex;
+        try {
+            clientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPolicyCommand.MESSAGE_USAGE),
+                    pe);
         }
 
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
-
-        Index clientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLIENT_INDEX).get());
-        Index policyIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_POLICY_INDEX).get());
+        editClientDescriptor.setPolicyIndex(policyIndex);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             Name policyName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -64,9 +69,6 @@ public class EditPolicyCommandParser implements Parser<EditPolicyCommand> {
             Premium premium = ParserUtil.parsePremium(argMultimap.getValue(PREFIX_PREMIUM).get());
             editClientDescriptor.setPremium(premium);
         }
-
-        editClientDescriptor.setPolicyIndex(policyIndex);
-
         return new EditPolicyCommand(clientIndex, editClientDescriptor);
     }
 
