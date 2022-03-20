@@ -73,6 +73,10 @@ public class Policy {
         return getName().fullName;
     }
 
+    public String toNumberedDisplay(int index) {
+        return String.format("%s. %s", index, this);
+    }
+
     /**
      * Returns a formatted string displaying the full details of this policy.
      */

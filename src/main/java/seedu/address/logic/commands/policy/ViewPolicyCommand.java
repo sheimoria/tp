@@ -47,7 +47,7 @@ public class ViewPolicyCommand extends Command {
                 String.format(
                         MESSAGE_VIEW_POLICY_SUCCESS,
                         clientToViewPoliciesOf.getName(),
-                        clientToViewPoliciesOf.displayPolicySet()
+                        clientToViewPoliciesOf.displayPolicyList()
                 )
         );
     }

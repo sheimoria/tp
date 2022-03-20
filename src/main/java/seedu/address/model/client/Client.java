@@ -2,8 +2,10 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -26,7 +28,7 @@ public class Client {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
-    private final Set<Policy> policies = new HashSet<>();
+    private final List<Policy> policies = new ArrayList<>();
     private Note note = new Note("");
     private final PreferenceMap preferences = new PreferenceMap();
 
@@ -46,7 +48,7 @@ public class Client {
      * Every field must be present and not null.
      * Overloaded constructor for AddPolicyCommand.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Policy> policies) {
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Policy> policies) {
         requireAllNonNull(name, phone, email, address, tags, policies);
         this.name = name;
         this.phone = phone;
@@ -75,7 +77,7 @@ public class Client {
      * Overloaded constructor for all commands except PreferenceMap.
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  Set<Policy> policies, Note note) {
+                  List<Policy> policies, Note note) {
         requireAllNonNull(name, phone, email, address, tags, policies, note);
         this.name = name;
         this.phone = phone;
@@ -91,8 +93,8 @@ public class Client {
      * Overloaded constructor for all commands.
      */
     public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  Set<Policy> policies, Note note, PreferenceMap preferences) {
-        requireAllNonNull(name, phone, email, address, tags, note);
+                  List<Policy> policies, Note note, PreferenceMap preferences) {
+        requireAllNonNull(name, phone, email, address, tags, policies, note, preferences);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -108,8 +110,8 @@ public class Client {
      * Overloaded constructor for all commands.
      */
     public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
-                  Set<Tag> tags, Set<Policy> policies) {
-        requireAllNonNull(name, phone, email, address, tags, note);
+                  Set<Tag> tags, List<Policy> policies) {
+        requireAllNonNull(name, phone, email, address, tags, policies);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -125,8 +127,8 @@ public class Client {
      * Overloaded constructor for all commands.
      */
     public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
-                  Set<Tag> tags, Set<Policy> policies, Note note, PreferenceMap preferences) {
-        requireAllNonNull(name, phone, email, address, tags, note);
+                  Set<Tag> tags, List<Policy> policies, Note note, PreferenceMap preferences) {
+        requireAllNonNull(name, phone, email, address, tags, policies, note, preferences);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -176,11 +178,11 @@ public class Client {
     }
 
     /**
-     * Returns an immutable policy set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable policy list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Policy> getPolicies() {
-        return policies;
+    public List<Policy> getPolicies() {
+        return Collections.unmodifiableList(policies);
     }
 
     /**
@@ -234,7 +236,7 @@ public class Client {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, birthday, lastContacted, tags);
+        return Objects.hash(name, phone, email, address, birthday, lastContacted, tags, policies, preferences, note);
     }
 
     @Override
@@ -269,10 +271,10 @@ public class Client {
     /**
      * Returns a formatted string displaying the full details of all policies purchased by this client.
      */
-    public String displayPolicySet() {
+    public String displayPolicyList() {
         final StringBuilder builder = new StringBuilder();
         builder.append("[");
-        Set<Policy> policies = getPolicies();
+        List<Policy> policies = getPolicies();
         if (!policies.isEmpty()) {
             int counter = 0;
             for (Policy p : policies) {
