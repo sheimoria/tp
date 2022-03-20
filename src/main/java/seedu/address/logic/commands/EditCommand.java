@@ -31,6 +31,7 @@ import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.PreferenceMap;
 import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.Premium;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.tag.Tag;
@@ -65,6 +66,7 @@ public class EditCommand extends Command {
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
     private final boolean isDelete;
+    private final boolean isUpdate;
 
     /**
      * @param index of the client in the filtered client list to edit
@@ -77,6 +79,7 @@ public class EditCommand extends Command {
         this.index = index;
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
         this.isDelete = false;
+        this.isUpdate = false;
     }
 
     /**
@@ -91,6 +94,7 @@ public class EditCommand extends Command {
         this.index = index;
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
         this.isDelete = isDelete;
+        this.isUpdate = !isDelete;
     }
 
     @Override
@@ -106,7 +110,7 @@ public class EditCommand extends Command {
         Client editedClient;
 
         try {
-            editedClient = createEditedClient(clientToEdit, editClientDescriptor, isDelete);
+            editedClient = createEditedClient(clientToEdit, editClientDescriptor, isDelete, isUpdate);
         } catch (DuplicatePolicyException dpe) {
             throw new CommandException(dpe.getMessage());
         }
@@ -125,7 +129,7 @@ public class EditCommand extends Command {
      * edited with {@code editClientDescriptor}.
      */
     private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor,
-                                             boolean isDelete) throws
+                                             boolean isDelete, boolean isUpdate) throws
             DuplicatePolicyException, InvalidPolicyIndexException {
         assert clientToEdit != null;
 
@@ -141,25 +145,49 @@ public class EditCommand extends Command {
                 .getPreferenceMap());
         List<Policy> updatedPolicies = new ArrayList<>();
         updatedPolicies.addAll(clientToEdit.getPolicies());
-        if (!isDelete && editClientDescriptor.getPolicy().isEmpty()) {
+
+        if (!isDelete && !isUpdate && (
+                editClientDescriptor.getPolicyName().isEmpty()
+                        || editClientDescriptor.getCompany().isEmpty()
+                        ||editClientDescriptor.getPolicyManager().isEmpty()
+                        || editClientDescriptor.getPremium().isEmpty()
+        )) {
             return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
                     updatedLastContacted, updatedTags, updatedPolicies, updatedNote, updatedPreferences);
         }
 
-        if (isDelete) {
+        Policy updatedPolicy;
+        Name updatedPolicyName;
+        Name updatedCompany;
+        Name updatedPolicyManager;
+        Premium updatedPremium;
+        if (!isDelete && !isUpdate) {
+            updatedPolicyName = editClientDescriptor.getPolicyName().get();
+            updatedCompany = editClientDescriptor.getCompany().get();
+            updatedPolicyManager = editClientDescriptor.getPolicyManager().get();
+            updatedPremium = editClientDescriptor.getPremium().get();
+            updatedPolicy = new Policy(updatedPolicyName, updatedCompany, updatedPolicyManager, updatedPremium);
+            updatedPolicies.add(updatedPolicy);
+        } else {
             assert editClientDescriptor.getPolicyIndex().isPresent();
             Index policyIndex = editClientDescriptor.getPolicyIndex().get();
             int index = policyIndex.getZeroBased();
             if (index >= updatedPolicies.size()) {
                 throw new InvalidPolicyIndexException();
             }
-            updatedPolicies.remove(index);
-        } else {
-            Policy updatedPolicy = editClientDescriptor.getPolicy().get();
-            if (updatedPolicies.contains(updatedPolicy)) {
-                throw new DuplicatePolicyException();
+
+            if (isDelete) {
+                updatedPolicies.remove(index);
+            } else if (isUpdate) {
+                Policy policyToUpdate = updatedPolicies.get(index);
+                updatedPolicyName = editClientDescriptor.getPolicyName().orElse(policyToUpdate.getName());
+                updatedCompany = editClientDescriptor.getCompany().orElse(policyToUpdate.getCompany());
+                updatedPolicyManager =
+                        editClientDescriptor.getPolicyManager().orElse(policyToUpdate.getPolicyManager());
+                updatedPremium = editClientDescriptor.getPremium().orElse(policyToUpdate.getPremium());
+                updatedPolicy = new Policy(updatedPolicyName, updatedCompany, updatedPolicyManager, updatedPremium);
+                updatedPolicies.set(index, updatedPolicy);
             }
-            updatedPolicies.add(updatedPolicy);
         }
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
                 updatedLastContacted, updatedTags, updatedPolicies, updatedNote, updatedPreferences);
@@ -195,7 +223,10 @@ public class EditCommand extends Command {
         private Date birthday;
         private DateTime lastContacted;
         private Set<Tag> tags;
-        private Policy policy;
+        private Name policyName;
+        private Name company;
+        private Name policyManager;
+        private Premium premium;
         private Index policyIndex;
         private Note note;
         private PreferenceMap preferences;
@@ -214,7 +245,10 @@ public class EditCommand extends Command {
             setBirthday(toCopy.birthday);
             setLastContacted(toCopy.lastContacted);
             setTags(toCopy.tags);
-            setPolicy(toCopy.policy);
+            setPolicyName(toCopy.policyName);
+            setCompany(toCopy.company);
+            setPolicyManager(toCopy.policyManager);
+            setPremium(toCopy.premium);
             setPolicyIndex(toCopy.policyIndex);
             setNote(toCopy.note);
             setPreferenceMap(toCopy.preferences);
@@ -225,7 +259,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, lastContacted, tags,
-                    policy, policyIndex);
+                    policyName, company, policyManager, premium, policyIndex);
         }
 
         public void setName(Name name) {
@@ -276,15 +310,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(lastContacted);
         }
 
-        public void setPolicyIndex(Index policyIndex) {
-            this.policyIndex = policyIndex;
-        }
-
-        public Optional<Index> getPolicyIndex() {
-            return Optional.ofNullable(policyIndex);
-        }
-
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -302,12 +327,36 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        public void setPolicy(Policy policy) {
-            this.policy = policy;
+        public void setPolicyName(Name policyName) {
+            this.policyName = policyName;
         }
 
-        public Optional<Policy> getPolicy() {
-            return Optional.ofNullable(policy);
+        public Optional<Name> getPolicyManager() {
+            return Optional.ofNullable(policyManager);
+        }
+
+        public void setCompany(Name company) { this.company = company;}
+
+        public Optional<Name> getCompany() { return Optional.ofNullable(company);}
+
+        public void setPolicyManager(Name policyManager) {
+            this.policyManager = policyManager;
+        }
+
+        public Optional<Name> getPolicyName() {
+            return Optional.ofNullable(policyName);
+        }
+
+        public void setPremium(Premium premium) {this.premium = premium;}
+
+        public Optional<Premium> getPremium() { return Optional.ofNullable(premium);}
+
+        public void setPolicyIndex(Index policyIndex) {
+            this.policyIndex = policyIndex;
+        }
+
+        public Optional<Index> getPolicyIndex() {
+            return Optional.ofNullable(policyIndex);
         }
 
         public void setNote(Note note) {
@@ -348,7 +397,10 @@ public class EditCommand extends Command {
                     && getBirthday().equals(e.getBirthday())
                     && getLastContacted().equals(e.getLastContacted())
                     && getTags().equals(e.getTags())
-                    && getPolicy().equals(e.getPolicy())
+                    && getPolicyName().equals(e.getPolicyName())
+                    && getCompany().equals(e.getCompany())
+                    && getPolicyManager().equals(e.getPolicyManager())
+                    && getPremium().equals(e.getPremium())
                     && getPolicyIndex().equals(e.getPolicyIndex())
                     && getNote().equals(e.getNote());
         }
