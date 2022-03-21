@@ -21,7 +21,8 @@ class JsonAdaptedPolicy {
     private final String premium;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedPolicy} with the given {@code policyName}, {@code company},
+     * {@code policyManager} and {@code premium}.
      */
     @JsonCreator
     JsonAdaptedPolicy(@JsonProperty("policy") String policy, @JsonProperty("company") String company,

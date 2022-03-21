@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.policy;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
 
 import java.util.stream.Stream;
@@ -28,19 +27,23 @@ public class DeletePolicyCommandParser implements Parser<DeletePolicyCommand> {
      */
     public DeletePolicyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CLIENT_INDEX, PREFIX_POLICY_INDEX);
+                ArgumentTokenizer.tokenize(args, PREFIX_POLICY_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_INDEX, PREFIX_POLICY_INDEX)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_POLICY_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePolicyCommand.MESSAGE_USAGE));
         }
 
-        Index clientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CLIENT_INDEX).get());
         Index policyIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_POLICY_INDEX).get());
+        Index clientIndex;
+        try {
+            clientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePolicyCommand.MESSAGE_USAGE),
+                    pe);
+        }
 
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
         editClientDescriptor.setPolicyIndex(policyIndex);
-
         return new DeletePolicyCommand(clientIndex, editClientDescriptor);
     }
 

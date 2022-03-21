@@ -19,7 +19,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Name;
-import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
 
 /**
@@ -49,12 +48,15 @@ public class AddPolicyCommandParser implements Parser<AddPolicyCommand> {
 
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        Name policyName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Name company = ParserUtil.parseName(argMultimap.getValue(PREFIX_COMPANY).get());
         Name policyManager = ParserUtil.parseName(argMultimap.getValue(PREFIX_POLICY_MANAGER).get());
         Premium premium = ParserUtil.parsePremium(argMultimap.getValue(PREFIX_PREMIUM).get());
 
-        editClientDescriptor.setPolicy(new Policy(name, company, policyManager, premium));
+        editClientDescriptor.setPolicyName(policyName);
+        editClientDescriptor.setCompany(company);
+        editClientDescriptor.setPolicyManager(policyManager);
+        editClientDescriptor.setPremium(premium);
         return new AddPolicyCommand(index, editClientDescriptor);
     }
 

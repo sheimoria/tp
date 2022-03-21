@@ -13,7 +13,7 @@ public class DeletePolicyCommand extends EditCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the policy identified by the client index number used in the displayed client list and "
             + "policy index number used in the displayed client card.\n"
-            + "Parameters: ci/CLIENT_INDEX pi/POLICY_INDEX\n"
+            + "Parameters: INDEX pi/POLICY_INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_POLICY_SUCCESS = "Deleted Policy: %s from %s's policy list";
