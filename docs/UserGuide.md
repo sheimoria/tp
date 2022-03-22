@@ -15,6 +15,8 @@ onlyFAs is for high achieving financial advisors looking to maintain and develop
     * [Add notes for client: `addNote`](#add-note-for-client-addnote)
     * [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
     * [Add policy: `addPolicy`](#add-policy-addpolicy)
+    * [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+    * [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
     * [Add meeting: `addMeeting`](#add-meeting-addmeeting)
     * [View All Meetings: `meetings`](#view-all-meetings-meetings)
     * [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
@@ -165,7 +167,7 @@ Examples:
 - `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`
 - `addPolicy 2 n/Car Insurance c/Mercedes pm/Vijay $/250`
 
-### Update policy: `editPolicy`
+### Edit policy: `editPolicy`
 
 Updates an insurance policy for a specific client
 
