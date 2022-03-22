@@ -74,13 +74,18 @@ public class TypicalClients {
     private TypicalClients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical clients.
+     * Returns an {@code AddressBook} with all the typical clients and meetings.
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Client client : getTypicalClients()) {
             ab.addClient(client);
         }
+
+        //        for (Meeting meeting: getTypicalMeetings()) {
+        //            ab.addMeeting(meeting);
+        //        }
+
         return ab;
     }
 
