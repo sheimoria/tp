@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -117,6 +118,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a meeting overlaps with {@code meeting} in the address book except the specified meeting.
+     */
+    public boolean isOverlappingExcept(Meeting meeting, Meeting exceptedMeeting) {
+        requireAllNonNull(meeting, exceptedMeeting);
+        return meetings.overlapsExcept(meeting, exceptedMeeting);
+    }
+
+    /**
      * Adds a meeting to the address book.
      * The meeting must not be overlapping with other meetings in the address book.
      */
@@ -130,6 +139,18 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeMeeting(Meeting meeting) {
         meetings.remove(meeting);
+    }
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting timing of {@code editedMeeting} must not be overlapping with
+     * another existing meeting in the address book.
+     */
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+
+        meetings.setMeeting(target, editedMeeting);
     }
 
     /**

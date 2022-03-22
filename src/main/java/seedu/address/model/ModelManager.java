@@ -121,6 +121,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isOverlappingExcept(Meeting meeting, Meeting exceptedMeeting) {
+        requireAllNonNull(meeting, exceptedMeeting);
+        return addressBook.isOverlappingExcept(meeting, exceptedMeeting);
+    }
+
+    @Override
     public void addMeeting(Meeting meeting) {
         addressBook.addMeeting(meeting);
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
@@ -129,6 +135,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteMeeting(Meeting target) {
         addressBook.removeMeeting(target);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        addressBook.setMeeting(target, editedMeeting);
     }
 
     @Override
