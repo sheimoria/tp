@@ -187,6 +187,37 @@ Step 4. The user executes `updateMeeting 1 me/2022-01-01,14:00` to edit the meet
 
 Step 5. The user executes `deleteMeeting 1` to delete the meeting.
 
+### Policy features
+
+#### Implementation
+
+The new meeting feature is supported by two new main models `Policy` and `Premium`.
+
+The `Policy` model has four attributes
+1. `name` represents the name of the policy
+2. `company` represents the company which sells the policy
+3. `policyManager` represents the name of the person who is managing the policy
+4. `premium` represents the monthly premium payment for the policy
+
+The policy features supports the following operations:
+* Adding new policies - called via the `AddPolicyCommand`
+* Editing policies - called via the `EditPolicyCommand`
+* Deleting policies - called via the `DeletePolicyCommand`
+* *In progress*: View all policies - called via the `ViewPoliciesCommand`
+
+Given below is an example usage scenario and how the feature behaves:
+
+Step 1. The user launches the application.
+
+Step 2. The user executes `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` to add the Medicare Plus policy to the first client in the contact list. The `addPolicy` command instantiates a new `Policy` object which will be added to the existing `Client` object that represents the first client in the list.
+![Policy1Add](images/_.png)
+
+Step 3. The user executes `editPolicy 1 pi/1 $/200` to update the monthly premium of the first policy of the first client in the contact list from $100 up to $200.
+![Policy2Edit](images/_.png)
+
+Step 4. The user executes `deletePolicy 1 pi/1` to delete the first policy of the first client in the contact list.
+![Policy3Delete](images/_.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -314,13 +345,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new client                                   |                                                                        |
 | `* * *`  | user                                       | update a client                                    | handle changes in client details                                       |
 | `* * *`  | user                                       | delete a client                                    | remove non-essential contacts                                          |
-| `* * *`  | user                                       | view all my contacts                               |                                                                        |
+| `* * *`  | user                                       | view all the clients in my contact list            |                                                                        |
 | `* * *`  | user                                       | find a client by name                              | locate details of clients without having to go through the entire list |
-| `* * *`  | user                                       | schedule meeting with a client                     |                                                                        |
-| `* * *`  | user                                       | view my meeting schedule for today                 | know what timings I am occupied                                        |
+| `* * *`  | user                                       | schedule a meeting with a client                   |                                                                        |
+| `* * *`  | user                                       | view my meeting schedule on a given today          | know what timings I will be occupied on that day                       |
 | `* *`    | user                                       | get warnings if there are conflicts in my schedule | avoid scheduling clashing meetings                                     |
 | `* *`    | user                                       | add notes about my clients                         | record details about clients                                           |
 | `* *`    | user                                       | add details of my client's policies                | categorize clients by policies                                         |
+| `* *`    | user                                       | update details of my client's policies             | accommodate changes such as change in monthly premium                  |
+| `* *`    | user                                       | delete policies                                    | remove policies that clients have surrendered or terminated            |
 | `* *`    | user                                       | record my client's individual preferences          | better cater to their needs                                            |
 | `*`      | user with many clients in the address book | sort clients by name                               | locate a client easily                                                 |
 
@@ -481,7 +514,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a sample contact list containing 6 clients. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -498,16 +531,67 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `deleteClient 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `deleteClient 0`<br>
       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+   5. _{ more test cases …​ }_
+
+### Adding a policy
+
+1. Adding a policy to a client in the contact list
+
+    1. Prerequisites: There must be at least one client in the contact list.
+
+    1. Test case: `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`<br>
+       Expected: A blue tag entitled *Medicare Plus* should appear under the name of the first client in the contact list. Status message shows that the number of policies of the client is 1 higher than before.
+
+    1. Test case: `addPolicy 1 n/Medicare Plus`<br>
+       Expected: No policy is added. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `addPolicy`, `addPolicy x n/Medicare Plus c/Medicare pm/Zechary $/100`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+1_{ more test cases …​ }_
+
+### Editing a policy
+
+1. Editing a policy of a client in the contact list
+
+    1. Prerequisites: There must be at least one client in the contact list with at least one policy.
+
+    1. Test case: `editPolicy 1 pi/1 n/New Policy`<br>
+       Expected: The first blue tag under the name of the first client in the contact list should now be entitled *New Policy*. Status message shows that the number of policies of the client is the same as before.
+
+    1. Test case: `editPolicy 1 pi/1`<br>
+       Expected: No policy is edited. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `editPolicy`, `editPolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
+       Expected: Similar to previous.
+
+1_{ more test cases …​ }_
+
+### Deleting a policy
+
+1. Deleting a policy of a client in the contact list
+
+    1. Prerequisites: There must be at least one client in the contact list with at least one policy.
+
+    1. Test case: `deletePolicy 1 pi/1`<br>
+       Expected: The first blue tag under the name of the first client in the contact list should disappear. Status message shows that the number of policies of the client is 1 less than before.
+
+    1. Test case: `deletePolicy 1`<br>
+       Expected: No policy is deleted. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `deletePolicy`, `deletePolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
+       Expected: Similar to previous.
+
+1_{ more test cases …​ }_
 
 ### Saving data
 
