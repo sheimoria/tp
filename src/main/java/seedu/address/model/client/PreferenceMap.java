@@ -1,10 +1,10 @@
 package seedu.address.model.client;
 
-import seedu.address.model.client.exceptions.InvalidPreferenceKeyException;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
+
+import seedu.address.model.client.exceptions.InvalidPreferenceKeyException;
 
 public class PreferenceMap {
 
