@@ -1,5 +1,7 @@
 package seedu.address.model.client;
 
+import seedu.address.model.client.exceptions.InvalidPreferenceKeyException;
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
@@ -30,9 +32,17 @@ public class PreferenceMap {
         preferences.put(key, value);
     }
 
-    public String getPreference(String key) {
+    /**
+     * Deletes the preference of the specified {@code key} from the Client
+     * @param key - the key to be deleted from the client's preferences
+     *
+     */
+    public void deletePreference(String key) throws InvalidPreferenceKeyException {
         requireNonNull(key);
-        return preferences.get(key);
+        if (!preferences.containsKey(key)) {
+            throw new InvalidPreferenceKeyException();
+        }
+        preferences.remove(key);
     }
 
     public HashMap<String, String> getMap() {
