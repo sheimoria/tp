@@ -8,9 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.UniqueClientList;
-import seedu.address.model.client.exceptions.DuplicateClientException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.meeting.exceptions.OverlappingMeetingsException;
 

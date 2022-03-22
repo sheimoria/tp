@@ -56,8 +56,8 @@
       }
     },
     {
-      "startDateTime":  "2022-01-03T12:07:01.722322",
-      "endDateTime":  "2022-01-04T12:07:01.722430",
+      "startDateTime":  "2022-01-01T12:07:01.722322",
+      "endDateTime":  "2022-01-02T12:07:01.722430",
       "client": {
         "name" : "Benson Meier",
         "phone" : "98765432",
