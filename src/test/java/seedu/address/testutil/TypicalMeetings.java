@@ -23,6 +23,7 @@ public class TypicalMeetings {
                     .withEmail("123, Jurong West Ave 6, #08-111")
                     .withTags("friends")
                     .build())
+            .withLabel("Lunch")
             .build();
 
     public static final Meeting WITH_BENSON = new MeetingBuilder()
@@ -35,6 +36,7 @@ public class TypicalMeetings {
                     .withEmail("311, Clementi Ave 2, #02-25")
                     .withTags("owesMoney", "friends")
                     .build())
+            .withLabel("")
             .build();
 
 
