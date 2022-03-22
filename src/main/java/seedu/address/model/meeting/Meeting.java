@@ -102,6 +102,13 @@ public class Meeting {
         return endDateTime;
     }
 
+    /**
+     * Returns the client being met for the meeting.
+     */
+    public Client getClient() {
+        return client;
+    }
+
 
     @Override
     public String toString() {

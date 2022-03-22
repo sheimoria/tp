@@ -1,8 +1,10 @@
 package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,8 +38,8 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Adds a client to the list.
-     * The client must not already exist in the list.
+     * Adds a meeting to the list.
+     * The meeting must not be overlapping with other meetings in the list.
      */
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
@@ -48,14 +50,32 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Removes the equivalent client from the list.
-     * The client must exist in the list.
+     * Removes the equivalent meeting from the list.
+     * The meeting must exist in the list.
      */
     public void remove(Meeting toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new MeetingNotFoundException();
         }
+    }
+
+    public void setMeetings(NonOverlappingMeetingList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code meetings}.
+     * {@code meetings} must not contain overlapping meetings.
+     */
+    public void setMeetings(List<Meeting> meetings) {
+        requireAllNonNull(meetings);
+        if (!meetingsAreNonOverlapping(meetings)) {
+            throw new OverlappingMeetingsException();
+        }
+
+        internalList.setAll(meetings);
     }
 
     /**
@@ -82,4 +102,17 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
         return internalList.hashCode();
     }
 
+    /**
+     * Returns true if {@code meetings} contains non-overlapping meetings.
+     */
+    private boolean meetingsAreNonOverlapping(List<Meeting> meetings) {
+        for (int i = 0; i < meetings.size() - 1; i++) {
+            for (int j = i + 1; j < meetings.size(); j++) {
+                if (meetings.get(i).isOverlapping(meetings.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

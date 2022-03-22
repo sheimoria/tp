@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +21,19 @@ import seedu.address.model.client.Client;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
+    public static final String MESSAGE_OVERLAPPING_MEETINGS = "Meeting list contains overlapping meeting(s).";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
+    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given clients.
+     * Constructs a {@code JsonSerializableAddressBook} with the given clients and meetings.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("clients") List<JsonAdaptedClient> clients) {
+    public JsonSerializableAddressBook(@JsonProperty("clients") List<JsonAdaptedClient> clients,
+                                       @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
         this.clients.addAll(clients);
+        this.meetings.addAll(meetings);
     }
 
     /**
@@ -38,6 +43,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
+        meetings.addAll(source.getMeetingList().stream().map(JsonAdaptedMeeting::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +60,15 @@ class JsonSerializableAddressBook {
             }
             addressBook.addClient(client);
         }
+
+        for (JsonAdaptedMeeting jsonAdaptedMeeting: meetings) {
+            Meeting meeting = jsonAdaptedMeeting.toModelType();
+            if (addressBook.isOverlapping(meeting)) {
+                throw new IllegalValueException(MESSAGE_OVERLAPPING_MEETINGS);
+            }
+            addressBook.addMeeting(meeting);
+        }
+
         return addressBook;
     }
 

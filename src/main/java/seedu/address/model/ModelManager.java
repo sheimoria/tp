@@ -123,6 +123,7 @@ public class ModelManager implements Model {
     @Override
     public void addMeeting(Meeting meeting) {
         addressBook.addMeeting(meeting);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     //=========== Filtered Client List Accessors =============================================================
