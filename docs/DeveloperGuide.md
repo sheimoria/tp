@@ -154,6 +154,39 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Meetings features
+
+#### Implementation
+
+The new meeting feature is supported by two new main models `Meeting` and `NonOverlappingMeetingList`. The relationship between `Meeting` to `NonOverlappingMeetingList` is similar to the relationship between `Client` and `UniqueClientList`.
+
+The `NonOverlappingMeetingList` is stored in `AddressBook` class and ensures that no two meetings overlap.
+
+The `Meeting` model has three attributes
+1. `startDateTime` represents the starting date and time of the meeting
+2. `endDateTime` represents the ending date and time of the meeting
+3. `client` represents the client that is being met in this meeting
+
+The meeting features supports the following operations:
+* Adding new meetings - called via the `AddMeetingCommand`
+* Viewing meetings in the sidebar - called via the `ListMeetingCommand`
+* *In progress*: Updating meetings - called via the `EditMeetingCommand`
+* *In progress*: Deleting meetings - called via the `DeleteMeetingCommand`
+
+Given below is an example usage scenario and how the feature behaves:
+
+Step 1. The user launches the application. The `NonOverlappingMeetingList` is loaded from persistent memory if it exists and be stored in the AddressBook.
+
+Step 2. The user executes `addMeeting 1 ms/2022-01-01,11:00 me/2022-01-01,13:00` to schedule a meeting with the first client in the list on 1st January 2022 from 11:00AM to 1:00PM. The `addMeeting` command instantiates a new `Meeting` object and calls the `Model#addMeeting()` to add the object to the `NonOverlappingMeetingList`.
+![Meeting1Add](images/Meeting1Add.png)
+
+Step 3. The user executes `meetings` to view the meetings on the right sidebar.
+![Meeting2List](images/Meeting2List.png)
+
+Step 4. The user executes `updateMeeting 1 me/2022-01-01,14:00` to edit the meeting to set the end time to 2:00PM.
+
+Step 5. The user executes `deleteMeeting 1` to delete the meeting.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
