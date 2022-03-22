@@ -16,9 +16,9 @@ onlyFAs is for high achieving financial advisors looking to maintain and develop
     * [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
     * [Add policy: `addPolicy`](#add-policy-addpolicy)
     * [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-    * [View Meeting with Client : `viewMeeting`](#view-meeting-with-client--viewmeeting)
     * [View All Meetings: `meetings`](#view-all-meetings-meetings)
     * [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
+    * [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
     * [Clearing all entries : `clear`](#clearing-all-entries--clear)
     * [Exiting the program : `exit`](#exiting-the-program--exit)
     * [Saving the data](#saving-the-data)
@@ -202,16 +202,6 @@ Examples:
 - `addMeeting 1 ms/2022-01-01,11:00 me/2022-01-01,12:00`
 - `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`
 
-### View Meeting with Client : `viewMeeting`
-
-View details of a particular meeting.
-
-Format: `viewMeeting INDEX`
-
-Examples:
-
-- `viewMeeting 1`
-
 ### View All Meetings: `meetings`
 
 Shows all upcoming meetings.
@@ -222,7 +212,7 @@ Format: `meetings`
 
 Update details of a particular meeting.
 
-Format: `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]`
+Format: `updateMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
     DATETIME format is YYYY-MM-DD,HH:mm
@@ -231,6 +221,16 @@ Format: `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]`
 Examples:
 
 - `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`
+
+### Delete meeting: `deleteMeeting`
+
+Deletes a meeting
+
+Format: `deleteMeeting INDEX`
+
+Examples:
+
+- `deleteMeeting 1`
 
 ###Save to hard drive
 
@@ -291,7 +291,6 @@ _Details coming soon ..._
 | **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`         |
 | **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                   |
 | **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`                                  |
-| **viewMeeting**   | `viewMeeting INDEX` <br> e.g., `viewMeeting 2`                                                                                                          |
 | **meetings**      | `meetings`                                                                                                                                              |
 | **updateMeeting** | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                  |
 | **help**          | `help`                                                                                                                                                  |
