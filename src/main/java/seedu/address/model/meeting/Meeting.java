@@ -109,6 +109,13 @@ public class Meeting {
         return client;
     }
 
+    /**
+     * Updates the client and returns a new meeting.
+     */
+    public Meeting updateClient(Client editedClient) {
+        return new Meeting(startDateTime, endDateTime, editedClient);
+    }
+
 
     @Override
     public String toString() {

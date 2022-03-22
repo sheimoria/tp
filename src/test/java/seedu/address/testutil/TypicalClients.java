@@ -82,10 +82,6 @@ public class TypicalClients {
             ab.addClient(client);
         }
 
-        //        for (Meeting meeting: getTypicalMeetings()) {
-        //            ab.addMeeting(meeting);
-        //        }
-
         return ab;
     }
 

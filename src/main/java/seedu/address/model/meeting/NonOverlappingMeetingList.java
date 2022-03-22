@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.client.Client;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.meeting.exceptions.OverlappingMeetingsException;
 
@@ -60,6 +61,25 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
         }
     }
 
+    /**
+     * Update meetings with the specified client to a new client.
+     */
+    public void setClient(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
+
+        for (int i = 0; i < internalList.size(); i++) {
+            Meeting meeting = internalList.get(i);
+            if (meeting.getClient().isSameClient(target)) {
+                Meeting newMeeting = meeting.updateClient(editedClient);
+                internalList.set(i, newMeeting);
+            }
+        }
+    }
+
+    /**
+     * Replaces the contents of this list with a replacement.
+     * {@code replacement} must not contain overlapping meetings.
+     */
     public void setMeetings(NonOverlappingMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
