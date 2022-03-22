@@ -131,6 +131,11 @@ public class ModelManager implements Model {
         addressBook.removeMeeting(target);
     }
 
+    @Override
+    public void sortMeetings() {
+        addressBook.sortMeetings();
+    }
+
     //=========== Filtered Client List Accessors =============================================================
 
     /**

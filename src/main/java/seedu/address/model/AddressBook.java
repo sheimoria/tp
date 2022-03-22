@@ -132,6 +132,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         meetings.remove(meeting);
     }
 
+    /**
+     * Sorts meetings in descending order.
+     */
+    public void sortMeetings() {
+        meetings.sortDescending();
+    }
+
     //// util methods
 
     @Override

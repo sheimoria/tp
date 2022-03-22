@@ -110,6 +110,10 @@ public interface Model {
      */
     void deleteMeeting(Meeting meeting);
 
+    /**
+     * Sorts the meetings by descending order.
+     */
+    void sortMeetings();
 
     /**
      * Returns true if there is a meeting that overlaps with {@code meeting} in the addres book.

@@ -78,6 +78,7 @@ public class AddMeetingCommand extends Command {
         }
 
         model.addMeeting(newMeeting);
+        model.sortMeetings();
         return new CommandResult(String.format(MESSAGE_SUCCESS, newMeeting));
     }
 
