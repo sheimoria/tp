@@ -60,6 +60,10 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with a replacement.
+     * {@code replacement} must not contain overlapping meetings.
+     */
     public void setMeetings(NonOverlappingMeetingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

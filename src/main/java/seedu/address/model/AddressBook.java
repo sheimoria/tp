@@ -53,8 +53,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the client list with {@code clients}.
-     * {@code clients} must not contain duplicate clients.
+     * Replaces the contents of the meeting list with {@code meetings}.
+     * {@code clients} must not contain overlapping meetings.
      */
     public void setMeetings(List<Meeting> meetings) {
         this.meetings.setMeetings(meetings);
