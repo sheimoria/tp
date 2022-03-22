@@ -155,6 +155,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortMeetings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isOverlapping(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }

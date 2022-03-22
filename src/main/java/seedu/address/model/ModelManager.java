@@ -126,6 +126,16 @@ public class ModelManager implements Model {
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
+    @Override
+    public void deleteMeeting(Meeting target) {
+        addressBook.removeMeeting(target);
+    }
+
+    @Override
+    public void sortMeetings() {
+        addressBook.sortMeetings();
+    }
+
     //=========== Filtered Client List Accessors =============================================================
 
     /**
@@ -156,8 +166,6 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
-        filteredMeetings.forEach(x -> System.out.println(x));
-
         filteredMeetings.setPredicate(predicate);
     }
 

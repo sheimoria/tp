@@ -105,6 +105,17 @@ public interface Model {
     void addMeeting(Meeting meeting);
 
     /**
+     * Deletes the given meeting.
+     * The meeting must exist in the address book.
+     */
+    void deleteMeeting(Meeting meeting);
+
+    /**
+     * Sorts the meetings by descending order.
+     */
+    void sortMeetings();
+
+    /**
      * Returns true if there is a meeting that overlaps with {@code meeting} in the addres book.
      */
     boolean isOverlapping(Meeting meeting);
