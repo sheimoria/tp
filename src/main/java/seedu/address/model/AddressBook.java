@@ -124,6 +124,14 @@ public class AddressBook implements ReadOnlyAddressBook {
         meetings.add(meeting);
     }
 
+    /**
+     * Removes {@code meeting} from this {@code AddressBook}.
+     * {@code meeting} must exist in the address book.
+     */
+    public void removeMeeting(Meeting meeting) {
+        meetings.remove(meeting);
+    }
+
     //// util methods
 
     @Override
