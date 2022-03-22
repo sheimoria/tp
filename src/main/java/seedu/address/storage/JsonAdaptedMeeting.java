@@ -20,6 +20,7 @@ public class JsonAdaptedMeeting {
     private final String startDateTime;
     private final String endDateTime;
     private final JsonAdaptedClient client;
+    private final String label;
 
     /**
      * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
@@ -27,10 +28,12 @@ public class JsonAdaptedMeeting {
     @JsonCreator
     JsonAdaptedMeeting(@JsonProperty("startDateTime") String startDateTime,
                        @JsonProperty("endDateTime") String endDateTime,
-                       @JsonProperty("client") JsonAdaptedClient client) {
+                       @JsonProperty("client") JsonAdaptedClient client,
+                       @JsonProperty("label") String label) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.client = client;
+        this.label = label;
     }
 
     /**
@@ -40,6 +43,7 @@ public class JsonAdaptedMeeting {
         startDateTime = meeting.getStartDateTime().toString();
         endDateTime = meeting.getEndDateTime().toString();
         client = new JsonAdaptedClient(meeting.getClient());
+        label = meeting.getLabel();
     }
 
     /**
@@ -76,7 +80,7 @@ public class JsonAdaptedMeeting {
         }
         final Client modelClient = client.toModelType();
 
-        return new Meeting(modelStartDateTime, modelEndDateTime, modelClient);
+        return new Meeting(modelStartDateTime, modelEndDateTime, modelClient, label);
     }
 
 }

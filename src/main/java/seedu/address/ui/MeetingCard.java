@@ -42,9 +42,15 @@ public class MeetingCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        name.setText(meeting.getName().fullName);
-        startDateTime.setText("From: " + meeting.getStartDateTime().toString());
-        endDateTime.setText("To: " + meeting.getEndDateTime().toString());
+        String nameLabel;
+        if (meeting.getLabel().equals("")) {
+            nameLabel = meeting.getName().fullName;
+        } else {
+            nameLabel = meeting.getName().fullName + " (" + meeting.getLabel() + ")";
+        }
+        name.setText(nameLabel);
+        startDateTime.setText("From: " + meeting.getStartDateTime().format(Meeting.DATETIME_FORMATTER));
+        endDateTime.setText("To: " + meeting.getEndDateTime().format(Meeting.DATETIME_FORMATTER));
     }
 
     @Override

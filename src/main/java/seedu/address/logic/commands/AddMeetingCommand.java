@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 
 import java.time.LocalDateTime;
@@ -25,11 +26,13 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the client specified "
             + "by the index number used in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_START_DATETIME + "START_DATETIME] "
-            + "[" + PREFIX_END_DATETIME + "END_DATETIME]\n"
+            + "" + PREFIX_START_DATETIME + "START_DATETIME "
+            + "" + PREFIX_END_DATETIME + "END_DATETIME "
+            + "[" + PREFIX_LABEL + "LABEL]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_START_DATETIME + "2022-01-01,11:00 "
-            + PREFIX_END_DATETIME + "2022-01-01:13:00";
+            + PREFIX_END_DATETIME + "2022-01-01:13:00 "
+            + PREFIX_LABEL + "Lunch";
     public static final String MESSAGE_OVERLAPPING_MEETING = "There is an existing"
            + " meeting overlapping with this meeting.";
     public static final String MESSAGE_INVALID_DATETIME = "The end time cannot be before the start time.";
@@ -37,18 +40,21 @@ public class AddMeetingCommand extends Command {
     private final Index index;
     private final LocalDateTime startDateTime;
     private final LocalDateTime endDateTime;
+    private final String label;
 
     /**
      * Creates an AddMeetingCommand to add the specified {@code Meeting}
      */
-    public AddMeetingCommand(Index index, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    public AddMeetingCommand(Index index, LocalDateTime startDateTime, LocalDateTime endDateTime, String label) {
         requireNonNull(index);
         requireNonNull(startDateTime);
         requireNonNull(endDateTime);
+        requireNonNull(label);
 
         this.index = index;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
+        this.label = label;
     }
 
     @Override
@@ -62,7 +68,7 @@ public class AddMeetingCommand extends Command {
 
         Client clientToMeet = lastShownList.get(index.getZeroBased());
 
-        Meeting newMeeting = new Meeting(startDateTime, endDateTime, clientToMeet);
+        Meeting newMeeting = new Meeting(startDateTime, endDateTime, clientToMeet, label);
 
         if (model.isOverlapping(newMeeting)) {
             throw new CommandException(MESSAGE_OVERLAPPING_MEETING);
@@ -88,6 +94,6 @@ public class AddMeetingCommand extends Command {
         AddMeetingCommand otherAmc = (AddMeetingCommand) other;
         return index.equals(otherAmc.index)
                 && startDateTime.equals(otherAmc.startDateTime)
-                && endDateTime.equals(otherAmc.endDateTime);
+                && endDateTime.equals(otherAmc.endDateTime) && label.equals(otherAmc.label);
     }
 }

@@ -53,7 +53,8 @@
         "email" : "alice@example.com",
         "address" : "123, Jurong West Ave 6, #08-111",
         "tagged" : [ "friends" ]
-      }
+      },
+      "label": "Lunch"
     },
     {
       "startDateTime":  "2022-01-01T12:07:01.722322",
@@ -64,7 +65,8 @@
         "email" : "johnd@example.com",
         "address" : "311, Clementi Ave 2, #02-25",
         "tagged" : [ "owesMoney", "friends" ]
-      }
+      },
+      "label": ""
     }
   ]
 }

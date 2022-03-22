@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PARAMETERS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATETIME;
 
 import java.time.LocalDateTime;
@@ -27,7 +28,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public AddMeetingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_START_DATETIME, PREFIX_END_DATETIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_START_DATETIME, PREFIX_END_DATETIME, PREFIX_LABEL);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_START_DATETIME, PREFIX_END_DATETIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
@@ -45,6 +46,12 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         LocalDateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATETIME).get());
         LocalDateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATETIME).get());
+        String label;
+        if (argMultimap.getValue(PREFIX_LABEL).isPresent()) {
+            label = argMultimap.getValue(PREFIX_LABEL).get();
+        } else {
+            label = "";
+        }
 
         if (!Meeting.isValidMeeting(startDateTime, endDateTime)) {
             throw new ParseException(String.format(
@@ -52,7 +59,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                     AddMeetingCommand.MESSAGE_INVALID_DATETIME));
         }
 
-        return new AddMeetingCommand(index, startDateTime, endDateTime);
+        return new AddMeetingCommand(index, startDateTime, endDateTime, label);
     }
 
     /**

@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
@@ -18,23 +19,43 @@ import seedu.address.model.client.Name;
 */
 public class Meeting {
 
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
             "Date times should consist of dates and times in the format of YYYY-MM-DD HH:mm";
     public final LocalDateTime startDateTime;
     public final LocalDateTime endDateTime;
     public final Client client;
+    public final String label;
+
+    //    /**
+    //     * Constructs a {@code Meeting}.
+    //     * @param startDateTime A date time object representing the start of the meeting.
+    //     * @param endDateTime A date time object representing the end of the meeting.
+    //     * @param client A client object representing the client being met.
+    //     */
+    //    public Meeting(LocalDateTime startDateTime, LocalDateTime endDateTime, Client client) {
+    //        requireNonNull(startDateTime);
+    //        requireNonNull(endDateTime);
+    //        this.startDateTime = startDateTime;
+    //        this.endDateTime = endDateTime;
+    //        this.client = client;
+    //        this.label = "";
+    //    }
 
     /**
     * Constructs a {@code Meeting}.
      * @param startDateTime A date time object representing the start of the meeting.
      * @param endDateTime A date time object representing the end of the meeting.
+     * @param client A client object representing the client being met.
+     * @param label A label labelling the meeting.
     */
-    public Meeting(LocalDateTime startDateTime, LocalDateTime endDateTime, Client client) {
+    public Meeting(LocalDateTime startDateTime, LocalDateTime endDateTime, Client client, String label) {
         requireNonNull(startDateTime);
         requireNonNull(endDateTime);
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.client = client;
+        this.label = label;
     }
 
     /**
@@ -110,19 +131,34 @@ public class Meeting {
     }
 
     /**
+     * Returns the label of the meeting.
+     */
+    public String getLabel() {
+        return label;
+    }
+
+    /**
      * Updates the client and returns a new meeting.
      */
     public Meeting updateClient(Client editedClient) {
-        return new Meeting(startDateTime, endDateTime, editedClient);
+        return new Meeting(startDateTime, endDateTime, editedClient, label);
     }
 
 
     @Override
     public String toString() {
-        return String.format("Meeting with %s from %s to %s",
-                client.getName().toString(),
-                startDateTime.toString(),
-                endDateTime.toString());
+        if (label.equals("")) {
+            return String.format("Meeting with %s from %s to %s",
+                    client.getName().toString(),
+                    startDateTime.format(DATETIME_FORMATTER),
+                    endDateTime.format(DATETIME_FORMATTER));
+        } else {
+            return String.format("%s with %s from %s to %s",
+                    label,
+                    client.getName().toString(),
+                    startDateTime.format(DATETIME_FORMATTER),
+                    endDateTime.format(DATETIME_FORMATTER));
+        }
     }
 
     @Override
@@ -137,11 +173,11 @@ public class Meeting {
 
         Meeting otherMeeting = (Meeting) other;
         return otherMeeting.startDateTime.equals(startDateTime) && otherMeeting.endDateTime.equals(endDateTime)
-                && otherMeeting.client.equals(client);
+                && otherMeeting.client.equals(client) && otherMeeting.label.equals(label);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(startDateTime, endDateTime, client);
+        return Objects.hash(startDateTime, endDateTime, client, label);
     }
 }
