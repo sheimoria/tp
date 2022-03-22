@@ -21,6 +21,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.TutorialCommand;
 import seedu.address.logic.commands.meeting.AddMeetingCommand;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
+import seedu.address.logic.commands.meeting.EditMeetingCommand;
 import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.commands.policy.AddPolicyCommand;
 import seedu.address.logic.commands.policy.DeletePolicyCommand;
@@ -29,6 +30,7 @@ import seedu.address.logic.commands.policy.ViewPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meeting.AddMeetingCommandParser;
 import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
+import seedu.address.logic.parser.meeting.EditMeetingCommandParser;
 import seedu.address.logic.parser.policy.AddPolicyCommandParser;
 import seedu.address.logic.parser.policy.DeletePolicyCommandParser;
 import seedu.address.logic.parser.policy.EditPolicyCommandParser;
@@ -96,6 +98,9 @@ public class AddressBookParser {
 
         case DeleteMeetingCommand.COMMAND_WORD:
             return new DeleteMeetingCommandParser().parse(arguments);
+
+        case EditMeetingCommand.COMMAND_WORD:
+            return new EditMeetingCommandParser().parse(arguments);
 
         case AddPolicyCommand.COMMAND_WORD:
             return new AddPolicyCommandParser().parse(arguments);

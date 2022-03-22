@@ -41,6 +41,14 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Returns true if the list contains any overlapping meetings except for the specified meeting.
+     */
+    public boolean overlapsExcept(Meeting toCheck, Meeting exceptedMeeting) {
+        requireAllNonNull(toCheck, exceptedMeeting);
+        return internalList.stream().filter(x -> !x.equals(exceptedMeeting)).anyMatch(toCheck::isOverlapping);
+    }
+
+    /**
      * Adds a meeting to the list.
      * The meeting must not be overlapping with other meetings in the list.
      */
@@ -95,6 +103,27 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
                 internalList.set(i, newMeeting);
             }
         }
+    }
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting timing of {@code editedMeeting} must not be overlapping with
+     * another existing meeting in the address book.
+     */
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireAllNonNull(target, editedMeeting);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new MeetingNotFoundException();
+        }
+
+        if (!target.isOverlapping(editedMeeting) && overlaps(editedMeeting)) {
+            throw new OverlappingMeetingsException();
+        }
+
+        internalList.set(index, editedMeeting);
     }
 
     /**

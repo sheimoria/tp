@@ -21,7 +21,9 @@ import seedu.address.model.meeting.Meeting;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
-    public static final String MESSAGE_OVERLAPPING_MEETINGS = "Meeting list contains overlapping meeting(s).";
+    public static final String MESSAGE_OVERLAPPING_MEETINGS = "Meeting list contains overlapping meetings.";
+    public static final String MESSAGE_INVALID_MEETING_DATETIME =
+            "Meeting list contains meeting with invalid datetime.";
 
     private final List<JsonAdaptedClient> clients = new ArrayList<>();
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
@@ -66,6 +68,10 @@ class JsonSerializableAddressBook {
             if (addressBook.isOverlapping(meeting)) {
                 throw new IllegalValueException(MESSAGE_OVERLAPPING_MEETINGS);
             }
+            if (!Meeting.isValidMeeting(meeting.getStartDateTime(), meeting.getEndDateTime())) {
+                throw new IllegalValueException(MESSAGE_INVALID_MEETING_DATETIME);
+            }
+
             addressBook.addMeeting(meeting);
         }
 

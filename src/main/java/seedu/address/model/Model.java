@@ -111,14 +111,28 @@ public interface Model {
     void deleteMeeting(Meeting meeting);
 
     /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting timing of {@code editedMeeting} must not be overlapping with
+     * another existing meeting in the address book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
+
+    /**
      * Sorts the meetings by descending order.
      */
     void sortMeetings();
 
     /**
-     * Returns true if there is a meeting that overlaps with {@code meeting} in the addres book.
+     * Returns true if there is a meeting that overlaps with {@code meeting} in the address book.
      */
     boolean isOverlapping(Meeting meeting);
+
+    /**
+     * Returns true if there is a meeting that overlaps with {@code meeting} in the addres book except the
+     * specified meeting.
+     */
+    boolean isOverlappingExcept(Meeting meeting, Meeting exceptedMeeting);
 
     /**
      * Returns an unmodifiable view of the filtered meeting list

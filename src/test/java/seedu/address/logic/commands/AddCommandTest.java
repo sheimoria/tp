@@ -160,12 +160,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setMeeting(Meeting target, Meeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortMeetings() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean isOverlapping(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isOverlappingExcept(Meeting meeting, Meeting exceptedMeeting) {
             throw new AssertionError("This method should not be called.");
         }
 
