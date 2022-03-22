@@ -97,6 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedClient);
 
         clients.setClient(target, editedClient);
+        meetings.setClient(target, editedClient);
     }
 
     /**
