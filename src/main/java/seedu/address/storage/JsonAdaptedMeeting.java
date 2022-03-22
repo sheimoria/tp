@@ -52,28 +52,31 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
         }
+        LocalDateTime modelStartDateTime;
+        try {
+            modelStartDateTime = LocalDateTime.parse(startDateTime);
+        } catch (DateTimeParseException err) {
+            throw new IllegalValueException(Meeting.DATETIME_MESSAGE_CONSTRAINTS);
+        }
 
         if (endDateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDateTime.class.getSimpleName()));
         }
-
+        LocalDateTime modelEndDateTime;
         try {
-            final LocalDateTime modelStartDateTime = LocalDateTime.parse(startDateTime);
-            final LocalDateTime modelEndDateTime = LocalDateTime.parse(endDateTime);
-
-            if (client == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                        Client.class.getSimpleName()));
-            }
-
-            final Client modelClient = client.toModelType();
-
-            return new Meeting(modelStartDateTime, modelEndDateTime, modelClient);
+            modelEndDateTime = LocalDateTime.parse(endDateTime);
         } catch (DateTimeParseException err) {
             throw new IllegalValueException(Meeting.DATETIME_MESSAGE_CONSTRAINTS);
         }
 
+        if (client == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Client.class.getSimpleName()));
+        }
+        final Client modelClient = client.toModelType();
+
+        return new Meeting(modelStartDateTime, modelEndDateTime, modelClient);
     }
 
 }
