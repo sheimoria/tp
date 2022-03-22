@@ -15,6 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_START_DATETIME = new Prefix("ms/");
     public static final Prefix PREFIX_END_DATETIME = new Prefix("me/");
+    public static final Prefix PREFIX_LABEL = new Prefix("l/");
     public static final Prefix PREFIX_COMPANY = new Prefix("c/");
     public static final Prefix PREFIX_POLICY_MANAGER = new Prefix("pm/");
     public static final Prefix PREFIX_PREMIUM = new Prefix("$/");

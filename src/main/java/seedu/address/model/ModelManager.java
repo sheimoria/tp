@@ -156,6 +156,8 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
+        filteredMeetings.forEach(x -> System.out.println(x));
+
         filteredMeetings.setPredicate(predicate);
     }
 

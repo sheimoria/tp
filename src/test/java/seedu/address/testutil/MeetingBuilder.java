@@ -15,6 +15,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_PHONE = "94351253";
     public static final String DEFAULT_EMAIL = "alice@example.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LABEL = "Lunch";
 
     public static final String DEFAULT_POLICY_NAME = "Big Insurance Policy";
     public static final String DEFAULT_COMPANY = "Big Insurance Company";
@@ -25,6 +26,7 @@ public class MeetingBuilder {
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
     private Client client;
+    private String label;
 
 
     /**
@@ -39,6 +41,7 @@ public class MeetingBuilder {
                 .withEmail(DEFAULT_EMAIL)
                 .withAddress((DEFAULT_ADDRESS))
                 .build();
+        label = DEFAULT_LABEL;
     }
 
     /**
@@ -48,6 +51,7 @@ public class MeetingBuilder {
         startDateTime = meetingToCopy.getStartDateTime();
         endDateTime = meetingToCopy.getEndDateTime();
         client = meetingToCopy.getClient();
+        label = meetingToCopy.getLabel();
     }
 
     /**
@@ -74,8 +78,16 @@ public class MeetingBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code label} of the {@code Meeting} that we are building.
+     */
+    public MeetingBuilder withLabel(String label) {
+        this.label = label;
+        return this;
+    }
+
     public Meeting build() {
-        return new Meeting(startDateTime, endDateTime, client);
+        return new Meeting(startDateTime, endDateTime, client, label);
     }
 
 }
