@@ -35,12 +35,15 @@ public class Client {
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, birthday, lastContacted, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
+        this.lastContacted = lastContacted;
         this.tags.addAll(tags);
     }
 

@@ -12,12 +12,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in dd/MM/yyyy format.";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be in dd-MM-yyyy format.";
 
     /*
-     * Date should be in dd/MM/yyyy format.
+     * Date should be in dd-MM-yyyy format.
      */
-    public static final String VALIDATION_REGEX = "^([0-2][0-9]|(3)[0-1])(/)(((0)[0-9])|((1)[0-2]))(/)\\d{4}$";
+    public static final String VALIDATION_REGEX = "^([012][1-9]|3[01])-([0][1-9]|1[012])-([0-9][0-9][0-9][1-9])$";
 
     public final LocalDate value;
 
@@ -41,7 +41,11 @@ public class Date {
 
     @Override
     public String toString() {
-        return value.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String result = value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        if (result.equals("01-01-0001")) {
+            return "-";
+        }
+        return result;
     }
 
     @Override
@@ -57,6 +61,6 @@ public class Date {
     }
 
     public LocalDate parse(String date) {
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 }
