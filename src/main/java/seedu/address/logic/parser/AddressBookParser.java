@@ -26,7 +26,6 @@ import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.commands.policy.AddPolicyCommand;
 import seedu.address.logic.commands.policy.DeletePolicyCommand;
 import seedu.address.logic.commands.policy.EditPolicyCommand;
-import seedu.address.logic.commands.policy.ViewPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meeting.AddMeetingCommandParser;
 import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
@@ -34,7 +33,6 @@ import seedu.address.logic.parser.meeting.EditMeetingCommandParser;
 import seedu.address.logic.parser.policy.AddPolicyCommandParser;
 import seedu.address.logic.parser.policy.DeletePolicyCommandParser;
 import seedu.address.logic.parser.policy.EditPolicyCommandParser;
-import seedu.address.logic.parser.policy.ViewPolicyCommandParser;
 
 /**
  * Parses user input.
@@ -104,9 +102,6 @@ public class AddressBookParser {
 
         case AddPolicyCommand.COMMAND_WORD:
             return new AddPolicyCommandParser().parse(arguments);
-
-        case ViewPolicyCommand.COMMAND_WORD:
-            return new ViewPolicyCommandParser().parse(arguments);
 
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser().parse(arguments);
