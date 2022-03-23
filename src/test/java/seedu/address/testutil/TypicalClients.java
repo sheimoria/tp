@@ -31,9 +31,8 @@ public class TypicalClients {
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends")
+            .withAddress("311, Clementi Ave 2, #02-25").withBirthday("21-03-1999").withLastContacted("21-03-1999 21:03")
+            .withEmail("johnd@example.com").withPhone("98765432").withTags("owesMoney", "friends")
             .withPolicies(
                     new Policy(
                             new Name("life insurance"), new Name("insurance company"),

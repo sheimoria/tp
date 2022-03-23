@@ -1,7 +1,9 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,12 +32,12 @@ public class ClientUtil {
      */
     public static String getClientDetails(Client client) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + client.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + client.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
-        client.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        sb.append(PREFIX_NAME).append(client.getName().fullName).append(" ");
+        sb.append(PREFIX_PHONE).append(client.getPhone().value).append(" ");
+        sb.append(PREFIX_EMAIL).append(client.getEmail().value).append(" ");
+        sb.append(PREFIX_ADDRESS).append(client.getAddress().value).append(" ");
+        client.getTags().forEach(
+            s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
         );
         return sb.toString();
     }
@@ -49,6 +51,9 @@ public class ClientUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getBirthday().ifPresent(birthday -> sb.append(PREFIX_BIRTHDAY).append(birthday).append(" "));
+        descriptor.getLastContacted().ifPresent(lastContacted -> sb.append(PREFIX_LAST_CONTACTED).append(lastContacted)
+                .append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
