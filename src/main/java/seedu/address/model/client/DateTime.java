@@ -12,13 +12,13 @@ import java.time.format.DateTimeFormatter;
  */
 public class DateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Datetime should be in DD/MM/YYYY HH:mm format.";
+    public static final String MESSAGE_CONSTRAINTS = "Datetime should be in DD-MM-YYYY HH:mm format.";
 
     /*
      * Datetime should be in DD/MM/YYYY HH:mm format.
      */
-    public static final String VALIDATION_REGEX = "^([1-9]|([012][0-9])|(3[01]))/([0]{0,1}[1-9]|1[012])"
-            + "/\\d\\d\\d\\d\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
+    public static final String VALIDATION_REGEX = "^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])"
+            + "-\\d\\d\\d\\d\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
 
     public final LocalDateTime value;
 
@@ -42,7 +42,7 @@ public class DateTime {
 
     @Override
     public String toString() {
-        return value.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        return value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
     }
 
     @Override
@@ -58,6 +58,6 @@ public class DateTime {
     }
 
     public LocalDateTime parse(String dateTime) {
-        return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+        return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
     }
 }
