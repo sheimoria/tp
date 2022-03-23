@@ -212,6 +212,14 @@ public class Client {
     }
 
     /**
+     * Deletes the key from the PreferenceMap for this client
+     * @param key - the key to be deleted from the PreferenceMap
+     */
+    public void deletePreference(String key) {
+        this.preferences.deletePreference(key);
+    }
+
+    /**
      * Returns true if both clients have the same identity and data fields.
      * This defines a stronger notion of equality between two clients.
      */
