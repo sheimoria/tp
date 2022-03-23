@@ -219,7 +219,7 @@ Step 2: The user executes `addNote 1 nt/Likes to gym` to add a `Note` to the exi
 
 The new preference feature is supported by a new model `PreferenceMap`
 
-The `PreferenceMap` model has a single attribute
+The `PreferenceMap` model has a single attribute. The existing `Client` model now contains a `PreferenceMap` representing all the preferences of the specific `Client`.
 
 1. `preferences` that represents stores the key, value pairs of the preferenceKey and preferenceDetails
 
