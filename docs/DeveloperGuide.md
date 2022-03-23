@@ -193,6 +193,26 @@ Step 4. The user executes `updateMeeting 1 me/2022-01-01,14:00` to edit the meet
 
 Step 5. The user executes `deleteMeeting 1` to delete the meeting.
 
+### Note features
+
+#### Implementation
+
+The new note feature is supported by a new model `Note`. Each `Client` object contains a `Note` attribute to specify a specific `Note` that the user wishes to record about the `Client`.
+
+The `Note` model has a single attribute
+
+1. `value` that represents the `String` value that is stored in the note.
+
+The note feature supports the following operations:
+
+- Adding a note - called via the `AddNoteCommand`
+
+Given below is an example usage scenario and how the feature behaves:
+
+Step 1: The user launches the application
+
+Step 2: The user executes `addNote 1 nt/Likes to gym` to add a `Note` to the existing `Client` object that represents the first client in the list containing `"Likes to gym" as the value.
+
 ### Preference features
 
 #### Implementation
@@ -203,11 +223,18 @@ The `PreferenceMap` model has a single attribute
 
 1. `preferences` that represents stores the key, value pairs of the preferenceKey and preferenceDetails
 
+The preference feature supports the following operations:
+
+- Adding of new preferences - called via the `AddPreferenceCommand`
+- Deleting of existing preferences - called via the `DeletePreferenceCommand`
+
 Given below is an example usage scenario and how the feature behaves:
 
 Step 1: The user launches the application
 
 Step 2: The user executes `addPreference 1 pk/Drink pd/Bubble Tea` to add the Drink: Bubble Tea preference to the first client in the contact list. The `addPreference` command calls the `addPreference` command of the existing `Client` object that represents the first client in the list, and adds the `"Drink", "Bubble Tea"` key-value pair into the preferences of the specified `Client`.
+
+Step 3: If the user would like to remove the `"Drink", "Bubble Tea"` preference as specified in the `addPreference` command in Step 2, they can execute `deletePreference 1 pk/Drink` to remove the preference specified by the key `"Drink"` from the existing `Client` object represented at the index `1`.
 
 ### Policy features
 
