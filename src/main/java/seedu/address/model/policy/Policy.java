@@ -2,6 +2,7 @@ package seedu.address.model.policy;
 
 import java.util.Objects;
 
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 
 /**
@@ -40,6 +41,19 @@ public class Policy {
 
     public Premium getPremium() {
         return premium;
+    }
+
+    /**
+     * Returns true if both policies have the same name.
+     * This defines a weaker notion of equality between two policies.
+     */
+    public boolean isSamePolicy(Policy otherPolicy) {
+        if (otherPolicy == this) {
+            return true;
+        }
+
+        return otherPolicy != null
+                && otherPolicy.getName().equals(getName());
     }
 
     /**
