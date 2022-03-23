@@ -292,7 +292,6 @@ _Details coming soon ..._
 
 ## Command summary
 
-<<<<<<< HEAD
 | Action               | Format, Examples                                                                                                                                       |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **addClient**        | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
@@ -309,20 +308,3 @@ _Details coming soon ..._
 | **meetings**         | `meetings`                                                                                                                                             |
 | **updateMeeting**    | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                 |
 | **help**             | `help`                                                                                                                                                 |
-=======
-| Action            | Format, Examples                                                                                                                                       |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
-| **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
-| **updateClient**  | `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`updateClient 1 e/new@email.com`                               |
-| **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
-| **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
-| **addPref**       | `addPref INDEX t/TAG d/DESCRIPTION` <br> e.g., `addPref 1 t/Drink d/Coke`                                                                              |
-| **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
-| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 pi/1 $/200`        |
-| **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
-| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`                                 |
-| **meetings**      | `meetings`                                                                                                                                             |
-| **updateMeeting** | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                 |
-| **help**          | `help`                                                                                                                                                 |
->>>>>>> 7afa9eb8ff9ad7971f5752575c0d2902543a2b3e
