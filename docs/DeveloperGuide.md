@@ -213,6 +213,8 @@ Step 1: The user launches the application
 
 Step 2: The user executes `addNote 1 nt/Likes to gym` to add a `Note` to the existing `Client` object that represents the first client in the list containing `"Likes to gym" as the value.
 
+![Note1Add](images/Note1Add.png)
+
 ### Preference features
 
 #### Implementation
@@ -234,7 +236,11 @@ Step 1: The user launches the application
 
 Step 2: The user executes `addPreference 1 pk/Drink pd/Bubble Tea` to add the Drink: Bubble Tea preference to the first client in the contact list. The `addPreference` command calls the `addPreference` command of the existing `Client` object that represents the first client in the list, and adds the `"Drink", "Bubble Tea"` key-value pair into the preferences of the specified `Client`.
 
+![Preference1Add](images/Preference1Add.png)
+
 Step 3: If the user would like to remove the `"Drink", "Bubble Tea"` preference as specified in the `addPreference` command in Step 2, they can execute `deletePreference 1 pk/Drink` to remove the preference specified by the key `"Drink"` from the existing `Client` object represented at the index `1`.
+
+![Preference2Delete](images/Preference2Delete.png)
 
 ### Policy features
 
