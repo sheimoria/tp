@@ -146,27 +146,27 @@ Format: `addNote INDEX nt/NOTE`
 - `addNote 1 nt/Commando NSF with high risk of injury`
 - `addNote 2 nt/Look up on policies for emergency care`
 
-### Add preferences to client: `addPreference`
+### Add preferences to client: `addPref`
 
 Adds a preference to a specific client
 
-Format: `addPreference INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS`
+Format: `addPref INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS`
 
 Examples:
 
-- `addPreference 1 pk/Drink pd/Coke`
-- `addPreference 2 pk/Cigarettes pd/Malboro`
+- `addPref 1 pk/Drink pd/Coke`
+- `addPref 2 pk/Cigarettes pd/Malboro`
 
-### Delete preferences from client: `deletePreference`
+### Delete preferences from client: `deletePref`
 
 Deletes the preference of the specified preference key from the specified client
 
-Format: `deletePreference INDEX pk/PREFERENCE_KEY`
+Format: `deletePref INDEX pk/PREFERENCE_KEY`
 
 Examples:
 
-- `deletePreference 1 pk/Drink`
-- `deletePreference 2 pk/Cigarettes`
+- `deletePref 1 pk/Drink`
+- `deletePref 2 pk/Cigarettes`
 
 ### Add policy: `addPolicy`
 
@@ -292,19 +292,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                       |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **addClient**        | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
-| **viewClient**       | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
-| **updateClient**     | `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`updateClient 1 e/new@email.com`                               |
-| **deleteClient**     | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
-| **addNote**          | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
-| **addPreference**    | `addPreference INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS` <br> e.g., `addPreference 1 pk/Drink pd/Coke`                                            |
-| **deletePreference** | `deletePreference INDEX pk/PREFERENCE_KEY` <br> e.g., `deletePreference 1 pk/Drink`                                                                    |
-| **addPolicy**        | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
-| **editPolicy**       | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`        |
-| **deletePolicy**     | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
-| **addMeeting**       | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`                                 |
-| **meetings**         | `meetings`                                                                                                                                             |
-| **updateMeeting**    | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                 |
-| **help**             | `help`                                                                                                                                                 |
+| Action            | Format, Examples                                                                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
+| **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
+| **updateClient**  | `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`updateClient 1 e/new@email.com`                               |
+| **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
+| **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
+| **addPref**       | `addPref INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS` <br> e.g., `addPref 1 pk/Drink pd/Coke`                                                        |
+| **deletePref**    | `deletePref INDEX pk/PREFERENCE_KEY` <br> e.g., `deletePref 1 pk/Drink`                                                                                |
+| **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
+| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`        |
+| **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
+| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`                                 |
+| **meetings**      | `meetings`                                                                                                                                             |
+| **updateMeeting** | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                 |
+| **help**          | `help`                                                                                                                                                 |

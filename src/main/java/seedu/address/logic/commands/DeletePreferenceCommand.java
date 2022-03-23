@@ -15,7 +15,7 @@ import seedu.address.model.client.exceptions.InvalidPreferenceKeyException;
 
 public class DeletePreferenceCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletePreference";
+    public static final String COMMAND_WORD = "deletePref";
     public static final String MESSAGE_SUCCESS = "Preference deleted for %s: [%s]";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a preference from the client specified "
             + "by the index number used in the displayed client list and the specified preference key.\n"
