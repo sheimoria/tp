@@ -1,31 +1,32 @@
 iss---
 layout: page
 title: User Guide
+
 ---
 
 onlyFAs is for high achieving financial advisors looking to maintain and develop good relationships with current and potential clients. It allows users to maintain an all-encompassing client manager app that can easily arrange for meetups with clients. Currently, financial advisors might have to rely on apps like Google Calendar, and do not have a dedicated platform catered to helping them manage their clientele.
 
 - [Quick start](#quick-start)
 - [Features](#features)
-    * [Viewing help : `help`](#viewing-help--help)
-    * [Add client: `addClient`](#add-client-addclient)
-    * [View client: `viewClient`](#view-client-viewclient)
-    * [Update client: `updateClient`](#update-client-updateclient)
-    * [Delete client: `deleteClient`](#delete-client-deleteclient)
-    * [Add notes for client: `addNote`](#add-note-for-client-addnote)
-    * [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
-    * [Add policy: `addPolicy`](#add-policy-addpolicy)
-    * [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-    * [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-    * [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-    * [View All Meetings: `meetings`](#view-all-meetings-meetings)
-    * [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
-    * [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-    * [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    * [Exiting the program : `exit`](#exiting-the-program--exit)
-    * [Saving the data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  - [Viewing help : `help`](#viewing-help--help)
+  - [Add client: `addClient`](#add-client-addclient)
+  - [View client: `viewClient`](#view-client-viewclient)
+  - [Update client: `updateClient`](#update-client-updateclient)
+  - [Delete client: `deleteClient`](#delete-client-deleteclient)
+  - [Add notes for client: `addNote`](#add-note-for-client-addnote)
+  - [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
+  - [Add policy: `addPolicy`](#add-policy-addpolicy)
+  - [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+  - [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+  - [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+  - [View All Meetings: `meetings`](#view-all-meetings-meetings)
+  - [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
+  - [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+  - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Mockups](#mockups)
 - [Command summary](#command-summary)
@@ -36,7 +37,7 @@ onlyFAs is for high achieving financial advisors looking to maintain and develop
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `onlyfas.jar` **(Coming Soon!)**  <!--- from [here](https://github.com/se-edu/addressbook-level3/releases). -->
+1. Download the latest `onlyfas.jar` **(Coming Soon!)** <!--- from [here](https://github.com/se-edu/addressbook-level3/releases). -->
 
 1. Copy the file to the folder you want to use as the **home folder** for _onlyFAs_.
 
@@ -46,16 +47,16 @@ onlyFAs is for high achieving financial advisors looking to maintain and develop
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    - **`list`** : Lists all contacts.
+   - **`list`** : Lists all contacts.
 
-    - **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client 
-      named `John Doe` to your contact list.
+   - **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client
+     named `John Doe` to your contact list.
 
-    - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-    - **`clear`** : Deletes all contacts.
+   - **`clear`** : Deletes all contacts.
 
-    - **`exit`** : Exits the app.
+   - **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -104,7 +105,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]`
 Examples:
 
 - `addClient n/N Vijay Narayanan p/99134234 a/abc street`
-- `addClient  n/Zechary Au Jun Wen p/92144213 e/zechary@yeemail.com`
+- `addClient n/Zechary Au Jun Wen p/92144213 e/zechary@yeemail.com`
 
 ### View client: `viewClient`
 
@@ -149,12 +150,23 @@ Format: `addNote INDEX nt/NOTE`
 
 Adds a preference to a specific client
 
-Format: `addPref INDEX t/TAG d/DESCRIPTION`
+Format: `addPref INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS`
 
 Examples:
 
-- `addPref 1 t/Drink d/Coke`
-- `addPref 2 t/Cigarettes d/Malboro`
+- `addPref 1 pk/Drink pd/Coke`
+- `addPref 2 pk/Cigarettes pd/Malboro`
+
+### Delete preferences from client: `deletePref`
+
+Deletes the preference of the specified preference key from the specified client
+
+Format: `deletePref INDEX pk/PREFERENCE_KEY`
+
+Examples:
+
+- `deletePref 1 pk/Drink`
+- `deletePref 2 pk/Cigarettes`
 
 ### Add policy: `addPolicy`
 
@@ -171,8 +183,7 @@ Examples:
 
 Updates an insurance policy for a specific client
 
-Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] 
-[$/PREMIUM_AMOUNT]`
+Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]`
 
 Examples:
 
@@ -276,21 +287,22 @@ _Details coming soon ..._
 ---
 
 ## Mockups
-![Ui](images/mockups/zoom-in-client.jpg)
----
+
+## ![Ui](images/mockups/zoom-in-client.jpg)
 
 ## Command summary
 
 | Action            | Format, Examples                                                                                                                                       |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
 | **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
 | **updateClient**  | `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`updateClient 1 e/new@email.com`                               |
 | **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
 | **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
-| **addPref**       | `addPref INDEX t/TAG d/DESCRIPTION` <br> e.g., `addPref 1 t/Drink d/Coke`                                                                              |
+| **addPref**       | `addPref INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS` <br> e.g., `addPref 1 pk/Drink pd/Coke`                                                        |
+| **deletePref**    | `deletePref INDEX pk/PREFERENCE_KEY` <br> e.g., `deletePref 1 pk/Drink`                                                                                |
 | **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
-| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 pi/1 $/200`        |
+| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`        |
 | **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
 | **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`                                 |
 | **meetings**      | `meetings`                                                                                                                                             |
