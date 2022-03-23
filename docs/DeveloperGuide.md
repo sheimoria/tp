@@ -191,11 +191,11 @@ Step 5. The user executes `deleteMeeting 1` to delete the meeting.
 
 #### Implementation
 
-The new meeting feature is supported by two new main models `Policy` and `Premium`.
+The new meeting feature is supported by two new models `Policy` and `Premium`.
 
 The `Policy` model has four attributes
 1. `name` represents the name of the policy
-2. `company` represents the company which sells the policy
+2. `company` represents the name of the company which sells the policy
 3. `policyManager` represents the name of the person who is managing the policy
 4. `premium` represents the monthly premium payment for the policy
 
@@ -210,13 +210,13 @@ Given below is an example usage scenario and how the feature behaves:
 Step 1. The user launches the application.
 
 Step 2. The user executes `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` to add the Medicare Plus policy to the first client in the contact list. The `addPolicy` command instantiates a new `Policy` object which will be added to the existing `Client` object that represents the first client in the list.
-![Policy1Add](images/_.png)
+![Policy1Add](images/Policy1Add.png)
 
 Step 3. The user executes `editPolicy 1 pi/1 $/200` to update the monthly premium of the first policy of the first client in the contact list from $100 up to $200.
-![Policy2Edit](images/_.png)
+![Policy2Edit](images/Policy2Edit.png)
 
 Step 4. The user executes `deletePolicy 1 pi/1` to delete the first policy of the first client in the contact list.
-![Policy3Delete](images/_.png)
+![Policy3Delete](images/Policy3Delete.png)
 
 ### \[Proposed\] Undo/redo feature
 
