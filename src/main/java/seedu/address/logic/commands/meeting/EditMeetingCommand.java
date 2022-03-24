@@ -72,7 +72,7 @@ public class EditMeetingCommand extends Command {
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
 
-        if (model.isOverlapping(editedMeeting)) {
+        if (model.isOverlappingExcept(editedMeeting, meetingToEdit)) {
             throw new CommandException(MESSAGE_OVERLAPPING_MEETING);
         }
 

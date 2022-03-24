@@ -190,8 +190,10 @@ Step 3. The user executes `meetings` to view the meetings on the right sidebar.
 ![Meeting2List](images/Meeting2List.png)
 
 Step 4. The user executes `updateMeeting 1 me/2022-01-01,14:00` to edit the meeting to set the end time to 2:00PM.
+![Meeting3Update](images/Meeting3Update.png)
 
 Step 5. The user executes `deleteMeeting 1` to delete the meeting.
+![Meeting4Delete](images/Meeting4Delete.png)
 
 ### Note features
 
