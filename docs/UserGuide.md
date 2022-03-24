@@ -3,30 +3,44 @@ layout: page
 title: User Guide
 
 ---
+## Introduction - What is onlyFAs?
 
-onlyFAs is for high achieving financial advisors looking to maintain and develop good relationships with current and potential clients. It allows users to maintain an all-encompassing client manager app that can easily arrange for meetups with clients. Currently, financial advisors might have to rely on apps like Google Calendar, and do not have a dedicated platform catered to helping them manage their clientele.
+<strong>onlyFAs</strong> is for both *upcoming* and *high achieving* financial advisors looking to *maintain* and *develop* good relationships with *current* and *potential* clients.
+
+### What can onlyFAs do?
+
+It allows users to:
+1. Record all clients in the app
+2. Manage their clients' personal details
+3. Manage their clients' portfolios' details
+4. Easily arrange for meetups with clients
+5. Track the date that each client was last contacted
+
+Currently, financial advisors might have to rely on apps like Google Calendar, and do not have a dedicated platform catered to helping them manage their clientele. This is wear *onlyFAs* bridges the gap.
+
+## Table of Contents
 
 - [Quick start](#quick-start)
 - [Features](#features)
-  - [Viewing help : `help`](#viewing-help--help)
-  - [Add client: `addClient`](#add-client-addclient)
-  - [View client: `viewClient`](#view-client-viewclient)
-  - [Update client: `updateClient`](#update-client-updateclient)
-  - [Delete client: `deleteClient`](#delete-client-deleteclient)
-  - [Add notes for client: `addNote`](#add-note-for-client-addnote)
-  - [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
-  - [Add policy: `addPolicy`](#add-policy-addpolicy)
-  - [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-  - [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-  - [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-  - [View All Meetings: `meetings`](#view-all-meetings-meetings)
-  - [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
-  - [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  - [Exiting the program : `exit`](#exiting-the-program--exit)
-  - [Saving the data](#saving-the-data)
-  - [Editing the data file](#editing-the-data-file)
-  - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  1. [Viewing help : `help`](#viewing-help--help)
+  2. [Add client: `addClient`](#add-client-addclient)
+  3. [View client: `viewClient`](#view-client-viewclient)
+  4. [Update client: `updateClient`](#update-client-updateclient)
+  5. [Delete client: `deleteClient`](#delete-client-deleteclient)
+  6. [Add notes for client: `addNote`](#add-note-for-client-addnote)
+  7. [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
+  8. [Add policy: `addPolicy`](#add-policy-addpolicy)
+  9. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+  10. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+  11. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+  12. [View All Meetings: `meetings`](#view-all-meetings-meetings)
+  13. [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
+  14. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+  15. [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  16. [Exiting the program : `exit`](#exiting-the-program--exit)
+  17. [Saving the data](#saving-the-data)
+  18. [Editing the data file](#editing-the-data-file)
+  19. [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Mockups](#mockups)
 - [Command summary](#command-summary)
@@ -37,7 +51,7 @@ onlyFAs is for high achieving financial advisors looking to maintain and develop
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `onlyfas.jar` **(Coming Soon!)** <!--- from [here](https://github.com/se-edu/addressbook-level3/releases). -->
+1. Download the latest `onlyfas.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the **home folder** for _onlyFAs_.
 
@@ -293,7 +307,7 @@ _Details coming soon ..._
 ## Command summary
 
 | Action            | Format, Examples                                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
 | **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
 | **updateClient**  | `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`updateClient 1 e/new@email.com`                               |
@@ -304,7 +318,9 @@ _Details coming soon ..._
 | **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
 | **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`        |
 | **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
-| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`                                 |
 | **meetings**      | `meetings`                                                                                                                                             |
+| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00 l/Lunch`               |
+| **updateMeeting** | `updateMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00 l/Dinner`       |
+| **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                             |
 | **updateMeeting** | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                 |
 | **help**          | `help`                                                                                                                                                 |
