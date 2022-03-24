@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
@@ -52,7 +53,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_DATETIME + "LAST CONTACTED]\n"
+            + "[" + PREFIX_LAST_CONTACTED + "LAST CONTACTED]\n"
             // + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -89,7 +90,6 @@ public class EditCommand extends Command {
     public EditCommand(Index index, EditClientDescriptor editClientDescriptor, boolean isDelete) {
         requireNonNull(index);
         requireNonNull(editClientDescriptor);
-        requireNonNull(isDelete);
 
         this.index = index;
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
@@ -181,7 +181,7 @@ public class EditCommand extends Command {
 
             if (isDelete) {
                 updatedPolicies.remove(index);
-            } else if (isUpdate) {
+            } else {
                 Policy policyToUpdate = updatedPolicies.get(index);
                 updatedPolicyName = editClientDescriptor.getPolicyName().orElse(policyToUpdate.getName());
                 updatedCompany = editClientDescriptor.getCompany().orElse(policyToUpdate.getCompany());

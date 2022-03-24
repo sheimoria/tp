@@ -29,6 +29,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String DEFAULT_DATE = "01-01-0001";
+    public static final String DEFAULT_DATETIME = "01-01-0001 00:00";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
