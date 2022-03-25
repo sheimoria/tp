@@ -2,9 +2,38 @@
 layout: page
 title: Developer Guide
 ---
+## Table of Contents
 
-- Table of Contents
-  {:toc}
+- [**Acknowledgements**](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+    * [Client features](#client-features)
+    * [Last contacted features](#last-contacted-features)
+    * [Meeting features](#meeting-features)
+    * [Note features](#note-features)
+    * [Preference features](#preference-features)
+    * [Policy features](#policy-features)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a client](#deleting-a-client)
+    * [Adding a policy](#adding-a-policy)
+    * [Editing a policy](#editing-a-policy)
+    * [Deleting a policy](#deleting-a-policy)
+    * [Saving data](#saving-data)
 
 ---
 
@@ -160,8 +189,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Client features
 
-#### Implementation
-
 The client feature is supported by the models `Client`, `Address`, `Date`, `DateTime`, `Email`, `Name`,
 `NameContainsKeywordsPredicate`, `Note`, `Phone`, `PreferenceMap` and `UniqueClientList`.
 
@@ -193,9 +220,36 @@ The meeting features supports the following operations:
 - Adding preferences to client - called via the `AddPreferenceCommand`
 - Setting client last contacted time - called via the `ContactedCommand`
 
-### Meetings features
+### Last contacted features
 
-#### Implementation
+This feature, which allows the user to track when they have last contacted a client, is enabled through the
+`lastContacted` attribute of type `DateTime` in the `Client` class.
+
+`DateTime` objects such as `lastContacted` only accept strings of the format `dd-MM-yy hh:mm`.
+
+The `ContactedCommand` allows for the updating of the `lastContacted` of a `Client`.
+
+Below is an example usage scenario:
+
+Step 1. The user launches the application. `Client`s are loaded from persistent memory. If a `Client`'s `lastContacted`
+has been updated previously, the datetime will show on the user interface i.e. `Last contacted: 21-03-2022 21:03`.
+Otherwise, it will show `Last contacted: -`.
+
+![LastContacted1](images/LastContacted1.png)
+
+Step 2. The user inputs `contacted 1 dt/ 21-03-2022 21:03` and presses `Enter`.
+
+![LastContacted2](images/LastContacted2.png)
+
+Step 3. The first client's `lastContacted` is updated to `21-03-2022 21:03`.
+
+![LastContacted3](images/LastContacted3.png)
+
+Note that when executing `AddCommand`, there is no need to add a parameter for `lastContacted`. When a new `Client` is
+created, its `lastContacted` will be instantiated with a default value of `01:01:0001 00:00`, which the user
+interface recognises as a blank field i.e. `-`.
+
+### Meeting features
 
 The new meeting feature is supported by two new main models `Meeting` and `NonOverlappingMeetingList`. The relationship between `Meeting` to `NonOverlappingMeetingList` is similar to the relationship between `Client` and `UniqueClientList`.
 
@@ -232,8 +286,6 @@ Step 5. The user executes `deleteMeeting 1` to delete the meeting.
 
 ### Note features
 
-#### Implementation
-
 The new note feature is supported by a new model `Note`. Each `Client` object contains a `Note` attribute to specify a specific `Note` that the user wishes to record about the `Client`.
 
 The `Note` model has a single attribute
@@ -253,8 +305,6 @@ Step 2: The user executes `addNote 1 nt/Likes to gym` to add a `Note` to the exi
 ![Note1Add](images/Note1Add.png)
 
 ### Preference features
-
-#### Implementation
 
 The new preference feature is supported by a new model `PreferenceMap`
 
@@ -280,8 +330,6 @@ Step 3: If the user would like to remove the `"Drink", "Bubble Tea"` preference 
 ![Preference2Delete](images/Preference2Delete.png)
 
 ### Policy features
-
-#### Implementation
 
 The new meeting feature is supported by two new models `Policy` and `Premium`.
 
@@ -314,91 +362,6 @@ Step 3. The user executes `editPolicy 1 pi/1 $/200` to update the monthly premiu
 Step 4. The user executes `deletePolicy 1 pi/1` to delete the first policy of the first client in the contact list.
 
 ![Policy3Delete](images/Policy3Delete.png)
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th client in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new client. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the client being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ---
 
