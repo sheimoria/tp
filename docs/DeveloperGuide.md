@@ -4,36 +4,30 @@ title: Developer Guide
 ---
 ## Table of Contents
 
-- [**Acknowledgements**](#--acknowledgements--)
-- [**Setting up, getting started**](#--setting-up--getting-started--)
-- [**Design**](#--design--)
+- [**Acknowledgements**](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
     * [Architecture](#architecture)
     * [UI component](#ui-component)
     * [Logic component](#logic-component)
     * [Model component](#model-component)
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
-- [**Implementation**](#--implementation--)
+- [**Implementation**](#implementation)
     * [Client features](#client-features)
-        + [Implementation](#implementation)
     * [Last contacted features](#last-contacted-features)
-        + [Implementation](#implementation-1)
-    * [Meetings features](#meetings-features)
-        + [Implementation](#implementation-2)
+    * [Meeting features](#meeting-features)
     * [Note features](#note-features)
-        + [Implementation](#implementation-3)
     * [Preference features](#preference-features)
-        + [Implementation](#implementation-4)
     * [Policy features](#policy-features)
-        + [Implementation](#implementation-5)
-- [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
-- [**Appendix: Requirements**](#--appendix--requirements--)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
     * [Product scope](#product-scope)
     * [User stories](#user-stories)
     * [Use cases](#use-cases)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
-- [**Appendix: Instructions for manual testing**](#--appendix--instructions-for-manual-testing--)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
     * [Deleting a client](#deleting-a-client)
     * [Adding a policy](#adding-a-policy)
@@ -195,8 +189,6 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Client features
 
-#### Implementation
-
 The client feature is supported by the models `Client`, `Address`, `Date`, `DateTime`, `Email`, `Name`,
 `NameContainsKeywordsPredicate`, `Note`, `Phone`, `PreferenceMap` and `UniqueClientList`.
 
@@ -230,8 +222,6 @@ The meeting features supports the following operations:
 
 ### Last contacted features
 
-#### Implementation
-
 This feature, which allows the user to track when they have last contacted a client, is enabled through the
 `lastContacted` attribute of type `DateTime` in the `Client` class.
 
@@ -259,9 +249,7 @@ Note that when executing `AddCommand`, there is no need to add a parameter for `
 created, its `lastContacted` will be instantiated with a default value of `01:01:0001 00:00`, which the user
 interface recognises as a blank field i.e. `-`.
 
-### Meetings features
-
-#### Implementation
+### Meeting features
 
 The new meeting feature is supported by two new main models `Meeting` and `NonOverlappingMeetingList`. The relationship between `Meeting` to `NonOverlappingMeetingList` is similar to the relationship between `Client` and `UniqueClientList`.
 
@@ -298,8 +286,6 @@ Step 5. The user executes `deleteMeeting 1` to delete the meeting.
 
 ### Note features
 
-#### Implementation
-
 The new note feature is supported by a new model `Note`. Each `Client` object contains a `Note` attribute to specify a specific `Note` that the user wishes to record about the `Client`.
 
 The `Note` model has a single attribute
@@ -319,8 +305,6 @@ Step 2: The user executes `addNote 1 nt/Likes to gym` to add a `Note` to the exi
 ![Note1Add](images/Note1Add.png)
 
 ### Preference features
-
-#### Implementation
 
 The new preference feature is supported by a new model `PreferenceMap`
 
@@ -346,8 +330,6 @@ Step 3: If the user would like to remove the `"Drink", "Bubble Tea"` preference 
 ![Preference2Delete](images/Preference2Delete.png)
 
 ### Policy features
-
-#### Implementation
 
 The new meeting feature is supported by two new models `Policy` and `Premium`.
 
