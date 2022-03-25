@@ -40,7 +40,7 @@ public class MeetingCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         String nameLabel;
-        if (meeting.getLabel().equals("")) {
+        if (meeting.getLabel().isEmpty()) {
             nameLabel = meeting.getName().fullName;
         } else {
             nameLabel = meeting.getName().fullName + " (" + meeting.getLabel() + ")";
