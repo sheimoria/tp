@@ -3,7 +3,43 @@ layout: page
 title: Developer Guide
 ---
 ## Table of Contents
-  {:toc}
+
+- [**Acknowledgements**](#--acknowledgements--)
+- [**Setting up, getting started**](#--setting-up--getting-started--)
+- [**Design**](#--design--)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+- [**Implementation**](#--implementation--)
+    * [Client features](#client-features)
+        + [Implementation](#implementation)
+    * [Last contacted features](#last-contacted-features)
+        + [Implementation](#implementation-1)
+    * [Meetings features](#meetings-features)
+        + [Implementation](#implementation-2)
+    * [Note features](#note-features)
+        + [Implementation](#implementation-3)
+    * [Preference features](#preference-features)
+        + [Implementation](#implementation-4)
+    * [Policy features](#policy-features)
+        + [Implementation](#implementation-5)
+- [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
+- [**Appendix: Requirements**](#--appendix--requirements--)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#--appendix--instructions-for-manual-testing--)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a client](#deleting-a-client)
+    * [Adding a policy](#adding-a-policy)
+    * [Editing a policy](#editing-a-policy)
+    * [Deleting a policy](#deleting-a-policy)
+    * [Saving data](#saving-data)
 
 ---
 
@@ -157,7 +193,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<<<<<<< Updated upstream
 ### Client features
 
 #### Implementation
@@ -193,7 +228,7 @@ The meeting features supports the following operations:
 - Adding preferences to client - called via the `AddPreferenceCommand`
 - Setting client last contacted time - called via the `ContactedCommand`
 
-### Last contacted feature
+### Last contacted features
 
 #### Implementation
 
@@ -224,7 +259,7 @@ Note that when executing `AddCommand`, there is no need to add a parameter for `
 created, its `lastContacted` will be instantiated with a default value of `01:01:0001 00:00`, which the user
 interface recognises as a blank field i.e. `-`.
 
-### Meetings feature
+### Meetings features
 
 #### Implementation
 
