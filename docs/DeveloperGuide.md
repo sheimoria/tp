@@ -202,20 +202,27 @@ This feature, which allows the user to track when they have last contacted a cli
 
 `DateTime` objects such as `lastContacted` only accept strings of the format `dd-MM-yy hh:mm`.
 
-The `ContactedCommand` as well as the `EditCommand` allows for the updating of the `lastContacted` of a `Client`.
+The `ContactedCommand` allows for the updating of the `lastContacted` of a `Client`.
 
 Below is an example usage scenario:
 
-Step 1. The user launches the application. `Client`s are loaded from persistent memory with a non-null `lastContacted`
-attribute. If a `Client`'s `lastContacted` has been updated previously, the datetime will show on the user interface i.e.
-`Last contacted: 21-03-2022 21:03`. Otherwise, it will show `Last contacted: -`.
+Step 1. The user launches the application. `Client`s are loaded from persistent memory. If a `Client`'s `lastContacted`
+has been updated previously, the datetime will show on the user interface i.e. `Last contacted: 21-03-2022 21:03`.
+Otherwise, it will show `Last contacted: -`.
 
-Step 2. The user inputs `contacted 1 dt/ 21-03-2022 21:03` to update the last contacted datetime of the first client
-to `21-03-2022 21:03`. Alternatively, the user can also input `edit 1 lc/ 21-03-2022 21:03` to achieve the same result.
+![LastContacted1](images/LastContacted1.png)
 
-Note that when executing `AddCommand`, there is no need to add a parameter for `lastContacted`. This is because when a
-new `Client` is created, the `lastContacted` will default to `01:01:0001 00:00`, which the user interface recognises as
-a blank field i.e. `-`.
+Step 2. The user inputs `contacted 1 dt/ 21-03-2022 21:03` and presses `Enter`.
+
+![LastContacted2](images/LastContacted2.png)
+
+Step 3. The first client's `lastContacted` is updated to `21-03-2022 21:03`.
+
+![LastContacted3](images/LastContacted3.png)
+
+Note that when executing `AddCommand`, there is no need to add a parameter for `lastContacted`. When a new `Client` is
+created, its `lastContacted` will be instantiated with a default value of `01:01:0001 00:00`, which the user
+interface recognises as a blank field i.e. `-`.
 
 ### Meetings feature
 
