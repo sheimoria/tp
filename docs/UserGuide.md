@@ -1,7 +1,6 @@
-iss---
+---
 layout: page
 title: User Guide
-
 ---
 ## Introduction - What is onlyFAs?
 
@@ -27,20 +26,21 @@ Currently, financial advisors might have to rely on apps like Google Calendar, a
   3. [View client: `viewClient`](#view-client-viewclient)
   4. [Update client: `updateClient`](#update-client-updateclient)
   5. [Delete client: `deleteClient`](#delete-client-deleteclient)
-  6. [Add notes for client: `addNote`](#add-note-for-client-addnote)
-  7. [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
-  8. [Add policy: `addPolicy`](#add-policy-addpolicy)
-  9. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-  10. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-  11. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-  12. [View All Meetings: `meetings`](#view-all-meetings-meetings)
-  13. [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
-  14. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-  15. [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  16. [Exiting the program : `exit`](#exiting-the-program--exit)
-  17. [Saving the data](#saving-the-data)
-  18. [Editing the data file](#editing-the-data-file)
-  19. [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
+  7. [Add notes for client: `addNote`](#add-note-for-client-addnote)
+  8. [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
+  9. [Add policy: `addPolicy`](#add-policy-addpolicy)
+  10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+  11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+  12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+  13. [View All Meetings: `meetings`](#view-all-meetings-meetings)
+  14. [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
+  15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+  16. [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  17. [Exiting the program : `exit`](#exiting-the-program--exit)
+  18. [Saving the data](#saving-the-data)
+  19. [Editing the data file](#editing-the-data-file)
+  20. [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Mockups](#mockups)
 - [Command summary](#command-summary)
@@ -150,6 +150,16 @@ Format: `deleteClient INDEX`
 Examples:
 
 - `deleteClient 1`
+
+### Update last contacted of client: `contacted`
+
+Updates the last contacted datetime of a client.
+
+Format: `contacted INDEX dt/DATETIME`
+
+Examples:
+
+- `contacted 1 21-03-2022 21:03`
 
 ### Add note for client: `addNote`
 
@@ -312,6 +322,7 @@ _Details coming soon ..._
 | **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
 | **updateClient**  | `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`updateClient 1 e/new@email.com`                               |
 | **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
+| **contacted**     | `contacted INDEX dt/DATETIME` <br> e.g., `contacted 1 dt/21-03-2022 21:03`                                                                             |
 | **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
 | **addPref**       | `addPref INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS` <br> e.g., `addPref 1 pk/Drink pd/Coke`                                                        |
 | **deletePref**    | `deletePref INDEX pk/PREFERENCE_KEY` <br> e.g., `deletePref 1 pk/Drink`                                                                                |
@@ -321,6 +332,6 @@ _Details coming soon ..._
 | **meetings**      | `meetings`                                                                                                                                             |
 | **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00 l/Lunch`               |
 | **updateMeeting** | `updateMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00 l/Dinner`       |
-| **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                             |
+| **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                     |
 | **updateMeeting** | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                 |
 | **help**          | `help`                                                                                                                                                 |
