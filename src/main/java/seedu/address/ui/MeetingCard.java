@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.meeting.Meeting;
 
@@ -24,8 +23,6 @@ public class MeetingCard extends UiPart<Region> {
 
     public final Meeting meeting;
 
-    @FXML
-    private HBox cardPane;
     @FXML
     private Label name;
     @FXML

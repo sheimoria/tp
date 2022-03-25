@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TutorialWindow tutorialWindow;
+    private ClientDisplay clientDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -192,6 +194,7 @@ public class MainWindow extends UiPart<Stage> {
      * List meetings.
      */
     private void showMeetings() {
+        meetingListPanelPlaceholder.getChildren().clear();
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         if (logic.getFilteredMeetingList().size() == 0) {
@@ -208,6 +211,15 @@ public class MainWindow extends UiPart<Stage> {
         if (logic.getFilteredClientList().size() == 0) {
             resultDisplay.setFeedbackToUser("Add client by using the add command!");
         }
+    }
+
+    /**
+     * Display client.
+     */
+    private void showClient(Index index) {
+        clientDisplay = new ClientDisplay(logic.getFilteredClientList().get(index.getZeroBased()));
+        meetingListPanelPlaceholder.getChildren().clear();
+        meetingListPanelPlaceholder.getChildren().add(clientDisplay.getRoot());
     }
 
     public ClientListPanel getClientListPanel() {
@@ -243,6 +255,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowClients()) {
                 showClients();
+            }
+
+            if (commandResult.isShowClient()) {
+                showClient(commandResult.getIndexToShow());
             }
 
             return commandResult;
