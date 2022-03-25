@@ -158,6 +158,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Client features
+
+#### Implementation
+
+The client feature is supported by the models `Client`, `Address`, `Date`, `DateTime`, `Email`, `Name`,
+`NameContainsKeywordsPredicate`, `Note`, `Phone`, `PreferenceMap` and `UniqueClientList`.
+
+`NameContainsKeywordsPredicate` checks whether a name contains certain keywords.
+
+`UniqueClientList` allows for the adding, deleting and updating of clients while ensuring clients are unique.
+
+`Preference Map` allows for the recording of client preferences in a category -> preference pair.
+
+The `Client` model has nine attributes
+
+1. `name`
+2. `phone`
+3. `email`
+4. `address`
+5. `birthday`
+6. `lastContacted` represents the date and time the client was last contacted at
+7. `policies` stores the client's policies
+8. `note` records a note about the client
+9. `preferences` records the client's preferences
+
+The meeting features supports the following operations:
+
+- Adding new client - called via the `AddCommand`
+- Viewing clients in the sidebar - called via the `ViewClientCommand`
+- Updating clients - called via the `EditCommand`
+- Deleting clients - called via the `DeleteCommand`
+- Adding note to client - called via the `AddNoteCommand`
+- Adding preferences to client - called via the `AddPreferenceCommand`
+- Setting client last contacted time - called via the `ContactedCommand`
+
 ### Meetings features
 
 #### Implementation
