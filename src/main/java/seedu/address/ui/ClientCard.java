@@ -75,7 +75,7 @@ public class ClientCard extends UiPart<Region> {
         //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         AtomicInteger counter = new AtomicInteger(1);
-        client.getPolicies().stream()
+        client.getPolicies().asUnmodifiableObservableList().stream()
                 .forEach(policy -> {
                     policies.getChildren().add(new Label(policy.toNumberedDisplay(counter.get())));
                     counter.getAndIncrement();

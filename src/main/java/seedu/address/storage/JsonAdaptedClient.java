@@ -18,6 +18,7 @@ import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
 import seedu.address.model.client.PreferenceMap;
 import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -78,7 +79,7 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        policies.addAll(source.getPolicies().stream()
+        policies.addAll(source.getPolicies().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList()));
         note = source.getNote().value;
@@ -146,7 +147,8 @@ class JsonAdaptedClient {
         final PreferenceMap modelPreferenceMap = preferenceMap.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        final List<Policy> modelPolicies = new ArrayList<>(clientPolicies);
+        final UniquePolicyList modelPolicies = new UniquePolicyList();
+        modelPolicies.setPolicies(clientPolicies);
 
         return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelNote,
                 modelPreferenceMap);

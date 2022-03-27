@@ -33,7 +33,8 @@ public class JsonAdaptedClientTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedPolicy> VALID_POLICIES =
-            BENSON.getPolicies().stream().map(JsonAdaptedPolicy::new).collect(Collectors.toList());
+            BENSON.getPolicies().asUnmodifiableObservableList().stream().map(JsonAdaptedPolicy::new)
+                    .collect(Collectors.toList());
     private static final String VALID_NOTE = BENSON.getNote().toString();
     private static final JsonAdaptedPreferenceMap VALID_PREFERENCES =
             new JsonAdaptedPreferenceMap(BENSON.getPreferenceMap());

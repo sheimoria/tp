@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.policy.AddPolicyCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -19,6 +18,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Name;
+import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
 
 /**
@@ -46,18 +46,17 @@ public class AddPolicyCommandParser implements Parser<AddPolicyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPolicyCommand.MESSAGE_USAGE), pe);
         }
 
-        EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
-
+        assert argMultimap.getValue(PREFIX_NAME).isPresent();
         Name policyName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        assert argMultimap.getValue(PREFIX_COMPANY).isPresent();
         Name company = ParserUtil.parseName(argMultimap.getValue(PREFIX_COMPANY).get());
+        assert argMultimap.getValue(PREFIX_POLICY_MANAGER).isPresent();
         Name policyManager = ParserUtil.parseName(argMultimap.getValue(PREFIX_POLICY_MANAGER).get());
+        assert argMultimap.getValue(PREFIX_PREMIUM).isPresent();
         Premium premium = ParserUtil.parsePremium(argMultimap.getValue(PREFIX_PREMIUM).get());
 
-        editClientDescriptor.setPolicyName(policyName);
-        editClientDescriptor.setCompany(company);
-        editClientDescriptor.setPolicyManager(policyManager);
-        editClientDescriptor.setPremium(premium);
-        return new AddPolicyCommand(index, editClientDescriptor);
+        Policy policy = new Policy(policyName, company, policyManager, premium);
+        return new AddPolicyCommand(index, policy);
     }
 
     /**

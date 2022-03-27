@@ -1,17 +1,29 @@
 package seedu.address.logic.commands.policy;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_MANAGER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
+import java.util.List;
 
-public class AddPolicyCommand extends EditCommand {
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.client.Client;
+import seedu.address.model.policy.Policy;
+
+
+public class AddPolicyCommand extends Command {
 
     public static final String COMMAND_WORD = "addPolicy";
 
+    public static final String MESSAGE_SUCCESS = "New policy added: %s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the client identified "
             + "by the index number used in the displayed client list. "
             + "Parameters: INDEX (must be a positive integer) "
@@ -25,7 +37,40 @@ public class AddPolicyCommand extends EditCommand {
             + PREFIX_POLICY_MANAGER + "Me "
             + PREFIX_PREMIUM + "15";
 
-    public AddPolicyCommand(Index index, EditClientDescriptor editClientDescriptor) {
-        super(index, editClientDescriptor);
+    private final Index index;
+    private final Policy policyToAdd;
+
+    /**
+     * Creates an AddPolicyCommand to add the specified {@code Policy} to the {@code Client} specified by {@code Index}
+     */
+    public AddPolicyCommand(Index index, Policy policy) {
+        requireNonNull(index);
+        requireNonNull(policy);
+        this.index = index;
+        this.policyToAdd = policy;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Client> lastShownList = model.getFilteredClientList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
+
+        Client clientToAddPolicy = lastShownList.get(index.getZeroBased());
+
+        clientToAddPolicy.addPolicy(policyToAdd);
+
+        return new CommandResult((String.format(MESSAGE_SUCCESS, policyToAdd)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddCommand // instanceof handles nulls
+                && policyToAdd.equals(((AddPolicyCommand) other).policyToAdd)
+                && index.equals(((AddPolicyCommand) other).index));
     }
 }

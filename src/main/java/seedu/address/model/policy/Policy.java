@@ -2,7 +2,6 @@ package seedu.address.model.policy;
 
 import java.util.Objects;
 
-import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 
 /**

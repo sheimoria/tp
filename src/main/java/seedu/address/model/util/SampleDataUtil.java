@@ -1,7 +1,6 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,6 +13,7 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -61,9 +61,9 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static Set<Policy> getPolicySet(Policy... policies) {
-        HashSet<Policy> policySet = new HashSet<>();
-        policySet.addAll(List.of(policies));
-        return policySet;
+    public static UniquePolicyList getPolicyList(Policy... policies) {
+        UniquePolicyList policyList = new UniquePolicyList();
+        policyList.setPolicies(List.of(policies));
+        return policyList;
     }
 }
