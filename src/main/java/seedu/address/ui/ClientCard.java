@@ -33,21 +33,9 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label birthday;
-    @FXML
     private Label lastContacted;
     @FXML
-    private Label email;
-    //    @FXML
-    //    private FlowPane tags;
-    @FXML
     private FlowPane policies;
-    @FXML
-    private Label note;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.
@@ -55,32 +43,20 @@ public class ClientCard extends UiPart<Region> {
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
+        assert client != null;
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
-        phone.setText(client.getPhone().value);
-        email.setText(client.getEmail().value);
-        address.setText(client.getAddress().value);
-        if (client.getBirthday() != null) {
-            birthday.setText("Birthday: " + client.getBirthday().toString());
-        } else {
-            birthday.setText("Birthday: -");
-        }
         if (client.getLastContacted() != null) {
             lastContacted.setText("Last contacted: " + client.getLastContacted().toString());
         } else {
             lastContacted.setText("Last contacted: -");
         }
-        //        Client.getTags().stream()
-        //                .sorted(Comparator.comparing(tag -> tag.tagName))
-        //                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
         AtomicInteger counter = new AtomicInteger(1);
         client.getPolicies().asUnmodifiableObservableList().stream()
                 .forEach(policy -> {
                     policies.getChildren().add(new Label(policy.toNumberedDisplay(counter.get())));
                     counter.getAndIncrement();
                 });
-        note.setText(client.getNote().value);
     }
 
     @Override

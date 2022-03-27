@@ -2,64 +2,95 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## Table of Contents
 
---------------------------------------------------------------------------------------------------------------------
+- [**Acknowledgements**](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+    * [Client features](#client-features)
+    * [Last contacted features](#last-contacted-features)
+    * [Meeting features](#meeting-features)
+    * [Note features](#note-features)
+    * [Preference features](#preference-features)
+    * [Policy features](#policy-features)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a client](#deleting-a-client)
+    * [Adding a policy](#adding-a-policy)
+    * [Editing a policy](#editing-a-policy)
+    * [Deleting a policy](#deleting-a-policy)
+    * [Saving data](#saving-data)
+
+---
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -79,10 +110,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
 
 ### Logic component
 
@@ -93,6 +124,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
@@ -110,28 +142,28 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
-* stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
+- stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Client` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
 
 ### Storage component
 
@@ -140,38 +172,101 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Meetings features
+### Client features
 
-#### Implementation
+The client feature is supported by the models `Client`, `Address`, `Date`, `DateTime`, `Email`, `Name`,
+`NameContainsKeywordsPredicate`, `Note`, `Phone`, `PreferenceMap` and `UniqueClientList`.
+
+`NameContainsKeywordsPredicate` checks whether a name contains certain keywords.
+
+`UniqueClientList` allows for the adding, deleting and updating of clients while ensuring clients are unique.
+
+`Preference Map` allows for the recording of client preferences in a category -> preference pair.
+
+The `Client` model has nine attributes
+
+1. `name`
+2. `phone`
+3. `email`
+4. `address`
+5. `birthday`
+6. `lastContacted` represents the date and time the client was last contacted at
+7. `policies` stores the client's policies
+8. `note` records a note about the client
+9. `preferences` records the client's preferences
+
+The meeting features supports the following operations:
+
+- Adding new client - called via the `AddCommand`
+- Viewing clients in the sidebar - called via the `ViewClientCommand`
+- Updating clients - called via the `EditCommand`
+- Deleting clients - called via the `DeleteCommand`
+- Adding note to client - called via the `AddNoteCommand`
+- Adding preferences to client - called via the `AddPreferenceCommand`
+- Setting client last contacted time - called via the `ContactedCommand`
+
+### Last contacted features
+
+This feature, which allows the user to track when they have last contacted a client, is enabled through the
+`lastContacted` attribute of type `DateTime` in the `Client` class.
+
+`DateTime` objects such as `lastContacted` only accept strings of the format `dd-MM-yy hh:mm`.
+
+The `ContactedCommand` allows for the updating of the `lastContacted` of a `Client`.
+
+Below is an example usage scenario:
+
+Step 1. The user launches the application. `Client`s are loaded from persistent memory. If a `Client`'s `lastContacted`
+has been updated previously, the datetime will show on the user interface i.e. `Last contacted: 21-03-2022 21:03`.
+Otherwise, it will show `Last contacted: -`.
+
+![LastContacted1](images/LastContacted1.png)
+
+Step 2. The user inputs `contacted 1 dt/ 21-03-2022 21:03` and presses `Enter`.
+
+![LastContacted2](images/LastContacted2.png)
+
+Step 3. The first client's `lastContacted` is updated to `21-03-2022 21:03`.
+
+![LastContacted3](images/LastContacted3.png)
+
+Note that when executing `AddCommand`, there is no need to add a parameter for `lastContacted`. When a new `Client` is
+created, its `lastContacted` will be instantiated with a default value of `01:01:0001 00:00`, which the user
+interface recognises as a blank field i.e. `-`.
+
+### Meeting features
 
 The new meeting feature is supported by two new main models `Meeting` and `NonOverlappingMeetingList`. The relationship between `Meeting` to `NonOverlappingMeetingList` is similar to the relationship between `Client` and `UniqueClientList`.
 
 The `NonOverlappingMeetingList` is stored in `AddressBook` class and ensures that no two meetings overlap.
 
 The `Meeting` model has three attributes
+
 1. `startDateTime` represents the starting date and time of the meeting
 2. `endDateTime` represents the ending date and time of the meeting
 3. `client` represents the client that is being met in this meeting
 
 The meeting features supports the following operations:
-* Adding new meetings - called via the `AddMeetingCommand`
-* Viewing meetings in the sidebar - called via the `ListMeetingCommand`
-* *In progress*: Updating meetings - called via the `EditMeetingCommand`
-* *In progress*: Deleting meetings - called via the `DeleteMeetingCommand`
+
+- Adding new meetings - called via the `AddMeetingCommand`
+- Viewing meetings in the sidebar - called via the `ListMeetingCommand`
+- _In progress_: Updating meetings - called via the `EditMeetingCommand`
+- _In progress_: Deleting meetings - called via the `DeleteMeetingCommand`
 
 Given below is an example usage scenario and how the feature behaves:
 
@@ -184,105 +279,101 @@ Step 3. The user executes `meetings` to view the meetings on the right sidebar.
 ![Meeting2List](images/Meeting2List.png)
 
 Step 4. The user executes `updateMeeting 1 me/2022-01-01,14:00` to edit the meeting to set the end time to 2:00PM.
+![Meeting3Update](images/Meeting3Update.png)
 
 Step 5. The user executes `deleteMeeting 1` to delete the meeting.
+![Meeting4Delete](images/Meeting4Delete.png)
 
-### \[Proposed\] Undo/redo feature
+### Note features
 
-#### Proposed Implementation
+The new note feature is supported by a new model `Note`. Each `Client` object contains a `Note` attribute to specify a specific `Note` that the user wishes to record about the `Client`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `Note` model has a single attribute
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+1. `value` that represents the `String` value that is stored in the note.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+The note feature supports the following operations:
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+- Adding a note - called via the `AddNoteCommand`
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Given below is an example usage scenario and how the feature behaves:
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 1: The user launches the application
 
-Step 2. The user executes `delete 5` command to delete the 5th client in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2: The user executes `addNote 1 nt/Likes to gym` to add a `Note` to the existing `Client` object that represents the first client in the list containing `"Likes to gym" as the value.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![Note1Add](images/Note1Add.png)
 
-Step 3. The user executes `add n/David …​` to add a new client. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+### Preference features
 
-![UndoRedoState2](images/UndoRedoState2.png)
+The new preference feature is supported by a new model `PreferenceMap`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+The `PreferenceMap` model has a single attribute. The existing `Client` model now contains a `PreferenceMap` representing all the preferences of the specific `Client`.
 
-</div>
+1. `preferences` that represents stores the key, value pairs of the preferenceKey and preferenceDetails
 
-Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+The preference feature supports the following operations:
 
-![UndoRedoState3](images/UndoRedoState3.png)
+- Adding of new preferences - called via the `AddPreferenceCommand`
+- Deleting of existing preferences - called via the `DeletePreferenceCommand`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+Given below is an example usage scenario and how the feature behaves:
 
-</div>
+Step 1: The user launches the application
 
-The following sequence diagram shows how the undo operation works:
+Step 2: The user executes `addPref 1 pk/Drink pd/Bubble Tea` to add the Drink: Bubble Tea preference to the first client in the contact list. The `addPref` command calls the `addPref` command of the existing `Client` object that represents the first client in the list, and adds the `"Drink", "Bubble Tea"` key-value pair into the preferences of the specified `Client`.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![Preference1Add](images/Preference1Add.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Step 3: If the user would like to remove the `"Drink", "Bubble Tea"` preference as specified in the `addPref` command in Step 2, they can execute `deletePref 1 pk/Drink` to remove the preference specified by the key `"Drink"` from the existing `Client` object represented at the index `1`.
 
-</div>
+![Preference2Delete](images/Preference2Delete.png)
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+### Policy features
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+The new meeting feature is supported by two new models `Policy` and `Premium`.
 
-</div>
+The `Policy` model has four attributes
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+1. `name` represents the name of the policy
+2. `company` represents the name of the company which sells the policy
+3. `policyManager` represents the name of the person who is managing the policy
+4. `premium` represents the monthly premium payment for the policy
 
-![UndoRedoState4](images/UndoRedoState4.png)
+The policy features supports the following operations:
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+- Adding new policies - called via the `AddPolicyCommand`
+- Editing policies - called via the `EditPolicyCommand`
+- Deleting policies - called via the `DeletePolicyCommand`
+- _In progress_: View all policies - called via the `ViewPoliciesCommand`
 
-![UndoRedoState5](images/UndoRedoState5.png)
+Given below is an example usage scenario and how the feature behaves:
 
-The following activity diagram summarizes what happens when a user executes a new command:
+Step 1. The user launches the application.
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+Step 2. The user executes `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` to add the Medicare Plus policy to the first client in the contact list. The `addPolicy` command instantiates a new `Policy` object which will be added to the existing `Client` object that represents the first client in the list.
 
-#### Design considerations:
+![Policy1Add](images/Policy1Add.png)
 
-**Aspect: How undo & redo executes:**
+Step 3. The user executes `editPolicy 1 pi/1 $/200` to update the monthly premium of the first policy of the first client in the contact list from $100 up to $200.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+![Policy2Edit](images/Policy2Edit.png)
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the client being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+Step 4. The user executes `deletePolicy 1 pi/1` to delete the first policy of the first client in the contact list.
 
-_{more aspects and alternatives to be added}_
+![Policy3Delete](images/Policy3Delete.png)
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -290,41 +381,42 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of client contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- has a need to manage a significant number of client contacts
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**:
-* easily contact clients
-* arrange for meetups with clients in one place
-* manage contacts faster than a typical mouse/GUI driven app
 
-
+- easily contact clients
+- arrange for meetups with clients in one place
+- manage contacts faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                       | So that I can…​                                                        |
-|----------|--------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------|
+| -------- | ------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | potential user                             | see the app populated with sample data             | see how the app will look like when it is in use                       |
 | `* * *`  | new user                                   | see usage instructions                             | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new client                                   |                                                                        |
 | `* * *`  | user                                       | update a client                                    | handle changes in client details                                       |
 | `* * *`  | user                                       | delete a client                                    | remove non-essential contacts                                          |
-| `* * *`  | user                                       | view all my contacts                               |                                                                        |
+| `* * *`  | user                                       | view all the clients in my contact list            |                                                                        |
 | `* * *`  | user                                       | find a client by name                              | locate details of clients without having to go through the entire list |
-| `* * *`  | user                                       | schedule meeting with a client                     |                                                                        |
-| `* * *`  | user                                       | view my meeting schedule for today                 | know what timings I am occupied                                        |
+| `* * *`  | user                                       | schedule a meeting with a client                   |                                                                        |
+| `* * *`  | user                                       | view my meeting schedule on a given today          | know what timings I will be occupied on that day                       |
 | `* *`    | user                                       | get warnings if there are conflicts in my schedule | avoid scheduling clashing meetings                                     |
 | `* *`    | user                                       | add notes about my clients                         | record details about clients                                           |
 | `* *`    | user                                       | add details of my client's policies                | categorize clients by policies                                         |
+| `* *`    | user                                       | update details of my client's policies             | accommodate changes such as change in monthly premium                  |
+| `* *`    | user                                       | delete policies                                    | remove policies that clients have surrendered or terminated            |
 | `* *`    | user                                       | record my client's individual preferences          | better cater to their needs                                            |
 | `*`      | user with many clients in the address book | sort clients by name                               | locate a client easily                                                 |
 
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
@@ -358,9 +450,9 @@ Use case ends.
 
 **Extensions**
 
-* 3a. The email does not belong to any client.
-    * 3a1. onlyFAs shows an error message.
-    * Use case resumes at step 2.
+- 3a. The email does not belong to any client.
+  - 3a1. onlyFAs shows an error message.
+  - Use case resumes at step 2.
 
 ---
 
@@ -377,14 +469,16 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-  * Use case ends.
+- 2a. The list is empty.
 
-* 3a. The given index is invalid.
-    * 3a1. onlyFAs shows an error message.
-    * Use case resumes at step 2.
+  - Use case ends.
+
+- 3a. The given index is invalid.
+  - 3a1. onlyFAs shows an error message.
+  - Use case resumes at step 2.
 
 ---
+
 **Use case: Find a client by name**
 
 **MSS**
@@ -394,20 +488,21 @@ Use case ends.
 3. User enters client name
 4. onlyFAs displays matching client’s details
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. There are no matching clients.
-  * Use case ends.
+- 2a. There are no matching clients.
 
+  - Use case ends.
 
-* 2b. There are multiple matching clients.
-  * 2b1. onlyFAs lists all matching clients.
-  * 2b2. User requests to view a specific client in the list.
-  * Use case resumes at step 4.
+- 2b. There are multiple matching clients.
+  - 2b1. onlyFAs lists all matching clients.
+  - 2b2. User requests to view a specific client in the list.
+  - Use case resumes at step 4.
 
 ---
+
 **Use case: Schedule meeting with a client**
 
 **MSS**
@@ -421,21 +516,23 @@ Use case ends.
 7. User confirms
 8. onlyFAs displays the confirmed client and meeting details
 
-    Use case ends.
+   Use case ends.
 
 **Extensions:**
 
-* 3a. The email does not belong to any client. 
-  * 3a1. onlyFAs shows an error message.
-  * Use case resumes at step 2.
+- 3a. The email does not belong to any client.
 
-* 5a. onlyFAs detects a conflicting meeting in the schedule
-  * 5a1. onlyFAs requests for user to enter another meeting time.
-  * 5a2. User enters new meeting time.
-  * Steps 5a1-5a2 are repeated until the data entered are correct.
-  * Use case resumes from step 6.
+  - 3a1. onlyFAs shows an error message.
+  - Use case resumes at step 2.
+
+- 5a. onlyFAs detects a conflicting meeting in the schedule
+  - 5a1. onlyFAs requests for user to enter another meeting time.
+  - 5a2. User enters new meeting time.
+  - Steps 5a1-5a2 are repeated until the data entered are correct.
+  - Use case resumes from step 6.
 
 ---
+
 **Use case: View my meeting schedule for today**
 
 **MSS**
@@ -443,12 +540,12 @@ Use case ends.
 1. User requests to show meeting schedule
 2. onlyFAs displays meetings for today.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
-* 2a. There are no meetings today.
-  * Use case ends.
+- 2a. There are no meetings today.
+  - Use case ends.
 
 ### Non-Functional Requirements
 
@@ -457,14 +554,14 @@ Use case ends.
 3. Should be able to record at least 1000 meetings without a noticeable lag in data retrieval.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
+_{More to be added}_
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Client**: A contact using the services of the user (a Financial Advisor).
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Client**: A contact using the services of the user (a Financial Advisor).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -481,14 +578,14 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a sample contact list containing 6 clients. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -498,16 +595,67 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `deleteClient 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `deleteClient 0`<br>
       Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+   5. _{ more test cases …​ }_
+
+### Adding a policy
+
+1. Adding a policy to a client in the contact list
+
+   1. Prerequisites: There must be at least one client in the contact list.
+
+   1. Test case: `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`<br>
+      Expected: A blue tag entitled _Medicare Plus_ should appear under the name of the first client in the contact list. Status message shows that the number of policies of the client is 1 higher than before.
+
+   1. Test case: `addPolicy 1 n/Medicare Plus`<br>
+      Expected: No policy is added. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `addPolicy`, `addPolicy x n/Medicare Plus c/Medicare pm/Zechary $/100`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1*{ more test cases …​ }*
+
+### Editing a policy
+
+1. Editing a policy of a client in the contact list
+
+   1. Prerequisites: There must be at least one client in the contact list with at least one policy.
+
+   1. Test case: `editPolicy 1 pi/1 n/New Policy`<br>
+      Expected: The first blue tag under the name of the first client in the contact list should now be entitled _New Policy_. Status message shows that the number of policies of the client is the same as before.
+
+   1. Test case: `editPolicy 1 pi/1`<br>
+      Expected: No policy is edited. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `editPolicy`, `editPolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
+      Expected: Similar to previous.
+
+1*{ more test cases …​ }*
+
+### Deleting a policy
+
+1. Deleting a policy of a client in the contact list
+
+   1. Prerequisites: There must be at least one client in the contact list with at least one policy.
+
+   1. Test case: `deletePolicy 1 pi/1`<br>
+      Expected: The first blue tag under the name of the first client in the contact list should disappear. Status message shows that the number of policies of the client is 1 less than before.
+
+   1. Test case: `deletePolicy 1`<br>
+      Expected: No policy is deleted. Error details shown in the status message.
+
+   1. Other incorrect delete commands to try: `deletePolicy`, `deletePolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
+      Expected: Similar to previous.
+
+1*{ more test cases …​ }*
 
 ### Saving data
 

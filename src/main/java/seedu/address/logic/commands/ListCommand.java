@@ -20,6 +20,6 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
         return new CommandResult(MESSAGE_SUCCESS, false, false, false,
-                false, true);
+                false, true, null);
     }
 }

@@ -36,84 +36,11 @@ public class Client {
 
     /**
      * Every field must be present and not null.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for AddPolicyCommand.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UniquePolicyList policies) {
-        requireAllNonNull(name, phone, email, address, tags, policies);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.policies.setPolicies(policies);
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for AddNoteCommand.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Note note) {
-        requireAllNonNull(name, phone, email, address, tags, note);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.note = note;
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for all commands except PreferenceMap.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  UniquePolicyList policies, Note note) {
-        requireAllNonNull(name, phone, email, address, tags, policies, note);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.policies.setPolicies(policies);
-        this.note = note;
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for all commands.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  UniquePolicyList policies, Note note, PreferenceMap preferences) {
-        requireAllNonNull(name, phone, email, address, tags, policies, note, preferences);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.policies.setPolicies(policies);
-        this.note = note;
-        this.preferences.addAllPreferences(preferences);
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for all commands.
+     *
      */
     public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
-                  Set<Tag> tags, UniquePolicyList policies) {
-        requireAllNonNull(name, phone, email, address, tags, policies);
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, birthday, lastContacted, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -121,7 +48,6 @@ public class Client {
         this.birthday = birthday;
         this.lastContacted = lastContacted;
         this.tags.addAll(tags);
-        this.policies.setPolicies(policies);
     }
 
     /**

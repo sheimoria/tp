@@ -11,14 +11,15 @@ import seedu.address.logic.commands.AddNoteCommand;
 import seedu.address.logic.commands.AddPreferenceCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeletePreferenceCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.TutorialCommand;
+import seedu.address.logic.commands.ViewClientCommand;
 import seedu.address.logic.commands.meeting.AddMeetingCommand;
 import seedu.address.logic.commands.meeting.DeleteMeetingCommand;
 import seedu.address.logic.commands.meeting.EditMeetingCommand;
@@ -26,7 +27,6 @@ import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.commands.policy.AddPolicyCommand;
 import seedu.address.logic.commands.policy.DeletePolicyCommand;
 import seedu.address.logic.commands.policy.EditPolicyCommand;
-import seedu.address.logic.commands.policy.ViewPolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meeting.AddMeetingCommandParser;
 import seedu.address.logic.parser.meeting.DeleteMeetingCommandParser;
@@ -34,7 +34,6 @@ import seedu.address.logic.parser.meeting.EditMeetingCommandParser;
 import seedu.address.logic.parser.policy.AddPolicyCommandParser;
 import seedu.address.logic.parser.policy.DeletePolicyCommandParser;
 import seedu.address.logic.parser.policy.EditPolicyCommandParser;
-import seedu.address.logic.parser.policy.ViewPolicyCommandParser;
 
 /**
  * Parses user input.
@@ -75,6 +74,9 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case ContactedCommand.COMMAND_WORD:
+            return new ContactedCommandParser().parse(arguments);
+
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
@@ -105,9 +107,6 @@ public class AddressBookParser {
         case AddPolicyCommand.COMMAND_WORD:
             return new AddPolicyCommandParser().parse(arguments);
 
-        case ViewPolicyCommand.COMMAND_WORD:
-            return new ViewPolicyCommandParser().parse(arguments);
-
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser().parse(arguments);
 
@@ -120,8 +119,8 @@ public class AddressBookParser {
         case EditPolicyCommand.COMMAND_WORD:
             return new EditPolicyCommandParser().parse(arguments);
 
-        case DeletePreferenceCommand.COMMAND_WORD:
-            return new DeletePreferenceCommandParser().parse(arguments);
+        case ViewClientCommand.COMMAND_WORD:
+            return new ViewClientCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

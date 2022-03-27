@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Date;
+import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
@@ -32,6 +34,8 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final String address;
+    private final String birthday;
+    private final String lastContacted;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
     private final String note;
@@ -42,14 +46,19 @@ class JsonAdaptedClient {
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("policies") List<JsonAdaptedPolicy> policies, @JsonProperty("note") String note,
-            @JsonProperty("preferenceMap") JsonAdaptedPreferenceMap preferenceMap) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("birthday") String birthday,
+                             @JsonProperty("lastContacted") String lastContacted,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("policies") List<JsonAdaptedPolicy> policies,
+                             @JsonProperty("note") String note,
+                             @JsonProperty("preferenceMap") JsonAdaptedPreferenceMap preferenceMap) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
+        this.lastContacted = lastContacted;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -76,6 +85,8 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        birthday = source.getBirthday().toString();
+        lastContacted = source.getLastContacted().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -133,6 +144,26 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
+        final Date modelBirthday;
+        if (birthday == null) {
+            modelBirthday = new Date("01-01-0001");
+        } else {
+            if (!Date.isValidDate(birthday)) {
+                throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            }
+            modelBirthday = new Date(birthday);
+        }
+
+        final DateTime modelLastContacted;
+        if (lastContacted == null) {
+            modelLastContacted = new DateTime("01-01-0001 00:00");
+        } else {
+            if (!DateTime.isValidDateTime(lastContacted)) {
+                throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+            }
+            modelLastContacted = new DateTime(lastContacted);
+        }
+
         if (note == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
         }
@@ -150,8 +181,7 @@ class JsonAdaptedClient {
         final UniquePolicyList modelPolicies = new UniquePolicyList();
         modelPolicies.setPolicies(clientPolicies);
 
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelNote,
-                modelPreferenceMap);
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelLastContacted, modelTags,
+                modelPolicies, modelNote, modelPreferenceMap);
     }
-
 }

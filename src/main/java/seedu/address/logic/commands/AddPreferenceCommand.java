@@ -14,7 +14,7 @@ import seedu.address.model.client.Client;
 
 public class AddPreferenceCommand extends Command {
 
-    public static final String COMMAND_WORD = "addPreference";
+    public static final String COMMAND_WORD = "addPref";
     public static final String MESSAGE_SUCCESS = "New preference added: %s: %s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a preference to"
             + "the client specified by the index number used in the displayed "

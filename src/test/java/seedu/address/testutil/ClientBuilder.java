@@ -5,6 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Date;
+import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
@@ -24,6 +26,8 @@ public class ClientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_BIRTHDAY = "21-03-1999";
+    public static final String DEFAULT_LAST_CONTACTED = "21-03-1999 21:03";
 
     public static final String DEFAULT_POLICY_NAME = "Big Insurance Policy";
     public static final String DEFAULT_COMPANY = "Big Insurance Company";
@@ -35,10 +39,11 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Date birthday;
+    private DateTime lastContacted;
     private Set<Tag> tags;
     private UniquePolicyList policies = new UniquePolicyList();
     private Note note;
-
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -48,6 +53,8 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        birthday = new Date(DEFAULT_BIRTHDAY);
+        lastContacted = new DateTime(DEFAULT_LAST_CONTACTED);
         tags = new HashSet<>();
 
         Policy defaultPolicy = new Policy(new Name(DEFAULT_POLICY_NAME), new Name(DEFAULT_COMPANY),
@@ -65,6 +72,8 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         address = clientToCopy.getAddress();
+        birthday = clientToCopy.getBirthday();
+        lastContacted = clientToCopy.getLastContacted();
         tags = new HashSet<>(clientToCopy.getTags());
         policies.setPolicies(clientToCopy.getPolicies());
         note = clientToCopy.getNote();
@@ -91,6 +100,22 @@ public class ClientBuilder {
      */
     public ClientBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code birthday} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withBirthday(String birthday) {
+        this.birthday = new Date(birthday);
+        return this;
+    }
+
+    /**
+     * Sets the {@code lastContacted} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withLastContacted(String lastContacted) {
+        this.lastContacted = new DateTime(lastContacted);
         return this;
     }
 
@@ -127,7 +152,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, tags);
+        return new Client(name, phone, email, address, birthday, lastContacted, tags);
     }
 
 }
