@@ -133,7 +133,7 @@ Examples:
 
 ### Update client: `updateClient`
 
-Update a client from in your address book.
+Update a client in your address book.
 
 Format: `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`
 
@@ -174,23 +174,23 @@ Format: `addNote INDEX nt/NOTE`
 
 Adds a preference to a specific client
 
-Format: `addPref INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS`
+Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
 
 Examples:
 
-- `addPref 1 pk/Drink pd/Coke`
-- `addPref 2 pk/Cigarettes pd/Malboro`
+- `addPref 1 cat/Drink pref/Coke`
+- `addPref 2 cat/Cigarettes pref/Marlboro`
 
 ### Delete preferences from client: `deletePref`
 
-Deletes the preference of the specified preference key from the specified client
+Deletes the preference from the specified client
 
-Format: `deletePref INDEX pk/PREFERENCE_KEY`
+Format: `deletePref INDEX cat/CATEGORY`
 
 Examples:
 
-- `deletePref 1 pk/Drink`
-- `deletePref 2 pk/Cigarettes`
+- `deletePref 1 cat/Drink`
+- `deletePref 2 cat/Cigarettes`
 
 ### Add policy: `addPolicy`
 
@@ -269,7 +269,7 @@ Examples:
 
 - `deleteMeeting 1`
 
-###Save to hard drive
+### Save to hard drive
 
 OnlyFAs’s data is saved in the hard drive automatically after any command that changes the data. There is no need to save manually.
 
@@ -324,8 +324,8 @@ _Details coming soon ..._
 | **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
 | **contacted**     | `contacted INDEX dt/DATETIME` <br> e.g., `contacted 1 dt/21-03-2022 21:03`                                                                             |
 | **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
-| **addPref**       | `addPref INDEX pk/PREFERENCE_KEY pd/PREFERENCE_DETAILS` <br> e.g., `addPref 1 pk/Drink pd/Coke`                                                        |
-| **deletePref**    | `deletePref INDEX pk/PREFERENCE_KEY` <br> e.g., `deletePref 1 pk/Drink`                                                                                |
+| **addPref**       | `addPref INDEX cat/CATEGORY pref/PREFERENCE` <br> e.g., `addPref 1 cat/Drink pref/Coke`                                                                |
+| **deletePref**    | `deletePref INDEX cat/CATEGORY` <br> e.g., `deletePref 1 cat/Drink`                                                                                    |
 | **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
 | **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`        |
 | **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
