@@ -47,29 +47,33 @@ public class EditPolicyCommandParser implements Parser<EditPolicyCommand> {
                     pe);
         }
 
-        EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
-        editClientDescriptor.setPolicyIndex(policyIndex);
+        EditPolicyCommand.EditPolicyDescriptor editPolicyDescriptor = new EditPolicyCommand.EditPolicyDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             Name policyName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-            editClientDescriptor.setPolicyName(policyName);
+            editPolicyDescriptor.setName(policyName);
         }
 
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
             Name company = ParserUtil.parseName(argMultimap.getValue(PREFIX_COMPANY).get());
-            editClientDescriptor.setCompany(company);
+            editPolicyDescriptor.setCompany(company);
         }
 
         if (argMultimap.getValue(PREFIX_POLICY_MANAGER).isPresent()) {
             Name policyManager = ParserUtil.parseName(argMultimap.getValue(PREFIX_POLICY_MANAGER).get());
-            editClientDescriptor.setPolicyManager(policyManager);
+            editPolicyDescriptor.setPolicyManager(policyManager);
         }
 
         if (argMultimap.getValue(PREFIX_PREMIUM).isPresent()) {
             Premium premium = ParserUtil.parsePremium(argMultimap.getValue(PREFIX_PREMIUM).get());
-            editClientDescriptor.setPremium(premium);
+            editPolicyDescriptor.setPremium(premium);
         }
-        return new EditPolicyCommand(clientIndex, editClientDescriptor);
+
+        if (!editPolicyDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return new EditPolicyCommand(clientIndex, policyIndex, editPolicyDescriptor);
     }
 
     /**

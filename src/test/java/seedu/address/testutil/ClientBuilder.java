@@ -13,6 +13,7 @@ import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
+import seedu.address.model.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -41,7 +42,7 @@ public class ClientBuilder {
     private Date birthday;
     private DateTime lastContacted;
     private Set<Tag> tags;
-    private Set<Policy> policies = new HashSet<>();
+    private UniquePolicyList policies = new UniquePolicyList();
     private Note note;
 
     /**
@@ -74,7 +75,7 @@ public class ClientBuilder {
         birthday = clientToCopy.getBirthday();
         lastContacted = clientToCopy.getLastContacted();
         tags = new HashSet<>(clientToCopy.getTags());
-        policies = new HashSet<>(clientToCopy.getPolicies());
+        policies.setPolicies(clientToCopy.getPolicies());
         note = clientToCopy.getNote();
     }
 
@@ -138,7 +139,7 @@ public class ClientBuilder {
      * Parses the {@code policies} into a {@code Set<Policy>} and set it to the {@code Client} that we are building.
      */
     public ClientBuilder withPolicies(Policy ... policies) {
-        this.policies = SampleDataUtil.getPolicySet(policies);
+        this.policies = SampleDataUtil.getPolicyList(policies);
         return this;
     }
 

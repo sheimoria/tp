@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.policy.DeletePolicyCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -42,9 +41,7 @@ public class DeletePolicyCommandParser implements Parser<DeletePolicyCommand> {
                     pe);
         }
 
-        EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
-        editClientDescriptor.setPolicyIndex(policyIndex);
-        return new DeletePolicyCommand(clientIndex, editClientDescriptor);
+        return new DeletePolicyCommand(clientIndex, policyIndex);
     }
 
     /**

@@ -2,14 +2,16 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.UniquePolicyList;
+import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,12 +30,13 @@ public class Client {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
-    private final List<Policy> policies = new ArrayList<>();
+    private final UniquePolicyList policies = new UniquePolicyList();
     private Note note = new Note("");
     private final PreferenceMap preferences = new PreferenceMap();
 
     /**
      * Every field must be present and not null.
+     *
      */
     public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
                   Set<Tag> tags) {
@@ -49,88 +52,10 @@ public class Client {
 
     /**
      * Every field must be present and not null.
-     * Overloaded constructor for AddPolicyCommand.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<Policy> policies) {
-        requireAllNonNull(name, phone, email, address, tags, policies);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.policies.addAll(policies);
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for AddNoteCommand.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Note note) {
-        requireAllNonNull(name, phone, email, address, tags, note);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.note = note;
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for all commands except PreferenceMap.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  List<Policy> policies, Note note) {
-        requireAllNonNull(name, phone, email, address, tags, policies, note);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.policies.addAll(policies);
-        this.note = note;
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for all commands.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                  List<Policy> policies, Note note, PreferenceMap preferences) {
-        requireAllNonNull(name, phone, email, address, tags, policies, note, preferences);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags.addAll(tags);
-        this.policies.addAll(policies);
-        this.note = note;
-        this.preferences.addAllPreferences(preferences);
-    }
-
-    /**
-     * Every field must be present and not null.
      * Overloaded constructor for all commands.
      */
     public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
-                  Set<Tag> tags, List<Policy> policies) {
-        requireAllNonNull(name, phone, email, address, tags, policies);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.birthday = birthday;
-        this.lastContacted = lastContacted;
-        this.tags.addAll(tags);
-        this.policies.addAll(policies);
-    }
-
-    /**
-     * Every field must be present and not null.
-     * Overloaded constructor for all commands.
-     */
-    public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
-                  Set<Tag> tags, List<Policy> policies, Note note, PreferenceMap preferences) {
+                  Set<Tag> tags, UniquePolicyList policies, Note note, PreferenceMap preferences) {
         requireAllNonNull(name, phone, email, address, tags, policies, note, preferences);
         this.name = name;
         this.phone = phone;
@@ -139,7 +64,7 @@ public class Client {
         this.birthday = birthday;
         this.lastContacted = lastContacted;
         this.tags.addAll(tags);
-        this.policies.addAll(policies);
+        this.policies.setPolicies(policies);
         this.note = note;
         this.preferences.addAllPreferences(preferences);
     }
@@ -184,8 +109,8 @@ public class Client {
      * Returns an immutable policy list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Policy> getPolicies() {
-        return Collections.unmodifiableList(policies);
+    public UniquePolicyList getPolicies() {
+        return policies;
     }
 
     /**
@@ -205,6 +130,27 @@ public class Client {
 
         return otherClient != null
                 && otherClient.getName().equals(getName());
+    }
+
+    public Policy getPolicy(int index) throws InvalidPolicyIndexException {
+        List<Policy> policyList = policies.asUnmodifiableObservableList();
+        if (index >= policyList.size()) {
+            throw new InvalidPolicyIndexException();
+        }
+        return policyList.get(index);
+    }
+
+    public void addPolicy(Policy policyToAdd) {
+        this.policies.add(policyToAdd);
+    }
+
+    public void setPolicy(int index, Policy editedPolicy) {
+        Policy prevPolicy = getPolicy(index);
+        this.policies.setPolicy(prevPolicy, editedPolicy);
+    }
+
+    public void removePolicy(Policy policyToRemove) {
+        this.policies.remove(policyToRemove);
     }
 
     /**
@@ -241,7 +187,8 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.getPolicies().equals(getPolicies());
     }
 
     @Override
@@ -265,7 +212,7 @@ public class Client {
                 .append("; Last Contacted: ")
                 .append(getLastContacted())
                 .append("; Policies: ")
-                .append(getPolicies().size())
+                .append(getPolicies().asUnmodifiableObservableList().size())
                 .append("; Note: ")
                 .append(getNote())
                 .append("; Preferences: ")
@@ -285,7 +232,7 @@ public class Client {
     public String displayPolicyList() {
         final StringBuilder builder = new StringBuilder();
         builder.append("[");
-        List<Policy> policies = getPolicies();
+        ObservableList<Policy> policies = getPolicies().asUnmodifiableObservableList();
         if (!policies.isEmpty()) {
             int counter = 0;
             for (Policy p : policies) {

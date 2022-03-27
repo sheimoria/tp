@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -57,7 +56,7 @@ public class ClientDisplay extends UiPart<Region> {
         } else {
             lastContacted.setText("Last contacted: -");
         }
-        policyListView.setItems(FXCollections.observableArrayList(client.getPolicies()));
+        policyListView.setItems(client.getPolicies().asUnmodifiableObservableList());
         policyListView.setCellFactory(listView -> new PolicyListViewCell());
         clientDisplayCard.getChildren().add(policyListView);
         note.setText(client.getNote().value);

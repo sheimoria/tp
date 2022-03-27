@@ -43,6 +43,19 @@ public class Policy {
     }
 
     /**
+     * Returns true if both policies have the same name.
+     * This defines a weaker notion of equality between two policies.
+     */
+    public boolean isSamePolicy(Policy otherPolicy) {
+        if (otherPolicy == this) {
+            return true;
+        }
+
+        return otherPolicy != null
+                && otherPolicy.getName().equals(getName());
+    }
+
+    /**
      * Returns true if both Policies have the same identity fields.
      */
     @Override

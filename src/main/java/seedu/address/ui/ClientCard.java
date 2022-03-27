@@ -52,9 +52,11 @@ public class ClientCard extends UiPart<Region> {
             lastContacted.setText("Last contacted: -");
         }
         AtomicInteger counter = new AtomicInteger(1);
-        client.getPolicies().forEach(policy -> {
-            policies.getChildren().add(new Label(policy.toNumberedDisplay(counter.getAndIncrement())));
-        });
+        client.getPolicies().asUnmodifiableObservableList().stream()
+                .forEach(policy -> {
+                    policies.getChildren().add(new Label(policy.toNumberedDisplay(counter.get())));
+                    counter.getAndIncrement();
+                });
     }
 
     @Override
