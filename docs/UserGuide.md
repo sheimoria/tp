@@ -297,10 +297,6 @@ onlyFAs' data is saved in a JSON file `[JAR file location]/data/data.json`. Adva
 If your changes to the data file makes its format invalid, onlyFAs will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ---
 
 ## FAQ
@@ -309,10 +305,6 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous onlyFAs home folder.
 
 ---
-
-## Mockups
-
-## ![Ui](images/mockups/zoom-in-client.jpg)
 
 ## Command summary
 
