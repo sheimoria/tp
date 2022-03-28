@@ -19,28 +19,14 @@ import seedu.address.model.client.Name;
 */
 public class Meeting {
 
-    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
-            "Date times should consist of dates and times in the format of YYYY-MM-DD HH:mm";
+            "Date times should consist of dates and times in the format of dd-MM-yyyy HH:mm";
     public final LocalDateTime startDateTime;
     public final LocalDateTime endDateTime;
     public final Client client;
     public final String label;
-
-    //    /**
-    //     * Constructs a {@code Meeting}.
-    //     * @param startDateTime A date time object representing the start of the meeting.
-    //     * @param endDateTime A date time object representing the end of the meeting.
-    //     * @param client A client object representing the client being met.
-    //     */
-    //    public Meeting(LocalDateTime startDateTime, LocalDateTime endDateTime, Client client) {
-    //        requireNonNull(startDateTime);
-    //        requireNonNull(endDateTime);
-    //        this.startDateTime = startDateTime;
-    //        this.endDateTime = endDateTime;
-    //        this.client = client;
-    //        this.label = "";
-    //    }
 
     /**
     * Constructs a {@code Meeting}.
@@ -76,7 +62,7 @@ public class Meeting {
      */
     public static boolean isValidDate(String stringDate) {
         try {
-            LocalDate.parse(stringDate);
+            LocalDate.parse(stringDate, Meeting.DATE_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;

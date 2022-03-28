@@ -58,7 +58,7 @@ public class JsonAdaptedMeeting {
         }
         LocalDateTime modelStartDateTime;
         try {
-            modelStartDateTime = LocalDateTime.parse(startDateTime);
+            modelStartDateTime = LocalDateTime.parse(startDateTime, Meeting.DATE_FORMATTER);
         } catch (DateTimeParseException err) {
             throw new IllegalValueException(Meeting.DATETIME_MESSAGE_CONSTRAINTS);
         }
@@ -69,7 +69,7 @@ public class JsonAdaptedMeeting {
         }
         LocalDateTime modelEndDateTime;
         try {
-            modelEndDateTime = LocalDateTime.parse(endDateTime);
+            modelEndDateTime = LocalDateTime.parse(endDateTime, Meeting.DATE_FORMATTER);
         } catch (DateTimeParseException err) {
             throw new IllegalValueException(Meeting.DATETIME_MESSAGE_CONSTRAINTS);
         }
