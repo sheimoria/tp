@@ -257,6 +257,12 @@ public class MainWindow extends UiPart<Stage> {
                 showClients();
             }
 
+            if (commandResult.isSortClients()) {
+                clientListPanelPlaceholder.getChildren().clear();
+                clientListPanel = new ClientListPanel(logic.getSortedClientList());
+                clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+            }
+
             if (commandResult.isShowClient()) {
                 showClient(commandResult.getIndexToShow());
             }

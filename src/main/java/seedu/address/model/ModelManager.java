@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Meeting> filteredMeetings;
+    private final SortedList<Client> sortedClients;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
+        sortedClients = new SortedList<>(this.addressBook.getClientList());
     }
 
     public ModelManager() {
@@ -164,6 +168,17 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
 
+    @Override
+    public ObservableList<Client> getSortedClientList() {
+        return sortedClients;
+    }
+
+    @Override
+    public void updateSortedClientList(Comparator<Client> comparator) {
+        requireNonNull(comparator);
+        sortedClients.setComparator(comparator);
+    }
+
     //=========== Filtered Meeting List Accessors =============================================================
 
     /**
@@ -196,7 +211,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredClients.equals(other.filteredClients);
+                && filteredClients.equals(other.filteredClients)
+                && sortedClients.equals(other.sortedClients);
     }
 
 }
