@@ -69,7 +69,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, boolean sortClients) {
         this(feedbackToUser, false, false, false,
-                false, false, sortClients,  null);
+                false, false, sortClients, null);
     }
 
     /**
