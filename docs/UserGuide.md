@@ -241,9 +241,13 @@ Examples:
 
 ### View All Meetings: `meetings`
 
-Shows all upcoming meetings.
+Shows all meetings. If an index is provided, only shows meetings with the specified client.
 
-Format: `meetings`
+Format: `meetings [INDEX]`
+
+Examples:
+- `meetings`
+- `meetings 2`
 
 ### Edit Meeting Details: `editMeeting`
 

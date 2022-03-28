@@ -255,24 +255,25 @@ The new meeting feature is supported by two new main models `Meeting` and `NonOv
 
 The `NonOverlappingMeetingList` is stored in `AddressBook` class and ensures that no two meetings overlap.
 
-The `Meeting` model has three attributes
+The `Meeting` model has four attributes
 
 1. `startDateTime` represents the starting date and time of the meeting
 2. `endDateTime` represents the ending date and time of the meeting
 3. `client` represents the client that is being met in this meeting
+4. `label` represents the description of the meeting
 
 The meeting features supports the following operations:
 
 - Adding new meetings - called via the `AddMeetingCommand`
 - Viewing meetings in the sidebar - called via the `ListMeetingCommand`
-- _In progress_: Updating meetings - called via the `EditMeetingCommand`
-- _In progress_: Deleting meetings - called via the `DeleteMeetingCommand`
+- Editing meetings - called via the `EditMeetingCommand`
+- Deleting meetings - called via the `DeleteMeetingCommand`
 
 Given below is an example usage scenario and how the feature behaves:
 
 Step 1. The user launches the application. The `NonOverlappingMeetingList` is loaded from persistent memory if it exists and be stored in the AddressBook.
 
-Step 2. The user executes `addMeeting 1 ms/2022-01-01,11:00 me/2022-01-01,13:00` to schedule a meeting with the first client in the list on 1st January 2022 from 11:00AM to 1:00PM. The `addMeeting` command instantiates a new `Meeting` object and calls the `Model#addMeeting()` to add the object to the `NonOverlappingMeetingList`.
+Step 2. The user executes `addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 13:00` to schedule a meeting with the first client in the list on 1st January 2022 from 11:00AM to 1:00PM. The `addMeeting` command instantiates a new `Meeting` object and calls the `Model#addMeeting()` to add the object to the `NonOverlappingMeetingList`.
 ![Meeting1Add](images/Meeting1Add.png)
 
 Step 3. The user executes `meetings` to view the meetings on the right sidebar.
