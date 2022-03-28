@@ -24,7 +24,7 @@ import seedu.address.model.meeting.Meeting;
  */
 public class EditMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "updateMeeting";
+    public static final String COMMAND_WORD = "editMeeting";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
             + "by the index number used in the displayed client list.\n"

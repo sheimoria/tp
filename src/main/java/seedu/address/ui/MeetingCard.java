@@ -46,8 +46,8 @@ public class MeetingCard extends UiPart<Region> {
             nameLabel = meeting.getName().fullName + " (" + meeting.getLabel() + ")";
         }
         name.setText(nameLabel);
-        startDateTime.setText("From: " + meeting.getStartDateTime().format(Meeting.DATETIME_FORMATTER));
-        endDateTime.setText("To: " + meeting.getEndDateTime().format(Meeting.DATETIME_FORMATTER));
+        startDateTime.setText("Start: " + meeting.getStartDateTime().format(Meeting.DATETIME_FORMATTER));
+        endDateTime.setText("End: " + meeting.getEndDateTime().format(Meeting.DATETIME_FORMATTER));
     }
 
     @Override
