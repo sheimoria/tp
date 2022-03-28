@@ -12,7 +12,7 @@ import seedu.address.model.client.Note;
 /**
  * Parses input arguments and creates a new DeleteNoteCommand object
  */
-public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand>  {
+public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteNoteCommand
