@@ -12,7 +12,7 @@ It allows users to:
 1. Record all clients in the app
 2. Manage their clients' personal details
 3. Manage their clients' portfolios' details
-4. Easily arrange for meetups with clients
+4. Track your meetings with your clients
 5. Track the date that each client was last contacted
 
 Currently, financial advisors might have to rely on apps like Google Calendar, and do not have a dedicated platform catered to helping them manage their clientele. This is wear *onlyFAs* bridges the gap.
@@ -34,7 +34,7 @@ Currently, financial advisors might have to rely on apps like Google Calendar, a
   11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
   12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
   13. [View All Meetings: `meetings`](#view-all-meetings-meetings)
-  14. [Update Meeting Details: `updateMeeting`](#update-meeting-details-updatemeeting)
+  14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-updatemeeting)
   15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
   16. [Clearing all entries : `clear`](#clearing-all-entries--clear)
   17. [Exiting the program : `exit`](#exiting-the-program--exit)
@@ -228,16 +228,16 @@ Examples:
 
 Add a meeting to your schedule.
 
-Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME`
+Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    DATETIME format is YYYY-MM-DD,HH:mm
+    Date format is dd-MM-yyyy HH:mm
 </div>
 
 Examples:
 
-- `addMeeting 1 ms/2022-01-01,11:00 me/2022-01-01,12:00`
-- `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00`
+- `addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 12:00`
+- `addMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 17:00 l/Dinner`
 
 ### View All Meetings: `meetings`
 
@@ -245,19 +245,19 @@ Shows all upcoming meetings.
 
 Format: `meetings`
 
-### Update Meeting Details: `updateMeeting`
+### Edit Meeting Details: `editMeeting`
 
-Update details of a particular meeting.
+Edit details of a particular meeting.
 
-Format: `updateMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME]`
+Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/LABEL]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    DATETIME format is YYYY-MM-DD,HH:mm
+    Date format is dd-MM-yyyy HH:mm
 </div>
 
 Examples:
 
-- `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`
+- `editMeeting 1 ms/01-01-2022 08:00 me/01-01-2022 10:00 l/Lunch`
 
 ### Delete meeting: `deleteMeeting`
 
@@ -322,8 +322,7 @@ If your changes to the data file makes its format invalid, onlyFAs will discard 
 | **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`        |
 | **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
 | **meetings**      | `meetings`                                                                                                                                             |
-| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00 l/Lunch`               |
-| **updateMeeting** | `updateMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `addMeeting 2 ms/2022-12-27,16:00 me/2022-12-27,17:00 l/Dinner`       |
+| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`               |
+| **editMeeting**   | `editMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `editMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 18:00 l/Dinner`        |
 | **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                     |
-| **updateMeeting** | `updateMeeting INDEX [ms/NEW_START_DATETIME me/NEW_END_DATETIME]` <br> e.g., `updateMeeting 1 ms/2022-01-01,08:00 me/2022-01-01,09:00`                 |
 | **help**          | `help`                                                                                                                                                 |
