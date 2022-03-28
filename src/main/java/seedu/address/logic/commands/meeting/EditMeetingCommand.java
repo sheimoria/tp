@@ -26,16 +26,14 @@ public class EditMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "editMeeting";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
-            + "by the index number used in the displayed client list.\n"
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Parameters:\n• INDEX (must be a positive integer) "
             + "[" + PREFIX_START_DATETIME + "START_DATETIME] "
             + "[" + PREFIX_END_DATETIME + "END_DATETIME] "
             + "[" + PREFIX_LABEL + "LABEL]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_START_DATETIME + "2022-01-01/18:00 "
-            + PREFIX_END_DATETIME + "2022-01-01/20:00 "
+            + "(Existing values will be overwritten by the input values)\n"
+            + "Example:\n• " + COMMAND_WORD + " 1 "
+            + PREFIX_START_DATETIME + "01-01-2022 18:00 "
+            + PREFIX_END_DATETIME + "01-01-2022 20:00 "
             + PREFIX_LABEL + "Dinner";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
