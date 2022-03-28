@@ -8,6 +8,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Note {
 
+    public static final String DEFAULT_NOTE = "";
+
     public final String value;
 
     /**
