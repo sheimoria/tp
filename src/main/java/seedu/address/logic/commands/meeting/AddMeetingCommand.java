@@ -26,15 +26,13 @@ public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addMeeting";
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the client specified "
-            + "by the index number used in the displayed client list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Parameters:\n• INDEX (must be a positive integer) "
             + "" + PREFIX_START_DATETIME + "START_DATETIME "
             + "" + PREFIX_END_DATETIME + "END_DATETIME "
             + "[" + PREFIX_LABEL + "LABEL]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_START_DATETIME + "2022-01-01,11:00 "
-            + PREFIX_END_DATETIME + "2022-01-01:13:00 "
+            + "Example:\n• " + COMMAND_WORD + " 1 "
+            + PREFIX_START_DATETIME + "01-01-2022 11:00 "
+            + PREFIX_END_DATETIME + "01-01-2020 13:00 "
             + PREFIX_LABEL + "Lunch";
     public static final String MESSAGE_OVERLAPPING_MEETING = "There is an existing"
            + " meeting overlapping with this meeting.";
