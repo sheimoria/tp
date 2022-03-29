@@ -1,5 +1,9 @@
 package seedu.address.logic.parser.meeting;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETINGS_SHOW_ALL;
+
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meeting.ListMeetingCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -9,9 +13,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import java.util.stream.Stream;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 public class ListMeetingCommandParser implements Parser<ListMeetingCommand> {
 
@@ -23,10 +24,7 @@ public class ListMeetingCommandParser implements Parser<ListMeetingCommand> {
     public ListMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MEETINGS_SHOW_ALL);
-        boolean isShowAll = true;
-        if (!arePrefixesPresent(argMultimap, PREFIX_MEETINGS_SHOW_ALL)) {
-            isShowAll = false;
-        }
+        boolean isShowAll = arePrefixesPresent(argMultimap, PREFIX_MEETINGS_SHOW_ALL);
 
         Index index;
         try {

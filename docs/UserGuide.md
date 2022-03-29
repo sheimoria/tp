@@ -239,15 +239,19 @@ Examples:
 - `addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 12:00`
 - `addMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 17:00 l/Dinner`
 
-### View All Meetings: `meetings`
+### View Meetings: `meetings`
 
-Shows all meetings. If an index is provided, only shows meetings with the specified client.
+Shows upcoming or all meetings.
 
-Format: `meetings [INDEX]`
+- If an index is provided, only shows meetings with the specified client.
+- If the `all/` flag is provided, shows all meetings instead of just upcoming meetings.
+
+Format: `meetings [INDEX] [all/]`
 
 Examples:
 - `meetings`
 - `meetings 2`
+- `meetings 3 all/`
 
 ### Edit Meeting Details: `editMeeting`
 
@@ -325,7 +329,7 @@ If your changes to the data file makes its format invalid, onlyFAs will discard 
 | **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
 | **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`        |
 | **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
-| **meetings**      | `meetings`                                                                                                                                             |
+| **meetings**      | `meetings [INDEX] [all/]` <br> eg., `meetings 1 all/`                                                                                                  |
 | **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`               |
 | **editMeeting**   | `editMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `editMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 18:00 l/Dinner`        |
 | **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                     |

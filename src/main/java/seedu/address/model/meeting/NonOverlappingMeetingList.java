@@ -72,6 +72,18 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Sorts the meetings in ascending order based on starting meeting time.
+     */
+    public void sortAscending() {
+        List<Meeting> sortedMeetings = new ArrayList<>(internalList);
+        Comparator<Meeting> comparatorDateTime = Comparator
+                .comparing((Meeting meeting) -> meeting.getStartDateTime().toLocalDate());
+
+        sortedMeetings.sort(comparatorDateTime);
+        setMeetings(sortedMeetings);
+    }
+
+    /**
      * Sorts the meetings in descending order based on starting meeting time.
      */
     public void sortDescending() {
