@@ -96,6 +96,14 @@ public class ClientBuilder {
     }
 
     /**
+     * Sets the {@code Address} of the {@code Client} that we are building to an empty string.
+     */
+    public ClientBuilder withAddress() {
+        this.address = new Address();
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code Client} that we are building.
      */
     public ClientBuilder withAddress(String address) {
@@ -124,6 +132,14 @@ public class ClientBuilder {
      */
     public ClientBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Client} that we are building to an empty string.
+     */
+    public ClientBuilder withEmail() {
+        this.email = new Email();
         return this;
     }
 

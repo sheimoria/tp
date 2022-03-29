@@ -114,7 +114,7 @@ Format: `help`
 
 Adds a client to the list of managed clients
 
-Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]`
+Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS]`
 
 Examples:
 
