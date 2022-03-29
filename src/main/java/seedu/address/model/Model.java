@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -97,6 +98,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
+
+    ObservableList<Client> getSortedClientList();
+
+    void updateSortedClientList(Comparator<Client> comparator);
 
     /**
      * Adds the given meeting.

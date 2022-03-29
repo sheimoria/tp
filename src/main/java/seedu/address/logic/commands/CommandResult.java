@@ -28,11 +28,29 @@ public class CommandResult {
     /** Clients should be shown. */
     private final boolean showClients;
 
+    /** Clients should be sorted **/
+    private final boolean sortClients;
+
     /** Index to show. */
     private final Index indexToShow;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
+                         boolean showMeetings, boolean showClients, boolean sortClients, Index indexToShow) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.showTutorial = showTutorial;
+        this.exit = exit;
+        this.showMeetings = showMeetings;
+        this.showClients = showClients;
+        this.sortClients = sortClients;
+        this.indexToShow = indexToShow;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields for non-sort commands.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
                          boolean showMeetings, boolean showClients, Index indexToShow) {
@@ -43,6 +61,15 @@ public class CommandResult {
         this.showMeetings = showMeetings;
         this.showClients = showClients;
         this.indexToShow = indexToShow;
+        this.sortClients = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields for sort commands.
+     */
+    public CommandResult(String feedbackToUser, boolean sortClients) {
+        this(feedbackToUser, false, false, false,
+                false, false, sortClients, null);
     }
 
     /**
@@ -91,6 +118,10 @@ public class CommandResult {
         return indexToShow != null;
     }
 
+    public boolean isSortClients() {
+        return sortClients;
+    }
+
     public Index getIndexToShow() {
         return indexToShow;
     }
@@ -110,6 +141,7 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && showTutorial == otherCommandResult.showTutorial
+                && sortClients == otherCommandResult.sortClients
                 && exit == otherCommandResult.exit;
     }
 
