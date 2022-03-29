@@ -24,7 +24,7 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * * input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
@@ -47,8 +47,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(null));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(null));
-        Date birthday = new Date();
-        DateTime lastContacted = new DateTime();
+        Date birthday = ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).orElse(null));
+        DateTime lastContacted = ParserUtil.parseLastContacted(argMultimap.getValue(PREFIX_LAST_CONTACTED)
+                .orElse(null));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Client client = new Client(name, phone, email, address, birthday, lastContacted, tagList);
