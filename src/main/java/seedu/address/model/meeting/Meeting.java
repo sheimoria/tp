@@ -58,6 +58,15 @@ public class Meeting {
     }
 
     /**
+     * Returns true if the meeting is happening today or in the future.
+     */
+    public boolean isUpcoming() {
+        LocalDateTime yesterday = LocalDate.now().atStartOfDay().minusMinutes(1);
+
+        return startDateTime.isAfter(yesterday);
+    }
+
+    /**
      * Returns true if a string is in the right format to convert into LocalDate.
      */
     public static boolean isValidDate(String stringDate) {

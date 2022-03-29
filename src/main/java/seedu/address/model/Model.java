@@ -23,6 +23,13 @@ public interface Model {
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
     /**
+     * @{code Predicate} that only evaluates to true if the meeting is today or in the future
+     */
+    Predicate<Meeting> PREDICATE_SHOW_UPCOMING_MEETINGS = meeting -> {
+        return meeting.isUpcoming();
+    };
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
