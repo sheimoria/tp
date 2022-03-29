@@ -85,8 +85,8 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        birthday = source.getBirthday().toString();
-        lastContacted = source.getLastContacted().toString();
+        birthday = source.getBirthday().value;
+        lastContacted = source.getLastContacted().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -145,8 +145,9 @@ class JsonAdaptedClient {
         final Address modelAddress = new Address(address);
 
         final Date modelBirthday;
-        if (birthday == null) {
-            modelBirthday = new Date("01-01-0001");
+
+        if (birthday == null || birthday == "") {
+            modelBirthday = new Date();
         } else {
             if (!Date.isValidDate(birthday)) {
                 throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
@@ -155,8 +156,9 @@ class JsonAdaptedClient {
         }
 
         final DateTime modelLastContacted;
-        if (lastContacted == null) {
-            modelLastContacted = new DateTime("01-01-0001 00:00");
+
+        if (lastContacted == null || lastContacted == "") {
+            modelLastContacted = new DateTime();
         } else {
             if (!DateTime.isValidDateTime(lastContacted)) {
                 throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
