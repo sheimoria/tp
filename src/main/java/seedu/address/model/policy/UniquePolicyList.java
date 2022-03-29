@@ -134,4 +134,15 @@ public class UniquePolicyList implements Iterable<Policy> {
         }
         return true;
     }
+
+    /**
+     * Returns the sum total of premium amounts of all policies in the unique policy list.
+     */
+    public int totalPremiumSum() {
+        int res = 0;
+        for (Policy p : internalUnmodifiableList) {
+            res += p.getPremium().getValue();
+        }
+        return res;
+    }
 }

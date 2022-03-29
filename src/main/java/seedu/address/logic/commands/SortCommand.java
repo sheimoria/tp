@@ -58,6 +58,9 @@ public class SortCommand extends Command {
         case "numPolicies":
             comparator = Comparator.comparingInt(a -> a.getPolicies().asUnmodifiableObservableList().size());
             break;
+        case "premium":
+            comparator = Comparator.comparingInt(a -> a.getPolicies().totalPremiumSum());
+            break;
         default:
             throw new CommandException(MESSAGE_INVALID_ATTRIBUTE);
         }

@@ -32,6 +32,11 @@ public class Premium {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /** Returns the premium amount */
+    public int getValue() {
+        return Integer.parseInt(value);
+    }
+
     @Override
     public String toString() {
         return value;
