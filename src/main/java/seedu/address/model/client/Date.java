@@ -19,7 +19,11 @@ public class Date {
      */
     public static final String VALIDATION_REGEX = "^([012][1-9]|3[01])-([0][1-9]|1[012])-([0-9][0-9][0-9][1-9])$";
 
-    public final LocalDate value;
+    public final String value;
+
+    public Date() {
+        value = "";
+    }
 
     /**
      * Constructs a {@code Date}.
@@ -29,7 +33,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = parse(date);
+        value = date;
     }
 
     /**
@@ -41,11 +45,7 @@ public class Date {
 
     @Override
     public String toString() {
-        String result = value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        if (result.equals("01-01-0001")) {
-            return "-";
-        }
-        return result;
+        return value;
     }
 
     @Override
@@ -54,6 +54,20 @@ public class Date {
                 || (other instanceof Date // instanceof handles nulls
                 && value.equals(((Date) other).value)); // state check
     }
+
+    //    public boolean isBefore(Date other) {
+    //        if (parse(value).isBefore(parse(other.value))) {
+    //            return true;
+    //        }
+    //        return false;
+    //    }
+    //
+    //    public boolean isAfter(Date other) {
+    //        if (parse(value).isAfter(parse(other.value))) {
+    //            return true;
+    //        }
+    //        return false;
+    //    }
 
     @Override
     public int hashCode() {
