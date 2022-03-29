@@ -154,10 +154,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sorts meetings in descending order.
+     * Sorts meetings in ascending order.
      */
     public void sortMeetings() {
-        meetings.sortDescending();
+        meetings.sortAscending();
     }
 
     //// util methods

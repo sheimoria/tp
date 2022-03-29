@@ -40,7 +40,6 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         }
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -49,8 +48,17 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                     pe);
         }
 
-        LocalDateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATETIME).get());
-        LocalDateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATETIME).get());
+        LocalDateTime startDateTime;
+        LocalDateTime endDateTime;
+        try {
+            startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATETIME).get());
+            endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATETIME).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddMeetingCommand.MESSAGE_USAGE),
+                    pe);
+        }
+
         String label;
         if (argMultimap.getValue(PREFIX_LABEL).isPresent()) {
             label = argMultimap.getValue(PREFIX_LABEL).get();
