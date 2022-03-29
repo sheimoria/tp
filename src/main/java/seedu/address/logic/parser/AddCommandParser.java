@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.ParserUtil.DEFAULT_DATE;
-import static seedu.address.logic.parser.ParserUtil.DEFAULT_DATETIME;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -46,8 +44,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Date birthday = new Date(DEFAULT_DATE);
-        DateTime lastContacted = new DateTime(DEFAULT_DATETIME);
+        Date birthday = new Date();
+        DateTime lastContacted = new DateTime();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Client client = new Client(name, phone, email, address, birthday, lastContacted, tagList);
