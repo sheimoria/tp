@@ -38,7 +38,10 @@ public class SortCommand extends Command {
     private final String attribute;
 
     /**
-     * Creates an AddCommand to add the specified {@code Client}
+     * Creates a SortCommand to sort the {@code Client}s by a specified {@code attribute} and direction.
+     *
+     * @param attribute {@code Client} attribute to sort by
+     * @param isAscending Indicator on whether the sort should be in ascending or descending order   
      */
     public SortCommand(String attribute, boolean isAscending) {
         requireNonNull(attribute);
