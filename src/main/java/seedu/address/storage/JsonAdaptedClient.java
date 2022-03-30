@@ -159,9 +159,13 @@ class JsonAdaptedClient {
             modelAddress = new Address(address);
         }
 
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+        }
+
         final Date modelBirthday;
 
-        if (birthday == null || birthday == "") {
+        if (birthday == "") {
             modelBirthday = new Date();
         } else {
             if (!Date.isValidDate(birthday)) {
@@ -170,9 +174,14 @@ class JsonAdaptedClient {
             modelBirthday = new Date(birthday);
         }
 
+        if (lastContacted == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateTime.class.getSimpleName()));
+        }
+
         final DateTime modelLastContacted;
 
-        if (lastContacted == null || lastContacted == "") {
+        if (lastContacted == "") {
             modelLastContacted = new DateTime();
         } else {
             if (!DateTime.isValidDateTime(lastContacted)) {

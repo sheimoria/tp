@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311 Clementi Ave 2 #02-25 "
             + PREFIX_BIRTHDAY + "21/03/1999 "
-            + PREFIX_LAST_CONTACTED + "21-03-2022 21:00 ";
+            + PREFIX_LAST_CONTACTED + "21-03-2022 21:03 ";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";

@@ -99,7 +99,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
+        if (date == null) {
+            return new Date();
+        }
         String trimmedDate = date.trim();
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
@@ -114,7 +116,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
     public static DateTime parseLastContacted(String dateTime) throws ParseException {
-        requireNonNull(dateTime);
+        if (dateTime == null) {
+            return new DateTime();
+        }
         String trimmedDateTime = dateTime.trim();
         if (!DateTime.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
