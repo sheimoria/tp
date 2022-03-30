@@ -44,6 +44,16 @@ public class DateTime {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the datetime as a {@code LocalDateTime} object.
+     */
+    public LocalDateTime getDateTime() {
+        if (value.equals("")) {
+            return LocalDateTime.parse("01-01-0001 00:00", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        }
+        return LocalDateTime.parse(value, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+    }
+
     @Override
     public String toString() {
         return value;
@@ -73,9 +83,5 @@ public class DateTime {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    public LocalDateTime parse(String dateTime) {
-        return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
     }
 }

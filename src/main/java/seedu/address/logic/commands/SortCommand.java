@@ -61,6 +61,9 @@ public class SortCommand extends Command {
         case "premium":
             comparator = Comparator.comparingInt(a -> a.getPolicies().totalPremiumSum());
             break;
+        case "lastContacted":
+            comparator = Comparator.comparing(a -> a.getLastContacted().getDateTime());
+            break;
         default:
             throw new CommandException(MESSAGE_INVALID_ATTRIBUTE);
         }
@@ -68,6 +71,7 @@ public class SortCommand extends Command {
         if (!isAscending) {
             comparator = comparator.reversed();
         }
+
         model.updateSortedClientList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS), true);
     }
