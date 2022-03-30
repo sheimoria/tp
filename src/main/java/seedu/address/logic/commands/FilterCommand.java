@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 
+/**
+ * Filter clients in the address book.
+ */
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filterClients";
 
@@ -26,8 +29,7 @@ public class FilterCommand extends Command {
             + "Supported attributes: " + FILTER_ATTRIBUTES + "\n"
             + "Supported inequalities: " + FILTER_OPERATORS;
 
-    public static final String MESSAGE_INVALID = "Error occurred during filter";
-    public static final String MESSAGE_SUCCESS = "Successfully filtered";
+    public static final String MESSAGE_SUCCESS = "Successfully filtered: %s %s %s";
     public static final String MESSAGE_INVALID_FILTER_ATTRIBUTE = "The filter attribute %s is invalid. "
             + "Supported attributes: " + FILTER_ATTRIBUTES;
     public static final String MESSAGE_INVALID_FILTER_OPERATOR = "The filter operator %s is invalid. "
@@ -65,7 +67,6 @@ public class FilterCommand extends Command {
             int compareValue;
             try {
                 compareValue = Integer.parseInt(value);
-                System.out.println("value is " + compareValue);
             } catch (NumberFormatException e) {
                 throw new CommandException(String.format(MESSAGE_INVALID_FILTER_VALUE, value, "integer", attribute));
             }
@@ -95,6 +96,6 @@ public class FilterCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_FILTER_OPERATOR, operator));
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, attribute, operator, value));
     }
 }

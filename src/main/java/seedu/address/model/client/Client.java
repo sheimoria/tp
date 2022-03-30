@@ -90,7 +90,6 @@ public class Client {
     }
 
     public int getAge() {
-        System.out.println("Getting age for " + name.toString() + ": " + birthday.getAge());
         return birthday.getAge();
     }
 
