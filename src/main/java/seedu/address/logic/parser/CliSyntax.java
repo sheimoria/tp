@@ -26,4 +26,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PREFERENCE_DETAIL = new Prefix("pd/");
     public static final Prefix PREFIX_POLICY_INDEX = new Prefix("pi/");
     public static final Prefix PREFIX_SORT_DIRECTION = new Prefix("dir/");
+    public static final Prefix PREFIX_FILTER_OPERATOR = new Prefix("op/");
+    public static final Prefix PREFIX_FILTER_VALUE = new Prefix("v/");
 }

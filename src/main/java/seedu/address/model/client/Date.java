@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -55,19 +56,9 @@ public class Date {
                 && value.equals(((Date) other).value)); // state check
     }
 
-    //    public boolean isBefore(Date other) {
-    //        if (parse(value).isBefore(parse(other.value))) {
-    //            return true;
-    //        }
-    //        return false;
-    //    }
-    //
-    //    public boolean isAfter(Date other) {
-    //        if (parse(value).isAfter(parse(other.value))) {
-    //            return true;
-    //        }
-    //        return false;
-    //    }
+    public int getAge() {
+        return Period.between(parse(value), LocalDate.now()).getYears();
+    }
 
     @Override
     public int hashCode() {

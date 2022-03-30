@@ -89,6 +89,11 @@ public class Client {
         return birthday;
     }
 
+    public int getAge() {
+        System.out.println("Getting age for " + name.toString() + ": " + birthday.getAge());
+        return birthday.getAge();
+    }
+
     public DateTime getLastContacted() {
         return lastContacted;
     }
