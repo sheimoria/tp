@@ -99,12 +99,7 @@ public class ListMeetingCommand extends Command {
 
         model.updateFilteredMeetingList(generatePredicate(isShowAll, client), isShowAll);
 
-        return new CommandResult(generateSuccessMessage(isShowAll, client),
-                false,
-                false,
-                false,
-                true,
-                false,
-                null);
+        return new CommandResult(generateSuccessMessage(isShowAll, client), false, false, false, true,
+                false, null, null);
     }
 }

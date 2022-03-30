@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
 
@@ -109,6 +110,10 @@ public interface Model {
     ObservableList<Client> getSortedClientList();
 
     void updateSortedClientList(Comparator<Client> comparator);
+
+    Index getDisplayedClientIndex();
+
+    void updateDisplayedClientIndex(Index index);
 
     /**
      * Adds the given meeting.

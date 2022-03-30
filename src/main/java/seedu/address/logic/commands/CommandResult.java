@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.client.SortCriteria;
 
 /**
  * Represents the result of a command execution.
@@ -29,16 +30,19 @@ public class CommandResult {
     private final boolean showClients;
 
     /** Clients should be sorted **/
-    private final boolean sortClients;
+    private final SortCriteria sortClients;
 
     /** Index to show. */
     private final Index indexToShow;
+
+    private final Index indexToUpdate;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
-                         boolean showMeetings, boolean showClients, boolean sortClients, Index indexToShow) {
+                         boolean showMeetings, boolean showClients, SortCriteria sortClients, Index indexToShow,
+                         Index indexToUpdate) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTutorial = showTutorial;
@@ -47,13 +51,14 @@ public class CommandResult {
         this.showClients = showClients;
         this.sortClients = sortClients;
         this.indexToShow = indexToShow;
+        this.indexToUpdate = indexToUpdate;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields for non-sort commands.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
-                         boolean showMeetings, boolean showClients, Index indexToShow) {
+                         boolean showMeetings, boolean showClients, Index indexToShow, Index indexToUpdate) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTutorial = showTutorial;
@@ -61,15 +66,16 @@ public class CommandResult {
         this.showMeetings = showMeetings;
         this.showClients = showClients;
         this.indexToShow = indexToShow;
-        this.sortClients = false;
+        this.sortClients = null;
+        this.indexToUpdate = indexToUpdate;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields for sort commands.
      */
-    public CommandResult(String feedbackToUser, boolean sortClients) {
+    public CommandResult(String feedbackToUser, SortCriteria sortClients) {
         this(feedbackToUser, false, false, false,
-                false, false, sortClients, null);
+                false, false, sortClients, null, null);
     }
 
     /**
@@ -78,7 +84,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false,
-                false, false, null);
+                false, false, null, null);
     }
 
     /**
@@ -87,7 +93,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, Index indexToShow) {
         this(feedbackToUser, false, false, false,
-                false, false, indexToShow);
+                false, false, indexToShow, null);
     }
 
     public String getFeedbackToUser() {
@@ -119,11 +125,23 @@ public class CommandResult {
     }
 
     public boolean isSortClients() {
-        return sortClients;
+        return sortClients != null;
     }
 
     public Index getIndexToShow() {
         return indexToShow;
+    }
+
+    public boolean isUpdateClient() {
+        return indexToUpdate != null;
+    }
+
+    public Index getIndexToUpdate() {
+        return indexToUpdate;
+    }
+
+    public SortCriteria getSortCriteria() {
+        return sortClients;
     }
 
     @Override

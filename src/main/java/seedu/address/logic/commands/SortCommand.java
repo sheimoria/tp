@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_DIRECTION;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.SortCriteria;
 
 /**
  * Sorts clients in the address book.
@@ -30,7 +32,8 @@ public class SortCommand extends Command {
             + PREFIX_SORT_DIRECTION + "desc";
 
     public static final String MESSAGE_SUCCESS = "Successfully sorted";
-    public static final String MESSAGE_INVALID_ATTRIBUTE = "This attribute is invalid";
+    public static final String MESSAGE_INVALID_ATTRIBUTE = "This attribute is invalid.\nThe available attributes are" +
+            " empty (default), numPolicies, premium and lastContacted.";
     public static final String MESSAGE_INVALID_SORT_DIRECTION = "Use 'asc' for ascending or 'desc' for descending";
 
 
@@ -54,18 +57,26 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Comparator<Client> comparator;
+        SortCriteria criteria;
+        if (!Objects.equals(attribute, "") && !SortCriteria.isValidEnum(attribute)) {
+            throw new CommandException(MESSAGE_INVALID_ATTRIBUTE);
+        }
         switch(attribute) {
         case "numPolicies":
             comparator = Comparator.comparingInt(a -> a.getPolicies().asUnmodifiableObservableList().size());
+            criteria = SortCriteria.numPolicies;
             break;
         case "premium":
             comparator = Comparator.comparingInt(a -> a.getPolicies().totalPremiumSum());
+            criteria = SortCriteria.premium;
             break;
         case "lastContacted":
             comparator = Comparator.comparing(a -> a.getLastContacted().getDateTime());
+            criteria = SortCriteria.lastContacted;
             break;
         default:
-            throw new CommandException(MESSAGE_INVALID_ATTRIBUTE);
+            comparator = Comparator.comparing(a -> a.getName().fullName);
+            criteria = SortCriteria.DEFAULT;
         }
 
         if (!isAscending) {
@@ -73,7 +84,7 @@ public class SortCommand extends Command {
         }
 
         model.updateSortedClientList(comparator);
-        return new CommandResult(String.format(MESSAGE_SUCCESS), true);
+        return new CommandResult(MESSAGE_SUCCESS, criteria);
     }
 
     @Override

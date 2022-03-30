@@ -23,7 +23,7 @@
       <ImageView fx:id="imageView" fitHeight="50" fitWidth="50">
         <Image url="@/images/profile.png"/>
       </ImageView>
-      <VBox GridPane.columnIndex="0">
+      <VBox minWidth="480" GridPane.columnIndex="0">
         <padding>
           <Insets left="15" />
         </padding>
