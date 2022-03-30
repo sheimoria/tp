@@ -97,7 +97,7 @@ public class ListMeetingCommand extends Command {
             client = model.getFilteredClientList().get(index.getZeroBased());
         }
 
-        model.updateFilteredMeetingList(generatePredicate(isShowAll, client));
+        model.updateFilteredMeetingList(generatePredicate(isShowAll, client), isShowAll);
 
         return new CommandResult(generateSuccessMessage(isShowAll, client),
                 false,

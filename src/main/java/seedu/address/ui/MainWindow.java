@@ -121,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanel = new ClientListPanel(logic.getFilteredClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList(), logic.isShowAllMeetings());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -195,10 +195,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void showMeetings() {
         meetingListPanelPlaceholder.getChildren().clear();
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList(), logic.isShowAllMeetings());
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         if (logic.getFilteredMeetingList().size() == 0) {
-            resultDisplay.setFeedbackToUser("Add meetings by using the addMeeting command!");
+            resultDisplay.setFeedbackToUser("No meetings to display.\nAdd meetings by using the addMeeting command!");
         }
     }
 
@@ -220,6 +221,12 @@ public class MainWindow extends UiPart<Stage> {
         clientDisplay = new ClientDisplay(logic.getFilteredClientList().get(index.getZeroBased()));
         meetingListPanelPlaceholder.getChildren().clear();
         meetingListPanelPlaceholder.getChildren().add(clientDisplay.getRoot());
+    }
+
+    private void showSortedClients() {
+        clientListPanelPlaceholder.getChildren().clear();
+        clientListPanel = new ClientListPanel(logic.getSortedClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
     public ClientListPanel getClientListPanel() {
@@ -258,9 +265,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isSortClients()) {
-                clientListPanelPlaceholder.getChildren().clear();
-                clientListPanel = new ClientListPanel(logic.getSortedClientList());
-                clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+                showSortedClients();
             }
 
             if (commandResult.isShowClient()) {

@@ -79,7 +79,7 @@ public class EditMeetingCommand extends Command {
         }
 
         model.setMeeting(meetingToEdit, editedMeeting);
-        model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS, model.isShowAllMeetings());
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
     }
 

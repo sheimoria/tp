@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Meeting> filteredMeetings;
     private final SortedList<Client> sortedClients;
+    private boolean isShowAllMeetings = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -133,7 +134,12 @@ public class ModelManager implements Model {
     @Override
     public void addMeeting(Meeting meeting) {
         addressBook.addMeeting(meeting);
-        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS, isShowAllMeetings);
+    }
+
+    @Override
+    public boolean isShowAllMeetings() {
+        return isShowAllMeetings;
     }
 
     @Override
@@ -190,8 +196,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate, boolean isShowAll) {
         requireNonNull(predicate);
+        this.isShowAllMeetings = isShowAll;
         filteredMeetings.setPredicate(predicate);
     }
 
