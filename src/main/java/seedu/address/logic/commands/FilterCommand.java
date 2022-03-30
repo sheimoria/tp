@@ -90,8 +90,10 @@ public class FilterCommand extends Command {
             break;
         case "lessorequal":
             model.updateFilteredClientList(predicateLess.or(predicateEqual));
+            break;
         case "greaterorequal":
             model.updateFilteredClientList(predicateGreater.or(predicateEqual));
+            break;
         default:
             throw new CommandException(String.format(MESSAGE_INVALID_FILTER_OPERATOR, operator));
         }
