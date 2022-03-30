@@ -199,6 +199,11 @@ public class AddCommandTest {
         public void updateFilteredMeetingList(Predicate<Meeting> predicate, boolean isShowAll) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isShowAllMeetings() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

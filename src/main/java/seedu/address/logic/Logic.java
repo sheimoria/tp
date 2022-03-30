@@ -56,5 +56,8 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     * Returns whether all or only upcoming meetings are displayed.
+     */
     boolean isShowAllMeetings();
 }

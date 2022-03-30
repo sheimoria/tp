@@ -223,6 +223,9 @@ public class MainWindow extends UiPart<Stage> {
         meetingListPanelPlaceholder.getChildren().add(clientDisplay.getRoot());
     }
 
+    /**
+     * Display sorted clients.
+     */
     private void showSortedClients() {
         clientListPanelPlaceholder.getChildren().clear();
         clientListPanel = new ClientListPanel(logic.getSortedClientList());

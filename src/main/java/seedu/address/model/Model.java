@@ -151,6 +151,9 @@ public interface Model {
      */
     ObservableList<Meeting> getFilteredMeetingList();
 
+    /**
+     * Returns whether all or only upcoming meetings are displayed.
+     */
     boolean isShowAllMeetings();
 
     /**
