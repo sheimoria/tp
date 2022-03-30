@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -19,13 +20,21 @@ public class MeetingListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(MeetingListPanel.class);
 
     @FXML
+    private Label meetingsHeader;
+
+    @FXML
     private ListView<Meeting> meetingListView;
 
     /**
      * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
-    public MeetingListPanel(ObservableList<Meeting> meetingList) {
+    public MeetingListPanel(ObservableList<Meeting> meetingList, boolean isShowAll) {
         super(FXML);
+        if (isShowAll) {
+            meetingsHeader.setText("All Meetings");
+        } else {
+            meetingsHeader.setText("Upcoming Meetings");
+        }
         meetingListView.setItems(meetingList);
         meetingListView.setCellFactory(listView -> new MeetingListViewCell());
     }

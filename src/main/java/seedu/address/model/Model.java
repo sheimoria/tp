@@ -152,10 +152,15 @@ public interface Model {
     ObservableList<Meeting> getFilteredMeetingList();
 
     /**
+     * Returns whether all or only upcoming meetings are displayed.
+     */
+    boolean isShowAllMeetings();
+
+    /**
      * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredMeetingList(Predicate<Meeting> predicate);
+    void updateFilteredMeetingList(Predicate<Meeting> predicate, boolean isShowAll);
 }
 
