@@ -14,7 +14,7 @@ public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filterClients";
 
     public static final String FILTER_ATTRIBUTES = "birthday, age";
-    public static final String FILTER_OPERATORS = "equal, greater, smaller";
+    public static final String FILTER_OPERATORS = "equal, greater, lesser, lesserorequal, greaterorequal";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters clients in the address book.\n"
             + "Parameters: "
@@ -84,9 +84,13 @@ public class FilterCommand extends Command {
         case "equal":
             model.updateFilteredClientList(predicateEqual);
             break;
-        case "smaller":
+        case "lesser":
             model.updateFilteredClientList(predicateLess);
             break;
+        case "lessorequal":
+            model.updateFilteredClientList(predicateLess.or(predicateEqual));
+        case "greaterorequal":
+            model.updateFilteredClientList(predicateGreater.or(predicateEqual));
         default:
             throw new CommandException(String.format(MESSAGE_INVALID_FILTER_OPERATOR, operator));
         }
