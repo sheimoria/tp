@@ -33,7 +33,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Successfully sorted";
     public static final String MESSAGE_INVALID_ATTRIBUTE = "This attribute is invalid.\nThe available attributes are"
-            + " empty (default), numPolicies, premium and lastContacted.";
+            + " `empty` (default), `numPolicies`, `premium` and `lastContacted`.";
     public static final String MESSAGE_INVALID_SORT_DIRECTION = "Use 'asc' for ascending or 'desc' for descending";
 
 
