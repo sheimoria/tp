@@ -130,7 +130,7 @@ public class FilterCommand extends Command {
             }
             model.updateFilteredClientList(predicateLess);
             break;
-        case "lessorequal":
+        case "lesserorequal":
             if (predicateLess == null) {
                 throw new CommandException(MESSAGE_ONLY_EQUAL_FILTER_OPERATOR);
             }

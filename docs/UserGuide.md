@@ -36,11 +36,13 @@ Currently, financial advisors might have to rely on apps like Google Calendar, a
   13. [View All Meetings: `meetings`](#view-all-meetings-meetings)
   14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-updatemeeting)
   15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-  16. [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  17. [Exiting the program : `exit`](#exiting-the-program--exit)
-  18. [Saving the data](#saving-the-data)
-  19. [Editing the data file](#editing-the-data-file)
-  20. [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  16. [Sort Clients: `sortClients`](#sort-clients-sortclients)
+  17. [Filter Clients: `filterClients`](#filter-clients-filterclients)
+  18. [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  19. [Exiting the program : `exit`](#exiting-the-program--exit)
+  20. [Saving the data](#saving-the-data)
+  21. [Editing the data file](#editing-the-data-file)
+  22. [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Mockups](#mockups)
 - [Command summary](#command-summary)
@@ -277,6 +279,52 @@ Examples:
 
 - `deleteMeeting 1`
 
+### Sort clients: `sortClients`
+
+Retrieve a sorted list of clients based on the provided attribute
+
+Format: `sortClients ATTRIBUTE`
+
+Supported attributes: `numPolicies`, `premium`, `lastContacted`
+
+Examples:
+
+- `sortClients numPolicies`
+- `sortClients premium`
+- `sortClients lastContacted`
+
+### Filter clients: `filterClients`
+
+Retrieve a filtered list of clients based on the provided parameters
+
+Format: `filterClients ATTRIBUTE op/OPERATOR v/VALUE`
+
+Note to Users:
+
+The `filterClients` command is a complex command involving 3 parameters:
+
+1. Attribute: the attribute to be filtered on
+   
+    Supported attributes: `birthMonth`, `age`, `premium`, `company`
+
+
+2. Operator: the desired filter range
+   
+    Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
+
+
+3. Value: the value to be filtered around
+
+- `birthMonth`: Accepts text inputs represent months of the year. Example: `february`, `march`
+- `age`: Accepts integer values. Example: `25`, `27`
+- `premium`: Accepts 
+- `company`: Accepts
+   
+Examples:
+
+1. `filterClients age op/equal v/25`: Retrieves all clients of `age` = `25`
+2. `filterClients birthMonth op/lesser v/february`: Retrieves all clients with birthdays before `february`
+
 ### Save to hard drive
 
 OnlyFAs’s data is saved in the hard drive automatically after any command that changes the data. There is no need to save manually.
@@ -333,4 +381,6 @@ If your changes to the data file makes its format invalid, onlyFAs will discard 
 | **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`               |
 | **editMeeting**   | `editMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `editMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 18:00 l/Dinner`        |
 | **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                     |
+| **sortClients**   | `sortClients ATTRIBUTE` <br> e.g., `sortClients numPolicies`                                                                                           |
+| **filterClients** | `filterClients ATTRIBUTE op/OPERATOR v/VALUE` <br> e.g., `filterClients age op/equal v/25`                                                             |
 | **help**          | `help`                                                                                                                                                 |
