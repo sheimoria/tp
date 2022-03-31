@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Client}.
+ * An UI component that displays a preference of a {@code Client}.
  */
 public class PreferenceRow extends UiPart<Region> {
 
@@ -29,7 +29,7 @@ public class PreferenceRow extends UiPart<Region> {
     private Label value;
 
     /**
-     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
+     * Creates a {@code PreferenceRow} with the given {@code preference}.
      */
     public PreferenceRow(Map.Entry<String, String> preference) {
         super(FXML);
