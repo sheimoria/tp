@@ -86,7 +86,7 @@ public class ListMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
+        List<Client> lastShownList = model.getClientList();
 
         Client client = null;
         if (index != null) {
@@ -94,7 +94,7 @@ public class ListMeetingCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
             }
 
-            client = model.getFilteredClientList().get(index.getZeroBased());
+            client = model.getClientList().get(index.getZeroBased());
         }
 
         model.updateFilteredMeetingList(generatePredicate(isShowAll, client), isShowAll);

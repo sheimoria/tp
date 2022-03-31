@@ -100,14 +100,14 @@ public interface Model {
      */
     ObservableList<Client> getFilteredClientList();
 
+    ObservableList<Client> getClientList();
+
     /**
      * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredClientList(Predicate<Client> predicate);
-
-    ObservableList<Client> getSortedClientList();
 
     void updateSortedClientList(Comparator<Client> comparator);
 
@@ -167,5 +167,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate, boolean isShowAll);
+
+    /**
+     * Returns whether clients displayed are in sorted order.
+     */
+    boolean isSorted();
+
+    /**
+     * Set whether clients displayed are in sorted order.
+     */
+    void setIsSorted(boolean isSorted);
 }
 

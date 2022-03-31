@@ -67,8 +67,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Client> getSortedClientList() {
-        return model.getSortedClientList();
+    public ObservableList<Client> getClientList() {
+        return model.getClientList();
     }
 
     @Override
@@ -91,7 +91,6 @@ public class LogicManager implements Logic {
         return model.getDisplayedClientIndex();
     }
 
-
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
@@ -100,5 +99,15 @@ public class LogicManager implements Logic {
     @Override
     public boolean isShowAllMeetings() {
         return model.isShowAllMeetings();
+    }
+
+    @Override
+    public boolean isSorted() {
+        return model.isSorted();
+    }
+
+    @Override
+    public void setIsSorted(boolean isSorted) {
+        model.setIsSorted(isSorted);
     }
 }

@@ -30,6 +30,7 @@ public class ModelManager implements Model {
     private final SortedList<Client> sortedClients;
     private boolean isShowAllMeetings = false;
     private Index displayedClient;
+    private boolean isSorted = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -161,12 +162,22 @@ public class ModelManager implements Model {
 
     @Override
     public Index getDisplayedClientIndex() {
-        return this.displayedClient;
+        return displayedClient;
     }
 
     @Override
     public void updateDisplayedClientIndex(Index index) {
-        this.displayedClient = index;
+        displayedClient = index;
+    }
+
+    @Override
+    public boolean isSorted() {
+        return isSorted;
+    }
+
+    @Override
+    public void setIsSorted(boolean isSorted) {
+        this.isSorted = isSorted;
     }
 
     //=========== Filtered Client List Accessors =============================================================
@@ -181,14 +192,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredClientList(Predicate<Client> predicate) {
-        requireNonNull(predicate);
-        filteredClients.setPredicate(predicate);
+    public ObservableList<Client> getClientList() {
+        return isSorted ? sortedClients : filteredClients;
     }
 
     @Override
-    public ObservableList<Client> getSortedClientList() {
-        return sortedClients;
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClients.setPredicate(predicate);
     }
 
     @Override
