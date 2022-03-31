@@ -60,6 +60,10 @@ public class Date {
         return Period.between(parse(value), LocalDate.now()).getYears();
     }
 
+    public int getMonth() {
+        return parse(value).getMonthValue();
+    }
+
     @Override
     public int hashCode() {
         return value.hashCode();
