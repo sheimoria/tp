@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.Client;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -217,8 +218,17 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Display client.
      */
-    private void showClient(Index index) {
+    private void showClientByIndex(Index index) {
         clientDisplay = new ClientDisplay(logic.getClientList().get(index.getZeroBased()));
+        meetingListPanelPlaceholder.getChildren().clear();
+        meetingListPanelPlaceholder.getChildren().add(clientDisplay.getRoot());
+    }
+
+    /**
+     * Display client.
+     */
+    private void showClient(Client client) {
+        clientDisplay = new ClientDisplay(client);
         meetingListPanelPlaceholder.getChildren().clear();
         meetingListPanelPlaceholder.getChildren().add(clientDisplay.getRoot());
     }
@@ -271,11 +281,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowClient()) {
-                showClient(commandResult.getIndexToShow());
+                showClientByIndex(commandResult.getIndexToShow());
             }
 
-            if (commandResult.isUpdateClient() && logic.getDisplayedClientIndex() == commandResult.getIndexToUpdate()) {
-                showClient(commandResult.getIndexToUpdate());
+            if (commandResult.isUpdateClient()
+                    && logic.getDisplayedClient().equals(commandResult.getClientToUpdate())) {
+                showClient(commandResult.getClientToUpdate());
             }
 
             return commandResult;
