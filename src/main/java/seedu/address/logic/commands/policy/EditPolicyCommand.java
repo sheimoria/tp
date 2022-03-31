@@ -88,15 +88,15 @@ public class EditPolicyCommand extends Command {
                             policyIndex.getZeroBased()).getPremium());
 
             editedPolicy = new Policy(editedPolicyName, editedCompany, editedPolicyManager, editedPremium);
-            model.setClient(clientToEditPolicy, clientToEditPolicy.setPolicy(policyIndex.getZeroBased(), editedPolicy));
         } catch (InvalidPolicyIndexException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
 
-        model.setClient(clientToEditPolicy, clientToEditPolicy);
+        Client updatedClient = clientToEditPolicy.setPolicy(policyIndex.getZeroBased(), editedPolicy);
+        model.setClient(clientToEditPolicy, updatedClient);
 
         return new CommandResult((String.format(MESSAGE_SUCCESS, editedPolicy, clientToEditPolicy.getName())),
-                false, false, false, false, false, null, clientToEditPolicy);
+                false, false, false, false, false, null, updatedClient);
     }
 
     @Override

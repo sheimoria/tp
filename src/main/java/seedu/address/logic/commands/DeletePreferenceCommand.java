@@ -54,7 +54,8 @@ public class DeletePreferenceCommand extends Command {
         try {
             clientToDeletePreference.deletePreference(preferenceKey);
             return new CommandResult(String.format(MESSAGE_SUCCESS,
-                    clientToDeletePreference.getName().toString(), preferenceKey));
+                    clientToDeletePreference.getName().toString(), preferenceKey), false, false, false,
+                    false, false, null, clientToDeletePreference);
         } catch (InvalidPreferenceKeyException e) {
             throw new CommandException(String.format(MESSAGE_INVALID_KEY, preferenceKey,
                     clientToDeletePreference.getName()));
