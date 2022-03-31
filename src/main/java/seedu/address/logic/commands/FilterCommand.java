@@ -5,8 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FILTER_OPERATOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILTER_VALUE;
 
 import java.time.Month;
-import java.time.format.DateTimeParseException;
-import java.util.Locale;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
