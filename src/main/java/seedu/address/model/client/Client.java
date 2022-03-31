@@ -219,8 +219,7 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags())
-                && otherClient.getPolicies().equals(getPolicies());
+                && otherClient.getTags().equals(getTags());
     }
 
     @Override

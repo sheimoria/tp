@@ -42,7 +42,7 @@ public class ViewClientCommand extends Command {
         }
 
         Client clientToView = lastShownList.get(index.getZeroBased());
-        model.updateDisplayedClientIndex(index);
+        model.updateDisplayedClient(clientToView);
         return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView.getName()), false, false, false, false,
                 false, index, null);
     }

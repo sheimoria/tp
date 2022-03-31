@@ -83,7 +83,11 @@ public class EditPolicyCommand extends Command {
         } catch (InvalidPolicyIndexException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
-        return new CommandResult((String.format(MESSAGE_SUCCESS, editedPolicy, clientToEditPolicy.getName())));
+
+        model.setClient(clientToEditPolicy, clientToEditPolicy);
+
+        return new CommandResult((String.format(MESSAGE_SUCCESS, editedPolicy, clientToEditPolicy.getName())),
+                false, false, false, false, false, null, clientToEditPolicy);
     }
 
     @Override

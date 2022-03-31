@@ -13,7 +13,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
 
@@ -29,7 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Meeting> filteredMeetings;
     private final SortedList<Client> sortedClients;
     private boolean isShowAllMeetings = false;
-    private Index displayedClient;
+    private Client displayedClient;
     private boolean isSorted = false;
 
     /**
@@ -161,13 +160,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Index getDisplayedClientIndex() {
+    public Client getDisplayedClient() {
         return displayedClient;
     }
 
     @Override
-    public void updateDisplayedClientIndex(Index index) {
-        displayedClient = index;
+    public void updateDisplayedClient(Client client) {
+        displayedClient = client;
     }
 
     @Override

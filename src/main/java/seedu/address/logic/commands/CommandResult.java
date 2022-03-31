@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.SortCriteria;
 
 /**
@@ -35,14 +36,14 @@ public class CommandResult {
     /** Index to show. */
     private final Index indexToShow;
 
-    private final Index indexToUpdate;
+    private final Client clientToUpdate;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
                          boolean showMeetings, boolean showClients, SortCriteria sortClients, Index indexToShow,
-                         Index indexToUpdate) {
+                         Client clientToUpdate) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTutorial = showTutorial;
@@ -51,14 +52,14 @@ public class CommandResult {
         this.showClients = showClients;
         this.sortClients = sortClients;
         this.indexToShow = indexToShow;
-        this.indexToUpdate = indexToUpdate;
+        this.clientToUpdate = clientToUpdate;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields for non-sort commands.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
-                         boolean showMeetings, boolean showClients, Index indexToShow, Index indexToUpdate) {
+                         boolean showMeetings, boolean showClients, Index indexToShow, Client clientToUpdate) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTutorial = showTutorial;
@@ -67,7 +68,7 @@ public class CommandResult {
         this.showClients = showClients;
         this.indexToShow = indexToShow;
         this.sortClients = null;
-        this.indexToUpdate = indexToUpdate;
+        this.clientToUpdate = clientToUpdate;
     }
 
     /**
@@ -133,11 +134,11 @@ public class CommandResult {
     }
 
     public boolean isUpdateClient() {
-        return indexToUpdate != null;
+        return clientToUpdate != null;
     }
 
-    public Index getIndexToUpdate() {
-        return indexToUpdate;
+    public Client getClientToUpdate() {
+        return clientToUpdate;
     }
 
     public SortCriteria getSortCriteria() {

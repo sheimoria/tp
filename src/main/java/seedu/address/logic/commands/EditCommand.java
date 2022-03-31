@@ -101,9 +101,9 @@ public class EditCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        model.updateDisplayedClientIndex(index);
+        model.updateDisplayedClient(editedClient);
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient), false, false, false, false,
-                false, null, index);
+                false, null, editedClient);
     }
 
     /**
