@@ -144,17 +144,38 @@ public class Client {
         return policyList.get(index);
     }
 
-    public void addPolicy(Policy policyToAdd) {
-        this.policies.add(policyToAdd);
+    /**
+     * Add {@code policyToAdd} to this client
+     */
+    public Client addPolicy(Policy policyToAdd) {
+        UniquePolicyList updatedPolicyList = new UniquePolicyList();
+        updatedPolicyList.setPolicies(policies);
+        updatedPolicyList.add(policyToAdd);
+        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+                preferences);
     }
 
-    public void setPolicy(int index, Policy editedPolicy) {
+    /**
+     * Update {@code editedPolicy} for this client
+     */
+    public Client setPolicy(int index, Policy editedPolicy) {
+        UniquePolicyList updatedPolicyList = new UniquePolicyList();
+        updatedPolicyList.setPolicies(policies);
         Policy prevPolicy = getPolicy(index);
-        this.policies.setPolicy(prevPolicy, editedPolicy);
+        updatedPolicyList.setPolicy(prevPolicy, editedPolicy);
+        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+                preferences);
     }
 
-    public void removePolicy(Policy policyToRemove) {
-        this.policies.remove(policyToRemove);
+    /**
+     * Remove {@code policyToRemove} from this client
+     */
+    public Client removePolicy(Policy policyToRemove) {
+        UniquePolicyList updatedPolicyList = new UniquePolicyList();
+        updatedPolicyList.setPolicies(policies);
+        updatedPolicyList.remove(policyToRemove);
+        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+                preferences);
     }
 
     /**
@@ -170,6 +191,13 @@ public class Client {
      */
     public void deletePreference(String key) {
         this.preferences.deletePreference(key);
+    }
+
+    /**
+     * Updates the lastContacted DateTime of this client.
+     */
+    public Client updateLastContacted(DateTime dateTime) {
+        return new Client(name, phone, email, address, birthday, dateTime, tags, policies, note, preferences);
     }
 
     /**

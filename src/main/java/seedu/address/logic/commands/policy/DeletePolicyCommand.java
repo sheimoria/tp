@@ -54,7 +54,7 @@ public class DeletePolicyCommand extends Command {
         Policy policyToDelete;
         try {
             policyToDelete = clientToDeletePolicy.getPolicy(policyIndex.getZeroBased());
-            clientToDeletePolicy.removePolicy(policyToDelete);
+            model.setClient(clientToDeletePolicy, clientToDeletePolicy.removePolicy(policyToDelete));
         } catch (InvalidPolicyIndexException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
