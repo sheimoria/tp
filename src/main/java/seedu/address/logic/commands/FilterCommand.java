@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Name;
 
 /**
  * Filter clients in the address book.
@@ -34,6 +35,8 @@ public class FilterCommand extends Command {
             + "Supported attributes: " + FILTER_ATTRIBUTES;
     public static final String MESSAGE_INVALID_FILTER_OPERATOR = "The filter operator %s is invalid. "
             + "Supported operators: " + FILTER_OPERATORS;
+    public static final String MESSAGE_ONLY_EQUAL_FILTER_OPERATOR = "Only equal is a valid filter operator for this "
+            + "attribute";
     public static final String MESSAGE_INVALID_FILTER_VALUE = "The filter value %s is invalid, expected an %s "
             + "for the attribute %s.";
 
@@ -59,12 +62,13 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Predicate<Client> predicateLess;
+        Predicate<Client> predicateLess = null;
         Predicate<Client> predicateEqual;
-        Predicate<Client> predicateGreater;
+        Predicate<Client> predicateGreater = null;
+
+        int compareValue;
         switch (attribute) {
         case "age":
-            int compareValue;
             try {
                 compareValue = Integer.parseInt(value);
             } catch (NumberFormatException e) {
@@ -74,24 +78,55 @@ public class FilterCommand extends Command {
             predicateEqual = (client) -> client.getAge() == compareValue;
             predicateGreater = (client) -> client.getAge() > compareValue;
             break;
+        case "premium":
+            try {
+                compareValue = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                throw new CommandException(String.format(MESSAGE_INVALID_FILTER_VALUE, value, "integer", attribute));
+            }
+            predicateLess = (client) -> client.getPolicies().totalPremiumSum() < compareValue;
+            predicateEqual = (client) -> client.getPolicies().totalPremiumSum() == compareValue;
+            predicateGreater = (client) -> client.getPolicies().totalPremiumSum() > compareValue;
+            break;
+        case "company":
+            Name companyName;
+            try {
+                companyName = new Name(value);
+            } catch (IllegalArgumentException e) {
+                throw new CommandException(e.getMessage());
+            }
+            predicateEqual = (client) -> client.getPolicies().hasPolicyFromCompany(companyName);
+            break;
         default:
             throw new CommandException(String.format(MESSAGE_INVALID_FILTER_ATTRIBUTE, attribute));
         }
 
         switch (operator) {
         case "greater":
+            if (predicateGreater == null) {
+                throw new CommandException(MESSAGE_ONLY_EQUAL_FILTER_OPERATOR);
+            }
             model.updateFilteredClientList(predicateGreater);
             break;
         case "equal":
             model.updateFilteredClientList(predicateEqual);
             break;
         case "lesser":
+            if (predicateLess == null) {
+                throw new CommandException(MESSAGE_ONLY_EQUAL_FILTER_OPERATOR);
+            }
             model.updateFilteredClientList(predicateLess);
             break;
         case "lessorequal":
+            if (predicateLess == null) {
+                throw new CommandException(MESSAGE_ONLY_EQUAL_FILTER_OPERATOR);
+            }
             model.updateFilteredClientList(predicateLess.or(predicateEqual));
             break;
         case "greaterorequal":
+            if (predicateGreater == null) {
+                throw new CommandException(MESSAGE_ONLY_EQUAL_FILTER_OPERATOR);
+            }
             model.updateFilteredClientList(predicateGreater.or(predicateEqual));
             break;
         default:
