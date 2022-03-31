@@ -15,7 +15,8 @@ It allows users to:
 4. Track your meetings with your clients
 5. Track the date that each client was last contacted
 
-Currently, financial advisors might have to rely on apps like Google Calendar, and do not have a dedicated platform catered to helping them manage their clientele. This is wear *onlyFAs* bridges the gap.
+Currently, financial advisors might have to rely on apps like Google Calendar or Microsoft Excel, and do not have a 
+dedicated platform catered to helping them manage their clientele. This is where *onlyFAs* bridges the gap.
 
 ## Table of Contents
 
@@ -36,13 +37,14 @@ Currently, financial advisors might have to rely on apps like Google Calendar, a
   13. [View All Meetings: `meetings`](#view-all-meetings-meetings)
   14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-updatemeeting)
   15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-  16. [Sort Clients: `sortClients`](#sort-clients-sortclients)
-  17. [Filter Clients: `filterClients`](#filter-clients-filterclients)
-  18. [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  19. [Exiting the program : `exit`](#exiting-the-program--exit)
-  20. [Saving the data](#saving-the-data)
-  21. [Editing the data file](#editing-the-data-file)
-  22. [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  16. [Close Meeting: `closeMeeting`]()
+  17. [Sort Clients: `sortClients`](#sort-clients-sortclients)
+  18. [Filter Clients: `filterClients`](#filter-clients-filterclients)
+  19. [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  20. [Exiting the program : `exit`](#exiting-the-program--exit)
+  21. [Saving the data](#saving-the-data)
+  22. [Editing the data file](#editing-the-data-file)
+  23. [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Mockups](#mockups)
 - [Command summary](#command-summary)
@@ -279,9 +281,21 @@ Examples:
 
 - `deleteMeeting 1`
 
+### Delete meeting: `closeMeeting`
+
+Closes a meeting and updates the lastContacted of the client that was met to match the end of the meeting. 
+The meeting will remain in the meeting list and not be deleted after it is closed.
+
+Format: `closeMeeting INDEX`
+
+Examples:
+
+- `closeMeeting 1`
+
 ### Sort clients: `sortClients`
 
-Retrieve a sorted list of clients based on the provided attribute
+Retrieve a sorted list of clients based on the provided attribute and sort direction.
+Sort direction refers to either 'asc' (short for ascending) or 'desc' (short for descending).
 
 Format: `sortClients ATTRIBUTE`
 
@@ -295,7 +309,7 @@ Examples:
 
 ### Filter clients: `filterClients`
 
-Retrieve a filtered list of clients based on the provided parameters
+Retrieve a filtered list of clients based on the provided operator and value.
 
 Format: `filterClients ATTRIBUTE op/OPERATOR v/VALUE`
 
@@ -311,19 +325,25 @@ The `filterClients` command is a complex command involving 3 parameters:
 2. Operator: the desired filter range
    
     Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
+    * Note: The only operator supported for `company` is `equal`
+
 
 
 3. Value: the value to be filtered around
 
 - `birthMonth`: Accepts text inputs represent months of the year. Example: `february`, `march`
 - `age`: Accepts integer values. Example: `25`, `27`
-- `premium`: Accepts 
-- `company`: Accepts
+- `premium`: Accepts integer values. Example: `25`, `27`
+- `company`: Accepts text inputs represent companies. Example: `Great Eastern`, `AAM`
    
 Examples:
 
 1. `filterClients age op/equal v/25`: Retrieves all clients of `age` = `25`
 2. `filterClients birthMonth op/lesser v/february`: Retrieves all clients with birthdays before `february`
+3. `filterClients premium op/greater v/10000` Retrieves all clients that pay at least $`10000` in `premium`s 
+   annually
+4. `filterClients company op/equal v/Great Eastern` Retrieves all clients who own at least one policy from `Great 
+   Eastern`
 
 ### Save to hard drive
 
@@ -381,6 +401,7 @@ If your changes to the data file makes its format invalid, onlyFAs will discard 
 | **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`               |
 | **editMeeting**   | `editMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `editMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 18:00 l/Dinner`        |
 | **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                     |
+| **closeMeeting**  | `closeMeeting INDEX` <br> e.g., `closeMeeting 3`                                                                                                       |
 | **sortClients**   | `sortClients ATTRIBUTE` <br> e.g., `sortClients numPolicies`                                                                                           |
 | **filterClients** | `filterClients ATTRIBUTE op/OPERATOR v/VALUE` <br> e.g., `filterClients age op/equal v/25`                                                             |
 | **help**          | `help`                                                                                                                                                 |

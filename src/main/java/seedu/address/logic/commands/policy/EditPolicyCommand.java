@@ -1,6 +1,10 @@
 package seedu.address.logic.commands.policy;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_MANAGER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +35,12 @@ public class EditPolicyCommand extends Command {
             + ": Edits the policy identified by the client index number used in the displayed client list and "
             + "policy index number used in the displayed client card.\n"
             + "Parameters: INDEX pi/POLICY_INDEX\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_POLICY_MANAGER + "POLICY_MANAGER] "
+            + "[" + PREFIX_PREMIUM + "PREMIUM] "
+            + "Example: " + COMMAND_WORD + " 1"
+            + PREFIX_NAME + "Renamed Policy";
 
 
     private final Index clientIndex;

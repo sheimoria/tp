@@ -18,7 +18,7 @@ public class DateTime {
      * Datetime should be in dd-MM-yyyy HH:mm format.
      */
     public static final String VALIDATION_REGEX =
-            "^([012][1-9]|3[01])-([0][1-9]|1[012])-([0-9][0-9][0-9][1-9])\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
+            "^([012][1-9]|3[01])-([0][1-9]|1[012])-([0-9][0-9][0-9][0-9])\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
 
     public final String value;
 
