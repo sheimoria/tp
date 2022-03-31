@@ -100,6 +100,10 @@ public interface Model {
      */
     ObservableList<Client> getFilteredClientList();
 
+    /**
+     * Returns an unmodifiable view of the filtered or sorted list of clients depending on whether client list is
+     * sorted
+     */
     ObservableList<Client> getClientList();
 
     /**
