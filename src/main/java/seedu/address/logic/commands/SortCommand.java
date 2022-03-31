@@ -65,18 +65,22 @@ public class SortCommand extends Command {
         case "numPolicies":
             comparator = Comparator.comparingInt(a -> a.getPolicies().asUnmodifiableObservableList().size());
             criteria = SortCriteria.numPolicies;
+            model.setIsSorted(true);
             break;
         case "premium":
             comparator = Comparator.comparingInt(a -> a.getPolicies().totalPremiumSum());
             criteria = SortCriteria.premium;
+            model.setIsSorted(true);
             break;
         case "lastContacted":
             comparator = Comparator.comparing(a -> a.getLastContacted().getDateTime());
             criteria = SortCriteria.lastContacted;
+            model.setIsSorted(true);
             break;
         default:
             comparator = Comparator.comparing(a -> a.getName().fullName);
             criteria = SortCriteria.DEFAULT;
+            model.setIsSorted(false);
         }
 
         if (!isAscending) {

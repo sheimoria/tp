@@ -17,7 +17,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.SortCriteria;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -119,7 +118,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanel = new ClientListPanel(logic.getClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList(), logic.isShowAllMeetings());
@@ -127,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        if (logic.getFilteredClientList().size() == 0) {
+        if (logic.getClientList().size() == 0) {
             resultDisplay.setFeedbackToUser("Add client by using the add command!");
             tutorialWindow.show();
         }
@@ -205,12 +204,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * List client.
+     * List clients.
      */
     private void showClients() {
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
-        if (logic.getFilteredClientList().size() == 0) {
+        if (logic.getClientList().size() == 0) {
             resultDisplay.setFeedbackToUser("Add client by using the add command!");
         }
     }
@@ -219,7 +218,7 @@ public class MainWindow extends UiPart<Stage> {
      * Display client.
      */
     private void showClient(Index index) {
-        clientDisplay = new ClientDisplay(logic.getFilteredClientList().get(index.getZeroBased()));
+        clientDisplay = new ClientDisplay(logic.getClientList().get(index.getZeroBased()));
         meetingListPanelPlaceholder.getChildren().clear();
         meetingListPanelPlaceholder.getChildren().add(clientDisplay.getRoot());
     }
@@ -227,23 +226,10 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Display sorted clients.
      */
-    private void showSortedClients() {
+    private void updateClients() {
         clientListPanelPlaceholder.getChildren().clear();
-        clientListPanel = new ClientListPanel(logic.getSortedClientList());
+        clientListPanel = new ClientListPanel(logic.getClientList());
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
-    }
-
-    /**
-     * Display sorted clients.
-     */
-    private void showDefaultClients() {
-        clientListPanelPlaceholder.getChildren().clear();
-        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
-        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
-    }
-
-    public ClientListPanel getClientListPanel() {
-        return clientListPanel;
     }
 
     /**
@@ -280,11 +266,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isSortClients()) {
-                if (commandResult.getSortCriteria().equals(SortCriteria.DEFAULT)) {
-                    showDefaultClients();
-                } else {
-                    showSortedClients();
-                }
+                updateClients();
                 clientListPanel.setSortCriteria(commandResult.getSortCriteria());
             }
 
