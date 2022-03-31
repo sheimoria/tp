@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILTER_OPERATOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILTER_VALUE;
 
+import java.time.Month;
 import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,7 +18,7 @@ import seedu.address.model.client.Name;
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filterClients";
 
-    public static final String FILTER_ATTRIBUTES = "birthday, age";
+    public static final String FILTER_ATTRIBUTES = "age, premium, company, birthMonth";
     public static final String FILTER_OPERATORS = "equal, greater, lesser, lesserorequal, greaterorequal";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters clients in the address book.\n"
@@ -37,7 +38,7 @@ public class FilterCommand extends Command {
             + "Supported operators: " + FILTER_OPERATORS;
     public static final String MESSAGE_ONLY_EQUAL_FILTER_OPERATOR = "Only equal is a valid filter operator for this "
             + "attribute";
-    public static final String MESSAGE_INVALID_FILTER_VALUE = "The filter value %s is invalid, expected an %s "
+    public static final String MESSAGE_INVALID_FILTER_VALUE = "The filter value %s is invalid, expected a %s "
             + "for the attribute %s.";
 
     private final String attribute;
@@ -96,6 +97,18 @@ public class FilterCommand extends Command {
                 throw new CommandException(e.getMessage());
             }
             predicateEqual = (client) -> client.getPolicies().hasPolicyFromCompany(companyName);
+            break;
+        case "birthMonth":
+            int month;
+            try {
+                month = Month.valueOf(value.toUpperCase()).getValue();
+            } catch (IllegalArgumentException e) {
+                throw new CommandException(String.format(MESSAGE_INVALID_FILTER_VALUE, value, "month (e.g. february)",
+                        attribute));
+            }
+            predicateLess = (client) -> client.getBirthdayMonth() < month;
+            predicateEqual = (client) -> client.getBirthdayMonth() == month;
+            predicateGreater = (client) -> client.getBirthdayMonth() > month;
             break;
         default:
             throw new CommandException(String.format(MESSAGE_INVALID_FILTER_ATTRIBUTE, attribute));

@@ -93,6 +93,10 @@ public class Client {
         return birthday.getAge();
     }
 
+    public int getBirthdayMonth() {
+        return birthday.getMonth();
+    }
+
     public DateTime getLastContacted() {
         return lastContacted;
     }
