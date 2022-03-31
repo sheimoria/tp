@@ -66,17 +66,17 @@ public class EditPolicyCommand extends Command {
         Policy editedPolicy;
         try {
             Name editedPolicyName = editPolicyDescriptor.getName().orElse(clientToEditPolicy.getPolicy(
-                    clientIndex.getZeroBased()).getName());
+                    policyIndex.getZeroBased()).getName());
 
             Name editedCompany = editPolicyDescriptor.getCompany().orElse(clientToEditPolicy.getPolicy(
-                    clientIndex.getZeroBased()).getCompany());
+                    policyIndex.getZeroBased()).getCompany());
 
             Name editedPolicyManager = editPolicyDescriptor.getPolicyManager().orElse(clientToEditPolicy.getPolicy(
-                    clientIndex.getZeroBased()).getPolicyManager());
+                    policyIndex.getZeroBased()).getPolicyManager());
 
             Premium editedPremium =
                     editPolicyDescriptor.getPremium().orElse(clientToEditPolicy.getPolicy(
-                            clientIndex.getZeroBased()).getPremium());
+                            policyIndex.getZeroBased()).getPremium());
 
             editedPolicy = new Policy(editedPolicyName, editedCompany, editedPolicyManager, editedPremium);
             model.setClient(clientToEditPolicy, clientToEditPolicy.setPolicy(policyIndex.getZeroBased(), editedPolicy));
