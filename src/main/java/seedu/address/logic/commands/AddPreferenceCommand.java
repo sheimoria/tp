@@ -55,7 +55,9 @@ public class AddPreferenceCommand extends Command {
 
         clientToAddPreferences.addPreference(preferenceKey, preferenceDetails);
 
-        return new CommandResult((String.format(MESSAGE_SUCCESS, preferenceKey, preferenceDetails)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, preferenceKey, preferenceDetails), false, false, false, false,
+                false, null, index);
+
     }
 
     @Override

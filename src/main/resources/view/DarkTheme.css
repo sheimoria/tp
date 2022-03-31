@@ -335,6 +335,15 @@
     -fx-font-size: 14;
 }
 
+#preferences .keyLabel {
+    -fx-text-fill: #3975ea;
+    -fx-background-color: #e9f3fe;
+    -fx-padding: 3 8 3 8;
+    -fx-border-radius: 14;
+    -fx-background-radius: 14;
+    -fx-font-size: 14;
+}
+
 .heading {
     -fx-font-size: 18pt;
     -fx-font-family: "Lato Bold";

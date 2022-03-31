@@ -1,13 +1,22 @@
 package seedu.address.ui;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.PreferenceMap;
 import seedu.address.model.policy.Policy;
+
+import java.util.Map;
+import java.util.Observable;
 
 /**
  * An UI component that displays information of select {@code Client} in the right panel
@@ -15,6 +24,9 @@ import seedu.address.model.policy.Policy;
 public class ClientDisplay extends UiPart<Region> {
 
     private static final String FXML = "ClientDisplayPanel.fxml";
+    private static final int PREFERENCE_CELL_HEIGHT = 48;
+    private static final int POLICY_CELL_HEIGHT = 114;
+
     private final Client client;
 
     @FXML
@@ -29,6 +41,12 @@ public class ClientDisplay extends UiPart<Region> {
     private Label lastContacted;
     @FXML
     private Label email;
+    @FXML
+    private Label preferencesHeader;
+    @FXML
+    private ListView<Map.Entry<String, String>> preferences;
+    @FXML
+    private StackPane preferencesContainer;
     @FXML
     private ListView<Policy> policyListView;
     @FXML
@@ -56,10 +74,37 @@ public class ClientDisplay extends UiPart<Region> {
         } else {
             lastContacted.setText("Last contacted: -");
         }
-        policyListView.setItems(client.getPolicies().asUnmodifiableObservableList());
+        ObservableList<Map.Entry<String, String>> preferenceList = client.getPreferenceMap().asObservableList();
+        preferences.setItems(preferenceList);
+        preferences.setCellFactory(listView -> new PreferenceListViewCell());
+        preferences.setMinHeight(preferenceList.size() * PREFERENCE_CELL_HEIGHT);
+        int labelIndex = clientDisplayCard.getChildren().indexOf(preferencesHeader);
+        clientDisplayCard.getChildren().add(labelIndex + 1, preferences);
+
+        ObservableList<Policy> policyList = client.getPolicies().asUnmodifiableObservableList();
+        policyListView.setItems(policyList);
         policyListView.setCellFactory(listView -> new PolicyListViewCell());
+        policyListView.setMinHeight(policyList.size() * POLICY_CELL_HEIGHT);
         clientDisplayCard.getChildren().add(policyListView);
+
         note.setText(client.getNote().value);
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Policy} using a {@code PolicyCard}.
+     */
+    class PreferenceListViewCell extends ListCell<Map.Entry<String, String>> {
+        @Override
+        protected void updateItem(Map.Entry<String, String> preference, boolean empty) {
+            super.updateItem(preference, empty);
+
+            if (empty || preference == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new PreferenceRow(preference).getRoot());
+            }
+        }
     }
 
     /**
