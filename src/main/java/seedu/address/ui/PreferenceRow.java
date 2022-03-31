@@ -1,10 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Map;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-
-import java.util.Map;
 
 /**
  * An UI component that displays information of a {@code Client}.

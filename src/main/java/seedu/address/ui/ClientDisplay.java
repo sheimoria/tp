@@ -1,9 +1,8 @@
 package seedu.address.ui;
 
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
+import java.util.Map;
+
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -12,11 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.PreferenceMap;
 import seedu.address.model.policy.Policy;
-
-import java.util.Map;
-import java.util.Observable;
 
 /**
  * An UI component that displays information of select {@code Client} in the right panel
