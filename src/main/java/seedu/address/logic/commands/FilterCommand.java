@@ -18,7 +18,7 @@ import seedu.address.model.client.Name;
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filterClients";
 
-    public static final String FILTER_ATTRIBUTES = "birthday, age";
+    public static final String FILTER_ATTRIBUTES = "age, premium, company, birthMonth";
     public static final String FILTER_OPERATORS = "equal, greater, lesser, lesserorequal, greaterorequal";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters clients in the address book.\n"
