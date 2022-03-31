@@ -5,15 +5,12 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.AnchorPane?>
-
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.ScrollPane?>
 
-<ScrollPane  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fitToWidth="true">
+<ScrollPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fitToWidth="true">
     <VBox>
         <AnchorPane VBox.vgrow="ALWAYS">
             <VBox fx:id="clientDisplayCard" prefHeight="180" prefWidth="360" VBox.vgrow="ALWAYS">
@@ -28,37 +25,37 @@
                     </Label>
                     <Label fx:id="lastContacted" styleClass="clientSubtitle" VBox.vgrow="ALWAYS"/>
                 </VBox>
-                <VBox>
-                    <Label styleClass="clientSubheading" text="PHONE"/>
-                    <Label fx:id="phone" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
-                </VBox>
-                <VBox>
-                    <Label styleClass="clientSubheading" text="ADDRESS"/>
-                    <Label fx:id="address" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
-                </VBox>
-                <VBox>
-                    <Label styleClass="clientSubheading" text="EMAIL"/>
-                    <Label fx:id="email" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
-                </VBox>
-                <VBox>
-                    <Label styleClass="clientSubheading" text="BIRTHDAY"/>
-                    <Label fx:id="birthday" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
-                </VBox>
-                <VBox>
-                    <Label styleClass="clientSubheading" text="NOTE"/>
-                    <Label fx:id="note" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
-                </VBox>
-                <Label styleClass="clientSubheading" text="POLICIES">
+                <Label styleClass="clientSubheading" text="PHONE"/>
+                <Label fx:id="phone" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
+
+                <Label styleClass="clientSubheading" text="ADDRESS"/>
+                <Label fx:id="address" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
+
+                <Label styleClass="clientSubheading" text="EMAIL"/>
+                <Label fx:id="email" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
+
+                <Label styleClass="clientSubheading" text="BIRTHDAY"/>
+                <Label fx:id="birthday" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
+
+                <Label styleClass="clientSubheading" text="NOTE"/>
+                <Label fx:id="note" styleClass="clientDetail" VBox.vgrow="ALWAYS"/>
+
+                <Label fx:id="preferencesHeader" styleClass="clientSubheading" text="PREFERENCES">
                     <padding>
-                        <Insets bottom="5"/>
+                        <Insets top="5" bottom="5"/>
                     </padding>
                 </Label>
+                <StackPane fx:id="preferencesContainer" VBox.vgrow="ALWAYS">
+                    <ListView fx:id="preferences" VBox.vgrow="ALWAYS"/>
+                </StackPane>
 
-                <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                           minWidth="-Infinity" VBox.vgrow="ALWAYS">
-                    <ListView fx:id="policyListView" maxHeight="1.7976931348623157E308"
-                              maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-                              VBox.vgrow="ALWAYS"/>
+                <Label styleClass="clientSubheading" text="POLICIES">
+                    <padding>
+                        <Insets top="15" bottom="5"/>
+                    </padding>
+                </Label>
+                <StackPane VBox.vgrow="ALWAYS">
+                    <ListView fx:id="policyListView" minHeight="1000" VBox.vgrow="ALWAYS"/>
                 </StackPane>
             </VBox>
         </AnchorPane>
