@@ -2,8 +2,12 @@ package seedu.address.model.client;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.client.exceptions.InvalidPreferenceKeyException;
 
 public class PreferenceMap {
@@ -47,6 +51,10 @@ public class PreferenceMap {
 
     public HashMap<String, String> getMap() {
         return this.preferences;
+    }
+
+    public ObservableList<Map.Entry<String, String>> asObservableList() {
+        return FXCollections.observableArrayList(new ArrayList<>(preferences.entrySet()));
     }
 
     /**

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.client.Name;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 
@@ -144,5 +145,17 @@ public class UniquePolicyList implements Iterable<Policy> {
             res += p.getPremium().getValue();
         }
         return res;
+    }
+
+    /**
+     * Returns true if the {@code UniquePolicyList} contains an {@code Policy} from the given {@code company}
+     */
+    public boolean hasPolicyFromCompany(Name company) {
+        for (Policy p : internalUnmodifiableList) {
+            if (p.getCompany().equals(company)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
