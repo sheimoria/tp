@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.SortCriteria;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -232,6 +233,15 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
+    /**
+     * Display sorted clients.
+     */
+    private void showDefaultClients() {
+        clientListPanelPlaceholder.getChildren().clear();
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+    }
+
     public ClientListPanel getClientListPanel() {
         return clientListPanel;
     }
@@ -246,6 +256,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            clientListPanel.setClientCount();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -268,11 +280,20 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isSortClients()) {
-                showSortedClients();
+                if (commandResult.getSortCriteria().equals(SortCriteria.DEFAULT)) {
+                    showDefaultClients();
+                } else {
+                    showSortedClients();
+                }
+                clientListPanel.setSortCriteria(commandResult.getSortCriteria());
             }
 
             if (commandResult.isShowClient()) {
                 showClient(commandResult.getIndexToShow());
+            }
+
+            if (commandResult.isUpdateClient() && logic.getDisplayedClientIndex() == commandResult.getIndexToUpdate()) {
+                showClient(commandResult.getIndexToUpdate());
             }
 
             return commandResult;

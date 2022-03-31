@@ -16,6 +16,6 @@ public class TutorialCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_TUTORIAL_MESSAGE, false, true, false, false, false, null);
+        return new CommandResult(SHOWING_TUTORIAL_MESSAGE, false, true, false, false, false, null, null);
     }
 }

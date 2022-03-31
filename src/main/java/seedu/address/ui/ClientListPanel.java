@@ -4,11 +4,13 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.SortCriteria;
 
 /**
  * Panel containing the list of clients.
@@ -17,6 +19,12 @@ public class ClientListPanel extends UiPart<Region> {
     private static final String FXML = "ClientListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ClientListPanel.class);
 
+    private final ObservableList<Client> clientList;
+
+    @FXML
+    private Label clientCount;
+    @FXML
+    private Label sortMethod;
     @FXML
     private ListView<Client> clientListView;
 
@@ -25,8 +33,19 @@ public class ClientListPanel extends UiPart<Region> {
      */
     public ClientListPanel(ObservableList<Client> clientList) {
         super(FXML);
+        this.clientList = clientList;
+        clientCount.setText(String.format("%d Clients", clientList.size()));
+        sortMethod.setText("Sorted by: Default");
         clientListView.setItems(clientList);
         clientListView.setCellFactory(listView -> new ClientListViewCell());
+    }
+
+    public void setClientCount() {
+        clientCount.setText(String.format("%d Clients", clientList.size()));
+    }
+
+    public void setSortCriteria(SortCriteria criteria) {
+        sortMethod.setText(String.format("Sorted by: %s", criteria));
     }
 
     /**
