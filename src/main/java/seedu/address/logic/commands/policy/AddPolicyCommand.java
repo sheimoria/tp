@@ -62,6 +62,7 @@ public class AddPolicyCommand extends Command {
         Client clientToAddPolicy = lastShownList.get(index.getZeroBased());
 
         clientToAddPolicy.addPolicy(policyToAdd);
+        model.setClient(clientToAddPolicy, clientToAddPolicy);
 
         return new CommandResult((String.format(MESSAGE_SUCCESS, policyToAdd)));
     }
