@@ -1,5 +1,10 @@
 package seedu.address.logic.commands.meeting;
 
+import static java.util.Objects.requireNonNull;
+
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -9,11 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.DateTime;
 import seedu.address.model.meeting.Meeting;
-
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes a client identified using it's displayed index from the address book.

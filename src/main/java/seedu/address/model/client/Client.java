@@ -144,26 +144,38 @@ public class Client {
         return policyList.get(index);
     }
 
+    /**
+     * Add {@code policyToAdd} to this client
+     */
     public Client addPolicy(Policy policyToAdd) {
         UniquePolicyList updatedPolicyList = new UniquePolicyList();
         updatedPolicyList.setPolicies(policies);
         updatedPolicyList.add(policyToAdd);
-        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note, preferences);
+        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+                preferences);
     }
 
+    /**
+     * Update {@code editedPolicy} for this client
+     */
     public Client setPolicy(int index, Policy editedPolicy) {
         UniquePolicyList updatedPolicyList = new UniquePolicyList();
         updatedPolicyList.setPolicies(policies);
         Policy prevPolicy = getPolicy(index);
         updatedPolicyList.setPolicy(prevPolicy, editedPolicy);
-        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note, preferences);
+        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+                preferences);
     }
 
+    /**
+     * Remove {@code policyToRemove} from this client
+     */
     public Client removePolicy(Policy policyToRemove) {
         UniquePolicyList updatedPolicyList = new UniquePolicyList();
         updatedPolicyList.setPolicies(policies);
         updatedPolicyList.remove(policyToRemove);
-        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note, preferences);
+        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+                preferences);
     }
 
     /**
