@@ -59,10 +59,12 @@ public class DeletePolicyCommand extends Command {
         }
 
         assert policyToDelete != null;
-        model.setClient(clientToDeletePolicy, clientToDeletePolicy.removePolicy(policyToDelete));
+
+        Client updatedClient = clientToDeletePolicy.removePolicy(policyToDelete);
+        model.setClient(clientToDeletePolicy, updatedClient);
         return new CommandResult(String.format(MESSAGE_DELETE_POLICY_SUCCESS, policyToDelete,
                 clientToDeletePolicy.getName()), false, false, false,
-                false, false, null, clientToDeletePolicy);
+                false, false, null, updatedClient);
     }
 
     @Override
