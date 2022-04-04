@@ -16,7 +16,7 @@ public class AddPreferenceCommand extends Command {
 
     public static final String COMMAND_WORD = "addPref";
     public static final String MESSAGE_SUCCESS = "New preference added: %s: %s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a preference to"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a preference to "
             + "the client specified by the index number used in the displayed "
             + "client list.\nParameters: INDEX (must be a positive integer)"
             + "[" + PREFIX_PREFERENCE_KEY + "PREFERENCE_KEY (one word with only alphabets)]"
