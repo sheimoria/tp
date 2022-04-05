@@ -47,7 +47,9 @@ public class CloseMeetingCommand extends Command {
         Client client = meetingToClose.getClient();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         DateTime endDateTime = new DateTime(meetingToClose.getEndDateTime().format(dtf));
-        model.setClient(client, client.updateLastContacted(endDateTime));
+        Client updatedClient = client.updateLastContacted(endDateTime);
+        model.setClient(client, updatedClient);
+        model.updateDisplayedClient(updatedClient);
         return new CommandResult(String.format(MESSAGE_CLOSE_MEETING_SUCCESS, meetingToClose));
     }
 
