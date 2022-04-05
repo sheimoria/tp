@@ -248,6 +248,7 @@ Examples:
 Shows upcoming or all meetings.
 
 - If an index is provided, only shows meetings with the specified client.
+- If the `all/` flag is omitted, **ONLY** shows upcoming meetings (meetings that start today or in the future). 
 - If the `all/` flag is provided, shows all meetings instead of just upcoming meetings.
 
 Format: `meetings [INDEX] [all/]`
