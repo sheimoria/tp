@@ -8,7 +8,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Name;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Policy}.
@@ -54,7 +53,7 @@ class JsonAdaptedPolicy {
                 || !Name.isValidName(policyManager)
                 || !Premium.isValidPremium(premium)
         ) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException("Incorrect format - Could not save policy");
         }
         return new Policy(new Name(policy), new Name(company), new Name(policyManager), new Premium(premium));
     }

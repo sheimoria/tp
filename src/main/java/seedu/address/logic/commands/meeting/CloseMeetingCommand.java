@@ -39,7 +39,7 @@ public class CloseMeetingCommand extends Command {
         List<Meeting> lastShownList = model.getFilteredMeetingList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
         Meeting meetingToClose = lastShownList.get(targetIndex.getZeroBased());
@@ -47,7 +47,9 @@ public class CloseMeetingCommand extends Command {
         Client client = meetingToClose.getClient();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         DateTime endDateTime = new DateTime(meetingToClose.getEndDateTime().format(dtf));
-        model.setClient(client, client.updateLastContacted(endDateTime));
+        Client updatedClient = client.updateLastContacted(endDateTime);
+        model.setClient(client, updatedClient);
+        model.updateDisplayedClient(updatedClient);
         return new CommandResult(String.format(MESSAGE_CLOSE_MEETING_SUCCESS, meetingToClose));
     }
 

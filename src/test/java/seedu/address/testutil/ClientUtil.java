@@ -6,14 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Client;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Client.
@@ -36,9 +32,6 @@ public class ClientUtil {
         sb.append(PREFIX_PHONE).append(client.getPhone().value).append(" ");
         sb.append(PREFIX_EMAIL).append(client.getEmail().value).append(" ");
         sb.append(PREFIX_ADDRESS).append(client.getAddress().value).append(" ");
-        client.getTags().forEach(
-            s -> sb.append(PREFIX_TAG).append(s.tagName).append(" ")
-        );
         return sb.toString();
     }
 
@@ -54,14 +47,6 @@ public class ClientUtil {
         descriptor.getBirthday().ifPresent(birthday -> sb.append(PREFIX_BIRTHDAY).append(birthday).append(" "));
         descriptor.getLastContacted().ifPresent(lastContacted -> sb.append(PREFIX_LAST_CONTACTED).append(lastContacted)
                 .append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
-            }
-        }
         return sb.toString();
     }
 }

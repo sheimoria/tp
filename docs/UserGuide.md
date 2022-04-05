@@ -215,8 +215,8 @@ Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY
 
 Examples:
 
-- `editPolicy 1 ci/1 $/200`
-- `editPolicy 1 ci/2 n/Car Insurance Plus c/Mercedes pm/Zechary $/350`
+- `editPolicy 1 pi/1 $/200`
+- `editPolicy 1 pi/2 n/Car Insurance Plus c/Mercedes pm/Zechary $/350`
 
 ### Delete policy: `deletePolicy`
 
@@ -396,7 +396,7 @@ If your changes to the data file makes its format invalid, onlyFAs will discard 
 | **addPref**       | `addPref INDEX cat/CATEGORY pref/PREFERENCE` <br> e.g., `addPref 1 cat/Drink pref/Coke`                                                                |
 | **deletePref**    | `deletePref INDEX cat/CATEGORY` <br> e.g., `deletePref 1 cat/Drink`                                                                                    |
 | **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
-| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 ci/1 $/200`        |
+| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 pi/1 $/200`        |
 | **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
 | **meetings**      | `meetings [INDEX] [all/]` <br> eg., `meetings 1 all/`                                                                                                  |
 | **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`               |

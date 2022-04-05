@@ -10,11 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -33,7 +30,6 @@ import seedu.address.model.client.PreferenceMap;
 import seedu.address.model.policy.UniquePolicyList;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing client in the address book.
@@ -52,7 +48,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_LAST_CONTACTED + "LAST CONTACTED]\n"
-            // + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
@@ -120,13 +115,12 @@ public class EditCommand extends Command {
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Date updatedBirthday = editClientDescriptor.getBirthday().orElse(clientToEdit.getBirthday());
         DateTime updatedLastContacted = editClientDescriptor.getLastContacted().orElse(clientToEdit.getLastContacted());
-        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Note updatedNote = editClientDescriptor.getNote().orElse(clientToEdit.getNote());
         PreferenceMap updatedPreferences = editClientDescriptor.getPreferenceMap().orElse(clientToEdit
                 .getPreferenceMap());
         UniquePolicyList updatedPolicies = clientToEdit.getPolicies();
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
-                updatedLastContacted, updatedTags, updatedPolicies, updatedNote, updatedPreferences);
+                updatedLastContacted, updatedPolicies, updatedNote, updatedPreferences);
     }
 
     @Override
@@ -158,7 +152,6 @@ public class EditCommand extends Command {
         private Address address;
         private Date birthday;
         private DateTime lastContacted;
-        private Set<Tag> tags;
         private Note note;
         private PreferenceMap preferences;
 
@@ -175,7 +168,6 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setBirthday(toCopy.birthday);
             setLastContacted(toCopy.lastContacted);
-            setTags(toCopy.tags);
             setNote(toCopy.note);
             setPreferenceMap(toCopy.preferences);
         }
@@ -184,7 +176,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, lastContacted, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, lastContacted);
         }
 
         public void setName(Name name) {
@@ -235,23 +227,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(lastContacted);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
         public void setNote(Note note) {
             this.note = note;
         }
@@ -289,7 +264,6 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getBirthday().equals(e.getBirthday())
                     && getLastContacted().equals(e.getLastContacted())
-                    && getTags().equals(e.getTags())
                     && getNote().equals(e.getNote());
         }
     }

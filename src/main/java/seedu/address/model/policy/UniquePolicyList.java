@@ -10,7 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Name;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
+import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
+import seedu.address.model.policy.exceptions.PolicyNotEditedException;
 
 /**
  * A list of policies that enforces uniqueness between its elements and does not allow nulls.
@@ -41,7 +43,7 @@ public class UniquePolicyList implements Iterable<Policy> {
      * Adds a policy to the list.
      * The policy must not already exist in the list.
      */
-    public void add(Policy toAdd) {
+    public void add(Policy toAdd) throws DuplicatePolicyException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePolicyException();
@@ -54,7 +56,9 @@ public class UniquePolicyList implements Iterable<Policy> {
      * {@code target} must exist in the list.
      * The policy identity of {@code editedPolicy} must not be the same as another existing policy in the list.
      */
-    public void setPolicy(Policy target, Policy editedPolicy) {
+    public void setPolicy(Policy target, Policy editedPolicy) throws InvalidPolicyIndexException,
+            PolicyNotEditedException,
+            DuplicatePolicyException {
         requireAllNonNull(target, editedPolicy);
 
         int index = internalList.indexOf(target);
@@ -62,19 +66,36 @@ public class UniquePolicyList implements Iterable<Policy> {
             throw new InvalidPolicyIndexException();
         }
 
-        if (!target.isSamePolicy(editedPolicy) && contains(editedPolicy)) {
+        if (target.equals(editedPolicy)) {
+            throw new PolicyNotEditedException();
+        }
+
+        if (!setDoesNotCreateDuplicate(target, editedPolicy)) {
             throw new DuplicatePolicyException();
         }
 
+
         internalList.set(index, editedPolicy);
+    }
+
+    private boolean setDoesNotCreateDuplicate(Policy target, Policy editedPolicy) {
+        for (Policy p : internalUnmodifiableList) {
+            if (!p.equals(target) && p.isSamePolicy(editedPolicy)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
      * Removes the equivalent policy from the list.
      * The policy must exist in the list.
      */
-    public void remove(Policy toRemove) {
+    public void remove(Policy toRemove) throws EmptyPolicyListException, InvalidPolicyIndexException {
         requireNonNull(toRemove);
+        if (internalList.isEmpty()) {
+            throw new EmptyPolicyListException();
+        }
         if (!internalList.remove(toRemove)) {
             throw new InvalidPolicyIndexException();
         }

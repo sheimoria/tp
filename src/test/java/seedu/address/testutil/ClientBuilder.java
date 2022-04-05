@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Date;
@@ -14,7 +11,6 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
 import seedu.address.model.policy.UniquePolicyList;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -41,7 +37,6 @@ public class ClientBuilder {
     private Address address;
     private Date birthday;
     private DateTime lastContacted;
-    private Set<Tag> tags;
     private UniquePolicyList policies = new UniquePolicyList();
     private Note note;
 
@@ -55,7 +50,6 @@ public class ClientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Date(DEFAULT_BIRTHDAY);
         lastContacted = new DateTime(DEFAULT_LAST_CONTACTED);
-        tags = new HashSet<>();
 
         Policy defaultPolicy = new Policy(new Name(DEFAULT_POLICY_NAME), new Name(DEFAULT_COMPANY),
                 new Name(DEFAULT_POLICY_MANAGER),
@@ -74,7 +68,6 @@ public class ClientBuilder {
         address = clientToCopy.getAddress();
         birthday = clientToCopy.getBirthday();
         lastContacted = clientToCopy.getLastContacted();
-        tags = new HashSet<>(clientToCopy.getTags());
         policies.setPolicies(clientToCopy.getPolicies());
         note = clientToCopy.getNote();
     }
@@ -84,14 +77,6 @@ public class ClientBuilder {
      */
     public ClientBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Client} that we are building.
-     */
-    public ClientBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -168,7 +153,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, birthday, lastContacted, tags);
+        return new Client(name, phone, email, address, birthday, lastContacted);
     }
 
 }

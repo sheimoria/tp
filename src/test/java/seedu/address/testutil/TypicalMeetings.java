@@ -21,7 +21,6 @@ public class TypicalMeetings {
                     .withPhone("94351253")
                     .withEmail("alice@example.com")
                     .withEmail("123, Jurong West Ave 6, #08-111")
-                    .withTags("friends")
                     .build())
             .withLabel("Lunch")
             .build();
@@ -34,7 +33,6 @@ public class TypicalMeetings {
                     .withPhone("98765432")
                     .withEmail("johnd@example.com")
                     .withEmail("311, Clementi Ave 2, #02-25")
-                    .withTags("owesMoney", "friends")
                     .build())
             .withLabel("")
             .build();

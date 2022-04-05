@@ -13,7 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_BIRTHDAY = new Prefix("b/");
     public static final Prefix PREFIX_LAST_CONTACTED = new Prefix("lc/");
     public static final Prefix PREFIX_DATETIME = new Prefix("dt/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_START_DATETIME = new Prefix("ms/");
     public static final Prefix PREFIX_END_DATETIME = new Prefix("me/");
     public static final Prefix PREFIX_MEETINGS_SHOW_ALL = new Prefix("all/");
@@ -22,8 +21,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_POLICY_MANAGER = new Prefix("pm/");
     public static final Prefix PREFIX_PREMIUM = new Prefix("$/");
     public static final Prefix PREFIX_NOTE = new Prefix("nt/");
-    public static final Prefix PREFIX_PREFERENCE_KEY = new Prefix("pk/");
-    public static final Prefix PREFIX_PREFERENCE_DETAIL = new Prefix("pd/");
+    public static final Prefix PREFIX_PREFERENCE_KEY = new Prefix("cat/");
+    public static final Prefix PREFIX_PREFERENCE_DETAIL = new Prefix("pref/");
     public static final Prefix PREFIX_POLICY_INDEX = new Prefix("pi/");
     public static final Prefix PREFIX_SORT_DIRECTION = new Prefix("dir/");
     public static final Prefix PREFIX_FILTER_OPERATOR = new Prefix("op/");
