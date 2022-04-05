@@ -37,7 +37,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         validSortDirections.add("asc");
         validSortDirections.add("desc");
 
-        String sortDirection = argMultimap.getValue(PREFIX_SORT_DIRECTION).orElse("asc");
+        String sortDirection = argMultimap.getValue(PREFIX_SORT_DIRECTION).orElse("desc");
 
         if (!validSortDirections.contains(sortDirection)) {
             throw new ParseException(String.format(MESSAGE_INVALID_SORT_DIRECTION,
