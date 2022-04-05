@@ -116,14 +116,16 @@ Format: `help`
 
 ### Add client: `addClient`
 
-Adds a client to the list of managed clients
+Adds a client to the list of managed clients.
 
-Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS]`
+Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/LAST_CONTACTED]`
+
+- `BIRTHDAY` must be in `dd-MM-yyyy` format.
+- `LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
 
 Examples:
 
-- `addClient n/N Vijay Narayanan p/99134234 a/abc street`
-- `addClient n/Zechary Au Jun Wen p/92144213 e/zechary@yeemail.com`
+- `addClient n/Vijay Narayanan p/91234567 e/vijay@email.com a/210 Street 3 b/21-03-1999 lc/21-03-2022 21:03`
 
 ### View client: `viewClient`
 
@@ -139,11 +141,15 @@ Examples:
 
 Update a client in your address book.
 
-Format: `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`
+Format: `updateClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY] 
+[lc/NEW_LAST_CONTACTED]`
+
+- `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
+- `NEW_LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
 
 Examples:
 
-- `updateClient 1 e/new@email.com`
+- `updateClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
 
 ### Delete client: `deleteClient`
 
@@ -163,7 +169,7 @@ Format: `contacted INDEX dt/DATETIME`
 
 Examples:
 
-- `contacted 1 21-03-2022 21:03`
+- `contacted 1 dt/21-03-2022 21:03`
 
 ### Add note for client: `addNote`
 
