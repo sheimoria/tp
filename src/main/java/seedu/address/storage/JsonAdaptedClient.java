@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -21,7 +19,6 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.PreferenceMap;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.UniquePolicyList;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Client}.
@@ -36,7 +33,6 @@ class JsonAdaptedClient {
     private final String address;
     private final String birthday;
     private final String lastContacted;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
     private final String note;
     private final JsonAdaptedPreferenceMap preferenceMap;
@@ -49,7 +45,6 @@ class JsonAdaptedClient {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("birthday") String birthday,
                              @JsonProperty("lastContacted") String lastContacted,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("policies") List<JsonAdaptedPolicy> policies,
                              @JsonProperty("note") String note,
                              @JsonProperty("preferenceMap") JsonAdaptedPreferenceMap preferenceMap) {
@@ -59,9 +54,6 @@ class JsonAdaptedClient {
         this.address = address;
         this.birthday = birthday;
         this.lastContacted = lastContacted;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
         if (policies != null) {
             this.policies.addAll(policies);
         }
@@ -87,9 +79,6 @@ class JsonAdaptedClient {
         address = source.getAddress().value;
         birthday = source.getBirthday().value;
         lastContacted = source.getLastContacted().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
         policies.addAll(source.getPolicies().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList()));
@@ -103,10 +92,6 @@ class JsonAdaptedClient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> clientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            clientTags.add(tag.toModelType());
-        }
         final List<Policy> clientPolicies = new ArrayList<>();
         for (JsonAdaptedPolicy policy: policies) {
             clientPolicies.add(policy.toModelType());
@@ -203,11 +188,10 @@ class JsonAdaptedClient {
 
         final PreferenceMap modelPreferenceMap = preferenceMap.toModelType();
 
-        final Set<Tag> modelTags = new HashSet<>(clientTags);
         final UniquePolicyList modelPolicies = new UniquePolicyList();
         modelPolicies.setPolicies(clientPolicies);
 
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelLastContacted, modelTags,
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelLastContacted,
                 modelPolicies, modelNote, modelPreferenceMap);
     }
 }

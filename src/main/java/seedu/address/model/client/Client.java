@@ -2,18 +2,13 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
-import javafx.collections.ObservableList;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.UniquePolicyList;
 import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Client in the address book.
@@ -30,7 +25,6 @@ public class Client {
     private DateTime lastContacted;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
     private final UniquePolicyList policies = new UniquePolicyList();
     private Note note = new Note("");
     private final PreferenceMap preferences = new PreferenceMap();
@@ -39,16 +33,14 @@ public class Client {
      * Every field must be present and not null.
      *
      */
-    public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
-                  Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, birthday, lastContacted, tags);
+    public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted) {
+        requireAllNonNull(name, phone, email, address, birthday, lastContacted);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
         this.lastContacted = lastContacted;
-        this.tags.addAll(tags);
     }
 
     /**
@@ -56,15 +48,14 @@ public class Client {
      * Overloaded constructor for all commands.
      */
     public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
-                  Set<Tag> tags, UniquePolicyList policies, Note note, PreferenceMap preferences) {
-        requireAllNonNull(name, phone, email, address, tags, policies, note, preferences);
+                  UniquePolicyList policies, Note note, PreferenceMap preferences) {
+        requireAllNonNull(name, phone, email, address, policies, note, preferences);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
         this.lastContacted = lastContacted;
-        this.tags.addAll(tags);
         this.policies.setPolicies(policies);
         this.note = note;
         this.preferences.addAllPreferences(preferences);
@@ -104,14 +95,6 @@ public class Client {
 
     public PreferenceMap getPreferenceMap() {
         return this.preferences;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -161,7 +144,7 @@ public class Client {
         updatedPolicyList.setPolicies(policies);
 
         updatedPolicyList.add(policyToAdd);
-        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+        return new Client(name, phone, email, address, birthday, lastContacted, updatedPolicyList, note,
                 preferences);
     }
 
@@ -173,7 +156,7 @@ public class Client {
         updatedPolicyList.setPolicies(policies);
         Policy prevPolicy = getPolicy(index);
         updatedPolicyList.setPolicy(prevPolicy, editedPolicy);
-        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+        return new Client(name, phone, email, address, birthday, lastContacted, updatedPolicyList, note,
                 preferences);
     }
 
@@ -184,7 +167,7 @@ public class Client {
         UniquePolicyList updatedPolicyList = new UniquePolicyList();
         updatedPolicyList.setPolicies(policies);
         updatedPolicyList.remove(policyToRemove);
-        return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
+        return new Client(name, phone, email, address, birthday, lastContacted, updatedPolicyList, note,
                 preferences);
     }
 
@@ -207,7 +190,7 @@ public class Client {
      * Updates the lastContacted DateTime of this client.
      */
     public Client updateLastContacted(DateTime dateTime) {
-        return new Client(name, phone, email, address, birthday, dateTime, tags, policies, note, preferences);
+        return new Client(name, phone, email, address, birthday, dateTime, policies, note, preferences);
     }
 
     /**
@@ -228,14 +211,13 @@ public class Client {
         return otherClient.getName().equals(getName())
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
-                && otherClient.getAddress().equals(getAddress())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getAddress().equals(getAddress());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, birthday, lastContacted, tags, policies, preferences, note);
+        return Objects.hash(name, phone, email, address, birthday, lastContacted, policies, preferences, note);
     }
 
     @Override
@@ -258,33 +240,6 @@ public class Client {
                 .append(getNote())
                 .append("; Preferences: ")
                 .append(getPreferenceMap().size());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
-        return builder.toString();
-    }
-
-    /**
-     * Returns a formatted string displaying the full details of all policies purchased by this client.
-     */
-    public String displayPolicyList() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("[");
-        ObservableList<Policy> policies = getPolicies().asUnmodifiableObservableList();
-        if (!policies.isEmpty()) {
-            int counter = 0;
-            for (Policy p : policies) {
-                builder.append(p.fullDetails());
-                counter++;
-                if (counter < policies.size()) {
-                    builder.append(", ");
-                }
-            }
-        }
-        builder.append("]");
         return builder.toString();
     }
 }
