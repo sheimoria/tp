@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 
 /**
@@ -51,17 +52,16 @@ public class DeletePolicyCommand extends Command {
         }
 
         Client clientToDeletePolicy = lastShownList.get(clientIndex.getZeroBased());
+        Client updatedClient;
         Policy policyToDelete;
         try {
             policyToDelete = clientToDeletePolicy.getPolicy(policyIndex.getZeroBased());
-        } catch (InvalidPolicyIndexException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
+            updatedClient = clientToDeletePolicy.removePolicy(policyToDelete);
+        } catch (EmptyPolicyListException | InvalidPolicyIndexException e) {
+            throw new CommandException(e.getMessage());
         }
-
-        assert policyToDelete != null;
-
-        Client updatedClient = clientToDeletePolicy.removePolicy(policyToDelete);
         model.setClient(clientToDeletePolicy, updatedClient);
+        model.updateDisplayedClient(clientToDeletePolicy);
         return new CommandResult(String.format(MESSAGE_DELETE_POLICY_SUCCESS, policyToDelete,
                 clientToDeletePolicy.getName()), false, false, false,
                 false, false, null, updatedClient);

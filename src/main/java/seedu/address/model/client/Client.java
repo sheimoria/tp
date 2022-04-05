@@ -11,6 +11,7 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.UniquePolicyList;
+import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.tag.Tag;
 
@@ -140,9 +141,13 @@ public class Client {
                 && otherClient.getName().equals(getName());
     }
 
-    public Policy getPolicy(int index) throws InvalidPolicyIndexException {
+    public Policy getPolicy(int index) throws EmptyPolicyListException, InvalidPolicyIndexException {
         List<Policy> policyList = policies.asUnmodifiableObservableList();
-        if (index >= policyList.size()) {
+
+        if (policyList.isEmpty()) {
+            throw new EmptyPolicyListException();
+        }
+        if (index < 0 || index >= policyList.size()) {
             throw new InvalidPolicyIndexException();
         }
         return policyList.get(index);
@@ -154,6 +159,7 @@ public class Client {
     public Client addPolicy(Policy policyToAdd) {
         UniquePolicyList updatedPolicyList = new UniquePolicyList();
         updatedPolicyList.setPolicies(policies);
+
         updatedPolicyList.add(policyToAdd);
         return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
                 preferences);

@@ -17,6 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 
 
 public class AddPolicyCommand extends Command {
@@ -60,9 +61,14 @@ public class AddPolicyCommand extends Command {
         }
 
         Client clientToAddPolicy = lastShownList.get(index.getZeroBased());
-        Client updatedClient = clientToAddPolicy.addPolicy(policyToAdd);
+        Client updatedClient;
+        try {
+            updatedClient = clientToAddPolicy.addPolicy(policyToAdd);
+        } catch (DuplicatePolicyException e) {
+            throw new CommandException(e.getMessage());
+        }
         model.setClient(clientToAddPolicy, updatedClient);
-
+        model.updateDisplayedClient(clientToAddPolicy);
         return new CommandResult(String.format(MESSAGE_SUCCESS, policyToAdd), false, false, false,
                 false, false, null, updatedClient);
     }
