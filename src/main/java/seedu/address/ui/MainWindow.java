@@ -241,6 +241,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Hide client.
+     */
+    private void hideClient() {
+        meetingListPanelPlaceholder.getChildren().clear();
+    }
+
+
+    /**
      * Display sorted clients.
      */
     private void updateClients() {
@@ -294,6 +302,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isUpdateClient()
                     && logic.getDisplayedClient().equals(commandResult.getClientToUpdate())) {
                 showClient(commandResult.getClientToUpdate());
+            }
+
+            if (commandResult.isDeleteClient() && logic.getDisplayedClient()
+                    .equals(commandResult.getClientToDelete())) {
+                hideClient();
             }
 
             return commandResult;
