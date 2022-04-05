@@ -200,7 +200,14 @@ public class MainWindow extends UiPart<Stage> {
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         if (logic.getFilteredMeetingList().size() == 0) {
-            resultDisplay.setFeedbackToUser("No meetings to display.\nAdd meetings by using the addMeeting command!");
+            if (logic.getAddressBook().getMeetingList().size() == 0) {
+                resultDisplay.setFeedbackToUser("No meetings found.\n"
+                        + "Add meetings by using the `addMeeting` command!");
+            } else {
+                resultDisplay.setFeedbackToUser("No upcoming meetings found.\n"
+                        + "View all meetings (including past meetings) by using the `meetings all/` command!\n"
+                        + "Add meetings by using the `addMeeting` command!\n");
+            }
         }
     }
 
