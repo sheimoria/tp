@@ -21,7 +21,9 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
+import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
+import seedu.address.model.policy.exceptions.PolicyNotEditedException;
 
 /**
  * Edits a client identified using it's displayed index from the address book.
@@ -92,9 +94,14 @@ public class EditPolicyCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
 
-        Client updatedClient = clientToEditPolicy.setPolicy(policyIndex.getZeroBased(), editedPolicy);
+        Client updatedClient;
+        try {
+            updatedClient = clientToEditPolicy.setPolicy(policyIndex.getZeroBased(), editedPolicy);
+        } catch (InvalidPolicyIndexException | PolicyNotEditedException | DuplicatePolicyException e) {
+            throw new CommandException(e.getMessage());
+        }
         model.setClient(clientToEditPolicy, updatedClient);
-
+        model.updateDisplayedClient(updatedClient);
         return new CommandResult((String.format(MESSAGE_SUCCESS, editedPolicy, clientToEditPolicy.getName())),
                 false, false, false, false, false, null, updatedClient);
     }

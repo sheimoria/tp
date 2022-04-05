@@ -154,6 +154,7 @@ public class Client {
     public Client addPolicy(Policy policyToAdd) {
         UniquePolicyList updatedPolicyList = new UniquePolicyList();
         updatedPolicyList.setPolicies(policies);
+
         updatedPolicyList.add(policyToAdd);
         return new Client(name, phone, email, address, birthday, lastContacted, tags, updatedPolicyList, note,
                 preferences);
