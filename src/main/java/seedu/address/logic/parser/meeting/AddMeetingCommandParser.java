@@ -55,8 +55,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
             endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATETIME).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddMeetingCommand.MESSAGE_USAGE),
-                    pe);
+                    "Reason:\n" + pe.getMessage() + "\n" + AddMeetingCommand.MESSAGE_USAGE));
         }
 
         String label;

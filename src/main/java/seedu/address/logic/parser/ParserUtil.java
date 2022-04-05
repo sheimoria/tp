@@ -2,9 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -148,26 +146,14 @@ public class ParserUtil {
     public static LocalDateTime parseDateTime(String stringDateTime) throws ParseException {
         requireNonNull(stringDateTime);
         String trimmedStringDateTime = stringDateTime.trim();
-        String[] splitStringDateTime = trimmedStringDateTime.split(" ");
-        System.out.println(splitStringDateTime[0] + " | " + splitStringDateTime[1]);
-        // Only date was input
-        if (splitStringDateTime.length == 1) {
-            if (!Meeting.isValidDate(splitStringDateTime[0])) {
-                throw new ParseException(Meeting.DATETIME_MESSAGE_CONSTRAINTS);
-            }
 
-            return LocalDateTime.of(LocalDate.parse(splitStringDateTime[0], Meeting.DATE_FORMATTER), LocalTime.now());
-        }
-
-        // Both date and time was input
-        if (!Meeting.isValidDate(splitStringDateTime[0]) || !Meeting.isValidTime(splitStringDateTime[1])) {
+        if (!Meeting.isValidDate(trimmedStringDateTime)) {
             throw new ParseException(Meeting.DATETIME_MESSAGE_CONSTRAINTS);
+        } else if (!Meeting.isValidDateRange(trimmedStringDateTime)) {
+            throw new ParseException(Meeting.DATETIME_MESSAGE_BAD_RANGE);
         }
 
-        return LocalDateTime.of(
-                LocalDate.parse(splitStringDateTime[0], Meeting.DATE_FORMATTER),
-                LocalTime.parse((splitStringDateTime[1]))
-        );
+        return LocalDateTime.parse(trimmedStringDateTime, Meeting.DATETIME_FORMATTER);
     }
 
     /**
