@@ -25,9 +25,11 @@ import seedu.address.model.meeting.Meeting;
 public class AddMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "addMeeting";
+
     public static final String MESSAGE_SUCCESS_UPCOMING = "New upcoming meeting added:\n%1$s\n"
             + "View your upcoming meetings with the `meetings` command";
     public static final String MESSAGE_SUCCESS_PAST = "New past meeting added:\n%1$s\n"
+
             + "View all your meetings with the `meetings all/` command";
     public static final String MESSAGE_USAGE = "Parameters:\n• INDEX (must be a positive integer) "
             + "" + PREFIX_START_DATETIME + "START_DATETIME "
