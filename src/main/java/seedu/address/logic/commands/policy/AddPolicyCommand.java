@@ -68,7 +68,7 @@ public class AddPolicyCommand extends Command {
             throw new CommandException(e.getMessage());
         }
         model.setClient(clientToAddPolicy, updatedClient);
-
+        model.updateDisplayedClient(clientToAddPolicy);
         return new CommandResult(String.format(MESSAGE_SUCCESS, policyToAdd), false, false, false,
                 false, false, null, updatedClient);
     }

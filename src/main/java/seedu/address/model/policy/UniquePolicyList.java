@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Name;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
+import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.policy.exceptions.PolicyNotEditedException;
 
@@ -90,8 +91,11 @@ public class UniquePolicyList implements Iterable<Policy> {
      * Removes the equivalent policy from the list.
      * The policy must exist in the list.
      */
-    public void remove(Policy toRemove) throws InvalidPolicyIndexException {
+    public void remove(Policy toRemove) throws EmptyPolicyListException, InvalidPolicyIndexException {
         requireNonNull(toRemove);
+        if (internalList.isEmpty()) {
+            throw new EmptyPolicyListException();
+        }
         if (!internalList.remove(toRemove)) {
             throw new InvalidPolicyIndexException();
         }
