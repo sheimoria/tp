@@ -3,11 +3,11 @@ package seedu.address.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import seedu.address.model.client.Client;
@@ -19,10 +19,12 @@ import seedu.address.model.client.Name;
 */
 public class Meeting {
 
-    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter DATETIME_FORMATTER_LENIENT = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm");
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+            .withResolverStyle(ResolverStyle.STRICT);
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
             "Date times should consist of dates and times in the format of dd-MM-yyyy HH:mm";
+    public static final String DATETIME_MESSAGE_BAD_RANGE = "Date times cannot be invalid dates (eg. 31/02/2022)";
     public final LocalDateTime startDateTime;
     public final LocalDateTime endDateTime;
     public final Client client;
@@ -71,21 +73,22 @@ public class Meeting {
      */
     public static boolean isValidDate(String stringDate) {
         try {
-            LocalDate.parse(stringDate, Meeting.DATE_FORMATTER);
+            LocalDate.parse(stringDate, Meeting.DATETIME_FORMATTER_LENIENT);
             return true;
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeException e) {
             return false;
         }
     }
 
     /**
-     * Returns true if a string is in the right format to convert into LocalTime.
+     * Returns true if a string is in a valid date range.
+     * Eg. "28-02-2022" is valid but "31-02-2022" is invalid.
      */
-    public static boolean isValidTime(String stringTime) {
+    public static boolean isValidDateRange(String stringDate) {
         try {
-            LocalTime.parse(stringTime);
+            LocalDate.parse(stringDate, Meeting.DATETIME_FORMATTER);
             return true;
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeException e) {
             return false;
         }
     }
