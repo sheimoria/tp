@@ -296,14 +296,24 @@ Examples:
 ### Sort clients: `sortClients`
 
 Retrieve a sorted list of clients based on the provided attribute and sort direction.
-Sort direction refers to either 'asc' (short for ascending) or 'desc' (short for descending).
 
-Format: `sortClients ATTRIBUTE`
+Format: `sortClients [ATTRIBUTE] [dir/SORT_DIRECTION]`
 
-Supported attributes: `numPolicies`, `premium`, `lastContacted`
+Supported attributes: 
+1. `numPolicies`, clients will be sorted based on the number of policies that they have.
+2. `premium`, clients will be sorted based on their total premium sum for all their policies.
+3. `lastContacted` clients will be sorted based on when they were last contacted.
+
+Note to Users:
+
+1. Sort direction refers to either `asc` (short for ascending) or `desc` (short for descending). 
+2. If no sort direction is provided, the default sort direction will be `desc`
+3. If no attribute is provided, the list of clients will be sorted by default in the order that the clients were added
+   to the list.
 
 Examples:
 
+- `sortClients`
 - `sortClients numPolicies`
 - `sortClients premium`
 - `sortClients lastContacted`
