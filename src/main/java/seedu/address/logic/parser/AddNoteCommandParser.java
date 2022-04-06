@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EMPTY_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 
 import java.util.stream.Stream;
@@ -38,6 +39,10 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
         }
 
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
+
+        if (argMultimap.getValue(PREFIX_NOTE).get().equals("")) {
+            throw new ParseException(MESSAGE_INVALID_EMPTY_NOTE);
+        }
 
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get());
 
