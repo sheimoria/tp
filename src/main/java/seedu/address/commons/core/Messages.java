@@ -13,6 +13,7 @@ public class Messages {
     public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = "%1$d clients listed!";
     public static final String MESSAGE_INVALID_PARAMETERS = "Invalid parameters! \n%1$s";
     public static final String MESSAGE_INVALID_SORT_DIRECTION = "Invalid sort direction! \n%1$s";
+    public static final String MESSAGE_EMPTY_CLIENT_LIST = "There are no clients in your contact list to %s";
     public static final String MESSAGE_INVALID_EMPTY_NOTE = "Invalid Note! Cannot create a note with an empty value.";
     public static final String MESSAGE_INVALID_FUTURE_CONTACTED = "Invalid value for field dt/, date last contacted"
         + " cannot be in the future.";

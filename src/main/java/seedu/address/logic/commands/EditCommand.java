@@ -77,6 +77,10 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getClientList();
 
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "edit"));
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
