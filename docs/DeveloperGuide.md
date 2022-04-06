@@ -399,7 +399,8 @@ Step 4. The user executes `deletePolicy 1 pi/1` to delete the first policy of th
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                       | So that I can…​                                                        |
-| -------- | ------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------------- |
+| -------- | ------------------------------------------ | -------------------------------------------------- | 
+----------------------------------------------------------------------  |
 | `* * *`  | potential user                             | see the app populated with sample data             | see how the app will look like when it is in use                       |
 | `* * *`  | new user                                   | see usage instructions                             | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new client                                   |                                                                        |
