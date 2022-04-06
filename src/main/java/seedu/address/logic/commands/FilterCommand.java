@@ -5,8 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FILTER_OPERATOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILTER_VALUE;
 
 import java.time.Month;
+import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
@@ -63,6 +65,11 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Client> lastShownList = model.getClientList();
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "filter"));
+        }
+
         Predicate<Client> predicateLess = null;
         Predicate<Client> predicateEqual;
         Predicate<Client> predicateGreater = null;
