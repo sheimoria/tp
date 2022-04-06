@@ -173,7 +173,8 @@ Examples:
 
 ### Add note for client: `addNote`
 
-Adds a plaintext note to a specific client
+Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
+note specified from this command.
 
 Format: `addNote INDEX nt/NOTE`
 
