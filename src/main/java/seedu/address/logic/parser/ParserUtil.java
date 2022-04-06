@@ -117,6 +117,9 @@ public class ParserUtil {
         if (!DateTime.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
+        if (!DateTime.isPastDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_FUTURE_DATETIME);
+        }
         return new DateTime(trimmedDateTime);
     }
 

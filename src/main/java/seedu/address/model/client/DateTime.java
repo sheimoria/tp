@@ -12,16 +12,17 @@ import java.time.format.DateTimeFormatter;
  */
 public class DateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Datetime should be in dd-MM-yyy HH:mm format.";
+    public static final String MESSAGE_CONSTRAINTS = "Datetime should be a valid datetime in dd-MM-yyy HH:mm format.";
+    public static final String MESSAGE_FUTURE_DATETIME = "Datetime should not be in the future.";
 
     /*
      * Datetime should be in dd-MM-yyyy HH:mm format.
      */
     public static final String VALIDATION_REGEX =
-            "(((0[1-9]|[12]\\d|3[01])-(0[13578]|1[02])-((19|[2-9]\\d)\\d{2}))|((0[1-9]|[12]\\d|30)" +
-                    "-(0[13456789]|1[012])-((19|[2-9]\\d)\\d{2}))|((0[1-9]|1\\d|2[0-8])-02-((19|[2-9]\\d)\\d{2}))" +
-                    "|(29-02-((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))" +
-                    "\\s+([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
+            "(((0[1-9]|[12]\\d|3[01])-(0[13578]|1[02])-((19|[2-9]\\d)\\d{2}))|((0[1-9]|[12]\\d|30)"
+                    + "-(0[13456789]|1[012])-((19|[2-9]\\d)\\d{2}))|((0[1-9]|1\\d|2[0-8])-02-((19|[2-9]\\d)\\d{2}))"
+                    + "|(29-02-((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))"
+                    + "\\s+([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
 
     public final String value;
 
@@ -37,6 +38,7 @@ public class DateTime {
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isPastDateTime(dateTime), MESSAGE_FUTURE_DATETIME);
         value = dateTime;
     }
 
@@ -45,6 +47,14 @@ public class DateTime {
      */
     public static boolean isValidDateTime(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a past datetime.
+     */
+    public static boolean isPastDateTime(String test) {
+        LocalDateTime testDateTime = LocalDateTime.parse(test, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+        return !testDateTime.isAfter(LocalDateTime.now());
     }
 
     /**
