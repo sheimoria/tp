@@ -15,7 +15,7 @@ import seedu.address.model.client.Client;
  */
 public class ListCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "clients";
 
     public static final String MESSAGE_SUCCESS = "Listed all clients";
 
