@@ -40,6 +40,14 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_emptyAddressBook_throwCommandException() {
+        Model model = new ModelManager();
+
+        assertCommandFailure(new DeleteCommand(INDEX_FIRST_CLIENT), model,
+                String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "delete"));
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);

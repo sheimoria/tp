@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalClients.CARL;
 import static seedu.address.testutil.TypicalClients.ELLE;
@@ -15,6 +16,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -72,6 +74,15 @@ public class FindCommandTest {
         expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
+    }
+
+    @Test
+    public void execute_emptyAddressBook_failure() {
+        Model model = new ModelManager();
+
+        assertCommandFailure(new FindCommand(preparePredicate("Kurz Elle Kunz")), model,
+                String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST,
+                "find"));
     }
 
     /**

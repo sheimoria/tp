@@ -97,6 +97,15 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_emptyAddressBook_throwCommandException() {
+        Model model = new ModelManager();
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        assertCommandFailure(new EditCommand(INDEX_FIRST_CLIENT, descriptor), model,
+                String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST,
+                "edit"));
+    }
+
+    @Test
     public void execute_duplicateClientUnfilteredList_failure() {
         Client firstClient = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(firstClient).build();
