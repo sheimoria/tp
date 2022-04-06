@@ -26,13 +26,13 @@ public class AddCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_LAST_CONTACTED + "LAST CONTACTED]\n"
+            + "[" + PREFIX_LAST_CONTACTED + "LAST_CONTACTED]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311 Clementi Ave 2 #02-25 "
-            + PREFIX_BIRTHDAY + "21/03/1999 "
+            + PREFIX_BIRTHDAY + "21-03-1999 "
             + PREFIX_LAST_CONTACTED + "21-03-2022 21:03 ";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";

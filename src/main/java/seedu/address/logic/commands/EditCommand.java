@@ -50,8 +50,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_LAST_CONTACTED + "LAST CONTACTED]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_DATETIME + "21/03/2022 21:03";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_LAST_CONTACTED + "21-03-2022 21:03";
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
