@@ -36,14 +36,18 @@ public class CommandResult {
     /** Index to show. */
     private final Index indexToShow;
 
+    /** Client to update. */
     private final Client clientToUpdate;
+
+    /** Client to delete. */
+    private final Client clientToDelete;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
                          boolean showMeetings, boolean showClients, SortCriteria sortClients, Index indexToShow,
-                         Client clientToUpdate) {
+                         Client clientToUpdate, Client clientToDelete) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTutorial = showTutorial;
@@ -53,6 +57,7 @@ public class CommandResult {
         this.sortClients = sortClients;
         this.indexToShow = indexToShow;
         this.clientToUpdate = clientToUpdate;
+        this.clientToDelete = clientToDelete;
     }
 
     /**
@@ -69,6 +74,25 @@ public class CommandResult {
         this.indexToShow = indexToShow;
         this.sortClients = null;
         this.clientToUpdate = clientToUpdate;
+        this.clientToDelete = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields for non-sort commands.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showTutorial, boolean exit,
+                         boolean showMeetings, boolean showClients, Index indexToShow, Client clientToUpdate,
+                         Client clientToDelete) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.showTutorial = showTutorial;
+        this.exit = exit;
+        this.showMeetings = showMeetings;
+        this.showClients = showClients;
+        this.indexToShow = indexToShow;
+        this.sortClients = null;
+        this.clientToUpdate = clientToUpdate;
+        this.clientToDelete = clientToDelete;
     }
 
     /**
@@ -76,7 +100,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, SortCriteria sortClients) {
         this(feedbackToUser, false, false, false,
-                false, false, sortClients, null, null);
+                false, false, sortClients, null, null, null);
     }
 
     /**
@@ -137,8 +161,17 @@ public class CommandResult {
         return clientToUpdate != null;
     }
 
+    public boolean isDeleteClient() {
+        return clientToDelete != null;
+    }
+
+
     public Client getClientToUpdate() {
         return clientToUpdate;
+    }
+
+    public Client getClientToDelete() {
+        return clientToDelete;
     }
 
     public SortCriteria getSortCriteria() {
