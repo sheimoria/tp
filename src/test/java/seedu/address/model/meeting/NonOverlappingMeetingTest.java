@@ -1,26 +1,23 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.UniqueClientList;
-import seedu.address.model.client.exceptions.ClientNotFoundException;
-import seedu.address.model.client.exceptions.DuplicateClientException;
-import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
-import seedu.address.model.meeting.exceptions.OverlappingMeetingsException;
-import seedu.address.testutil.ClientBuilder;
-import seedu.address.testutil.MeetingBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BOB;
 import static seedu.address.testutil.TypicalMeetings.WITH_ALICE;
 import static seedu.address.testutil.TypicalMeetings.WITH_BENSON;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.address.model.meeting.exceptions.OverlappingMeetingsException;
+import seedu.address.testutil.MeetingBuilder;
 
 public class NonOverlappingMeetingTest {
 

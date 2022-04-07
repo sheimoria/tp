@@ -1,16 +1,24 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.client.Client;
-import seedu.address.testutil.ClientBuilder;
-import seedu.address.testutil.MeetingBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_INPUT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_RANGE_INPUT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATETIME_STORE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATETIME_STORE_FUTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LABEL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATETIME_INPUT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATETIME_STORE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATETIME_STORE_FUTURE;
 import static seedu.address.testutil.TypicalClients.BENSON;
 import static seedu.address.testutil.TypicalMeetings.WITH_ALICE;
 import static seedu.address.testutil.TypicalMeetings.WITH_BENSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.client.Client;
+import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.MeetingBuilder;
 
 public class MeetingTest {
 
