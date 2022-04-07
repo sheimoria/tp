@@ -20,7 +20,7 @@ public class ClearCommandTest {
 
         assertCommandFailure(new ClearCommand(), model, String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "clear"));
     }
-    
+
     @Test
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
