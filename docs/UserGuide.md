@@ -210,44 +210,58 @@ Format: `contacted INDEX dt/DATETIME`
 
 #### Sample Output:
 
-### Add note for client: `addNote`
+### Add/Edit Notes for client: `addNote`
 
-<<<<<<< HEAD
-Adds a plaintext note to a specific client. If there is an existing note on the client, the command will
-edit the existing note on the client.
-=======
 Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
 note specified from this command.
->>>>>>> 2b595da67418bc3f468aa3236ee74648ce04ee53
 
-Format: `addNote INDEX nt/NOTE`
+Format: `addNote 1 nt/NOTE`
 
-- `addNote 1 nt/Commando NSF with high risk of injury`
-- `addNote 2 nt/Look up on policies for emergency care`
+#### Sample Input 1: Adding a new Note to a Client
+`addNote 1 nt/Commando NSF with high risk of injury`
+
+![AddNoteSampleInput1.png](images/sample-output/AddNoteSampleInput1.png)
+
+#### Expected Output: New Note added to Client
+
+![AddNoteSampleOutput1.png](images/sample-output/AddNoteSampleOutput1.png)
+
+#### Sample Input 2: Editing existing Note on Client
+
+`addNote 2 nt/Look up on policies for emergency care`
+
+#### Expected Output: Existing Note on Client overwritten
+
+![AddNoteSampleOutput2.png](images/sample-output/AddNoteSampleOutput2.png)
 
 ### Add/Edit preferences to client: `addPref`
 
-#### Adding New Preference to Client
-
-Adds a preference to a specific client
+Adds a preference to a specific client. If a preference already exists in that category, **replaces** that preference
+with the preference specified by this command
 
 Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
 
-Examples:
+#### Sample Input 1: Adding a new preference to Client
 
-- `addPref 1 cat/Drink pref/Coke`
-- `addPref 2 cat/Cigarettes pref/Marlboro`
+`addPref 1 cat/Drink pref/Coke`
 
-#### Editing Existing Client Preferences
-If category already exists on the client specified, the existing preference will be overwritten
+#### Expected Output:
 
-Examples:
+![AddPreferenceSampleOutput1.png](images/sample-output/AddPreferenceSampleOutput1.png)
 
-Scenario: 
+#### Sample Input 2: Editing an existing preference on Client
 
-- Client at INDEX 1 has an existing preference with `cat/Drink pref/Coke`
-- User calls `addPref 1 cat/Drink pref/Beer`
-- The `Drink` preference of the Client at INDEX `1` will be overwritten and set to `Coke`
+`addPref 2 cat/Drink pref/Beer`
+
+Previously, there was an existing preference of `cat/Drink pref/Coke` on the Client
+
+![AddPreferenceSampleInput2.png](images/sample-output/AddPreferenceSampleOutput1.png)
+
+#### Expected Output:
+
+The previous preference is overwritten and replaced with `cat/Drink pref/Beer`
+
+![AddPreferenceSampleOutput2.png](AddPreferenceSampleOutput2.png)
 
 ### Delete preferences from client: `deletePref`
 
