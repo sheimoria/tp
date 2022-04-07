@@ -172,6 +172,9 @@ class JsonAdaptedClient {
             if (!DateTime.isValidDateTime(lastContacted)) {
                 throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
             }
+            if (!DateTime.isPastDateTime(lastContacted)) {
+                throw new IllegalValueException(DateTime.MESSAGE_FUTURE_DATETIME);
+            }
             modelLastContacted = new DateTime(lastContacted);
         }
 

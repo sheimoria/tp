@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddNoteCommand;
 import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -37,7 +36,7 @@ public class ContactedCommandParser implements Parser<ContactedCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException((String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE)));
+            throw new ParseException((String.format(MESSAGE_INVALID_COMMAND_FORMAT, ContactedCommand.MESSAGE_USAGE)));
         }
 
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();

@@ -47,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_LAST_CONTACTED + "LAST CONTACTED]\n"
+            + "[" + PREFIX_LAST_CONTACTED + "LAST_CONTACTED]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"
@@ -90,8 +90,8 @@ public class EditCommand extends Command {
 
         try {
             editedClient = createEditedClient(clientToEdit, editClientDescriptor);
-        } catch (DuplicatePolicyException dpe) {
-            throw new CommandException(dpe.getMessage());
+        } catch (DuplicatePolicyException e) {
+            throw new CommandException(e.getMessage());
         }
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
