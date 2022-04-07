@@ -14,6 +14,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
+import seedu.address.model.policy.exceptions.PolicyNotFoundException;
 
 /**
  * Deletes a client identified using it's displayed index from the address book.
@@ -38,6 +39,8 @@ public class DeletePolicyCommand extends Command {
      * @param policyIndex index of the policy to be removed
      */
     public DeletePolicyCommand(Index clientIndex, Index policyIndex) {
+        requireNonNull(clientIndex);
+        requireNonNull(policyIndex);
         this.clientIndex = clientIndex;
         this.policyIndex = policyIndex;
     }
@@ -47,8 +50,12 @@ public class DeletePolicyCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getClientList();
 
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "delete policy from"));
+        }
+
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
 
         Client clientToDeletePolicy = lastShownList.get(clientIndex.getZeroBased());
@@ -57,7 +64,7 @@ public class DeletePolicyCommand extends Command {
         try {
             policyToDelete = clientToDeletePolicy.getPolicy(policyIndex.getZeroBased());
             updatedClient = clientToDeletePolicy.removePolicy(policyToDelete);
-        } catch (EmptyPolicyListException | InvalidPolicyIndexException e) {
+        } catch (InvalidPolicyIndexException | EmptyPolicyListException | PolicyNotFoundException e) {
             throw new CommandException(e.getMessage());
         }
         model.setClient(clientToDeletePolicy, updatedClient);

@@ -16,12 +16,6 @@ import seedu.address.testutil.ClientBuilder;
 
 public class ClientTest {
 
-    //    @Test
-    //    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-    //        Client client = new ClientBuilder().build();
-    //        assertThrows(UnsupportedOperationException.class, () -> client.getTags().remove(0));
-    //    }
-
     @Test
     public void isSameClient() {
         // same object -> returns true

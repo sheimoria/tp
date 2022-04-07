@@ -14,6 +14,8 @@ import seedu.address.model.policy.Premium;
  */
 class JsonAdaptedPolicy {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Policy's %s field is missing!";
+
     private final String policy;
     private final String company;
     private final String policyManager;
@@ -48,13 +50,30 @@ class JsonAdaptedPolicy {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Policy toModelType() throws IllegalValueException {
-        if (!Name.isValidName(policy)
-                || !Name.isValidName(company)
-                || !Name.isValidName(policyManager)
-                || !Premium.isValidPremium(premium)
-        ) {
-            throw new IllegalValueException("Incorrect format - Could not save policy");
+        if (policy == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "name"));
         }
+
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "company"));
+        }
+
+        if (policyManager == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "policy manager"));
+        }
+
+        if (premium == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "premium"));
+        }
+
+        if (!Name.isValidName(policy) || !Name.isValidName(company) || !Name.isValidName(policyManager)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!Premium.isValidPremium(premium)) {
+            throw new IllegalValueException(Premium.MESSAGE_CONSTRAINTS);
+        }
+
         return new Policy(new Name(policy), new Name(company), new Name(policyManager), new Premium(premium));
     }
 

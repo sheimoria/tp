@@ -1,7 +1,5 @@
 package seedu.address.model.util;
 
-import java.util.List;
-
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.client.Address;
@@ -11,8 +9,6 @@ import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
-import seedu.address.model.policy.Policy;
-import seedu.address.model.policy.UniquePolicyList;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -48,11 +44,5 @@ public class SampleDataUtil {
             sampleAb.addClient(sampleClient);
         }
         return sampleAb;
-    }
-
-    public static UniquePolicyList getPolicyList(Policy... policies) {
-        UniquePolicyList policyList = new UniquePolicyList();
-        policyList.setPolicies(List.of(policies));
-        return policyList;
     }
 }

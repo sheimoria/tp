@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.List;
+
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Date;
@@ -8,10 +10,10 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.PreferenceMap;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
 import seedu.address.model.policy.UniquePolicyList;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Client objects.
@@ -25,11 +27,13 @@ public class ClientBuilder {
     public static final String DEFAULT_BIRTHDAY = "21-03-1999";
     public static final String DEFAULT_LAST_CONTACTED = "21-03-1999 21:03";
 
-    public static final String DEFAULT_POLICY_NAME = "Big Insurance Policy";
-    public static final String DEFAULT_COMPANY = "Big Insurance Company";
+    public static final String DEFAULT_POLICY_NAME = "Policy";
+    public static final String DEFAULT_COMPANY = "Policy Company";
     public static final String DEFAULT_POLICY_MANAGER = "Vijay";
     public static final String DEFAULT_PREMIUM = "100";
     public static final String DEFAULT_NOTE = "Test Note";
+    public static final String DEFAULT_PREFERENCE_CAT = "Drink";
+    public static final String DEFAULT_PREFERENCE_VALUE = "Coke";
 
     private Name name;
     private Phone phone;
@@ -39,6 +43,7 @@ public class ClientBuilder {
     private DateTime lastContacted;
     private UniquePolicyList policies = new UniquePolicyList();
     private Note note;
+    private PreferenceMap preferences = new PreferenceMap();
 
     /**
      * Creates a {@code ClientBuilder} with the default details.
@@ -56,6 +61,7 @@ public class ClientBuilder {
                 new Premium(DEFAULT_PREMIUM));
         policies.add(defaultPolicy);
         note = new Note(DEFAULT_NOTE);
+        preferences.addPreference(DEFAULT_PREFERENCE_CAT, DEFAULT_PREFERENCE_VALUE);
     }
 
     /**
@@ -70,6 +76,7 @@ public class ClientBuilder {
         lastContacted = clientToCopy.getLastContacted();
         policies.setPolicies(clientToCopy.getPolicies());
         note = clientToCopy.getNote();
+        preferences.addAllPreferences(clientToCopy.getPreferenceMap());
     }
 
     /**
@@ -139,8 +146,8 @@ public class ClientBuilder {
     /**
      * Parses the {@code policies} into a {@code Set<Policy>} and set it to the {@code Client} that we are building.
      */
-    public ClientBuilder withPolicies(Policy ... policies) {
-        this.policies = SampleDataUtil.getPolicyList(policies);
+    public ClientBuilder withPolicies(List<Policy> policyList) {
+        this.policies.setPolicies(policyList);
         return this;
     }
 
@@ -153,7 +160,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, address, birthday, lastContacted);
+        return new Client(name, phone, email, address, birthday, lastContacted, policies, note, preferences);
     }
 
 }

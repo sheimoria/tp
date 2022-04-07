@@ -10,7 +10,6 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -56,6 +55,10 @@ public class AddPolicyCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getClientList();
 
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "add policy to"));
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
@@ -76,8 +79,13 @@ public class AddPolicyCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
+                || (other instanceof AddPolicyCommand // instanceof handles nulls
                 && policyToAdd.equals(((AddPolicyCommand) other).policyToAdd)
                 && index.equals(((AddPolicyCommand) other).index));
+    }
+
+    @Override
+    public String toString() {
+        return "index: " + index.getOneBased() + ", policy: " + policyToAdd.toString();
     }
 }

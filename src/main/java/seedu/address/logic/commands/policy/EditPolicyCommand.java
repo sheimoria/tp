@@ -12,7 +12,6 @@ import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,8 +21,10 @@ import seedu.address.model.client.Name;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.Premium;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
+import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.policy.exceptions.PolicyNotEditedException;
+import seedu.address.model.policy.exceptions.PolicyNotFoundException;
 
 /**
  * Edits a client identified using it's displayed index from the address book.
@@ -70,7 +71,7 @@ public class EditPolicyCommand extends Command {
         List<Client> lastShownList = model.getClientList();
 
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
 
         Client clientToEditPolicy = lastShownList.get(clientIndex.getZeroBased());
@@ -97,22 +98,29 @@ public class EditPolicyCommand extends Command {
         Client updatedClient;
         try {
             updatedClient = clientToEditPolicy.setPolicy(policyIndex.getZeroBased(), editedPolicy);
-        } catch (InvalidPolicyIndexException | PolicyNotEditedException | DuplicatePolicyException e) {
+        } catch (EmptyPolicyListException | PolicyNotFoundException | PolicyNotEditedException
+                | DuplicatePolicyException e) {
             throw new CommandException(e.getMessage());
         }
         model.setClient(clientToEditPolicy, updatedClient);
         model.updateDisplayedClient(updatedClient);
         return new CommandResult((String.format(MESSAGE_SUCCESS, editedPolicy, clientToEditPolicy.getName())),
-                false, false, false, false, false, null, updatedClient);
+                false, false, false, false, false, null,
+                updatedClient);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
+                || (other instanceof EditPolicyCommand // instanceof handles nulls
                 && clientIndex.equals(((EditPolicyCommand) other).clientIndex)
                 && policyIndex.equals(((EditPolicyCommand) other).policyIndex)
                 && editPolicyDescriptor.equals(((EditPolicyCommand) other).editPolicyDescriptor));
+    }
+
+    @Override
+    public String toString() {
+        return editPolicyDescriptor.toString();
     }
 
     /**
@@ -126,6 +134,16 @@ public class EditPolicyCommand extends Command {
         private Premium premium;
 
         public EditPolicyDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditPolicyDescriptor(Policy toCopy) {
+            this.name = toCopy.getName();
+            this.company = toCopy.getCompany();
+            this.policyManager = toCopy.getPolicyManager();
+            this.premium = toCopy.getPremium();
+        }
 
         /**
          * Returns true if at least one field is edited.
@@ -186,6 +204,11 @@ public class EditPolicyCommand extends Command {
                     && getCompany().equals(e.getCompany())
                     && getPolicyManager().equals(e.getPolicyManager())
                     && getPremium().equals(e.getPremium());
+        }
+
+        @Override
+        public String toString() {
+            return String.format("name: %s, coy: %s, pm: %s, $: %s", name, company, policyManager, premium);
         }
     }
 }

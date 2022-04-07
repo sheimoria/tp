@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicies;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,9 +16,6 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Name;
-import seedu.address.model.policy.Policy;
-import seedu.address.model.policy.Premium;
 
 /**
  * A utility class containing a list of {@code Client} objects to be used in tests.
@@ -31,15 +29,7 @@ public class TypicalClients {
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withBirthday("21-03-1999").withLastContacted("21-03-1999 21:03")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withPolicies(
-                    new Policy(
-                            new Name("life insurance"), new Name("insurance company"),
-                            new Name("Alice"), new Premium("10")
-                    ),
-                    new Policy(
-                            new Name("health insurance"), new Name("insurance company"),
-                            new Name("Carl"), new Premium("15"))
-                    )
+            .withPolicies(getTypicalPolicies())
             .withNote("Test Note")
             .build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
@@ -83,6 +73,7 @@ public class TypicalClients {
     }
 
     public static List<Client> getTypicalClients() {
+        System.out.println(BENSON);
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
