@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -47,11 +46,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_LAST_CONTACTED + "LAST CONTACTED]\n"
+            + "[" + PREFIX_LAST_CONTACTED + "LAST_CONTACTED]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
-            + PREFIX_DATETIME + "21/03/2022 21:03";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_LAST_CONTACTED + "21-03-2022 21:03";
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -77,6 +76,10 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getClientList();
 
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "edit"));
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
@@ -86,8 +89,8 @@ public class EditCommand extends Command {
 
         try {
             editedClient = createEditedClient(clientToEdit, editClientDescriptor);
-        } catch (DuplicatePolicyException dpe) {
-            throw new CommandException(dpe.getMessage());
+        } catch (DuplicatePolicyException e) {
+            throw new CommandException(e.getMessage());
         }
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {

@@ -189,16 +189,19 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Client features
 
-The client feature is supported by the models `Client`, `Address`, `Date`, `DateTime`, `Email`, `Name`,
-`NameContainsKeywordsPredicate`, `Note`, `Phone`, `PreferenceMap` and `UniqueClientList`.
+Client features are supported by the models `Client`, `Address`, `Date`, `DateTime`, `Email`, `Name`,
+`NameContainsKeywordsPredicate`, `Note`, `Phone`, `PreferenceMap`, `UniqueClientList` and `UniquePolicyList`.
 
-`NameContainsKeywordsPredicate` checks whether a name contains certain keywords.
+- `NameContainsKeywordsPredicate` checks whether a name contains certain keywords.
 
-`UniqueClientList` allows for the adding, deleting and updating of clients while ensuring clients are unique.
+- `Preference Map` allows for the recording of client preferences in a category -> preference pair.
 
-`Preference Map` allows for the recording of client preferences in a category -> preference pair.
+- `UniqueClientList` allows for the adding, deleting and updating of clients while ensuring clients are unique.
 
-The `Client` model has nine attributes
+- `UniquePolicyList` allows for the adding, deleting and updating of policies for each client while ensuring policies 
+are unique.
+
+The `Client` model has nine attributes:
 
 1. `name`
 2. `phone`
@@ -206,11 +209,11 @@ The `Client` model has nine attributes
 4. `address`
 5. `birthday`
 6. `lastContacted` represents the date and time the client was last contacted at
-7. `policies` stores the client's policies
+7. `policies` represents a list of policies owned by the client
 8. `note` records a note about the client
 9. `preferences` records the client's preferences
 
-The meeting features supports the following operations:
+Client features support the following operations:
 
 - Adding new client - called via the `AddCommand`
 - Viewing clients in the sidebar - called via the `ViewClientCommand`
@@ -219,6 +222,10 @@ The meeting features supports the following operations:
 - Adding note to client - called via the `AddNoteCommand`
 - Adding preferences to client - called via the `AddPreferenceCommand`
 - Setting client last contacted time - called via the `ContactedCommand`
+- Finding a client by name - called via the `FindCommand`
+- Removing all clients from the client list - called via the `ClearCommand`
+- Sorting clients based on various attributes - called via the `SortCommand`
+- Filtering clients based on various attributes - called via the `FilterCommand`
 
 ### Last contacted features
 
@@ -332,31 +339,32 @@ Step 3: If the user would like to remove the `"Drink", "Bubble Tea"` preference 
 
 ### Policy features
 
-The new meeting feature is supported by two new models `Policy` and `Premium`.
+Policy features are supported by three new models `Policy` and `Premium`.
 
 The `Policy` model has four attributes
 
 1. `name` represents the name of the policy
 2. `company` represents the name of the company which sells the policy
 3. `policyManager` represents the name of the person who is managing the policy
-4. `premium` represents the monthly premium payment for the policy
+4. `premium` represents the annual premium payment for the policy
 
-The policy features supports the following operations:
+Policy features support the following operations:
 
 - Adding new policies - called via the `AddPolicyCommand`
 - Editing policies - called via the `EditPolicyCommand`
 - Deleting policies - called via the `DeletePolicyCommand`
-- _In progress_: View all policies - called via the `ViewPoliciesCommand`
 
 Given below is an example usage scenario and how the feature behaves:
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` to add the Medicare Plus policy to the first client in the contact list. The `addPolicy` command instantiates a new `Policy` object which will be added to the existing `Client` object that represents the first client in the list.
+Step 2. The user executes `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` to add the Medicare Plus policy to the first client in the contact list. 
+- The `addPolicy` command instantiates a new `Policy` object which will be added to the `UniquePolicyList` of the 
+  existing`Client` object that represents the first client in the list.
 
 ![Policy1Add](images/Policy1Add.png)
 
-Step 3. The user executes `editPolicy 1 pi/1 $/200` to update the monthly premium of the first policy of the first client in the contact list from $100 up to $200.
+Step 3. The user executes `editPolicy 1 pi/1 $/200` to update the `premium` of the first policy of the first client in the contact list from $100 up to $200.
 
 ![Policy2Edit](images/Policy2Edit.png)
 
@@ -399,7 +407,7 @@ Step 4. The user executes `deletePolicy 1 pi/1` to delete the first policy of th
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                       | So that I can…​                                                        |
-| -------- | ------------------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------------- |
+| -------- | ------------------------------------------ | -------------------------------------------------- |------------------------------------------------------------------------|
 | `* * *`  | potential user                             | see the app populated with sample data             | see how the app will look like when it is in use                       |
 | `* * *`  | new user                                   | see usage instructions                             | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new client                                   |                                                                        |
@@ -411,8 +419,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | view my meeting schedule on a given today          | know what timings I will be occupied on that day                       |
 | `* *`    | user                                       | get warnings if there are conflicts in my schedule | avoid scheduling clashing meetings                                     |
 | `* *`    | user                                       | add notes about my clients                         | record details about clients                                           |
-| `* *`    | user                                       | add details of my client's policies                | categorize clients by policies                                         |
-| `* *`    | user                                       | update details of my client's policies             | accommodate changes such as change in monthly premium                  |
+| `* *`    | user                                       | add details of my client's policies                | track the policy information of all my clients                         |
+| `* *`    | user                                       | update details of my client's policies             | accommodate changes such as change in annual premium payment           |
 | `* *`    | user                                       | delete policies                                    | remove policies that clients have surrendered or terminated            |
 | `* *`    | user                                       | record my client's individual preferences          | better cater to their needs                                            |
 | `*`      | user with many clients in the address book | sort clients by name                               | locate a client easily                                                 |

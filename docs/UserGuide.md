@@ -26,7 +26,7 @@ dedicated platform catered to helping them manage their clientele. This is where
   1. [Viewing help : `help`](#viewing-help--help)
   2. [Add client: `addClient`](#add-client-addclient)
   3. [View client: `viewClient`](#view-client-viewclient)
-  4. [Update client: `updateClient`](#update-client-updateclient)
+  4. [Edit client: `editClient`](#edit-client-editclient)
   5. [Delete client: `deleteClient`](#delete-client-deleteclient)
   6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
   7. [Add notes for client: `addNote`](#add-note-for-client-addnote)
@@ -35,17 +35,16 @@ dedicated platform catered to helping them manage their clientele. This is where
   10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
   11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
   12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-  13. [View All Meetings: `meetings`](#view-all-meetings-meetings)
-  14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-updatemeeting)
+  13. [View All Meetings: `meetings`](#view-meetings-meetings)
+  14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
   15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-  16. [Close Meeting: `closeMeeting`]()
+  16. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
   17. [Sort Clients: `sortClients`](#sort-clients-sortclients)
   18. [Filter Clients: `filterClients`](#filter-clients-filterclients)
   19. [Clearing all entries : `clear`](#clearing-all-entries--clear)
   20. [Exiting the program : `exit`](#exiting-the-program--exit)
   21. [Saving the data](#saving-the-data)
   22. [Editing the data file](#editing-the-data-file)
-  23. [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 - [Mockups](#mockups)
 - [Command summary](#command-summary)
@@ -161,11 +160,11 @@ Format: `viewClient INDEX`
 #### Expected Output:
 ![ViewClientSampleOutput1.png](images/sample-output/ViewClientSampleOutput1.png)
 
-### Update client: `updateClient`
+### Edit client: `editClient`
 
-Update a client in your address book.
+Edit a client in your address book.
 
-Format: `updateClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY] 
+Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY] 
 [lc/NEW_LAST_CONTACTED]`
 
 - `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
@@ -173,7 +172,7 @@ Format: `updateClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/N
 
 #### Sample Input:
 
-`updateClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
+`editClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
 
 ![EditClientSampleInput1.png](images/sample-output/EditClientSampleInput1.png)
 
@@ -213,8 +212,13 @@ Format: `contacted INDEX dt/DATETIME`
 
 ### Add note for client: `addNote`
 
+<<<<<<< HEAD
 Adds a plaintext note to a specific client. If there is an existing note on the client, the command will
 edit the existing note on the client.
+=======
+Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
+note specified from this command.
+>>>>>>> 2b595da67418bc3f468aa3236ee74648ce04ee53
 
 Format: `addNote INDEX nt/NOTE`
 
@@ -342,7 +346,7 @@ Examples:
 
 - `deleteMeeting 1`
 
-### Delete meeting: `closeMeeting`
+### Close meeting: `closeMeeting`
 
 Closes a meeting and updates the lastContacted of the client that was met to match the end of the meeting. 
 The meeting will remain in the meeting list and not be deleted after it is closed.
@@ -459,7 +463,7 @@ If your changes to the data file makes its format invalid, onlyFAs will discard 
 |-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
 | **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
-| **updateClient**  | `updateClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`updateClient 1 e/new@email.com`                               |
+| **editClient**    | `editClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`editClient 1 e/new@email.com`                                   |
 | **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
 | **contacted**     | `contacted INDEX dt/DATETIME` <br> e.g., `contacted 1 dt/21-03-2022 21:03`                                                                             |
 | **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
