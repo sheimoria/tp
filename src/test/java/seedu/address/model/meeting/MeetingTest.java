@@ -21,7 +21,7 @@ public class MeetingTest {
     //    }
 
     @Test
-    public void isOverlapping_nonOverlappingMeeting_success() {
+    public void isOverlapping_nonOverlappingMeeting_returnsFalse() {
         Meeting withAlice = new MeetingBuilder(WITH_ALICE).build();
         Meeting withBenson = new MeetingBuilder(WITH_BENSON).build();
         assertFalse(withAlice.isOverlapping(withBenson));
@@ -29,7 +29,7 @@ public class MeetingTest {
     }
 
     @Test
-    public void isOverlapping_overlappingMeeting_success() {
+    public void isOverlapping_overlappingMeeting_returnsTrue() {
         Meeting withAlice = new MeetingBuilder(WITH_ALICE)
                 .withStartDateTime(VALID_START_DATETIME_STORE)
                 .withEndDateTime(VALID_END_DATETIME_STORE)
@@ -43,13 +43,13 @@ public class MeetingTest {
     }
 
     @Test
-    public void isOverlapping_overlappingItself_success() {
+    public void isOverlapping_overlappingItself_returnsTrue() {
         Meeting withAlice = new MeetingBuilder(WITH_ALICE).build();
         assertTrue(withAlice.isOverlapping(withAlice));
     }
 
     @Test
-    public void isUpcoming_futureMeeting_success() {
+    public void isUpcoming_futureMeeting_returnsTrue() {
         Meeting withAlice = new MeetingBuilder(WITH_ALICE)
                 .withStartDateTime(VALID_START_DATETIME_STORE_FUTURE)
                 .withEndDateTime(VALID_END_DATETIME_STORE_FUTURE)
@@ -58,50 +58,49 @@ public class MeetingTest {
     }
 
     @Test
-    public void isUpcoming_pastMeeting_success() {
+    public void isUpcoming_pastMeeting_returnsFalse() {
         Meeting withAlice = new MeetingBuilder(WITH_ALICE).build();
         assertFalse(withAlice.isUpcoming());
     }
 
     @Test
-    public void isValidDate_validDate_success() {
+    public void isValidDate_validDate_returnsTrue() {
         assertTrue(Meeting.isValidDate(VALID_START_DATETIME_INPUT));
+    }
+
+    @Test
+    public void isValidDate_validDateButInvalidDateRange_returnsTrue() {
         assertTrue(Meeting.isValidDate(INVALID_DATETIME_RANGE_INPUT));
     }
 
     @Test
-    public void isValidDate_validDateButInvalidDateRange_success() {
-        assertTrue(Meeting.isValidDate(INVALID_DATETIME_RANGE_INPUT));
-    }
-
-    @Test
-    public void isValidDate_invalidDate_success() {
+    public void isValidDate_invalidDate_returnsFalse() {
         assertFalse(Meeting.isValidDate(INVALID_DATETIME_INPUT));
     }
 
     @Test
-    public void isValidDateRange_validDateRange_success() {
+    public void isValidDateRange_validDateRange_returnsTrue() {
         assertTrue(Meeting.isValidDateRange(VALID_START_DATETIME_INPUT));
     }
 
     @Test
-    public void isValidDateRange_invalidDate_success() {
+    public void isValidDateRange_invalidDate_returnsFalse() {
         assertFalse(Meeting.isValidDateRange(INVALID_DATETIME_INPUT));
     }
 
     @Test
-    public void isValidDateRange_invalidDateRange_success() {
+    public void isValidDateRange_invalidDateRange_returnsFalse() {
         assertFalse(Meeting.isValidDateRange(INVALID_DATETIME_RANGE_INPUT));
     }
 
     @Test
-    public void isValidMeeting_validMeeting_success() {
+    public void isValidMeeting_validMeeting_returnsTrue() {
         Meeting withAlice = new MeetingBuilder(WITH_ALICE).build();
         assertTrue(Meeting.isValidMeeting(withAlice.getStartDateTime(), withAlice.getEndDateTime()));
     }
 
     @Test
-    public void isValidMeeting_invalidMeeting_success() {
+    public void isValidMeeting_invalidMeeting_returnsFalse() {
         Meeting withAlice = new MeetingBuilder(WITH_ALICE).withStartDateTime(VALID_START_DATETIME_STORE_FUTURE).build();
         assertFalse(Meeting.isValidMeeting(withAlice.getStartDateTime(), withAlice.getEndDateTime()));
     }

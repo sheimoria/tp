@@ -84,25 +84,6 @@ public class NonOverlappingMeetingList implements Iterable<Meeting> {
     }
 
     /**
-     * Sorts the meetings in descending order based on starting meeting time.
-     */
-    public void sortDescending() {
-        List<Meeting> sortedMeetings = new ArrayList<>(internalList);
-        Comparator<Meeting> comparatorDate = Comparator
-                .comparing((Meeting meeting) -> meeting.getStartDateTime().toLocalDate())
-                .reversed();
-
-        Comparator<Meeting> comparatorTime = Comparator
-                .comparing((Meeting meeting) -> meeting.getStartDateTime().toLocalTime());
-
-        Comparator<Meeting> comparatorDateThenTime = comparatorDate
-                .thenComparing(comparatorTime);
-
-        sortedMeetings.sort(comparatorDateThenTime);
-        setMeetings(sortedMeetings);
-    }
-
-    /**
      * Update meetings with the specified client to a new client.
      */
     public void setClient(Client target, Client editedClient) {
