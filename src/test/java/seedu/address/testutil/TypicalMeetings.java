@@ -43,10 +43,14 @@ public class TypicalMeetings {
     /**
      * Returns an {@code AddressBook} with all the typical clients and meetings.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookWithMeetings() {
         AddressBook ab = new AddressBook();
         for (Client client : TypicalClients.getTypicalClients()) {
             ab.addClient(client);
+        }
+
+        for (Meeting meeting: getTypicalMeetings()) {
+            ab.addMeeting(meeting);
         }
 
         return ab;
