@@ -24,6 +24,7 @@ import seedu.address.testutil.EditClientDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    public static final int VALID_INDEX = 0;
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
