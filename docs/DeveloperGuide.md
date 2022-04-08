@@ -150,18 +150,19 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="650" />
 
 The `Model` component,
 
 - stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
+- stores the address book data i.e., all `Meeting` objects (which are contained in a `NonOverlappingMeetings` object).
 - stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Client` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="550" />
 
 </div>
 
@@ -169,7 +170,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
 
@@ -260,7 +261,7 @@ interface recognises as a blank field i.e. `-`.
 
 The new meeting feature is supported by two new main models `Meeting` and `NonOverlappingMeetingList`. The relationship between `Meeting` to `NonOverlappingMeetingList` is similar to the relationship between `Client` and `UniqueClientList`.
 
-The `NonOverlappingMeetingList` is stored in `AddressBook` class and ensures that no two meetings overlap.
+**The `NonOverlappingMeetingList` is stored in `AddressBook` class and ensures that no two meetings overlap.
 
 The `Meeting` model has four attributes
 
@@ -276,7 +277,7 @@ The meeting features supports the following operations:
 - Editing meetings - called via the `EditMeetingCommand`
 - Deleting meetings - called via the `DeleteMeetingCommand`
 
-Given below is an example usage scenario and how the feature behaves:
+Given below is an example usage scenario and how the feature behaves:**
 
 Step 1. The user launches the application. The `NonOverlappingMeetingList` is loaded from persistent memory if it exists and be stored in the AddressBook.
 
