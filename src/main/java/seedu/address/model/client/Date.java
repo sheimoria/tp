@@ -49,7 +49,7 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a past datetime.
+     * Returns true if a given string is a past date.
      */
     public static boolean isPastDate(String test) {
         LocalDate testDate = parse(test);
