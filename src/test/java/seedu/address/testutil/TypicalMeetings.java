@@ -20,7 +20,7 @@ public class TypicalMeetings {
                     .withName("Alice Pauline")
                     .withPhone("94351253")
                     .withEmail("alice@example.com")
-                    .withEmail("123, Jurong West Ave 6, #08-111")
+                    .withAddress("123, Jurong West Ave 6, #08-111")
                     .build())
             .withLabel("Lunch")
             .build();
@@ -32,7 +32,7 @@ public class TypicalMeetings {
                     .withName("Benson Meier")
                     .withPhone("98765432")
                     .withEmail("johnd@example.com")
-                    .withEmail("311, Clementi Ave 2, #02-25")
+                    .withAddress("311, Clementi Ave 2, #02-25")
                     .build())
             .withLabel("")
             .build();
@@ -43,10 +43,14 @@ public class TypicalMeetings {
     /**
      * Returns an {@code AddressBook} with all the typical clients and meetings.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookWithMeetings() {
         AddressBook ab = new AddressBook();
         for (Client client : TypicalClients.getTypicalClients()) {
             ab.addClient(client);
+        }
+
+        for (Meeting meeting: getTypicalMeetings()) {
+            ab.addMeeting(meeting);
         }
 
         return ab;
