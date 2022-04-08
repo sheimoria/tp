@@ -349,7 +349,7 @@ The `filterClients` command is a complex command involving 3 parameters:
 - `age`: Accepts integer values. Example: `25`, `27`
 - `premium`: Accepts integer values. Example: `25`, `27`
 - `company`: Accepts text inputs represent companies. Example: `Great Eastern`, `AAM`
-   
+
 Examples:
 
 1. `filterClients age op/equal v/25`: Retrieves all clients of `age` = `25`
