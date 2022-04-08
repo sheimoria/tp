@@ -29,8 +29,8 @@ dedicated platform catered to helping them manage their clientele. This is where
   4. [Edit client: `editClient`](#edit-client-editclient)
   5. [Delete client: `deleteClient`](#delete-client-deleteclient)
   6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
-  7. [Add notes for client: `addNote`](#add-note-for-client-addnote)
-  8. [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
+  7. [Add/edit notes for client: `addNote`](#add-edit-notes-for-client-addnote)
+  8. [Add/edit preferences to client: `addPref`](#add-edit-preferences-to-client-addpref)
   9. [Add policy: `addPolicy`](#add-policy-addpolicy)
   10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
   11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
@@ -46,7 +46,6 @@ dedicated platform catered to helping them manage their clientele. This is where
   21. [Saving the data](#saving-the-data)
   22. [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
-- [Mockups](#mockups)
 - [Command summary](#command-summary)
 
 ---
@@ -200,15 +199,15 @@ The client is removed from the application.
 
 Updates the last contacted datetime of a client.
 
-Format: `contacted INDEX dt/DATETIME`
+Format: `contacted INDEX lc/DATETIME`
 
 #### Sample Input:
 
-- `contacted 1 dt/21-03-2022 21:03`
+- `contacted 1 lc/21-03-2022 21:03`
 
 #### Sample Output:
 
-### Add/Edit Notes for client: `addNote`
+### Add/Edit Notes for client:` addNote`
 
 Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
 note specified from this command.
@@ -433,13 +432,13 @@ Examples:
 
 OnlyFAs’s data is saved in the hard drive automatically after any command that changes the data. There is no need to save manually.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clear all entries in onlyFAs.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exit the program.
 
