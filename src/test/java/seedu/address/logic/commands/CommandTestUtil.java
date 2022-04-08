@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
@@ -39,6 +41,11 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_BIRTHDAY_AMY = "10-12-2001";
+    public static final String VALID_BIRTHDAY_BOB = "21-03-1999";
+    public static final String VALID_LAST_CONTACTED_AMY = "06-01-2022 12:00";
+    public static final String VALID_LAST_CONTACTED_BOB = "21-03-2022 21:03";
+
 
     public static final String VALID_POLICY_NAME_INSURANCE = "Insurance Policy";
     public static final String VALID_POLICY_NAME_INVESTMENT = "Investment Policy";
@@ -59,6 +66,10 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
+    public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
+    public static final String LAST_CONTACTED_DESC_AMY = " " + PREFIX_LAST_CONTACTED + VALID_LAST_CONTACTED_AMY;
+    public static final String LAST_CONTACTED_DESC_BOB = " " + PREFIX_LAST_CONTACTED + VALID_LAST_CONTACTED_BOB;
 
     public static final String POLICY_NAME_DESC_INSURANCE = " " + PREFIX_NAME + VALID_POLICY_NAME_INSURANCE;
     public static final String POLICY_NAME_DESC_INVESTMENT = " " + PREFIX_NAME + VALID_POLICY_NAME_INVESTMENT;
@@ -77,6 +88,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_BIRTHDAY = " " + PREFIX_BIRTHDAY + "21/03/2001";
+    public static final String INVALID_LAST_CONTACTED = " " + PREFIX_LAST_CONTACTED + "21/03/2022 21/03";
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "James&";
     public static final String INVALID_POLICY_MANAGER_DESC = " " + PREFIX_POLICY_MANAGER + "James&";
     public static final String INVALID_PREMIUM_DESC = " " + PREFIX_PREMIUM + "abc";
