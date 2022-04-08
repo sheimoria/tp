@@ -4,15 +4,16 @@ title: User Guide
 ---
 ## Introduction - What is onlyFAs?
 
-<strong>onlyFAs</strong> is for both *upcoming* and *high achieving* financial advisors looking to *maintain* and *develop* good relationships with *current* and *potential* clients.
+<strong>onlyFAs</strong> is a Customer Relationship Management (CRM) application targeted at *upcoming* financial
+advisors looking to *maintain* and *develop* good relationships with *current* and *potential* clients.
 
 ### What can onlyFAs do?
 
 It allows users to:
 1. Record all clients in the app
 2. Manage their clients' personal details
-3. Manage their clients' portfolios' details
-4. Track your meetings with your clients
+3. Manage the investment portfolios of each client
+4. Track the meetings the user has with their clients
 5. Track the date that each client was last contacted
 
 Currently, financial advisors might have to rely on apps like Google Calendar or Microsoft Excel, and do not have a
@@ -83,22 +84,31 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+### Guidelines for Command Format
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+
+- If the command requires a reference to an INDEX, any leading zeroes (`01`, `001`) will be ignored.<br>
+e.g. in `viewClient 1`, `1` is the INDEX of the specified client, and can be referenced as `01` or `0001` with no regard to the leading zeroes
+
+
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+
 
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -119,36 +129,54 @@ Adds a client to the list of managed clients.
 
 Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/LAST_CONTACTED]`
 
+- `EMAIL` must be in the format `"local-part@domain"` and adhere to the following constraints
+  - The `local-part` should only contain alphanumeric characters and the special characters `+_.-`.
+  - The `local-part` cannot start or end with these special characters.
+  - This is followed by an `@` and then a domain name. The domain name is made up of labels separated by periods.
+  - The domain name must:
+    - end with a domain label at least 2 characters long
+    - have each domain label start and end with alphanumeric characters
+    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 - `BIRTHDAY` must be in `dd-MM-yyyy` format.
 - `LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
 
-Examples:
 
-- `addClient n/Vijay Narayanan p/91234567 e/vijay@email.com a/210 Street 3 b/21-03-1999 lc/21-03-2022 21:03`
+#### Sample Input:
+`addClient n/Vijay Narayanan p/91234567 e/vijay@email.com a/210 Street 3 b/21-03-1999 lc/21-03-2022 21:03`<br>
+
+#### Expected Output:
+![AddClientSampleOutput1.png](images/sample-output/AddClientSampleOutput1.png)
 
 ### View client: `viewClient`
 
-View a client in your address book.
+View a client in your address book. The client to be viewed will appear on the `Dynamic Panel` Section 
 
 Format: `viewClient INDEX`
 
-Examples:
+#### Sample Input:
 
 - `viewClient 1`
 
+#### Expected Output:
+![ViewClientSampleOutput1.png](images/sample-output/ViewClientSampleOutput1.png)
+
 ### Edit client: `editClient`
 
-Update a client in your address book.
+Edit a client in your address book.
 
-Format: `updateClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]
-[lc/NEW_LAST_CONTACTED]`
+Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY] 
 
 - `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
-- `NEW_LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
 
-Examples:
+#### Sample Input:
 
-- `editClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
+`editClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
+
+![EditClientSampleInput1.png](images/sample-output/EditClientSampleInput1.png)
+
+#### Expected Output:
+
+![EditClientSampleOutput1.png](images/sample-output/EditClientSampleOutput1.png)
 
 ### Delete client: `deleteClient`
 
@@ -156,9 +184,17 @@ Delete a client from your address book.
 
 Format: `deleteClient INDEX`
 
-Examples:
+#### Sample Input:
 
-- `deleteClient 1`
+`deleteClient 1`
+
+![DeleteClientSampleInput1.png](images/sample-output/DeleteClientSampleInput1.png)
+
+#### Sample Output:
+
+The client is removed from the application.
+
+![DeleteClientSampleOutput1.png](images/sample-output/DeleteClientSampleOutput1.png)
 
 ### Update last contacted of client: `contacted`
 
@@ -166,30 +202,64 @@ Updates the last contacted datetime of a client.
 
 Format: `contacted INDEX dt/DATETIME`
 
-Examples:
+#### Sample Input:
 
 - `contacted 1 dt/21-03-2022 21:03`
 
-### Add note for client: `addNote`
+#### Sample Output:
+
+### Add/Edit Notes for client: `addNote`
 
 Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
 note specified from this command.
 
-Format: `addNote INDEX nt/NOTE`
+Format: `addNote 1 nt/NOTE`
 
-- `addNote 1 nt/Commando NSF with high risk of injury`
-- `addNote 2 nt/Look up on policies for emergency care`
+#### Sample Input 1: Adding a new Note to a Client
+`addNote 1 nt/Commando NSF with high risk of injury`
 
-### Add preferences to client: `addPref`
+![AddNoteSampleInput1.png](images/sample-output/AddNoteSampleInput1.png)
 
-Adds a preference to a specific client
+#### Expected Output: New Note added to Client
+
+![AddNoteSampleOutput1.png](images/sample-output/AddNoteSampleOutput1.png)
+
+#### Sample Input 2: Editing existing Note on Client
+
+`addNote 2 nt/Look up on policies for emergency care`
+
+#### Expected Output: Existing Note on Client overwritten
+
+![AddNoteSampleOutput2.png](images/sample-output/AddNoteSampleOutput2.png)
+
+### Add/Edit preferences to client: `addPref`
+
+Adds a preference to a specific client. If a preference already exists in that category, **replaces** that preference
+with the preference specified by this command
 
 Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
 
-Examples:
+#### Sample Input 1: Adding a new preference to Client
 
-- `addPref 1 cat/Drink pref/Coke`
-- `addPref 2 cat/Cigarettes pref/Marlboro`
+`addPref 1 cat/Drink pref/Coke`
+
+#### Expected Output:
+
+![AddPreferenceSampleOutput1.png](images/sample-output/AddPreferenceSampleOutput1.png)
+
+#### Sample Input 2: Editing an existing preference on Client
+
+`addPref 2 cat/Drink pref/Beer`
+
+Previously, there was an existing preference of `cat/Drink pref/Coke` on the Client
+
+![AddPreferenceSampleInput2.png](images/sample-output/AddPreferenceSampleOutput1.png)
+
+#### Expected Output:
+
+The previous preference is overwritten and replaced with `cat/Drink pref/Beer`
+
+![AddPreferenceSampleOutput2.png](AddPreferenceSampleOutput2.png)
 
 ### Delete preferences from client: `deletePref`
 
