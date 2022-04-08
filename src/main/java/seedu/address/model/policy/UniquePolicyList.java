@@ -13,6 +13,7 @@ import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.policy.exceptions.PolicyNotEditedException;
+import seedu.address.model.policy.exceptions.PolicyNotFoundException;
 
 /**
  * A list of policies that enforces uniqueness between its elements and does not allow nulls.
@@ -56,14 +57,19 @@ public class UniquePolicyList implements Iterable<Policy> {
      * {@code target} must exist in the list.
      * The policy identity of {@code editedPolicy} must not be the same as another existing policy in the list.
      */
-    public void setPolicy(Policy target, Policy editedPolicy) throws InvalidPolicyIndexException,
+    public void setPolicy(Policy target, Policy editedPolicy) throws EmptyPolicyListException,
+            InvalidPolicyIndexException,
             PolicyNotEditedException,
             DuplicatePolicyException {
         requireAllNonNull(target, editedPolicy);
 
+        if (internalList.isEmpty()) {
+            throw new EmptyPolicyListException();
+        }
+
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new InvalidPolicyIndexException();
+            throw new PolicyNotFoundException();
         }
 
         if (target.equals(editedPolicy)) {
@@ -91,13 +97,13 @@ public class UniquePolicyList implements Iterable<Policy> {
      * Removes the equivalent policy from the list.
      * The policy must exist in the list.
      */
-    public void remove(Policy toRemove) throws EmptyPolicyListException, InvalidPolicyIndexException {
+    public void remove(Policy toRemove) throws EmptyPolicyListException, PolicyNotFoundException {
         requireNonNull(toRemove);
         if (internalList.isEmpty()) {
             throw new EmptyPolicyListException();
         }
         if (!internalList.remove(toRemove)) {
-            throw new InvalidPolicyIndexException();
+            throw new PolicyNotFoundException();
         }
     }
 
