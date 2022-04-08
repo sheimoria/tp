@@ -12,11 +12,23 @@ Given below are my contributions to the project.
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=sheimoria&breakdown=true)
 
 - **Enhancements implemented**:
+  - [x] Add `lastContacted` field to `Client`
+  - [x] Add `birthday` field to `Client`
+  - [x] Add `contacted` command
+  - [x] Sort clients by `lastContacted`
+  - [x] Make all parameters in `addClient` command optional except for `Name` and `Phone` number
 
 - **Contributions to the UG**:
+- [x] Add `contacted` command format, example, sample input and expected output
+- [x] Edit `addClient` command formant, example, sample input and expected output
+- [x] Edit `editClient` command format, example, sample input and expected output
+- [x] Table of contents with hyperlinks to respective UG sections
 
 - **Contributions to the DG**:
+- [x] Table of contents with hyperlinks to respective DG sections
+- [x] Add `lastContacted` feature implementation
 
 - **Review/mentoring contributions**:
+- [x] Review Vijay's PRs
 
 - **Contributions beyond the project team:**:

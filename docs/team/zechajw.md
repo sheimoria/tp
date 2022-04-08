@@ -14,10 +14,10 @@ Given below are my contributions to the project.
 - **Enhancements implemented**:
 
 #### 1. Notes Feature
-Related User Stories: 
+Related User Stories:
 - As a first time user, I can add notes about my clients so that I can have a better personal understanding of each of my clients
 - As a user, I can delete notes from a specific client so that I can remove notes that are no longer useful
-    
+
 
 Description of Feature: <br>
 `Note` is an additional attribute added to the main `Client` class. Users can call the command `addNote` to add/edit
@@ -26,7 +26,7 @@ an existing note on the `Client`, and they can call the `deleteNote` command to 
 Implementation:
 1. Creation of a `Note` class in the object model that forms an aggregation relationship with the `Client` class.
 The inner implementation of `Note` uses a simple `String` value with no formatting checks.
-2. Integrating it into the current `Client`. This involved adding a new parameter to the existing `Client` constructor and 
+2. Integrating it into the current `Client`. This involved adding a new parameter to the existing `Client` constructor and
 changing any test cases to prevent regression bugs. Furthermore, the `ClientBuilder` had to be updated to add a Note to the
 `Client` when building during test cases.
 
@@ -55,7 +55,7 @@ Description of Feature: <br>
 `PreferenceMap` is an additional attribute to the main `Client` class. The `PreferenceMap` stores a `HashMap` of `String, String` pairs
 that allow users to call the `addPref` command to add key, value pairs to the `PreferenceMap`. For example, the user can call
 `addPref 1 cat/Drink pref/Beer` to indicate the `Client` has a `Drink` preference of `Beer`
-    
+
 Implementation:
 1. Creation of a `PreferenceMap` class in the object model that contains a `HashMap<String, String>` and handles the inner implementation
 of the preferences `HashMap`. The `PreferenceMap` has a method `addPreference(String, String)` that the client can call to add
@@ -88,12 +88,28 @@ The preference is deleted.
 #### 3. Filter Feature
 
 Related User Stories:
+- As an intermediate user, I can retrieve a list of filtered clients by age so that I can market specific policies to certain age groups
+- As an intermediate user, I can retrieve a filtered list of clients by birth month so that I can have a better understanding of when my
+clients' birthdays are for better birthday gift planning
 
 Description of Feature:
+The `FilterList` has an Observable-Observer Relationship with the master `ClientList` that is used in the UI view.
+WHen a `Predicate<Client` is passed to the `FilterList`, the UI is updated to show only the `Client` entries that match
+the given `Predicate<Client>`.
 
 Implementation:
+1. Creation of a `FilterCommand` class that has three attributes `predicateGreater`, `predicateEqual`, `predicateLesser`
+2. The execution of a `FilterCommand` contains 2 steps. In the first step, we use the `attribute`; e.g. `age` and the 
+`value`; e.g. 25 to construct three `Predicate<Client>` objects that are stored in the attributes. In the second phase, 
+the `op`; e.g. `greater`, `equal`, `lesser` is used to choose which `Predicate<Client>` to be passed to the `ClientList`.
+Predicate chaining using the `.or()` method in the `Predicate` class is used to implement `lesserOrEqual` and `greaterOrEqual`
 
 Example of Usage:
+
+If we have a list of clients, and we only want to find those with `age = 25`
+
+![img.png](../images/zech-ppp/PPPFilterFeatureInitial.png)
+
 
 - **Contributions to the UG**:
 

@@ -199,7 +199,7 @@ Client features are supported by the models `Client`, `Address`, `Date`, `DateTi
 
 - `UniqueClientList` allows for the adding, deleting and updating of clients while ensuring clients are unique.
 
-- `UniquePolicyList` allows for the adding, deleting and updating of policies for each client while ensuring policies 
+- `UniquePolicyList` allows for the adding, deleting and updating of policies for each client while ensuring policies
 are unique.
 
 The `Client` model has nine attributes:
@@ -359,7 +359,8 @@ Given below is an example usage scenario and how the feature behaves:
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` to add the Medicare Plus policy to the first client in the contact list. 
+Step 2. The user executes `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` to add the Medicare Plus policy to
+the first client in the contact list.
 - The `addPolicy` command instantiates a new `Policy` object which will be added to the `UniquePolicyList` of the 
   existing`Client` object that represents the first client in the list.
 

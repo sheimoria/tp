@@ -13,12 +13,15 @@ import java.time.format.DateTimeFormatter;
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in dd-MM-yyyy format.";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be a valid date in dd-MM-yyyy format.";
+    public static final String MESSAGE_FUTURE_DATE = "Date should not be in the future.";
 
     /*
      * Date should be in dd-MM-yyyy format.
      */
-    public static final String VALIDATION_REGEX = "^([012][1-9]|3[01])-([0][1-9]|1[012])-([0-9][0-9][0-9][1-9])$";
+    public static final String VALIDATION_REGEX = "(((0[1-9]|[12]\\d|3[01])-(0[13578]|1[02])-((19|[2-9]\\d)\\d{2}))|((0"
+            + "[1-9]|[12]\\d|30)-(0[13456789]|1[012])-((19|[2-9]\\d)\\d{2}))|((0[1-9]|1\\d|2[0-8])-02-((19|[2-9]\\d)\\d"
+            + "{2}))|(29-02-((1[6-9]|[2-9]\\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))";
 
     public final String value;
 
@@ -34,6 +37,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isPastDate(date), MESSAGE_FUTURE_DATE);
         value = date;
     }
 
@@ -42,6 +46,31 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a past date.
+     */
+    public static boolean isPastDate(String test) {
+        LocalDate testDate = parse(test);
+        return !testDate.isAfter(LocalDate.now());
+    }
+
+    /**
+     * Converts a valid date from {@code String} to {@code LocalDate}.
+     *
+     * @param date A valid date in {@code String}.
+     */
+    public static LocalDate parse(String date) {
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
+
+    public int getAge() {
+        return Period.between(parse(value), LocalDate.now()).getYears();
+    }
+
+    public int getMonth() {
+        return parse(value).getMonthValue();
     }
 
     @Override
@@ -56,20 +85,8 @@ public class Date {
                 && value.equals(((Date) other).value)); // state check
     }
 
-    public int getAge() {
-        return Period.between(parse(value), LocalDate.now()).getYears();
-    }
-
-    public int getMonth() {
-        return parse(value).getMonthValue();
-    }
-
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    public LocalDate parse(String date) {
-        return LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 }
