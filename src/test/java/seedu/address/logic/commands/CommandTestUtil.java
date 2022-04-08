@@ -3,9 +3,13 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_MANAGER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -18,12 +22,14 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    public static final int VALID_INDEX = 0;
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -34,6 +40,17 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
 
+    public static final String VALID_POLICY_NAME_INSURANCE = "Insurance Policy";
+    public static final String VALID_POLICY_NAME_INVESTMENT = "Investment Policy";
+    public static final String VALID_COMPANY_INSURANCE = "Insurance Company";
+    public static final String VALID_COMPANY_INVESTMENT = "Investment Company";
+    public static final String VALID_POLICY_MANAGER_INSURANCE = VALID_NAME_AMY;
+    public static final String VALID_POLICY_MANAGER_INVESTMENT = VALID_NAME_BOB;
+    public static final String VALID_PREMIUM_INSURANCE = "1000";
+    public static final String VALID_PREMIUM_INVESTMENT = "2000";
+    public static final String VALID_POLICY_INDEX_INSURANCE = "1";
+    public static final String VALID_POLICY_INDEX_INVESTMENT = "2";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -43,13 +60,40 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
 
+    public static final String POLICY_NAME_DESC_INSURANCE = " " + PREFIX_NAME + VALID_POLICY_NAME_INSURANCE;
+    public static final String POLICY_NAME_DESC_INVESTMENT = " " + PREFIX_NAME + VALID_POLICY_NAME_INVESTMENT;
+    public static final String COMPANY_DESC_INSURANCE = " " + PREFIX_COMPANY + VALID_COMPANY_INSURANCE;
+    public static final String COMPANY_DESC_INVESTMENT = " " + PREFIX_COMPANY + VALID_COMPANY_INVESTMENT;
+    public static final String POLICY_MANAGER_DESC_INSURANCE =
+            " " + PREFIX_POLICY_MANAGER + VALID_POLICY_MANAGER_INSURANCE;
+    public static final String POLICY_MANAGER_DESC_INVESTMENT =
+            " " + PREFIX_POLICY_MANAGER + VALID_POLICY_MANAGER_INVESTMENT;
+    public static final String PREMIUM_DESC_INSURANCE = " " + PREFIX_PREMIUM + VALID_PREMIUM_INSURANCE;
+    public static final String PREMIUM_DESC_INVESTMENT = " " + PREFIX_PREMIUM + VALID_PREMIUM_INVESTMENT;
+    public static final String POLICY_INDEX_DESC_INSURANCE = " " + PREFIX_POLICY_INDEX + VALID_POLICY_INDEX_INSURANCE;
+    public static final String POLICY_INDEX_DESC_INVESTMENT = " " + PREFIX_POLICY_INDEX + VALID_POLICY_INDEX_INVESTMENT;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "James&";
+    public static final String INVALID_POLICY_MANAGER_DESC = " " + PREFIX_POLICY_MANAGER + "James&";
+    public static final String INVALID_PREMIUM_DESC = " " + PREFIX_PREMIUM + "abc";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final String VALID_START_DATETIME_INPUT = "01-02-2023 10:00";
+    public static final String VALID_START_DATETIME_STORE = "2023-02-01T10:00:00.000000";
+    public static final String VALID_START_DATETIME_STORE_FUTURE = "2099-02-01T10:00:00.000000";
+    public static final String VALID_END_DATETIME_INPUT = "01-02-2023 11:00";
+    public static final String VALID_END_DATETIME_STORE = "2023-02-01T11:00:00.000000";
+    public static final String VALID_END_DATETIME_STORE_FUTURE = "2099-02-01T11:00:00.000000";
+    public static final String VALID_LABEL = "Dinner";
+
+    public static final String INVALID_DATETIME_INPUT = "1-2-23 10:00";
+    public static final String INVALID_DATETIME_RANGE_INPUT = "31-02-2022 10:00";
 
     public static final EditCommand.EditClientDescriptor DESC_AMY;
     public static final EditCommand.EditClientDescriptor DESC_BOB;
@@ -117,6 +161,19 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the meeting at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
+
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        model.updateFilteredMeetingList(meeting1 -> meeting1.equals(meeting), true);
+
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 
 }

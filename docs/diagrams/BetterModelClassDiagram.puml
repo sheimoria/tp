@@ -5,17 +5,20 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniqueClientList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueClientList
-UniqueTagList -[hidden]down- UniqueClientList
+AddressBook *-right-> "1" UniquePolicyList
+UniquePolicyList -[hidden]down- UniqueClientList
+UniquePolicyList -[hidden]down- UniqueClientList
 
-UniqueTagList *-right-> "*" Tag
 UniqueClientList -right-> Client
-
-Client -up-> "*" Tag
+UniquePolicyList *-right-> "~*" Policy
 
 Client *--> Name
 Client *--> Phone
 Client *--> Email
 Client *--> Address
+'Client *--> LastContacted
+'Client *--> Birthday
+Client *-up-> "1" UniquePolicyList
+Client *--> PreferenceMap
+Client *--> Note
 @enduml

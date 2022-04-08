@@ -16,7 +16,7 @@ It allows users to:
 4. Track the meetings the user has with their clients
 5. Track the date that each client was last contacted
 
-Currently, financial advisors might have to rely on apps like Google Calendar or Microsoft Excel, and do not have a 
+Currently, financial advisors might have to rely on apps like Google Calendar or Microsoft Excel, and do not have a
 dedicated platform catered to helping them manage their clientele. This is where *onlyFAs* bridges the gap.
 
 ## Table of Contents
@@ -165,10 +165,8 @@ Format: `viewClient INDEX`
 Edit a client in your address book.
 
 Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY] 
-[lc/NEW_LAST_CONTACTED]`
 
 - `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
-- `NEW_LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
 
 #### Sample Input:
 
@@ -326,7 +324,7 @@ Examples:
 Shows upcoming or all meetings.
 
 - If an index is provided, only shows meetings with the specified client.
-- If the `all/` flag is omitted, **ONLY** shows upcoming meetings (meetings that start today or in the future). 
+- If the `all/` flag is omitted, **ONLY** shows upcoming meetings (meetings that start today or in the future).
 - If the `all/` flag is provided, shows all meetings instead of just upcoming meetings.
 
 Format: `meetings [INDEX] [all/]`
@@ -362,7 +360,7 @@ Examples:
 
 ### Close meeting: `closeMeeting`
 
-Closes a meeting and updates the lastContacted of the client that was met to match the end of the meeting. 
+Closes a meeting and updates the lastContacted of the client that was met to match the end of the meeting.
 The meeting will remain in the meeting list and not be deleted after it is closed.
 
 Format: `closeMeeting INDEX`
@@ -377,14 +375,14 @@ Retrieve a sorted list of clients based on the provided attribute and sort direc
 
 Format: `sortClients [ATTRIBUTE] [dir/SORT_DIRECTION]`
 
-Supported attributes: 
+Supported attributes:
 1. `numPolicies`, clients will be sorted based on the number of policies that they have.
 2. `premium`, clients will be sorted based on their total premium sum for all their policies.
 3. `lastContacted` clients will be sorted based on when they were last contacted.
 
 Note to Users:
 
-1. Sort direction refers to either `asc` (short for ascending) or `desc` (short for descending). 
+1. Sort direction refers to either `asc` (short for ascending) or `desc` (short for descending).
 2. If no sort direction is provided, the default sort direction will be `desc`
 3. If no attribute is provided, the list of clients will be sorted by default in the order that the clients were added
    to the list.
@@ -407,16 +405,13 @@ Note to Users:
 The `filterClients` command is a complex command involving 3 parameters:
 
 1. Attribute: the attribute to be filtered on
-   
+
     Supported attributes: `birthMonth`, `age`, `premium`, `company`
 
-
 2. Operator: the desired filter range
-   
+
     Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
     * Note: The only operator supported for `company` is `equal`
-
-
 
 3. Value: the value to be filtered around
 
@@ -424,14 +419,14 @@ The `filterClients` command is a complex command involving 3 parameters:
 - `age`: Accepts integer values. Example: `25`, `27`
 - `premium`: Accepts integer values. Example: `25`, `27`
 - `company`: Accepts text inputs represent companies. Example: `Great Eastern`, `AAM`
-   
+
 Examples:
 
 1. `filterClients age op/equal v/25`: Retrieves all clients of `age` = `25`
 2. `filterClients birthMonth op/lesser v/february`: Retrieves all clients with birthdays before `february`
-3. `filterClients premium op/greater v/10000` Retrieves all clients that pay at least $`10000` in `premium`s 
+3. `filterClients premium op/greater v/10000` Retrieves all clients that pay at least $`10000` in `premium`s
    annually
-4. `filterClients company op/equal v/Great Eastern` Retrieves all clients who own at least one policy from `Great 
+4. `filterClients company op/equal v/Great Eastern` Retrieves all clients who own at least one policy from `Great
    Eastern`
 
 ### Save to hard drive

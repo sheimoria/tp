@@ -13,13 +13,19 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueClientList
+Class NonOverlappingMeetings
 Class Client
 Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
-
+Class Meeting
+Class UniquePolicyList
+Class Policy
+Class PreferenceMap
+Class Note
+'Class LastContacted
+'Class Birthday
 }
 
 Class HiddenOutside #FFFFFF
@@ -35,12 +41,21 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueClientList
-UniqueClientList --> "~* all" Client
+UniqueClientList --> "~*" Client
 Client *--> Name
 Client *--> Phone
 Client *--> Email
 Client *--> Address
-Client *--> "*" Tag
+'Client *--> LastContacted
+'Client *--> Birthday
+Client *--> "1" UniquePolicyList
+UniquePolicyList *--> "~*" Policy
+Client *--> PreferenceMap
+Client *--> Note
+
+AddressBook *--> "1" NonOverlappingMeetings
+NonOverlappingMeetings -right-> "~*" Meeting
+Meeting --> "1" Client
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
