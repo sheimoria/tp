@@ -100,6 +100,9 @@ public class ParserUtil {
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
+        if (!Date.isPastDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_FUTURE_DATE);
+        }
         return new Date(trimmedDate);
     }
 

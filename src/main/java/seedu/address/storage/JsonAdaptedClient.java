@@ -156,6 +156,9 @@ class JsonAdaptedClient {
             if (!Date.isValidDate(birthday)) {
                 throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
             }
+            if (!Date.isPastDate(birthday)) {
+                throw new IllegalValueException(Date.MESSAGE_FUTURE_DATE);
+            }
             modelBirthday = new Date(birthday);
         }
 
