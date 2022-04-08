@@ -14,10 +14,10 @@ Given below are my contributions to the project.
 - **Enhancements implemented**:
 
 #### 1. Notes Feature
-Related User Stories: 
+Related User Stories:
 - As a first time user, I can add notes about my clients so that I can have a better personal understanding of each of my clients
 - As a user, I can delete notes from a specific client so that I can remove notes that are no longer useful
-    
+
 
 Description of Feature: <br>
 `Note` is an additional attribute added to the main `Client` class. Users can call the command `addNote` to add/edit
@@ -26,9 +26,9 @@ an existing note on the `Client`, and they can call the `deleteNote` command to 
 Implementation:
 1. Creation of a `Note` class in the object model that forms an aggregation relationship with the `Client` class.
 The inner implementation of `Note` uses a simple `String` value with no formatting checks.
-2. Integrating it into the current `Client`. This involved adding a new parameter to the existing `Client` constructor and 
-changing any test cases to prevent regression bugs. Furthermore, the `ClientBuilder` had to be updated to add a Note to the
-`Client` when building during test cases.
+2. Integrating it into the current `Client`. This involved adding a new parameter to the existing `Client` constructor
+3. and changing any test cases to prevent regression bugs. Furthermore, the `ClientBuilder` had to be updated to add a
+Note to the `Client` when building during test cases.
 
 Example of Usage:
 
@@ -55,7 +55,7 @@ Description of Feature: <br>
 `PreferenceMap` is an additional attribute to the main `Client` class. The `PreferenceMap` stores a `HashMap` of `String, String` pairs
 that allow users to call the `addPref` command to add key, value pairs to the `PreferenceMap`. For example, the user can call
 `addPref 1 cat/Drink pref/Beer` to indicate the `Client` has a `Drink` preference of `Beer`
-    
+
 Implementation:
 1. Creation of a `PreferenceMap` class in the object model that contains a `HashMap<String, String>` and handles the inner implementation
 of the preferences `HashMap`. The `PreferenceMap` has a method `addPreference(String, String)` that the client can call to add

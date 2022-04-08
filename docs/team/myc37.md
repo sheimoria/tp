@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 - **Enhancements implemented**:
   1. Created models for Policy, Premium, UniquePolicyList, JsonAdaptedPolicy.
   2. Added AddPolicyCommand, EditPolicyCommand, DeletePolicyCommand as well as their respective parsers.
-  3. Wrote test suites for all the above-mentioned models, commands, parsers as well as their respective utility 
+  3. Wrote test suites for all the above-mentioned models, commands, parsers as well as their respective utility
      classes.
   4. Enhanced SortCommand to include comparators for premium and number of policies.
   5. Enhanced FilterCommand to include predicates for premium and company.
@@ -27,6 +27,6 @@ Given below are my contributions to the project.
   2. Created and updated policy implementation section.
 
 - **Review/mentoring contributions**:
-  1. Reviews @zechjw's pull requests in our forking workflow. 
+  1. Reviews @zechjw's pull requests in our forking workflow.
 
 - **Contributions beyond the project team:**:
