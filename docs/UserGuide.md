@@ -338,13 +338,10 @@ The `filterClients` command is a complex command involving 3 parameters:
 
     Supported attributes: `birthMonth`, `age`, `premium`, `company`
 
-
 2. Operator: the desired filter range
 
     Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
     * Note: The only operator supported for `company` is `equal`
-
-
 
 3. Value: the value to be filtered around
 
