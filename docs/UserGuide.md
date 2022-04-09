@@ -142,9 +142,11 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/
 
 
 #### Sample Input:
+
 `addClient n/Vijay Narayanan p/91234567 e/vijay@email.com a/210 Street 3 b/21-03-1999 lc/21-03-2022 21:03`<br>
 
-#### Expected Output:
+#### Expected Output: `Client` with `NAME: Vijay`
+
 ![AddClientSampleOutput1.png](images/sample-output/AddClientSampleOutput1.png)
 
 ### View client: `viewClient`
@@ -155,16 +157,17 @@ Format: `viewClient INDEX`
 
 #### Sample Input:
 
-- `viewClient 1`
+`viewClient 1`
 
-#### Expected Output:
+#### Expected Output: `Client` at `INDEX: 1` is displayed in the `Dynamic Panel`
+
 ![ViewClientSampleOutput1.png](images/sample-output/ViewClientSampleOutput1.png)
 
 ### Edit client: `editClient`
 
 Edit a client in your address book.
 
-Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]`
+Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]` 
 
 - `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
 
@@ -172,9 +175,7 @@ Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW
 
 `editClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
 
-![EditClientSampleInput1.png](images/sample-output/EditClientSampleInput1.png)
-
-#### Expected Output:
+#### Expected Output: `Client` at `INDEX: 1` is edited based on input parameters as seen in the `Dynamic Panel`
 
 ![EditClientSampleOutput1.png](images/sample-output/EditClientSampleOutput1.png)
 
@@ -188,11 +189,7 @@ Format: `deleteClient INDEX`
 
 `deleteClient 1`
 
-![DeleteClientSampleInput1.png](images/sample-output/DeleteClientSampleInput1.png)
-
-#### Sample Output:
-
-The client is removed from the application.
+#### Sample Output: `Client` at `INDEX: 1` is removed from the application
 
 ![DeleteClientSampleOutput1.png](images/sample-output/DeleteClientSampleOutput1.png)
 
@@ -216,11 +213,10 @@ note specified from this command.
 Format: `addNote 1 nt/NOTE`
 
 #### Sample Input 1: Adding a new Note to a Client
+
 `addNote 1 nt/Commando NSF with high risk of injury`
 
-![AddNoteSampleInput1.png](images/sample-output/AddNoteSampleInput1.png)
-
-#### Expected Output: New Note added to Client
+#### Expected Output: New Note added to `Client` at `INDEX: 1`
 
 ![AddNoteSampleOutput1.png](images/sample-output/AddNoteSampleOutput1.png)
 
@@ -228,7 +224,7 @@ Format: `addNote 1 nt/NOTE`
 
 `addNote 2 nt/Look up on policies for emergency care`
 
-#### Expected Output: Existing Note on Client overwritten
+#### Expected Output: Existing Note on `Client` at `INDEX: 1` is overwritten
 
 ![AddNoteSampleOutput2.png](images/sample-output/AddNoteSampleOutput2.png)
 
@@ -251,26 +247,23 @@ Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
 
 `addPref 2 cat/Drink pref/Beer`
 
-Previously, there was an existing preference of `cat/Drink pref/Coke` on the Client
+#### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 2` is overwritten
 
-![AddPreferenceSampleInput2.png](images/sample-output/AddPreferenceSampleOutput1.png)
-
-#### Expected Output:
-
-The previous preference is overwritten and replaced with `cat/Drink pref/Beer`
-
-![AddPreferenceSampleOutput2.png](AddPreferenceSampleOutput2.png)
+![AddPreferenceSampleOutput2.png](images/sample-output/AddPreferenceSampleOutput2.png)
 
 ### Delete preferences from client: `deletePref`
 
-Deletes the preference from the specified client
+Deletes the preference from the specified client. 
 
 Format: `deletePref INDEX cat/CATEGORY`
 
-Examples:
+#### Sample Input: Deleting a preference from the Client
 
-- `deletePref 1 cat/Drink`
-- `deletePref 2 cat/Cigarettes`
+`deletePref 1 cat/Drink`
+
+#### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 1` is deleted
+
+![DeletePreferenceSampleOutput.png](images/sample-output/DeletePreferenceSampleOutput.png)
 
 ### Add policy: `addPolicy`
 
@@ -278,10 +271,13 @@ Adds an insurance policy to a specified client
 
 Format: `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT`
 
-Examples:
+#### Sample Input:
 
-- `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`
-- `addPolicy 2 n/Car Insurance c/Mercedes pm/Vijay $/250`
+`addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`
+
+#### Expected Output: `Policy` is added to `Client` at `INDEX: 1` and can be viewed under the `Policies` Section of the `Dynamic Panel`
+
+![AddPolicySampleOutput.png](images/sample-output/AddPolicySampleOutput.png)
 
 ### Edit policy: `editPolicy`
 
@@ -289,10 +285,13 @@ Updates an insurance policy for a specified client
 
 Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]`
 
-Examples:
+#### Sample Input: Editing premium value of policy
 
-- `editPolicy 1 pi/1 $/200`
-- `editPolicy 1 pi/2 n/Car Insurance Plus c/Mercedes pm/Zechary $/350`
+`editPolicy 1 pi/1 $/200`
+
+#### Expected Output: Premium value of policy at `pi/1` of Client` at `INDEX: 1` is edited
+
+![EditPolicySampleOutput.png](images/sample-output/EditPolicySampleOutput.png)
 
 ### Delete policy: `deletePolicy`
 
@@ -300,9 +299,13 @@ Deletes an insurance policy from a specified client
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
-Examples:
+#### Sample Input:
 
-- `deletePolicy 1 pi/1`
+`deletePolicy 1 pi/1`
+
+#### Expected Output: `Policy` at `pi/1` of `Client` at `INDEX: 1` is deleted
+
+![img.png](images/sample-output/DeletePolicySampleOutput.png)
 
 ### Add meeting: `addMeeting`
 
@@ -310,13 +313,24 @@ Add a meeting to your schedule with a specified client.
 
 Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]`
 
-- `START_DATETIME` must be in `dd-MM-yyyy HH:mm` format.
-- `END_DATETIME` must be in `dd-MM-yyyy HH:mm` format.
+- `START_DATETIME` and `END_DATETIME` must be in `dd-MM-yyyy HH:mm` format
+- Use `meetings all/` to view your new meeting in the meeting panel on the right
 
-Examples:
+#### Sample Input 1: Adding a meeting without the `l/LABEL` parameter
 
-- `addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 12:00`
-- `addMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 17:00 l/Dinner`
+`addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 12:00`
+
+#### Expected Output: `Meeting` is added
+
+![AddMeetingSampleOutput1.png](images/sample-output/AddMeetingSampleOutput1.png)
+
+#### Sample Input 2: Adding a meeting with the `l/LABEL parameter`
+
+`addMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 17:00 l/Dinner`
+
+#### Expected Output: `Meeting` is added and `l/LABEL` is visible in the `Dynamic Panel`
+
+![img.png](images/sample-output/AddMeetingSampleOutput2.png)
 
 ### View Meetings: `meetings`
 
@@ -328,25 +342,44 @@ Shows upcoming or all meetings.
 
 Format: `meetings [INDEX] [all/]`
 
-Examples:
-- `meetings`
-- `meetings 2`
-- `meetings 3 all/`
+#### Sample Input 1: Viewing <u>upcoming</u> meetings
+
+`meetings`
+
+#### Expected Output: All <u>Upcoming Meetings</u> can be viewed in the panel on the right
+
+![ViewMeetingsSampleOutput1.png](images/sample-output/ViewMeetingsSampleOutput1.png)
+
+#### Sample Input 2: View <u>all</u> meetings
+
+`meetings all/`
+
+#### Expected Output: All <u>Past</u> and <u>Upcoming</u> Meetings can be viewed in the panel on the right
+
+![ViewMeetingsSampleOutput2.png](images/sample-output/ViewMeetingsSampleOutput2.png)
+
+#### Sample Input 3: View meetings of specific Client
+
+`meetings 2`
+
+#### Expected Output: All <u>Upcoming</u> Meetings with `Client 2` can be viewed in the panel on the right
+
+![ViewMeetingsSampleOutput3.png](images/sample-output/ViewMeetingsSampleOutput3.png)
 
 ### Edit Meeting Details: `editMeeting`
 
 Edit details of a specified meeting.
 
 Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/NEW_LABEL]`
-- `NEW_START_DATETIME` must be in `dd-MM-yyyy HH:mm` format.
-- `NEW_END_DATETIME` must be in `dd-MM-yyyy HH:mm` format.
+- `NEW_START_DATETIME` and `NEW_END_DATETIME` must be in `dd-MM-yyyy HH:mm` format
 
+#### Sample Input:
 
-Examples:
+`editMeeting 1 ms/01-01-2022 08:00 me/01-01-2022 10:00 l/Lunch`
 
-- `editMeeting 1 ms/01-01-2022 08:00`
-- `editMeeting 2 me/01-01-2022 10:00 l/Lunch`
-- `editMeeting 3 l/Supper`
+#### Expected Output: Meeting is edited as seen in the `Dynamic Panel`
+
+![EditMeetingSampleOutput.png](images/sample-output/EditMeetingSampleOutput.png)
 
 ### Delete meeting: `deleteMeeting`
 
@@ -354,9 +387,13 @@ Deletes a specified meeting.
 
 Format: `deleteMeeting INDEX`
 
-Examples:
+#### Sample Input: 
 
-- `deleteMeeting 1`
+`deleteMeeting 1`
+
+#### Expected Output: `Meeting` at `INDEX: 1` is deleted
+
+![img.png](images/sample-output/DeleteMeetingSampleOutput.png)
 
 ### Close meeting: `closeMeeting`
 
@@ -365,9 +402,13 @@ The meeting will remain in the meeting list and **NOT** be deleted after it is c
 
 Format: `closeMeeting INDEX`
 
-Examples:
+#### Sample Input:
 
-- `closeMeeting 1`
+`closeMeeting 1`
+
+#### Expected Output: Last contacted date updated to match the end date of the meeting
+
+![CloseMeetingSampleOutput.png](images/sample-output/CloseMeetingSampleOutput.png)
 
 ### Sort clients: `sortClients`
 
@@ -387,7 +428,24 @@ Note to Users:
 3. If no attribute is provided, the list of clients will be sorted by default in the order that the clients were added
    to the list.
 
-Examples:
+
+#### Sample Input 1: Sorting clients by the number of `Policies` that they have
+
+`sortClients numPolicies`
+
+#### Expected Output: `Client` list in the `Static Panel` is sorted in `desc` order
+
+![SortClientsSampleOutput1.png](images/sample-output/SortClientsSampleOutput1.png)
+
+#### Sample Input 2: Sorting clients by the number of `Policies` that they have in `asc` order
+
+`sortClients numPolicies dir/asc`
+
+#### Expected Output: `Client` list in the `Static Panel` is sorted in `asc` order
+
+![img.png](images/sample-output/SortClientsSampleOutput2.png)
+
+Other Examples:
 
 - `sortClients`
 - `sortClients numPolicies`
@@ -420,7 +478,21 @@ The `filterClients` command is a complex command involving 3 parameters:
 - `premium`: Accepts integer values. Example: `25`, `27`
 - `company`: Accepts text inputs represent companies. Example: `Great Eastern`, `AAM`
 
-Examples:
+#### Sample Input 1: Filtering clients to retrieve those with `age: 23`
+
+`filterClients age op/equal v/23`
+
+#### Expected Output: `Client` list is filtered to retrieve those with `age: 23`
+
+![FilterClientsSampleOutput1.png](images/sample-output/FilterClientsSampleOutput1.png)
+
+#### Sample Input 2: Filtering clients to retrieve those with `birthMonth` before `march`
+
+`filterClients birtMonth op/lesser v/march`
+
+![FilterClientsSampleOutput2.png](images/sample-output/FilterClientsSampleOutput2.png)
+
+Other Examples:
 
 1. `filterClients age op/equal v/25`: Retrieves all clients of `age` = `25`
 2. `filterClients birthMonth op/lesser v/february`: Retrieves all clients with birthdays before `february`

@@ -47,12 +47,12 @@ My primary contribution to the onlyFAs application is the meetings' functionalit
 
 - **Contributions to the UG**:
   - Improving the introduction of the UG
-  - Adding all guides and examples related to commands I've implemented
+  - Adding all guides and examples related to the commands I have implemented
 
 - **Contributions to the DG**:
   - Explanation of the implementation of the entire Meetings feature
 
 - **Review/mentoring contributions**:
-  - We have a round robin system of reviewing code. Therefore I was responsible for reviewing all of Joel's code and PRs
+  - We have a round-robin system of reviewing code. Therefore, I was responsible for reviewing all of Joel's code and PRs
 
 - **Contributions beyond the project team:**:
