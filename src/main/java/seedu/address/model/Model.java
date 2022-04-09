@@ -139,6 +139,13 @@ public interface Model {
     void setMeeting(Meeting target, Meeting editedMeeting);
 
     /**
+     * Updates the lastContacted attribute of the client of {@code target}
+     * {@code target} must exist in the address book.
+     * @param target
+     */
+    void closeMeeting(Meeting target);
+
+    /**
      * Sorts the meetings by descending order.
      */
     void sortMeetings();
