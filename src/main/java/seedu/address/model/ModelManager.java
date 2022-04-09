@@ -159,6 +159,21 @@ public class ModelManager implements Model {
         addressBook.sortMeetings();
     }
 
+
+    @Override
+    public void closeMeeting(Meeting target) {
+        requireNonNull(target);
+
+        Client client = target.getClient();
+        Meeting closedMeeting = target.closeMeeting();
+        Client updatedClient = closedMeeting.getClient();
+        assert updatedClient.isSameClient(client);
+
+        setClient(client, updatedClient);
+        updateDisplayedClient(updatedClient);
+        addressBook.setMeeting(target, closedMeeting);
+    }
+
     @Override
     public Client getDisplayedClient() {
         return displayedClient;

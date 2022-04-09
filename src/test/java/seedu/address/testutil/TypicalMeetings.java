@@ -26,8 +26,8 @@ public class TypicalMeetings {
             .build();
 
     public static final Meeting WITH_BENSON = new MeetingBuilder()
-            .withStartDateTime("2022-01-03T12:07:01.722322")
-            .withEndDateTime("2022-01-04T12:07:01.722430")
+            .withStartDateTime("2023-01-03T12:07:01.722322")
+            .withEndDateTime("2023-01-04T12:07:01.722430")
             .withClient(new ClientBuilder()
                     .withName("Benson Meier")
                     .withPhone("98765432")

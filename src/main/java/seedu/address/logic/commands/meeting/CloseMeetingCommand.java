@@ -2,7 +2,6 @@ package seedu.address.logic.commands.meeting;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -11,8 +10,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -26,6 +23,8 @@ public class CloseMeetingCommand extends Command {
             + "Example:\n• " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_CLOSE_MEETING_SUCCESS = "Closed Meeting: %1$s";
+    public static final String MESSAGE_CANNOT_CLOSE_UPCOMING_MEETING = "Only past meetings can be closed, not "
+            + "upcoming ones";
 
     private final Index targetIndex;
 
@@ -43,13 +42,11 @@ public class CloseMeetingCommand extends Command {
         }
 
         Meeting meetingToClose = lastShownList.get(targetIndex.getZeroBased());
+        if (meetingToClose.isUpcoming()) {
+            throw new CommandException(MESSAGE_CANNOT_CLOSE_UPCOMING_MEETING);
+        }
 
-        Client client = meetingToClose.getClient();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        DateTime endDateTime = new DateTime(meetingToClose.getEndDateTime().format(dtf));
-        Client updatedClient = client.updateLastContacted(endDateTime);
-        model.setClient(client, updatedClient);
-        model.updateDisplayedClient(updatedClient);
+        model.closeMeeting(meetingToClose);
         return new CommandResult(String.format(MESSAGE_CLOSE_MEETING_SUCCESS, meetingToClose));
     }
 

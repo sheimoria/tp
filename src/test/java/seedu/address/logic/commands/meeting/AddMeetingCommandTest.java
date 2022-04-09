@@ -237,6 +237,11 @@ public class AddMeetingCommandTest {
         }
 
         @Override
+        public void closeMeeting(Meeting target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortMeetings() {
             throw new AssertionError("This method should not be called.");
         }
@@ -303,6 +308,11 @@ public class AddMeetingCommandTest {
 
         @Override
         public void sortMeetings() {}
+
+        @Override
+        public void closeMeeting(Meeting target) {
+
+        }
     }
 
     /**
@@ -332,6 +342,11 @@ public class AddMeetingCommandTest {
 
         @Override
         public void sortMeetings() {}
+
+        @Override
+        public void closeMeeting(Meeting target) {
+
+        }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {

@@ -11,6 +11,7 @@ import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import seedu.address.model.client.Client;
+import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Name;
 
 
@@ -142,6 +143,16 @@ public class Meeting {
         return new Meeting(startDateTime, endDateTime, editedClient, label);
     }
 
+    /**
+     * Updates the last contacted attribute of the client to match the end datetime of the meeting.
+     */
+    public Meeting closeMeeting() {
+        Client client = getClient();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTime endDateTime = new DateTime(getEndDateTime().format(dtf));
+
+        return updateClient(client.updateLastContacted(endDateTime));
+    }
 
     @Override
     public String toString() {
