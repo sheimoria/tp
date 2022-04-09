@@ -3,19 +3,25 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LAST_CONTACTED_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.LAST_CONTACTED_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACTED_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -31,6 +37,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Date;
+import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -75,7 +83,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-
+        assertParseFailure(parser, "1" + INVALID_BIRTHDAY_DESC, Date.MESSAGE_CONSTRAINTS); // invalid birthday
+        // invalid last contacted
+        assertParseFailure(parser, "1" + INVALID_LAST_CONTACTED_DESC, DateTime.MESSAGE_CONSTRAINTS);
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
@@ -84,19 +94,20 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_PHONE_AMY + INVALID_EMAIL_DESC
+                        + VALID_ADDRESS_AMY + VALID_BIRTHDAY_AMY + VALID_LAST_CONTACTED_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_CLIENT;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_AMY
+                + ADDRESS_DESC_AMY + BIRTHDAY_DESC_AMY + LAST_CONTACTED_DESC_AMY;
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .build();
+                .withBirthday(VALID_BIRTHDAY_AMY).withLastContacted(VALID_LAST_CONTACTED_AMY).build();
+
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -138,6 +149,18 @@ public class EditCommandParserTest {
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
         descriptor = new EditClientDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // birthday
+        userInput = targetIndex.getOneBased() + BIRTHDAY_DESC_AMY;
+        descriptor = new EditClientDescriptorBuilder().withBirthday(VALID_BIRTHDAY_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // last contacted
+        userInput = targetIndex.getOneBased() + LAST_CONTACTED_DESC_AMY;
+        descriptor = new EditClientDescriptorBuilder().withLastContacted(VALID_LAST_CONTACTED_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

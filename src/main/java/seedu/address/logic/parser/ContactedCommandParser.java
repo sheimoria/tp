@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FUTURE_CONTACTED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
@@ -26,9 +26,9 @@ public class ContactedCommandParser implements Parser<ContactedCommand> {
     public ContactedCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DATETIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_LAST_CONTACTED);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DATETIME)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_LAST_CONTACTED)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ContactedCommand.MESSAGE_USAGE));
         }
 
@@ -41,13 +41,13 @@ public class ContactedCommandParser implements Parser<ContactedCommand> {
 
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
 
-        DateTime contacted = ParserUtil.parseLastContacted(argMultimap.getValue(PREFIX_DATETIME).get());
+        DateTime lastContacted = ParserUtil.parseLastContacted(argMultimap.getValue(PREFIX_LAST_CONTACTED).get());
 
-        if (contacted.getDateTime().isAfter(LocalDateTime.now())) {
+        if (lastContacted.getDateTime().isAfter(LocalDateTime.now())) {
             throw new ParseException(MESSAGE_INVALID_FUTURE_CONTACTED);
         }
 
-        editClientDescriptor.setLastContacted(contacted);
+        editClientDescriptor.setLastContacted(lastContacted);
         return new ContactedCommand(index, editClientDescriptor);
     }
 
