@@ -164,7 +164,7 @@ Format: `viewClient INDEX`
 
 Edit a client in your address book.
 
-Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY] 
+Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]`
 
 - `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
 
@@ -274,7 +274,7 @@ Examples:
 
 ### Add policy: `addPolicy`
 
-Adds an insurance policy to a specific client
+Adds an insurance policy to a specified client
 
 Format: `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT`
 
@@ -285,7 +285,7 @@ Examples:
 
 ### Edit policy: `editPolicy`
 
-Updates an insurance policy for a specific client
+Updates an insurance policy for a specified client
 
 Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]`
 
@@ -296,7 +296,7 @@ Examples:
 
 ### Delete policy: `deletePolicy`
 
-Deletes an insurance policy from a specific client
+Deletes an insurance policy from a specified client
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
@@ -306,13 +306,12 @@ Examples:
 
 ### Add meeting: `addMeeting`
 
-Add a meeting to your schedule.
+Add a meeting to your schedule with a specified client.
 
 Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    Date format is dd-MM-yyyy HH:mm
-</div>
+- `START_DATETIME` must be in `dd-MM-yyyy HH:mm` format.
+- `END_DATETIME` must be in `dd-MM-yyyy HH:mm` format.
 
 Examples:
 
@@ -336,21 +335,22 @@ Examples:
 
 ### Edit Meeting Details: `editMeeting`
 
-Edit details of a particular meeting.
+Edit details of a specified meeting.
 
-Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/LABEL]`
+Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/NEW_LABEL]`
+- `NEW_START_DATETIME` must be in `dd-MM-yyyy HH:mm` format.
+- `NEW_END_DATETIME` must be in `dd-MM-yyyy HH:mm` format.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-    Date format is dd-MM-yyyy HH:mm
-</div>
 
 Examples:
 
-- `editMeeting 1 ms/01-01-2022 08:00 me/01-01-2022 10:00 l/Lunch`
+- `editMeeting 1 ms/01-01-2022 08:00`
+- `editMeeting 2 me/01-01-2022 10:00 l/Lunch`
+- `editMeeting 3 l/Supper`
 
 ### Delete meeting: `deleteMeeting`
 
-Deletes a meeting
+Deletes a specified meeting.
 
 Format: `deleteMeeting INDEX`
 
@@ -361,7 +361,7 @@ Examples:
 ### Close meeting: `closeMeeting`
 
 Closes a meeting and updates the lastContacted of the client that was met to match the end of the meeting.
-The meeting will remain in the meeting list and not be deleted after it is closed.
+The meeting will remain in the meeting list and **NOT** be deleted after it is closed.
 
 Format: `closeMeeting INDEX`
 
@@ -468,24 +468,24 @@ If your changes to the data file makes its format invalid, onlyFAs will discard 
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                       |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
-| **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
-| **editClient**    | `editClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`editClient 1 e/new@email.com`                                   |
-| **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
-| **contacted**     | `contacted INDEX dt/DATETIME` <br> e.g., `contacted 1 dt/21-03-2022 21:03`                                                                             |
-| **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
-| **addPref**       | `addPref INDEX cat/CATEGORY pref/PREFERENCE` <br> e.g., `addPref 1 cat/Drink pref/Coke`                                                                |
-| **deletePref**    | `deletePref INDEX cat/CATEGORY` <br> e.g., `deletePref 1 cat/Drink`                                                                                    |
-| **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
-| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 pi/1 $/200`        |
-| **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
-| **meetings**      | `meetings [INDEX] [all/]` <br> eg., `meetings 1 all/`                                                                                                  |
-| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`               |
-| **editMeeting**   | `editMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `editMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 18:00 l/Dinner`        |
-| **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                     |
-| **closeMeeting**  | `closeMeeting INDEX` <br> e.g., `closeMeeting 3`                                                                                                       |
-| **sortClients**   | `sortClients ATTRIBUTE` <br> e.g., `sortClients numPolicies`                                                                                           |
-| **filterClients** | `filterClients ATTRIBUTE op/OPERATOR v/VALUE` <br> e.g., `filterClients age op/equal v/25`                                                             |
-| **help**          | `help`                                                                                                                                                 |
+| Action            | Format, Examples                                                                                                                                            |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                                  |
+| **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                                 |
+| **editClient**    | `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS]`<br> e.g.,`editClient 1 e/new@email.com`                                  |
+| **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                            |
+| **contacted**     | `contacted INDEX dt/DATETIME` <br> e.g., `contacted 1 dt/21-03-2022 21:03`                                                                                  |
+| **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                     |
+| **addPref**       | `addPref INDEX cat/CATEGORY pref/PREFERENCE` <br> e.g., `addPref 1 cat/Drink pref/Coke`                                                                     |
+| **deletePref**    | `deletePref INDEX cat/CATEGORY` <br> e.g., `deletePref 1 cat/Drink`                                                                                         |
+| **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`      |
+| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 pi/1 $/200`             |
+| **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                       |
+| **meetings**      | `meetings [INDEX] [all/]` <br> eg., `meetings 1 all/`                                                                                                       |
+| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`                    |
+| **editMeeting**   | `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/NEW_LABEL]` <br> e.g., `editMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 18:00 l/Dinner` |
+| **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                          |
+| **closeMeeting**  | `closeMeeting INDEX` <br> e.g., `closeMeeting 3`                                                                                                            |
+| **sortClients**   | `sortClients ATTRIBUTE` <br> e.g., `sortClients numPolicies`                                                                                                |
+| **filterClients** | `filterClients ATTRIBUTE op/OPERATOR v/VALUE` <br> e.g., `filterClients age op/equal v/25`                                                                  |
+| **help**          | `help`                                                                                                                                                      |
