@@ -88,8 +88,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_BIRTHDAY = " " + PREFIX_BIRTHDAY + "21/03/2001";
-    public static final String INVALID_LAST_CONTACTED = " " + PREFIX_LAST_CONTACTED + "21/03/2022 21/03";
+    public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY + "21/03/2001";
+    public static final String INVALID_LAST_CONTACTED_DESC = " " + PREFIX_LAST_CONTACTED + "21/03/2022 21/03";
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "James&";
     public static final String INVALID_POLICY_MANAGER_DESC = " " + PREFIX_POLICY_MANAGER + "James&";
     public static final String INVALID_PREMIUM_DESC = " " + PREFIX_PREMIUM + "abc";

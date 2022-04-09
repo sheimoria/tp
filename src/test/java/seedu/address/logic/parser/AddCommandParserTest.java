@@ -8,9 +8,9 @@ import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDAY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTHDAY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_LAST_CONTACTED;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_LAST_CONTACTED_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LAST_CONTACTED_DESC_AMY;
@@ -127,11 +127,11 @@ public class AddCommandParserTest {
 
         // invalid birthday
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + INVALID_BIRTHDAY + LAST_CONTACTED_DESC_BOB, Date.MESSAGE_CONSTRAINTS);
+                        + INVALID_BIRTHDAY_DESC + LAST_CONTACTED_DESC_BOB, Date.MESSAGE_CONSTRAINTS);
 
         // invalid last contacted
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + BIRTHDAY_DESC_BOB + INVALID_LAST_CONTACTED, DateTime.MESSAGE_CONSTRAINTS);
+                        + BIRTHDAY_DESC_BOB + INVALID_LAST_CONTACTED_DESC, DateTime.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
