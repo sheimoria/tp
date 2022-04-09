@@ -12,21 +12,67 @@ Given below are my contributions to the project.
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=myc37&breakdown=true)
 
 - **Enhancements implemented**:
-  1. Created models for Policy, Premium, UniquePolicyList, JsonAdaptedPolicy.
-  2. Added AddPolicyCommand, EditPolicyCommand, DeletePolicyCommand as well as their respective parsers.
-  3. Wrote test suites for all the above-mentioned models, commands, parsers as well as their respective utility
-     classes.
-  4. Enhanced SortCommand to include comparators for premium and number of policies.
-  5. Enhanced FilterCommand to include predicates for premium and company.
+  *My main contribution to onlyFAs was introducing all policy-related features. Listed Below are the various classes 
+  I have implemented:*
+  
+  ######Models
+  - `Policy`
+  - `Premium`
+  - `UniquePolicyList`
+  - Contributed to `Client` to include UniquePolicyList attribute and all its corresponding functions
 
+  ######Commands
+  - `AddPolicyCommand`
+  - `EditPolicyCommand`
+  - `DeletePolicyCommand`
+  - Contributed to `FilterCommand` to include predicates for premium and company
+  - Contributed to `SortCommand` to include comparators for premium and number of policies
+
+  ######Parsers
+  - `AddPolicyCommandParser`
+  - `EditPolicyCommandParser`
+  - `DeletePolicyCommandParser`
+
+  ######Exceptions
+  - `DuplicatePolicyException`
+  - `EmptyPolicyListException`
+  - `InvalidPolicyIndexException`
+  - `PolicyNotEditedException`
+  - `PolicyNotFoundException`
+
+  ######Storage
+    - `JsonAdaptedPolicy`
+    - Contributed to `JsonAdaptedClient` to include UniquePolicyList attribute and all its corresponding functions
+
+  ######Util
+    - `PolicyBuilder`
+    - `TypicalPolicies`
+
+  ######Tests
+  - `PolicyTest`
+  - `PremiumTest`
+  - `UniquePolicyListTest`
+  - `AddPolicyCommandTest`
+  - `EditPolicyCommandTest`
+  - `DeletePolicyCommandTest`
+  - `AddPolicyCommandParserTest`
+  - `EditPolicyCommandParserTest`
+  - `DeletePolicyCommandParserTest`
+  - `JsonAdaptedPolicyTest`
+  
+  
 - **Contributions to the UG**:
-  1. Created and updated all policy-related sections.
+
+  - Created and updated all policy-related sections.
+  - Added examples for all policy-related commands
 
 - **Contributons to the DG**:
-  1. Created PlantUML Diagrams for Model and Storage.
-  2. Created and updated policy implementation section.
+
+  - Created PlantUML Diagrams for Model and Storage.
+  - Created and updated policy implementation section.
 
 - **Review/mentoring contributions**:
-  1. Reviews @zechjw's pull requests in our forking workflow.
+
+  - Reviews @zechjw's pull requests in our forking workflow.
 
 - **Contributions beyond the project team:**:
