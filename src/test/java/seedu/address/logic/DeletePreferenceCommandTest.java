@@ -1,18 +1,16 @@
 package seedu.address.logic;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_CATEGORY;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.DeletePreferenceCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Client;
 
 public class DeletePreferenceCommandTest {
 

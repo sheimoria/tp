@@ -1,11 +1,12 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_CATEGORY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_VALUE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
-
+import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +15,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.PreferenceMap;
-
-import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.address.testutil.TypicalPreferenceMap.SPORTS;
 
 public class AddPreferenceCommandTest {
 
@@ -60,8 +56,8 @@ public class AddPreferenceCommandTest {
         Model model = new ModelManager();
         String categoryToAdd = VALID_PREFERENCE_CATEGORY;
         String preferenceToAdd = VALID_PREFERENCE_VALUE;
-        AddPreferenceCommand addPreferenceCommand = new AddPreferenceCommand(INDEX_FIRST_CLIENT, VALID_PREFERENCE_CATEGORY,
-                VALID_PREFERENCE_VALUE);
+        AddPreferenceCommand addPreferenceCommand = new AddPreferenceCommand(INDEX_FIRST_CLIENT,
+                VALID_PREFERENCE_CATEGORY, VALID_PREFERENCE_VALUE);
         String expectedMessage = String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "add preference to");
         assertCommandFailure(addPreferenceCommand, model, expectedMessage);
     }

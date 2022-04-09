@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalPreferenceMap.SNACK;
 import static seedu.address.testutil.TypicalPreferenceMap.SPORTS;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.PreferenceMapBuilder;
 
 public class PreferenceMapTest {

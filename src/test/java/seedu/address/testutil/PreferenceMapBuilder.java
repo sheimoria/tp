@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import seedu.address.model.client.PreferenceMap;
@@ -42,12 +42,19 @@ public class PreferenceMapBuilder {
         }
     }
 
+    /**
+     * Adds a {@code Preference} to the {@code PreferenceMap} that we are building
+     */
     public PreferenceMapBuilder withPreference(String category, String preference) {
         categoryList.add(category);
         preferenceList.add(preference);
         return this;
     }
 
+    /**
+     * Returns a PreferenceMap from the given {@code PreferenceMapBuilder}
+     * @return
+     */
     public PreferenceMap build() {
         PreferenceMap toReturn = new PreferenceMap();
         for (int i = 0; i < categoryList.size(); i++) {
