@@ -1,4 +1,4 @@
-package seedu.address.logic;
+package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_CATEGORY;
 import static seedu.address.testutil.Assert.assertThrows;
