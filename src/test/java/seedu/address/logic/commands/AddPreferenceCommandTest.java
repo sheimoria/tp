@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_CATEGORY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_CATEGORY_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_VALUE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_VALUE_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -93,9 +95,16 @@ public class AddPreferenceCommandTest {
         // different type -> returns false
         assertFalse(addPreferenceCommandToCopy.equals(5));
 
-        // different add preference command -> returns false
+        // different index -> returns false
         assertFalse(addPreferenceCommandToCopy.equals(new AddPreferenceCommand(INDEX_SECOND_CLIENT,
                 VALID_PREFERENCE_CATEGORY, VALID_PREFERENCE_VALUE)));
+
+        // different category -> returns false
+        assertFalse(addPreferenceCommandToCopy.equals(new AddPreferenceCommand(INDEX_FIRST_CLIENT,
+                VALID_PREFERENCE_CATEGORY_2, VALID_PREFERENCE_VALUE)));
+
+        assertFalse(addPreferenceCommandToCopy.equals(new AddPreferenceCommand(INDEX_FIRST_CLIENT,
+                VALID_PREFERENCE_CATEGORY, VALID_PREFERENCE_VALUE_2)));
     }
 
 }
