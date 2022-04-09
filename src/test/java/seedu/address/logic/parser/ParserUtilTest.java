@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Date;
+import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -18,11 +20,15 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_BIRTHDAY = "21/03/1999";
+    private static final String INVALID_LAST_CONTACTED = "21/03/2022 21:03";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_BIRTHDAY = "21-03-1999";
+    private static final String VALID_LAST_CONTACTED = "21-03-2022 21:03";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -126,5 +132,41 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseBirthday_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_BIRTHDAY));
+    }
+
+    @Test
+    public void parseBirthday_validValueWithoutWhitespace_returnsBirthday() throws Exception {
+        Date expectedBirthday = new Date(VALID_BIRTHDAY);
+        assertEquals(expectedBirthday, ParserUtil.parseDate(VALID_BIRTHDAY));
+    }
+
+    @Test
+    public void parseBirthday_validValueWithWhitespace_returnsTrimmedBirthday() throws Exception {
+        String addressWithWhitespace = WHITESPACE + VALID_BIRTHDAY + WHITESPACE;
+        Date expectedBirthday = new Date(VALID_BIRTHDAY);
+        assertEquals(expectedBirthday, ParserUtil.parseDate(addressWithWhitespace));
+    }
+
+    @Test
+    public void parseLastContacted_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLastContacted(INVALID_LAST_CONTACTED));
+    }
+
+    @Test
+    public void parseLastContacted_validValueWithoutWhitespace_returnsLastContacted() throws Exception {
+        DateTime expectedLastContacted = new DateTime(VALID_LAST_CONTACTED);
+        assertEquals(expectedLastContacted, ParserUtil.parseLastContacted(VALID_LAST_CONTACTED));
+    }
+
+    @Test
+    public void parseLastContacted_validValueWithWhitespace_returnsTrimmedLastContacted() throws Exception {
+        String addressWithWhitespace = WHITESPACE + VALID_LAST_CONTACTED + WHITESPACE;
+        DateTime expectedLastContacted = new DateTime(VALID_LAST_CONTACTED);
+        assertEquals(expectedLastContacted, ParserUtil.parseLastContacted(addressWithWhitespace));
     }
 }
