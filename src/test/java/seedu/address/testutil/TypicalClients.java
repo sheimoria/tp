@@ -37,8 +37,12 @@ public class TypicalClients {
             .withPolicies(getTypicalPolicies())
             .withNote("Test Note")
             .build();
-    public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+    public static final Client CARL = new ClientBuilder().withName("Carl Kurz")
+            .withPhone("95352563")
+            .withEmail("heinz@example.com")
+            .withAddress("wall street")
+            .withPolicies(new ArrayList<>())
+            .build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("9482224")

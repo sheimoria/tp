@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.client.Name;
 import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.policy.exceptions.EmptyPolicyListException;
-import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.policy.exceptions.PolicyNotEditedException;
 import seedu.address.model.policy.exceptions.PolicyNotFoundException;
 
@@ -57,20 +56,15 @@ public class UniquePolicyList implements Iterable<Policy> {
      * {@code target} must exist in the list.
      * The policy identity of {@code editedPolicy} must not be the same as another existing policy in the list.
      */
-    public void setPolicy(Policy target, Policy editedPolicy) throws EmptyPolicyListException,
-            InvalidPolicyIndexException,
+    public void setPolicy(Policy target, Policy editedPolicy) throws
             PolicyNotEditedException,
             DuplicatePolicyException {
         requireAllNonNull(target, editedPolicy);
 
-        if (internalList.isEmpty()) {
-            throw new EmptyPolicyListException();
-        }
+        assert !internalList.isEmpty();
 
         int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new PolicyNotFoundException();
-        }
+        assert index >= 0;
 
         if (target.equals(editedPolicy)) {
             throw new PolicyNotEditedException();
@@ -79,7 +73,6 @@ public class UniquePolicyList implements Iterable<Policy> {
         if (!setDoesNotCreateDuplicate(target, editedPolicy)) {
             throw new DuplicatePolicyException();
         }
-
 
         internalList.set(index, editedPolicy);
     }
