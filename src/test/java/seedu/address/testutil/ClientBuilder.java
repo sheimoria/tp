@@ -159,6 +159,9 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Adds a {@code preference} to the {@code PreferenceMap} of the {@code Client} that we are building
+     */
     public ClientBuilder withPreference(String category, String preference) {
         this.preferences.addPreference(category, preference);
         return this;
