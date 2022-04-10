@@ -71,7 +71,7 @@ public class EditPolicyCommand extends Command {
         List<Client> lastShownList = model.getClientList();
 
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
         Client clientToEditPolicy = lastShownList.get(clientIndex.getZeroBased());
@@ -91,15 +91,14 @@ public class EditPolicyCommand extends Command {
                             policyIndex.getZeroBased()).getPremium());
 
             editedPolicy = new Policy(editedPolicyName, editedCompany, editedPolicyManager, editedPremium);
-        } catch (InvalidPolicyIndexException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
+        } catch (InvalidPolicyIndexException | EmptyPolicyListException e) {
+            throw new CommandException(e.getMessage());
         }
 
         Client updatedClient;
         try {
             updatedClient = clientToEditPolicy.setPolicy(policyIndex.getZeroBased(), editedPolicy);
-        } catch (EmptyPolicyListException | PolicyNotFoundException | PolicyNotEditedException
-                | DuplicatePolicyException e) {
+        } catch (PolicyNotEditedException | DuplicatePolicyException e) {
             throw new CommandException(e.getMessage());
         }
         model.setClient(clientToEditPolicy, updatedClient);
@@ -116,11 +115,6 @@ public class EditPolicyCommand extends Command {
                 && clientIndex.equals(((EditPolicyCommand) other).clientIndex)
                 && policyIndex.equals(((EditPolicyCommand) other).policyIndex)
                 && editPolicyDescriptor.equals(((EditPolicyCommand) other).editPolicyDescriptor));
-    }
-
-    @Override
-    public String toString() {
-        return editPolicyDescriptor.toString();
     }
 
     /**
@@ -204,11 +198,6 @@ public class EditPolicyCommand extends Command {
                     && getCompany().equals(e.getCompany())
                     && getPolicyManager().equals(e.getPolicyManager())
                     && getPremium().equals(e.getPremium());
-        }
-
-        @Override
-        public String toString() {
-            return String.format("name: %s, coy: %s, pm: %s, $: %s", name, company, policyManager, premium);
         }
     }
 }
