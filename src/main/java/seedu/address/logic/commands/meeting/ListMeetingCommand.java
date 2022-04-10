@@ -102,4 +102,28 @@ public class ListMeetingCommand extends Command {
         return new CommandResult(generateSuccessMessage(isShowAll, client), false, false, false, true,
                 false, null, null);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListMeetingCommand)) {
+            return false;
+        }
+
+        // state check
+        ListMeetingCommand e = (ListMeetingCommand) other;
+
+        if (index == null && e.index == null) {
+            return isShowAll == e.isShowAll;
+        } else if (index != null && e.index != null) {
+            return index.equals(e.index) && isShowAll == e.isShowAll;
+        } else {
+            return false;
+        }
+    }
 }

@@ -111,6 +111,8 @@ public class CommandTestUtil {
     public static final String VALID_END_DATETIME_STORE = "2023-02-01T11:00:00.000000";
     public static final String VALID_END_DATETIME_STORE_FUTURE = "2099-02-01T11:00:00.000000";
     public static final String VALID_LABEL = "Dinner";
+    public static final String VALID_MEETING_INDEX = "1";
+    public static final String VALID_CLIENT_INDEX = "1";
 
     public static final String INVALID_DATETIME_INPUT = "1-2-23 10:00";
     public static final String INVALID_DATETIME_RANGE_INPUT = "31-02-2022 10:00";

@@ -23,28 +23,28 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 - [Quick start](#quick-start)
 - [Features](#features)
-  1. [Viewing help : `help`](#viewing-help--help)
-  2. [Add client: `addClient`](#add-client-addclient)
-  3. [View client: `viewClient`](#view-client-viewclient)
-  4. [Edit client: `editClient`](#edit-client-editclient)
-  5. [Delete client: `deleteClient`](#delete-client-deleteclient)
-  6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
-  7. [Add/edit notes for client: `addNote`](#add-edit-notes-for-client-addnote)
-  8. [Add/edit preferences to client: `addPref`](#add-edit-preferences-to-client-addpref)
-  9. [Add policy: `addPolicy`](#add-policy-addpolicy)
-  10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-  11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-  12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-  13. [View All Meetings: `meetings`](#view-meetings-meetings)
-  14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
-  15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-  16. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
-  17. [Sort Clients: `sortClients`](#sort-clients-sortclients)
-  18. [Filter Clients: `filterClients`](#filter-clients-filterclients)
-  19. [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  20. [Exiting the program : `exit`](#exiting-the-program--exit)
-  21. [Saving the data](#saving-the-data)
-  22. [Editing the data file](#editing-the-data-file)
+    1. [Viewing help : `help`](#viewing-help--help)
+    2. [Add client: `addClient`](#add-client-addclient)
+    3. [View client: `viewClient`](#view-client-viewclient)
+    4. [Edit client: `editClient`](#edit-client-editclient)
+    5. [Delete client: `deleteClient`](#delete-client-deleteclient)
+    6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
+    7. [Add/edit notes for client: `addNote`](#add-edit-notes-for-client-addnote)
+    8. [Add/edit preferences to client: `addPref`](#add-edit-preferences-to-client-addpref)
+    9. [Add policy: `addPolicy`](#add-policy-addpolicy)
+    10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+    11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+    12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+    13. [View All Meetings: `meetings`](#view-meetings-meetings)
+    14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
+    15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+    16. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
+    17. [Sort Clients: `sortClients`](#sort-clients-sortclients)
+    18. [Filter Clients: `filterClients`](#filter-clients-filterclients)
+    19. [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    20. [Exiting the program : `exit`](#exiting-the-program--exit)
+    21. [Saving the data](#saving-the-data)
+    22. [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -64,16 +64,16 @@ dedicated platform catered to helping them manage their clientele. This is where
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all contacts.
+    - **`list`** : Lists all contacts.
 
-   - **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client
-     named `John Doe` to your contact list.
+    - **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client
+      named `John Doe` to your contact list.
 
-   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   - **`clear`** : Deletes all contacts.
+    - **`clear`** : Deletes all contacts.
 
-   - **`exit`** : Exits the app.
+    - **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -90,7 +90,7 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 
 - If the command requires a reference to an INDEX, any leading zeroes (`01`, `001`) will be ignored.<br>
-e.g. in `viewClient 1`, `1` is the INDEX of the specified client, and can be referenced as `01` or `0001` with no regard to the leading zeroes
+  e.g. in `viewClient 1`, `1` is the INDEX of the specified client, and can be referenced as `01` or `0001` with no regard to the leading zeroes
 
 
 - Items in square brackets are optional.<br>
@@ -129,13 +129,13 @@ Adds a client to the list of managed clients.
 Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/LAST_CONTACTED]`
 
 - `EMAIL` must be in the format `"local-part@domain"` and adhere to the following constraints
-  - The `local-part` should only contain alphanumeric characters and the special characters `+_.-`.
-  - The `local-part` cannot start or end with these special characters.
-  - This is followed by an `@` and then a domain name. The domain name is made up of labels separated by periods.
-  - The domain name must:
-    - end with a domain label at least 2 characters long
-    - have each domain label start and end with alphanumeric characters
-    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    - The `local-part` should only contain alphanumeric characters and the special characters `+_.-`.
+    - The `local-part` cannot start or end with these special characters.
+    - This is followed by an `@` and then a domain name. The domain name is made up of labels separated by periods.
+    - The domain name must:
+        - end with a domain label at least 2 characters long
+        - have each domain label start and end with alphanumeric characters
+        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 - `BIRTHDAY` must be in `dd-MM-yyyy` format.
 - `LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
 
@@ -150,7 +150,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/
 
 ### View client: `viewClient`
 
-View a client in your address book. The client to be viewed will appear on the `Dynamic Panel` Section 
+View a client in your address book. The client to be viewed will appear on the `Dynamic Panel` Section
 
 Format: `viewClient INDEX`
 
@@ -166,7 +166,7 @@ Format: `viewClient INDEX`
 
 Edit a client in your address book.
 
-Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]` 
+Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]`
 
 - `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
 
@@ -252,7 +252,7 @@ Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
 
 ### Delete preferences from client: `deletePref`
 
-Deletes the preference from the specified client. 
+Deletes the preference from the specified client.
 
 Format: `deletePref INDEX cat/CATEGORY`
 
@@ -386,7 +386,7 @@ Deletes a specified meeting.
 
 Format: `deleteMeeting INDEX`
 
-#### Sample Input: 
+#### Sample Input:
 
 `deleteMeeting 1`
 
@@ -463,11 +463,11 @@ The `filterClients` command is a complex command involving 3 parameters:
 
 1. Attribute: the attribute to be filtered on
 
-    Supported attributes: `birthMonth`, `age`, `premium`, `company`
+   Supported attributes: `birthMonth`, `age`, `premium`, `company`
 
 2. Operator: the desired filter range
 
-    Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
+   Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
     * Note: The only operator supported for `company` is `equal`
 
 3. Value: the value to be filtered around
