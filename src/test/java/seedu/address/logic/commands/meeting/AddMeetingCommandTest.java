@@ -182,6 +182,10 @@ public class AddMeetingCommandTest {
         }
 
         @Override
+        public boolean hasNoClients() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void deleteClient(Client target) {
             throw new AssertionError("This method should not be called.");
         }

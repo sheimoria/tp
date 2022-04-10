@@ -76,6 +76,11 @@ public interface Model {
     boolean hasClient(Client client);
 
     /**
+     * Returns true if the filtered client list is empty when showing all clients.
+     */
+    boolean hasNoClients();
+
+    /**
      * Deletes the given client.
      * The client must exist in the address book.
      */
