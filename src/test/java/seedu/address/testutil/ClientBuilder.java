@@ -159,6 +159,11 @@ public class ClientBuilder {
         return this;
     }
 
+    public ClientBuilder withPreference(String category, String preference) {
+        this.preferences.addPreference(category, preference);
+        return this;
+    }
+
     public Client build() {
         return new Client(name, phone, email, address, birthday, lastContacted, policies, note, preferences);
     }

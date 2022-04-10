@@ -103,6 +103,7 @@ public class AddPreferenceCommandTest {
         assertFalse(addPreferenceCommandToCopy.equals(new AddPreferenceCommand(INDEX_FIRST_CLIENT,
                 VALID_PREFERENCE_CATEGORY_2, VALID_PREFERENCE_VALUE)));
 
+        // different preference -> returns false
         assertFalse(addPreferenceCommandToCopy.equals(new AddPreferenceCommand(INDEX_FIRST_CLIENT,
                 VALID_PREFERENCE_CATEGORY, VALID_PREFERENCE_VALUE_2)));
     }

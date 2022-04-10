@@ -45,6 +45,10 @@ public class DeletePreferenceCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getClientList();
 
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "delete preference from"));
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
@@ -67,6 +71,6 @@ public class DeletePreferenceCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeletePreferenceCommand
                 && index.equals(((DeletePreferenceCommand) other).index)
-                && index.equals(((DeletePreferenceCommand) other).preferenceKey));
+                && preferenceKey.equals(((DeletePreferenceCommand) other).preferenceKey));
     }
 }
