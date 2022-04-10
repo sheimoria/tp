@@ -32,7 +32,7 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldPresent_success() {
+    public void parse_allFieldsPresent_success() {
         String userInput = "birthMonth op/equal v/february";
         FilterCommand expectedCommand = new FilterCommand("birthMonth", "equal", "february");
 

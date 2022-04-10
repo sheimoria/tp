@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SORT_DIRECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_DIRECTION;
 
@@ -27,11 +26,8 @@ public class SortCommandParser implements Parser<SortCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_SORT_DIRECTION);
 
         String attribute;
-        try {
-            attribute = argMultimap.getPreamble();
-        } catch (Exception e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE), e);
-        }
+
+        attribute = argMultimap.getPreamble();
 
         Set<String> validSortDirections = new HashSet<>();
         validSortDirections.add("asc");
