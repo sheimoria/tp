@@ -1,4 +1,5 @@
 ---
+
 layout: page
 title: N Vijay Narayanan's Project Portfolio Page
 ---
@@ -63,16 +64,20 @@ Given below are my contributions to the project.
   
 - **Contributions to the UG**:
 
-  - Created and updated all policy-related sections.
-  - Added examples for all policy-related commands
+  - Created and added examples for `Add Policy`
+  - Created and added examples for `Edit Policy`
+  - Created and added examples for `Delete Policy`
+  - Contributed to `Sort Clients`
+  - Contributed to `Filter Clients`
+
 
 - **Contributons to the DG**:
 
-  - Created PlantUML Diagrams for Model and Storage.
-  - Created and updated policy implementation section.
+  - Created PlantUML Diagrams for `Model` and `Storage`.
+  - Created and added examples for `Policy` under the `Implementation` section.
 
+  
 - **Review/mentoring contributions**:
 
-  - Reviews @zechjw's pull requests in our forking workflow.
+  - Reviewed pull requests made by `zechajw` as part of our forking workflow.
 
-- **Contributions beyond the project team:**:
