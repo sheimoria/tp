@@ -6,29 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_CLIENT_LIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.address.logic.commands.FilterCommand.MESSAGE_INVALID_FILTER_ATTRIBUTE;
 import static seedu.address.logic.commands.FilterCommand.MESSAGE_INVALID_FILTER_OPERATOR;
 import static seedu.address.logic.commands.FilterCommand.MESSAGE_INVALID_FILTER_VALUE;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Client;
 
 public class FilterCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    FilterCommand validTestCommand = new FilterCommand("birthMonth", "equal", "february");
+    private FilterCommand validTestCommand = new FilterCommand("birthMonth", "equal", "february");
 
     @Test
     public void execute_nullModel_failure() {
