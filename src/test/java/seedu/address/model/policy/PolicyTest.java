@@ -1,5 +1,6 @@
 package seedu.address.model.policy;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_INVESTMENT;
@@ -81,5 +82,11 @@ public class PolicyTest {
         // different premium -> returns false
         editedInsurance = new PolicyBuilder(INSURANCE).withPremium(VALID_PREMIUM_INVESTMENT).build();
         assertFalse(INSURANCE.equals(editedInsurance));
+    }
+
+    @Test
+    public void toNumberedDisplay() {
+        String expectedDisplay = String.format("1. %s", INSURANCE);
+        assertEquals(INSURANCE.toNumberedDisplay(1), expectedDisplay);
     }
 }
