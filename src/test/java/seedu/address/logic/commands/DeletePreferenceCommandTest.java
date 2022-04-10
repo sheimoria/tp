@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PREFERENCE_CATEGORY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_CATEGORY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PREFERENCE_CATEGORY_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -41,6 +42,16 @@ public class DeletePreferenceCommandTest {
         DeletePreferenceCommand deletePreferenceCommand = new DeletePreferenceCommand(INDEX_INVALID_CLIENT,
                 VALID_PREFERENCE_CATEGORY);
         String expectedMessage = Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        assertCommandFailure(deletePreferenceCommand, expectedModel, expectedMessage);
+    }
+
+    @Test
+    public void execute_invalidCategory_failure() {
+        DeletePreferenceCommand deletePreferenceCommand = new DeletePreferenceCommand(INDEX_FIRST_CLIENT,
+                INVALID_PREFERENCE_CATEGORY);
+        String expectedMessage = String.format(DeletePreferenceCommand.MESSAGE_INVALID_KEY, INVALID_PREFERENCE_CATEGORY,
+                "Alice Pauline");
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         assertCommandFailure(deletePreferenceCommand, expectedModel, expectedMessage);
     }

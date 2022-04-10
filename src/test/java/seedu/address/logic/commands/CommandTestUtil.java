@@ -86,6 +86,8 @@ public class CommandTestUtil {
     public static final String VALID_PREFERENCE_CATEGORY_2 = "Drink";
     public static final String VALID_PREFERENCE_VALUE_2 = "Coke";
 
+    public static final String INVALID_PREFERENCE_CATEGORY = "None";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
