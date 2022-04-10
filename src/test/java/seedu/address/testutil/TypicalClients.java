@@ -25,7 +25,7 @@ public class TypicalClients {
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
-            .withPreference("Sports", "Tennis")
+            .withPreference("Drink", "Coke")
             .build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withBirthday("21-03-1999").withLastContacted("21-03-1999 21:03")

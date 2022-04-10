@@ -42,16 +42,15 @@ public class DeletePreferenceCommandTest {
                 VALID_PREFERENCE_CATEGORY);
         String expectedMessage = Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
         assertCommandFailure(deletePreferenceCommand, expectedModel, expectedMessage);
     }
 
     @Test
     public void execute_preferenceAcceptedByModel_success() {
         DeletePreferenceCommand deletePreferenceCommand = new DeletePreferenceCommand(INDEX_FIRST_CLIENT,
-                VALID_PREFERENCE_CATEGORY);
+                VALID_PREFERENCE_CATEGORY_2);
         String expectedMessage = String.format(String.format(DeletePreferenceCommand.MESSAGE_SUCCESS, ALICE.getName(),
-                VALID_PREFERENCE_CATEGORY));
+                VALID_PREFERENCE_CATEGORY_2));
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(deletePreferenceCommand, model, expectedMessage, expectedModel);
