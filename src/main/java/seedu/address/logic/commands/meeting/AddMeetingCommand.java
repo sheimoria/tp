@@ -101,7 +101,7 @@ public class AddMeetingCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof AddMeetingCommand)) {
             return false;
         }
 
