@@ -25,7 +25,6 @@ import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.policy.exceptions.PolicyNotEditedException;
-import seedu.address.model.policy.exceptions.PolicyNotFoundException;
 import seedu.address.testutil.PolicyBuilder;
 
 

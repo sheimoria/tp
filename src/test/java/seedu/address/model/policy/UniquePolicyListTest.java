@@ -70,9 +70,9 @@ public class UniquePolicyListTest {
     }
 
     @Test
-    public void setPolicy_targetPolicyNotInList_throwsPolicyNotFoundException() {
+    public void setPolicy_targetPolicyNotInList_throwsAssertionError() {
         uniquePolicyList.add(RETIREMENT);
-        assertThrows(PolicyNotFoundException.class, () -> uniquePolicyList.setPolicy(INSURANCE, INSURANCE));
+        assertThrows(AssertionError.class, () -> uniquePolicyList.setPolicy(INSURANCE, INSURANCE));
     }
 
     @Test
@@ -108,8 +108,8 @@ public class UniquePolicyListTest {
     }
 
     @Test
-    public void setPolicy_emptyPolicyList_throwsEmptyPolicyListException() {
-        assertThrows(EmptyPolicyListException.class, () -> uniquePolicyList.setPolicy(INSURANCE, INVESTMENT));
+    public void setPolicy_emptyPolicyList_throwsAssertionListException() {
+        assertThrows(AssertionError.class, () -> uniquePolicyList.setPolicy(INSURANCE, INVESTMENT));
     }
 
     @Test

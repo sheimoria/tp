@@ -24,7 +24,6 @@ import seedu.address.model.policy.exceptions.DuplicatePolicyException;
 import seedu.address.model.policy.exceptions.EmptyPolicyListException;
 import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
 import seedu.address.model.policy.exceptions.PolicyNotEditedException;
-import seedu.address.model.policy.exceptions.PolicyNotFoundException;
 
 /**
  * Edits a client identified using it's displayed index from the address book.
