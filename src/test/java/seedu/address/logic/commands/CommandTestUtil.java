@@ -11,6 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_MANAGER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCE_DETAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCE_KEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -98,8 +100,16 @@ public class CommandTestUtil {
     public static final String VALID_PREFERENCE_VALUE = "Tennis";
     public static final String VALID_PREFERENCE_CATEGORY_2 = "Drink";
     public static final String VALID_PREFERENCE_VALUE_2 = "Coke";
+    public static final String PREFERENCE_CAT_PREF = " " + PREFIX_PREFERENCE_KEY + VALID_PREFERENCE_CATEGORY
+            + " " + PREFIX_PREFERENCE_DETAIL + VALID_PREFERENCE_VALUE;
+    public static final String PREFERENCE_INDEX_CAT = "1 " + PREFIX_PREFERENCE_KEY + VALID_PREFERENCE_CATEGORY;
+    public static final String PREFERENCE_INDEX_VALUE = "1 " + PREFIX_PREFERENCE_DETAIL + VALID_PREFERENCE_VALUE;
+    public static final String PREFERENCE_INDEX_CAT_VALUE = "1 " + PREFIX_PREFERENCE_KEY + VALID_PREFERENCE_CATEGORY
+            + " " + PREFIX_PREFERENCE_DETAIL + VALID_PREFERENCE_VALUE;
+
 
     public static final String INVALID_PREFERENCE_CATEGORY = "None";
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

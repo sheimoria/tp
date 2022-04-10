@@ -155,4 +155,20 @@ public class FilterCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, attribute, operator, value));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof FilterCommand)) {
+            return false;
+        }
+
+        FilterCommand otherFc = (FilterCommand) other;
+        return attribute.equals(otherFc.attribute)
+                && operator.equals(otherFc.operator)
+                && value.equals(otherFc.value);
+    }
 }
