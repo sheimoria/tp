@@ -22,7 +22,7 @@ public class Client {
     private final Email email;
     private final Address address;
     private Date birthday;
-    private DateTime lastContacted;
+    private LastContacted lastContacted;
 
     // Data fields
     private final UniquePolicyList policies = new UniquePolicyList();
@@ -33,7 +33,7 @@ public class Client {
      * Every field must be present and not null.
      *
      */
-    public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted) {
+    public Client(Name name, Phone phone, Email email, Address address, Date birthday, LastContacted lastContacted) {
         requireAllNonNull(name, phone, email, address, birthday, lastContacted);
         this.name = name;
         this.phone = phone;
@@ -47,7 +47,7 @@ public class Client {
      * Every field must be present and not null.
      * Overloaded constructor for all commands.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Date birthday, DateTime lastContacted,
+    public Client(Name name, Phone phone, Email email, Address address, Date birthday, LastContacted lastContacted,
                   UniquePolicyList policies, Note note, PreferenceMap preferences) {
         requireAllNonNull(name, phone, email, address, policies, note, preferences);
         this.name = name;
@@ -89,7 +89,7 @@ public class Client {
         return birthday.getMonth();
     }
 
-    public DateTime getLastContacted() {
+    public LastContacted getLastContacted() {
         return lastContacted;
     }
 
@@ -187,10 +187,10 @@ public class Client {
     }
 
     /**
-     * Updates the lastContacted DateTime of this client.
+     * Updates the lastContacted LastContacted of this client.
      */
-    public Client updateLastContacted(DateTime dateTime) {
-        return new Client(name, phone, email, address, birthday, dateTime, policies, note, preferences);
+    public Client updateLastContacted(LastContacted lastContacted) {
+        return new Client(name, phone, email, address, birthday, lastContacted, policies, note, preferences);
     }
 
     /**

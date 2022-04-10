@@ -11,8 +11,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
@@ -164,21 +164,21 @@ class JsonAdaptedClient {
 
         if (lastContacted == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DateTime.class.getSimpleName()));
+                    LastContacted.class.getSimpleName()));
         }
 
-        final DateTime modelLastContacted;
+        final LastContacted modelLastContacted;
 
         if (lastContacted == "") {
-            modelLastContacted = new DateTime();
+            modelLastContacted = new LastContacted();
         } else {
-            if (!DateTime.isValidDateTime(lastContacted)) {
-                throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+            if (!LastContacted.isValidLastContacted(lastContacted)) {
+                throw new IllegalValueException(LastContacted.MESSAGE_CONSTRAINTS);
             }
-            if (!DateTime.isPastDateTime(lastContacted)) {
-                throw new IllegalValueException(DateTime.MESSAGE_FUTURE_DATETIME);
+            if (!LastContacted.isPastLastContacted(lastContacted)) {
+                throw new IllegalValueException(LastContacted.MESSAGE_FUTURE_DATETIME);
             }
-            modelLastContacted = new DateTime(lastContacted);
+            modelLastContacted = new LastContacted(lastContacted);
         }
 
         assert note != null;

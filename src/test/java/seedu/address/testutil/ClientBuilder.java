@@ -5,8 +5,8 @@ import java.util.List;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
@@ -40,7 +40,7 @@ public class ClientBuilder {
     private Email email;
     private Address address;
     private Date birthday;
-    private DateTime lastContacted;
+    private LastContacted lastContacted;
     private UniquePolicyList policies = new UniquePolicyList();
     private Note note;
     private PreferenceMap preferences = new PreferenceMap();
@@ -54,7 +54,7 @@ public class ClientBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Date(DEFAULT_BIRTHDAY);
-        lastContacted = new DateTime(DEFAULT_LAST_CONTACTED);
+        lastContacted = new LastContacted(DEFAULT_LAST_CONTACTED);
 
         Policy defaultPolicy = new Policy(new Name(DEFAULT_POLICY_NAME), new Name(DEFAULT_COMPANY),
                 new Name(DEFAULT_POLICY_MANAGER),
@@ -123,7 +123,7 @@ public class ClientBuilder {
      * Sets the {@code lastContacted} of the {@code Client} that we are building to an empty string.
      */
     public ClientBuilder withLastContacted() {
-        this.lastContacted = new DateTime();
+        this.lastContacted = new LastContacted();
         return this;
     }
 
@@ -131,7 +131,7 @@ public class ClientBuilder {
      * Sets the {@code lastContacted} of the {@code Client} that we are building.
      */
     public ClientBuilder withLastContacted(String lastContacted) {
-        this.lastContacted = lastContacted.isEmpty() ? new DateTime() : new DateTime(lastContacted);
+        this.lastContacted = lastContacted.isEmpty() ? new LastContacted() : new LastContacted(lastContacted);
         return this;
     }
 

@@ -20,8 +20,8 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
@@ -117,7 +117,8 @@ public class EditCommand extends Command {
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Date updatedBirthday = editClientDescriptor.getBirthday().orElse(clientToEdit.getBirthday());
-        DateTime updatedLastContacted = editClientDescriptor.getLastContacted().orElse(clientToEdit.getLastContacted());
+        LastContacted updatedLastContacted = editClientDescriptor.getLastContacted().orElse(clientToEdit
+                .getLastContacted());
         Note updatedNote = editClientDescriptor.getNote().orElse(clientToEdit.getNote());
         PreferenceMap updatedPreferences = editClientDescriptor.getPreferenceMap().orElse(clientToEdit
                 .getPreferenceMap());
@@ -154,7 +155,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Date birthday;
-        private DateTime lastContacted;
+        private LastContacted lastContacted;
         private Note note;
         private PreferenceMap preferences;
 
@@ -221,11 +222,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(birthday);
         }
 
-        public void setLastContacted(DateTime lastContacted) {
+        public void setLastContacted(LastContacted lastContacted) {
             this.lastContacted = lastContacted;
         }
 
-        public Optional<DateTime> getLastContacted() {
+        public Optional<LastContacted> getLastContacted() {
             return Optional.ofNullable(lastContacted);
         }
 

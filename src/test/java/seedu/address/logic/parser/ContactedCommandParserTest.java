@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.model.client.DateTime.MESSAGE_FUTURE_DATETIME;
+import static seedu.address.model.client.LastContacted.MESSAGE_FUTURE_DATETIME;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.model.client.DateTime;
+import seedu.address.model.client.LastContacted;
 
 public class ContactedCommandParserTest {
 
@@ -54,7 +54,7 @@ public class ContactedCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_CLIENT;
         EditCommand.EditClientDescriptor edc = new EditCommand.EditClientDescriptor();
-        DateTime lastContacted = new DateTime("21-03-2022 21:03");
+        LastContacted lastContacted = new LastContacted("21-03-2022 21:03");
         edc.setLastContacted(lastContacted);
         ContactedCommand expectedCommand = new ContactedCommand(targetIndex, edc);
         assertParseSuccess(parser, "1 lc/21-03-2022 21:03", expectedCommand);

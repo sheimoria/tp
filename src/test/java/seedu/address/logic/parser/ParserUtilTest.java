@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 
@@ -159,14 +159,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseLastContacted_validValueWithoutWhitespace_returnsLastContacted() throws Exception {
-        DateTime expectedLastContacted = new DateTime(VALID_LAST_CONTACTED);
+        LastContacted expectedLastContacted = new LastContacted(VALID_LAST_CONTACTED);
         assertEquals(expectedLastContacted, ParserUtil.parseLastContacted(VALID_LAST_CONTACTED));
     }
 
     @Test
     public void parseLastContacted_validValueWithWhitespace_returnsTrimmedLastContacted() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_LAST_CONTACTED + WHITESPACE;
-        DateTime expectedLastContacted = new DateTime(VALID_LAST_CONTACTED);
+        LastContacted expectedLastContacted = new LastContacted(VALID_LAST_CONTACTED);
         assertEquals(expectedLastContacted, ParserUtil.parseLastContacted(addressWithWhitespace));
     }
 }

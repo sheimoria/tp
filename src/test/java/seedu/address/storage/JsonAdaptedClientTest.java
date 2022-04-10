@@ -15,8 +15,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.testutil.ClientBuilder;
@@ -166,7 +166,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidLastContacted_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_BIRTHDAY, INVALID_LAST_CONTACTED, VALID_POLICIES, VALID_NOTE, VALID_PREFERENCES);
-        String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
+        String expectedMessage = LastContacted.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
@@ -174,7 +174,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_nullLastContacted_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 VALID_BIRTHDAY, null, VALID_POLICIES, VALID_NOTE, VALID_PREFERENCES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LastContacted.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
