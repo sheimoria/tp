@@ -94,6 +94,13 @@ public class CommandTestUtil {
     public static final String INVALID_POLICY_MANAGER_DESC = " " + PREFIX_POLICY_MANAGER + "James&";
     public static final String INVALID_PREMIUM_DESC = " " + PREFIX_PREMIUM + "abc";
 
+    public static final String VALID_PREFERENCE_CATEGORY = "Sports";
+    public static final String VALID_PREFERENCE_VALUE = "Tennis";
+    public static final String VALID_PREFERENCE_CATEGORY_2 = "Drink";
+    public static final String VALID_PREFERENCE_VALUE_2 = "Coke";
+
+    public static final String INVALID_PREFERENCE_CATEGORY = "None";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

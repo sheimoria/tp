@@ -35,6 +35,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setAddress(client.getAddress());
         descriptor.setBirthday(client.getBirthday());
         descriptor.setLastContacted(client.getLastContacted());
+        descriptor.setPreferenceMap(client.getPreferenceMap());
     }
 
     /**
