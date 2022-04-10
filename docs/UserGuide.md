@@ -22,29 +22,35 @@ dedicated platform catered to helping them manage their clientele. This is where
 ## Table of Contents
 
 - [Quick start](#quick-start)
+- [User Interface Layout](#user-interface-layout)
 - [Features](#features)
     1. [Viewing help : `help`](#viewing-help--help)
     2. [Add client: `addClient`](#add-client-addclient)
     3. [View client: `viewClient`](#view-client-viewclient)
-    4. [Edit client: `editClient`](#edit-client-editclient)
-    5. [Delete client: `deleteClient`](#delete-client-deleteclient)
-    6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
-    7. [Add/edit notes for client: `addNote`](#add-edit-notes-for-client-addnote)
-    8. [Add/edit preferences to client: `addPref`](#add-edit-preferences-to-client-addpref)
-    9. [Add policy: `addPolicy`](#add-policy-addpolicy)
-    10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-    11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-    12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-    13. [View All Meetings: `meetings`](#view-meetings-meetings)
-    14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
-    15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-    16. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
-    17. [Sort Clients: `sortClients`](#sort-clients-sortclients)
-    18. [Filter Clients: `filterClients`](#filter-clients-filterclients)
-    19. [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    20. [Exiting the program : `exit`](#exiting-the-program--exit)
-    21. [Saving the data](#saving-the-data)
-    22. [Editing the data file](#editing-the-data-file)
+    4. [Find client by name: `findClient`](#find-client-by-name-findclient)
+    5. [Edit client: `editClient`](#edit-client-editclient)
+    6. [Delete client: `deleteClient`](#delete-client-deleteclient)
+    7. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
+    8. [Add/edit notes for client : `addNote`](#addedit-notes-for-client--addnote)
+    9. [Delete note from client: `deleteNote`](#delete-note-from-client-deletenote)
+    10. [Add/edit preferences to client: `addPref`](#addedit-preferences-to-client-addpref)
+    11. [Delete preferences from client: `deletePref`](#delete-preferences-from-client-deletepref)
+    12. [Add policy: `addPolicy`](#add-policy-addpolicy)
+    13. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+    14. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+    15. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+    16. [View All Meetings: `meetings`](#view-meetings-meetings)
+    17. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
+    18. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+    19. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
+    20. [Sort Clients: `sortClients`](#sort-clients-sortclients)
+    21. [Filter Clients: `filterClients`](#filter-clients-filterclients)
+    22. [Reset Filter/Sort & View all Clients: `clients`](#reset-filtersort--view-all-clients)
+    23. [Clearing all entries : `clear`](#clearing-all-entries-clear)
+    24. [Exiting the program : `exit`](#exiting-the-program-exit)
+    25. [Accessing the Tutorial: `tutorial`](#accessing-the-tutorial-tutorial)
+    26. [Saving the data](#saving-the-data)
+    27. [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -78,6 +84,10 @@ dedicated platform catered to helping them manage their clientele. This is where
 1. Refer to the [Features](#features) below for details of each command.
 
 ---
+
+## User Interface Layout
+
+![UILayout.png](images/UILayout.png)
 
 ## Features
 
@@ -139,7 +149,6 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/
 - `BIRTHDAY` must be in `dd-MM-yyyy` format.
 - `LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
 
-
 #### Sample Input:
 
 `addClient n/Vijay Narayanan p/91234567 e/vijay@email.com a/210 Street 3 b/21-03-1999 lc/21-03-2022 21:03`<br>
@@ -161,6 +170,18 @@ Format: `viewClient INDEX`
 #### Expected Output: `Client` at `INDEX: 1` is displayed in the `Dynamic Panel`
 
 ![ViewClientSampleOutput1.png](images/sample-output/ViewClientSampleOutput1.png)
+
+### Find client by name: `findClient`
+
+Format: `findClient NAME`
+
+#### Sample Input:
+
+`findClient Alex`
+
+#### Expected Output:
+
+![img.png](images/sample-output/FindClientFeatureSampleOutput.png)
 
 ### Edit client: `editClient`
 
@@ -204,12 +225,12 @@ Format: `contacted INDEX lc/DATETIME`
 
 #### Sample Output:
 
-### Add/Edit Notes for client:` addNote`
+### Add/edit Notes for client : `addNote`
 
 Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
 note specified from this command.
 
-Format: `addNote 1 nt/NOTE`
+Format: `addNote INDEX nt/NOTE`
 
 #### Sample Input 1: Adding a new Note to a Client
 
@@ -226,6 +247,20 @@ Format: `addNote 1 nt/NOTE`
 #### Expected Output: Existing Note on `Client` at `INDEX: 1` is overwritten
 
 ![AddNoteSampleOutput2.png](images/sample-output/AddNoteSampleOutput2.png)
+
+### Delete note from client: `deleteNote`
+
+Delete the note of a specific client.
+
+Format: `deleteNote INDEX`
+
+#### Sample Input:
+
+`deleteNote 1`
+
+#### Expected Output
+
+![DeleteNoteFeatureSampleOutput.png](images/sample-output/DeleteNoteFeatureSampleOutput.png)
 
 ### Add/Edit preferences to client: `addPref`
 
@@ -427,7 +462,6 @@ Note to Users:
 3. If no attribute is provided, the list of clients will be sorted by default in the order that the clients were added
    to the list.
 
-
 #### Sample Input 1: Sorting clients by the number of `Policies` that they have
 
 `sortClients numPolicies`
@@ -500,6 +534,18 @@ Other Examples:
 4. `filterClients company op/equal v/Great Eastern` Retrieves all clients who own at least one policy from `Great
    Eastern`
 
+#### NOTE: `filterClients` and `sortClients` cannot be used simultaneously. Reset with `clients` before switching between filter and sort views.
+
+### Reset Filter/Sort & View All Clients
+
+#### Sample Input:
+
+`clients`
+
+#### Expected Output:
+
+![img.png](images/sample-output/ClientsCommandSampleOutput.png)
+
 ### Save to hard drive
 
 OnlyFAs’s data is saved in the hard drive automatically after any command that changes the data. There is no need to save manually.
@@ -508,13 +554,33 @@ OnlyFAs’s data is saved in the hard drive automatically after any command that
 
 Clear all entries in onlyFAs.
 
-Format: `clear`
+#### Sample Input: 
+
+`clear`
+
+#### Expected Output:
+
+![img.png](images/sample-output/ClearCommandSampleOutput.png)
+
+**NOTE: This command <u>cannot</u> be undone. Please use it with caution**
 
 ### Exiting the program: `exit`
 
 Exit the program.
 
 Format: `exit`
+
+### Accessing the tutorial: `tutorial`
+
+Opens the tutorial for the program.
+
+#### Sample Input:
+
+`tutorial`
+
+#### Expected Output:
+
+![img.png](images/sample-output/TutorialFeatureSampleOutput.png)
 
 ### Saving the data
 
