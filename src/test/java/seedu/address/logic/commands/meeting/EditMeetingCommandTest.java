@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalMeetings.WITH_BENSON;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 
 public class EditMeetingCommandTest {
@@ -31,8 +32,8 @@ public class EditMeetingCommandTest {
     @Test
     public void equals() {
         Index validIndexAlice = Index.fromZeroBased(VALID_INDEX);
-        EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptorAlice
-                = new EditMeetingCommand.EditMeetingDescriptor();
+        EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptorAlice =
+                new EditMeetingCommand.EditMeetingDescriptor();
         editMeetingDescriptorAlice.setStartDateTime(WITH_ALICE.getStartDateTime());
         editMeetingDescriptorAlice.setEndDateTime(WITH_ALICE.getEndDateTime());
         editMeetingDescriptorAlice.setLabel(WITH_ALICE.getLabel());
