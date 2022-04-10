@@ -16,40 +16,40 @@ Given below are my contributions to the project.
   *My main contribution to onlyFAs was introducing all policy-related features. Listed Below are the various classes 
   I have implemented:*
   
-  ######Models
+  ####Models
   - `Policy`
   - `Premium`
   - `UniquePolicyList`
   - Contributed to `Client` to include UniquePolicyList attribute and all its corresponding functions
 
-  ######Commands
+  ####Commands
   - `AddPolicyCommand`
   - `EditPolicyCommand`
   - `DeletePolicyCommand`
   - Contributed to `FilterCommand` to include predicates for premium and company
   - Contributed to `SortCommand` to include comparators for premium and number of policies
 
-  ######Parsers
+  ####Parsers
   - `AddPolicyCommandParser`
   - `EditPolicyCommandParser`
   - `DeletePolicyCommandParser`
 
-  ######Exceptions
+  ####Exceptions
   - `DuplicatePolicyException`
   - `EmptyPolicyListException`
   - `InvalidPolicyIndexException`
   - `PolicyNotEditedException`
   - `PolicyNotFoundException`
 
-  ######Storage
+  ####Storage
     - `JsonAdaptedPolicy`
     - Contributed to `JsonAdaptedClient` to include UniquePolicyList attribute and all its corresponding functions
 
-  ######Util
+  ####Util
     - `PolicyBuilder`
     - `TypicalPolicies`
 
-  ######Tests
+  ####Tests
   - `PolicyTest`
   - `PremiumTest`
   - `UniquePolicyListTest`
