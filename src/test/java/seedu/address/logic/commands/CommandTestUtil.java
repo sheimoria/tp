@@ -53,8 +53,8 @@ public class CommandTestUtil {
     public static final String VALID_POLICY_NAME_INVESTMENT = "Investment Policy";
     public static final String VALID_COMPANY_INSURANCE = "Insurance Company";
     public static final String VALID_COMPANY_INVESTMENT = "Investment Company";
-    public static final String VALID_POLICY_MANAGER_INSURANCE = VALID_NAME_AMY;
-    public static final String VALID_POLICY_MANAGER_INVESTMENT = VALID_NAME_BOB;
+    public static final String VALID_POLICY_MANAGER_INSURANCE = "Ari";
+    public static final String VALID_POLICY_MANAGER_INVESTMENT = "Elston";
     public static final String VALID_PREMIUM_INSURANCE = "1000";
     public static final String VALID_PREMIUM_INVESTMENT = "2000";
     public static final String VALID_POLICY_INDEX_INSURANCE = "1";

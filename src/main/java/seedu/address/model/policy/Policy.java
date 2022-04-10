@@ -90,22 +90,4 @@ public class Policy {
         return String.format("%s. %s", index, this);
     }
 
-    /**
-     * Returns a formatted string displaying the full details of this policy.
-     */
-    public String fullDetails() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("{")
-                .append(getName())
-                .append("; Company: ")
-                .append(getCompany())
-                .append("; Policy Manager: ")
-                .append(getPolicyManager())
-                .append("; Premium Amount: $")
-                .append(getPremium())
-                .append("}");
-        return builder.toString();
-    }
-
-
 }

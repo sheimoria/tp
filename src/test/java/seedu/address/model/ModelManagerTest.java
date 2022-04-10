@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BENSON;
+import static seedu.address.testutil.TypicalMeetings.WITH_ALICE;
+import static seedu.address.testutil.TypicalMeetings.WITH_BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
+import seedu.address.model.meeting.exceptions.OverlappingMeetingsException;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -128,5 +132,72 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+    }
+
+    @Test
+    public void addMeeting() {
+        // add null meeting
+        assertThrows(NullPointerException.class, () -> modelManager.addMeeting(null));
+
+        // add valid meeting
+        modelManager.addMeeting(WITH_ALICE);
+        assertEquals(modelManager.getFilteredMeetingList().size(), 1);
+        assertEquals(modelManager.getFilteredMeetingList().get(0), WITH_ALICE);
+
+        // add overlapping meeting
+        assertThrows(OverlappingMeetingsException.class, () -> modelManager.addMeeting(WITH_ALICE));
+    }
+
+    @Test
+    public void setMeeting() {
+        // set null meeting
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, WITH_ALICE));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(WITH_ALICE, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setMeeting(null, null));
+
+        // set invalid meeting
+        assertThrows(MeetingNotFoundException.class, () -> modelManager.setMeeting(WITH_ALICE, WITH_BENSON));
+
+        modelManager.addMeeting(WITH_ALICE);
+
+        // set meeting success
+        modelManager.setMeeting(WITH_ALICE, WITH_BENSON);
+        assertEquals(modelManager.getFilteredMeetingList().size(), 1);
+        assertEquals(modelManager.getFilteredMeetingList().get(0), WITH_BENSON);
+    }
+
+    @Test
+    public void isOverlapping() {
+
+        modelManager.addMeeting(WITH_ALICE);
+
+        // null meeting
+        assertThrows(NullPointerException.class, () -> modelManager.isOverlapping(null));
+
+        // overlapping meeting
+        assertTrue(modelManager.isOverlapping(WITH_ALICE));
+
+        // non-overlapping meeting
+        assertFalse(modelManager.isOverlapping(WITH_BENSON));
+    }
+
+    @Test
+    public void isOverlappingExcept() {
+        modelManager.addMeeting(WITH_ALICE);
+
+        // null meeting
+        assertThrows(NullPointerException.class, () -> modelManager.isOverlappingExcept(null, WITH_ALICE));
+
+        // null excepted meeting
+        assertThrows(NullPointerException.class, () -> modelManager.isOverlappingExcept(WITH_ALICE, null));
+
+        // both meetings null
+        assertThrows(NullPointerException.class, () -> modelManager.isOverlappingExcept(null, null));
+
+        // except overlapping meeting
+        assertFalse(modelManager.isOverlappingExcept(WITH_ALICE, WITH_ALICE));
+
+        // except non-overlapping meeting
+        assertTrue(modelManager.isOverlappingExcept(WITH_ALICE, WITH_BENSON));
     }
 }
