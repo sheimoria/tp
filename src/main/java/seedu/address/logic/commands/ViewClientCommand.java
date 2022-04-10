@@ -37,7 +37,7 @@ public class ViewClientCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getClientList();
 
-        if (lastShownList.isEmpty()) {
+        if (model.hasNoClients()) {
             throw new CommandException(String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "view"));
         }
 
