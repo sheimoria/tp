@@ -13,6 +13,7 @@ import seedu.address.model.client.exceptions.InvalidPreferenceKeyException;
 public class PreferenceMap {
 
     // static values
+    public static final String EMPTY_PREFERENCE_LIST_STRING = "The client has no preferences.";
     public final HashMap<String, String> preferences;
 
     /**
@@ -22,7 +23,12 @@ public class PreferenceMap {
         this.preferences = new HashMap<>();
     }
 
+    /**
+     * Constructs a {@code PreferenceMap} with the given {@code HashMap} of preferences
+     * @param preferences
+     */
     public PreferenceMap(HashMap<String, String> preferences) {
+        requireNonNull(preferences);
         this.preferences = preferences;
     }
 
@@ -70,7 +76,7 @@ public class PreferenceMap {
         String result = "";
 
         if (preferences.isEmpty()) {
-            return "The client has no preferences.";
+            return EMPTY_PREFERENCE_LIST_STRING;
         }
 
         for (String str: preferences.keySet()) {
