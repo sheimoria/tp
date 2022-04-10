@@ -50,4 +50,19 @@ public class ViewClientCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, clientToView.getName()), false, false, false, false,
                 false, index, null);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ViewClientCommand)) {
+            return false;
+        }
+
+        ViewClientCommand otherVc = (ViewClientCommand) other;
+
+        return index.equals(otherVc.index);
+    }
 }

@@ -1,10 +1,13 @@
 package seedu.address.logic.commands.policy;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_INVALID_CLIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +33,13 @@ public class DeletePolicyCommandTest {
     @Test
     public void constructor_nullPolicyIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new DeletePolicyCommand(INDEX_FIRST_CLIENT, null));
+    }
+
+    @Test
+    public void execute_invalidClientIndex_failure() {
+        DeletePolicyCommand deletePolicyCommand = new DeletePolicyCommand(INDEX_INVALID_CLIENT, INDEX_FIRST_CLIENT);
+        String expectedMessage = Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
+        assertCommandFailure(deletePolicyCommand, model, expectedMessage);
     }
 
     @Test
@@ -61,5 +71,17 @@ public class DeletePolicyCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "delete policy from");
 
         assertCommandFailure(deletePolicyCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        DeletePolicyCommand deletePolicyCommand = new DeletePolicyCommand(INDEX_FIRST_CLIENT, INDEX_FIRST_CLIENT);
+        assertTrue(deletePolicyCommand.equals(deletePolicyCommand));
+    }
+
+    @Test
+    public void equals_null_returnsTrue() {
+        DeletePolicyCommand deletePolicyCommand = new DeletePolicyCommand(INDEX_FIRST_CLIENT, INDEX_FIRST_CLIENT);
+        assertFalse(deletePolicyCommand.equals(null));
     }
 }

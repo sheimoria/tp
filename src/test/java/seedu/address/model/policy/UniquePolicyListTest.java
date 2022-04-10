@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPolicies.INSURANCE;
 import static seedu.address.testutil.TypicalPolicies.INVESTMENT;
 import static seedu.address.testutil.TypicalPolicies.RETIREMENT;
+import static seedu.address.testutil.TypicalPolicies.TRUST;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -70,9 +71,9 @@ public class UniquePolicyListTest {
     }
 
     @Test
-    public void setPolicy_targetPolicyNotInList_throwsPolicyNotFoundException() {
+    public void setPolicy_targetPolicyNotInList_throwsAssertionError() {
         uniquePolicyList.add(RETIREMENT);
-        assertThrows(PolicyNotFoundException.class, () -> uniquePolicyList.setPolicy(INSURANCE, INSURANCE));
+        assertThrows(AssertionError.class, () -> uniquePolicyList.setPolicy(INSURANCE, INSURANCE));
     }
 
     @Test
@@ -108,8 +109,8 @@ public class UniquePolicyListTest {
     }
 
     @Test
-    public void setPolicy_emptyPolicyList_throwsEmptyPolicyListException() {
-        assertThrows(EmptyPolicyListException.class, () -> uniquePolicyList.setPolicy(INSURANCE, INVESTMENT));
+    public void setPolicy_emptyPolicyList_throwsAssertionListException() {
+        assertThrows(AssertionError.class, () -> uniquePolicyList.setPolicy(INSURANCE, INVESTMENT));
     }
 
     @Test
@@ -175,5 +176,34 @@ public class UniquePolicyListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePolicyList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void totalPremiumSum() {
+        // empty policy list
+        assertEquals(uniquePolicyList.totalPremiumSum(), 0);
+
+        // list with 1 insurance policy
+        uniquePolicyList.add(INSURANCE);
+        assertEquals(uniquePolicyList.totalPremiumSum(), Integer.parseInt(INSURANCE.getPremium().value));
+
+        // list with multiple policies
+        uniquePolicyList.add(INVESTMENT);
+        uniquePolicyList.add(TRUST);
+        int sum = Integer.parseInt(INSURANCE.getPremium().value)
+                        + Integer.parseInt(INVESTMENT.getPremium().value)
+                        + Integer.parseInt(TRUST.getPremium().value);
+        assertEquals(uniquePolicyList.totalPremiumSum(), sum);
+    }
+
+    @Test
+    public void hasPolicyFromCompany() {
+        // empty policy list
+        assertFalse(uniquePolicyList.hasPolicyFromCompany(INSURANCE.getCompany()));
+
+        // list with 1 insurance policy
+        uniquePolicyList.add(INSURANCE);
+        assertTrue(uniquePolicyList.hasPolicyFromCompany(INSURANCE.getCompany()));
+        assertFalse(uniquePolicyList.hasPolicyFromCompany(INVESTMENT.getCompany()));
     }
 }

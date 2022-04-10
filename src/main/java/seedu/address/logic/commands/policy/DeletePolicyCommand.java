@@ -55,7 +55,7 @@ public class DeletePolicyCommand extends Command {
         }
 
         if (clientIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
         Client clientToDeletePolicy = lastShownList.get(clientIndex.getZeroBased());

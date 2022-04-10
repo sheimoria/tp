@@ -181,17 +181,11 @@ class JsonAdaptedClient {
             modelLastContacted = new DateTime(lastContacted);
         }
 
-        if (note == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Note.class.getSimpleName()));
-        }
-
+        assert note != null;
         final Note modelNote = new Note(note);
 
-        if (preferenceMap == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    PreferenceMap.class.getSimpleName()));
-        }
 
+        assert preferenceMap != null;
         final PreferenceMap modelPreferenceMap = preferenceMap.toModelType();
 
         final UniquePolicyList modelPolicies = new UniquePolicyList();

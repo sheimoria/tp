@@ -11,6 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_MANAGER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCE_DETAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PREFERENCE_KEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREMIUM;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -51,8 +53,8 @@ public class CommandTestUtil {
     public static final String VALID_POLICY_NAME_INVESTMENT = "Investment Policy";
     public static final String VALID_COMPANY_INSURANCE = "Insurance Company";
     public static final String VALID_COMPANY_INVESTMENT = "Investment Company";
-    public static final String VALID_POLICY_MANAGER_INSURANCE = VALID_NAME_AMY;
-    public static final String VALID_POLICY_MANAGER_INVESTMENT = VALID_NAME_BOB;
+    public static final String VALID_POLICY_MANAGER_INSURANCE = "Ari";
+    public static final String VALID_POLICY_MANAGER_INVESTMENT = "Elston";
     public static final String VALID_PREMIUM_INSURANCE = "1000";
     public static final String VALID_PREMIUM_INVESTMENT = "2000";
     public static final String VALID_POLICY_INDEX_INSURANCE = "1";
@@ -94,6 +96,21 @@ public class CommandTestUtil {
     public static final String INVALID_POLICY_MANAGER_DESC = " " + PREFIX_POLICY_MANAGER + "James&";
     public static final String INVALID_PREMIUM_DESC = " " + PREFIX_PREMIUM + "abc";
 
+    public static final String VALID_PREFERENCE_CATEGORY = "Sports";
+    public static final String VALID_PREFERENCE_VALUE = "Tennis";
+    public static final String VALID_PREFERENCE_CATEGORY_2 = "Drink";
+    public static final String VALID_PREFERENCE_VALUE_2 = "Coke";
+    public static final String PREFERENCE_CAT_PREF = " " + PREFIX_PREFERENCE_KEY + VALID_PREFERENCE_CATEGORY
+            + " " + PREFIX_PREFERENCE_DETAIL + VALID_PREFERENCE_VALUE;
+    public static final String PREFERENCE_INDEX_CAT = "1 " + PREFIX_PREFERENCE_KEY + VALID_PREFERENCE_CATEGORY;
+    public static final String PREFERENCE_INDEX_VALUE = "1 " + PREFIX_PREFERENCE_DETAIL + VALID_PREFERENCE_VALUE;
+    public static final String PREFERENCE_INDEX_CAT_VALUE = "1 " + PREFIX_PREFERENCE_KEY + VALID_PREFERENCE_CATEGORY
+            + " " + PREFIX_PREFERENCE_DETAIL + VALID_PREFERENCE_VALUE;
+
+
+    public static final String INVALID_PREFERENCE_CATEGORY = "None";
+
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -104,6 +121,8 @@ public class CommandTestUtil {
     public static final String VALID_END_DATETIME_STORE = "2023-02-01T11:00:00.000000";
     public static final String VALID_END_DATETIME_STORE_FUTURE = "2099-02-01T11:00:00.000000";
     public static final String VALID_LABEL = "Dinner";
+    public static final String VALID_MEETING_INDEX = "1";
+    public static final String VALID_CLIENT_INDEX = "1";
 
     public static final String INVALID_DATETIME_INPUT = "1-2-23 10:00";
     public static final String INVALID_DATETIME_RANGE_INPUT = "31-02-2022 10:00";

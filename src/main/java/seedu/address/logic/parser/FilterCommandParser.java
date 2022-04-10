@@ -30,15 +30,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         }
 
         String attribute;
-        try {
-            attribute = argMultimap.getPreamble();
-        } catch (Exception e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE), e);
+        attribute = argMultimap.getPreamble();
+        if (attribute.equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
 
         String operator = argMultimap.getValue(PREFIX_FILTER_OPERATOR).get();
         String value = argMultimap.getValue(PREFIX_FILTER_VALUE).get();
-
         return new FilterCommand(attribute, operator, value);
     }
 

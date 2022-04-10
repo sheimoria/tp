@@ -29,6 +29,7 @@ public class TypicalClients {
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
+            .withPreference("Drink", "Coke")
             .build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withBirthday("21-03-1999").withLastContacted("21-03-1999 21:03")
@@ -36,8 +37,12 @@ public class TypicalClients {
             .withPolicies(getTypicalPolicies())
             .withNote("Test Note")
             .build();
-    public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+    public static final Client CARL = new ClientBuilder().withName("Carl Kurz")
+            .withPhone("95352563")
+            .withEmail("heinz@example.com")
+            .withAddress("wall street")
+            .withPolicies(new ArrayList<>())
+            .build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("9482224")
@@ -79,7 +84,6 @@ public class TypicalClients {
     }
 
     public static List<Client> getTypicalClients() {
-        System.out.println(BENSON);
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

@@ -13,11 +13,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Date;
 import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.testutil.ClientBuilder;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
@@ -86,6 +88,39 @@ public class JsonAdaptedClientTest {
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
+
+    @Test
+    public void toModelType_emptyEmail_returnsClient() throws Exception {
+        Client noEmailClient = new ClientBuilder().withEmail("").build();
+        JsonAdaptedClient client = new JsonAdaptedClient(noEmailClient);
+        assertEquals(noEmailClient, client.toModelType());
+
+    }
+
+    @Test
+    public void toModelType_emptyAddress_returnsClient() throws Exception {
+        Client noAddressClient = new ClientBuilder().withAddress("").build();
+        JsonAdaptedClient client = new JsonAdaptedClient(noAddressClient);
+        assertEquals(noAddressClient, client.toModelType());
+
+    }
+
+    @Test
+    public void toModelType_emptyBirthday_returnsClient() throws Exception {
+        Client noBirthdayClient = new ClientBuilder().withBirthday("").build();
+        JsonAdaptedClient client = new JsonAdaptedClient(noBirthdayClient);
+        assertEquals(noBirthdayClient, client.toModelType());
+
+    }
+
+    @Test
+    public void toModelType_emptyLastContacted_returnsClient() throws Exception {
+        Client noLastContactedClient = new ClientBuilder().withLastContacted("").build();
+        JsonAdaptedClient client = new JsonAdaptedClient(noLastContactedClient);
+        assertEquals(noLastContactedClient, client.toModelType());
+    }
+
+
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {

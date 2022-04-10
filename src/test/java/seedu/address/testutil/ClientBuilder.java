@@ -99,7 +99,7 @@ public class ClientBuilder {
      * Sets the {@code Address} of the {@code Client} that we are building.
      */
     public ClientBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.address = address.isEmpty() ? new Address() : new Address(address);
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClientBuilder {
      * Sets the {@code birthday} of the {@code Client} that we are building.
      */
     public ClientBuilder withBirthday(String birthday) {
-        this.birthday = new Date(birthday);
+        this.birthday = birthday == "" ? new Date() : new Date(birthday);
         return this;
     }
 
@@ -131,7 +131,7 @@ public class ClientBuilder {
      * Sets the {@code lastContacted} of the {@code Client} that we are building.
      */
     public ClientBuilder withLastContacted(String lastContacted) {
-        this.lastContacted = new DateTime(lastContacted);
+        this.lastContacted = lastContacted.isEmpty() ? new DateTime() : new DateTime(lastContacted);
         return this;
     }
 
@@ -155,7 +155,7 @@ public class ClientBuilder {
      * Sets the {@code Email} of the {@code Client} that we are building.
      */
     public ClientBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.email = email.isEmpty() ? new Email() : new Email(email);
         return this;
     }
 
@@ -172,6 +172,14 @@ public class ClientBuilder {
      */
     public ClientBuilder withNote(String note) {
         this.note = new Note(note);
+        return this;
+    }
+
+    /**
+     * Adds a {@code preference} to the {@code PreferenceMap} of the {@code Client} that we are building
+     */
+    public ClientBuilder withPreference(String category, String preference) {
+        this.preferences.addPreference(category, preference);
         return this;
     }
 
