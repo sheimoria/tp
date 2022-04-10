@@ -29,7 +29,7 @@ public class ViewClientCommandParserTest {
         assertParseFailure(parser, "-5", MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "-5", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0 ", MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
