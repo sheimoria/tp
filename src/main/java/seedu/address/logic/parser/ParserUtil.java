@@ -8,7 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Date;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
@@ -87,23 +87,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code Date}.
+     * Parses a {@code String date} into a {@code Birthday}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Date parseDate(String date) throws ParseException {
+    public static Birthday parseBirthday(String date) throws ParseException {
         if (date == null) {
-            return new Date();
+            return new Birthday();
         }
-        String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        String trimmedBirthday = date.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
-        if (!Date.isPastDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_FUTURE_DATE);
+        if (!Birthday.isPastBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_FUTURE_DATE);
         }
-        return new Date(trimmedDate);
+        return new Birthday(trimmedBirthday);
     }
 
     /**

@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
@@ -150,7 +150,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidBirthday_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 INVALID_BIRTHDAY, VALID_LAST_CONTACTED, VALID_POLICIES, VALID_NOTE, VALID_PREFERENCES);
-        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Birthday.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
@@ -158,7 +158,7 @@ public class JsonAdaptedClientTest {
     public void toModelType_nullBirthday_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 null, VALID_LAST_CONTACTED, VALID_POLICIES, VALID_NOTE, VALID_PREFERENCES);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Birthday.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 

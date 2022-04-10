@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.util.List;
 
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
@@ -39,7 +39,7 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Date birthday;
+    private Birthday birthday;
     private LastContacted lastContacted;
     private UniquePolicyList policies = new UniquePolicyList();
     private Note note;
@@ -53,7 +53,7 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        birthday = new Date(DEFAULT_BIRTHDAY);
+        birthday = new Birthday(DEFAULT_BIRTHDAY);
         lastContacted = new LastContacted(DEFAULT_LAST_CONTACTED);
 
         Policy defaultPolicy = new Policy(new Name(DEFAULT_POLICY_NAME), new Name(DEFAULT_COMPANY),
@@ -107,7 +107,7 @@ public class ClientBuilder {
      * Sets the {@code birthday} of the {@code Client} that we are building to an empty string.
      */
     public ClientBuilder withBirthday() {
-        this.birthday = new Date();
+        this.birthday = new Birthday();
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClientBuilder {
      * Sets the {@code birthday} of the {@code Client} that we are building.
      */
     public ClientBuilder withBirthday(String birthday) {
-        this.birthday = birthday == "" ? new Date() : new Date(birthday);
+        this.birthday = birthday == "" ? new Birthday() : new Birthday(birthday);
         return this;
     }
 

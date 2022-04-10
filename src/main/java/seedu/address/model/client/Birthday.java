@@ -9,15 +9,15 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a date in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidBirthday(String)}
  */
-public class Date {
+public class Birthday {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be a valid date in dd-MM-yyyy format.";
-    public static final String MESSAGE_FUTURE_DATE = "Date should not be in the future.";
+    public static final String MESSAGE_CONSTRAINTS = "Birthday should be a valid date in dd-MM-yyyy format.";
+    public static final String MESSAGE_FUTURE_DATE = "Birthday should not be in the future.";
 
     /*
-     * Date should be in dd-MM-yyyy format.
+     * Birthday should be in dd-MM-yyyy format.
      */
     public static final String VALIDATION_REGEX = "(((0[1-9]|[12]\\d|3[01])-(0[13578]|1[02])-((19|[2-9]\\d)\\d{2}))|((0"
             + "[1-9]|[12]\\d|30)-(0[13456789]|1[012])-((19|[2-9]\\d)\\d{2}))|((0[1-9]|1\\d|2[0-8])-02-((19|[2-9]\\d)\\d"
@@ -25,33 +25,33 @@ public class Date {
 
     public final String value;
 
-    public Date() {
+    public Birthday() {
         value = "";
     }
 
     /**
-     * Constructs a {@code Date}.
+     * Constructs a {@code Birthday}.
      *
      * @param date A valid date.
      */
-    public Date(String date) {
+    public Birthday(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        checkArgument(isPastDate(date), MESSAGE_FUTURE_DATE);
+        checkArgument(isValidBirthday(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isPastBirthday(date), MESSAGE_FUTURE_DATE);
         value = date;
     }
 
     /**
-     * Returns true if a given string is a valid datetime.
+     * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String test) {
+    public static boolean isValidBirthday(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns true if a given string is a past date.
      */
-    public static boolean isPastDate(String test) {
+    public static boolean isPastBirthday(String test) {
         LocalDate testDate = parse(test);
         return !testDate.isAfter(LocalDate.now());
     }
@@ -81,8 +81,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && value.equals(((Date) other).value)); // state check
+                || (other instanceof Birthday // instanceof handles nulls
+                && value.equals(((Birthday) other).value)); // state check
     }
 
     @Override

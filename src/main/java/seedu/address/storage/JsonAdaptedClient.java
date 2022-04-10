@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
@@ -145,21 +145,22 @@ class JsonAdaptedClient {
         }
 
         if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
         }
 
-        final Date modelBirthday;
+        final Birthday modelBirthday;
 
         if (birthday == "") {
-            modelBirthday = new Date();
+            modelBirthday = new Birthday();
         } else {
-            if (!Date.isValidDate(birthday)) {
-                throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            if (!Birthday.isValidBirthday(birthday)) {
+                throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
             }
-            if (!Date.isPastDate(birthday)) {
-                throw new IllegalValueException(Date.MESSAGE_FUTURE_DATE);
+            if (!Birthday.isPastBirthday(birthday)) {
+                throw new IllegalValueException(Birthday.MESSAGE_FUTURE_DATE);
             }
-            modelBirthday = new Date(birthday);
+            modelBirthday = new Birthday(birthday);
         }
 
         if (lastContacted == null) {

@@ -18,8 +18,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
@@ -116,7 +116,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
-        Date updatedBirthday = editClientDescriptor.getBirthday().orElse(clientToEdit.getBirthday());
+        Birthday updatedBirthday = editClientDescriptor.getBirthday().orElse(clientToEdit.getBirthday());
         LastContacted updatedLastContacted = editClientDescriptor.getLastContacted().orElse(clientToEdit
                 .getLastContacted());
         Note updatedNote = editClientDescriptor.getNote().orElse(clientToEdit.getNote());
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Date birthday;
+        private Birthday birthday;
         private LastContacted lastContacted;
         private Note note;
         private PreferenceMap preferences;
@@ -214,11 +214,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setBirthday(Date birthday) {
+        public void setBirthday(Birthday birthday) {
             this.birthday = birthday;
         }
 
-        public Optional<Date> getBirthday() {
+        public Optional<Birthday> getBirthday() {
             return Optional.ofNullable(birthday);
         }
 
