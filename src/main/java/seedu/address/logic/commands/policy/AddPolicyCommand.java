@@ -83,9 +83,4 @@ public class AddPolicyCommand extends Command {
                 && policyToAdd.equals(((AddPolicyCommand) other).policyToAdd)
                 && index.equals(((AddPolicyCommand) other).index));
     }
-
-    @Override
-    public String toString() {
-        return "index: " + index.getOneBased() + ", policy: " + policyToAdd.toString();
-    }
 }

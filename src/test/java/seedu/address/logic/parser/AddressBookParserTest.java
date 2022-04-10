@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.ClientBuilder.DEFAULT_LAST_CONTACTED;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import java.util.Arrays;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
@@ -24,6 +26,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.DateTime;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.ClientUtil;
@@ -60,6 +63,15 @@ public class AddressBookParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_CLIENT, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_contacted() throws Exception {
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().build();
+        descriptor.setLastContacted(new DateTime(DEFAULT_LAST_CONTACTED));
+        ContactedCommand command = (ContactedCommand) parser.parseCommand(ContactedCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new ContactedCommand(INDEX_FIRST_CLIENT, descriptor), command);
     }
 
     @Test

@@ -104,10 +104,26 @@ public class ClientBuilder {
     }
 
     /**
+     * Sets the {@code birthday} of the {@code Client} that we are building to an empty string.
+     */
+    public ClientBuilder withBirthday() {
+        this.birthday = new Date();
+        return this;
+    }
+
+    /**
      * Sets the {@code birthday} of the {@code Client} that we are building.
      */
     public ClientBuilder withBirthday(String birthday) {
         this.birthday = new Date(birthday);
+        return this;
+    }
+
+    /**
+     * Sets the {@code lastContacted} of the {@code Client} that we are building to an empty string.
+     */
+    public ClientBuilder withLastContacted() {
+        this.lastContacted = new DateTime();
         return this;
     }
 

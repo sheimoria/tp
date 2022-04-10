@@ -1,10 +1,13 @@
 package seedu.address.logic.commands.policy;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_INVALID_CLIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.address.testutil.TypicalPolicies.INSURANCE;
 import static seedu.address.testutil.TypicalPolicies.INVESTMENT;
@@ -62,5 +65,24 @@ public class AddPolicyCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "add policy to");
 
         assertCommandFailure(addPolicyCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_invalidClientIndex_throwsCommandException() {
+        AddPolicyCommand addPolicyCommand = new AddPolicyCommand(INDEX_INVALID_CLIENT, INSURANCE);
+        String expectedMessage = Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
+        assertCommandFailure(addPolicyCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void equals_sameObject_returnsTrue() {
+        AddPolicyCommand addPolicyCommand = new AddPolicyCommand(INDEX_SECOND_CLIENT, TRUST);
+        assertTrue(addPolicyCommand.equals(addPolicyCommand));
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        AddPolicyCommand addPolicyCommand = new AddPolicyCommand(INDEX_SECOND_CLIENT, TRUST);
+        assertFalse(addPolicyCommand.equals(null));
     }
 }

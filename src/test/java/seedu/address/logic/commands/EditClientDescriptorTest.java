@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACTED_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 
@@ -48,6 +50,14 @@ public class EditClientDescriptorTest {
 
         // different address -> returns false
         editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different birthday -> returns false
+        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withBirthday(VALID_BIRTHDAY_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different last contacted -> returns false
+        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withLastContacted(VALID_LAST_CONTACTED_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

@@ -23,30 +23,29 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 - [Quick start](#quick-start)
 - [Features](#features)
-  1. [Viewing help : `help`](#viewing-help--help)
-  2. [Add client: `addClient`](#add-client-addclient)
-  3. [View client: `viewClient`](#view-client-viewclient)
-  4. [Edit client: `editClient`](#edit-client-editclient)
-  5. [Delete client: `deleteClient`](#delete-client-deleteclient)
-  6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
-  7. [Add notes for client: `addNote`](#add-note-for-client-addnote)
-  8. [Add preferences to client: `addPref`](#add-preferences-to-client-addpref)
-  9. [Add policy: `addPolicy`](#add-policy-addpolicy)
-  10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-  11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-  12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-  13. [View All Meetings: `meetings`](#view-meetings-meetings)
-  14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
-  15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-  16. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
-  17. [Sort Clients: `sortClients`](#sort-clients-sortclients)
-  18. [Filter Clients: `filterClients`](#filter-clients-filterclients)
-  19. [Clearing all entries : `clear`](#clearing-all-entries--clear)
-  20. [Exiting the program : `exit`](#exiting-the-program--exit)
-  21. [Saving the data](#saving-the-data)
-  22. [Editing the data file](#editing-the-data-file)
+    1. [Viewing help : `help`](#viewing-help--help)
+    2. [Add client: `addClient`](#add-client-addclient)
+    3. [View client: `viewClient`](#view-client-viewclient)
+    4. [Edit client: `editClient`](#edit-client-editclient)
+    5. [Delete client: `deleteClient`](#delete-client-deleteclient)
+    6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
+    7. [Add/edit notes for client: `addNote`](#add-edit-notes-for-client-addnote)
+    8. [Add/edit preferences to client: `addPref`](#add-edit-preferences-to-client-addpref)
+    9. [Add policy: `addPolicy`](#add-policy-addpolicy)
+    10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+    11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+    12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+    13. [View All Meetings: `meetings`](#view-meetings-meetings)
+    14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
+    15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+    16. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
+    17. [Sort Clients: `sortClients`](#sort-clients-sortclients)
+    18. [Filter Clients: `filterClients`](#filter-clients-filterclients)
+    19. [Clearing all entries : `clear`](#clearing-all-entries--clear)
+    20. [Exiting the program : `exit`](#exiting-the-program--exit)
+    21. [Saving the data](#saving-the-data)
+    22. [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
-- [Mockups](#mockups)
 - [Command summary](#command-summary)
 
 ---
@@ -65,16 +64,16 @@ dedicated platform catered to helping them manage their clientele. This is where
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all contacts.
+    - **`list`** : Lists all contacts.
 
-   - **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client
-     named `John Doe` to your contact list.
+    - **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client
+      named `John Doe` to your contact list.
 
-   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   - **`clear`** : Deletes all contacts.
+    - **`clear`** : Deletes all contacts.
 
-   - **`exit`** : Exits the app.
+    - **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -91,7 +90,7 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 
 - If the command requires a reference to an INDEX, any leading zeroes (`01`, `001`) will be ignored.<br>
-e.g. in `viewClient 1`, `1` is the INDEX of the specified client, and can be referenced as `01` or `0001` with no regard to the leading zeroes
+  e.g. in `viewClient 1`, `1` is the INDEX of the specified client, and can be referenced as `01` or `0001` with no regard to the leading zeroes
 
 
 - Items in square brackets are optional.<br>
@@ -130,13 +129,13 @@ Adds a client to the list of managed clients.
 Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/LAST_CONTACTED]`
 
 - `EMAIL` must be in the format `"local-part@domain"` and adhere to the following constraints
-  - The `local-part` should only contain alphanumeric characters and the special characters `+_.-`.
-  - The `local-part` cannot start or end with these special characters.
-  - This is followed by an `@` and then a domain name. The domain name is made up of labels separated by periods.
-  - The domain name must:
-    - end with a domain label at least 2 characters long
-    - have each domain label start and end with alphanumeric characters
-    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+    - The `local-part` should only contain alphanumeric characters and the special characters `+_.-`.
+    - The `local-part` cannot start or end with these special characters.
+    - This is followed by an `@` and then a domain name. The domain name is made up of labels separated by periods.
+    - The domain name must:
+        - end with a domain label at least 2 characters long
+        - have each domain label start and end with alphanumeric characters
+        - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 - `BIRTHDAY` must be in `dd-MM-yyyy` format.
 - `LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
 
@@ -151,7 +150,7 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/
 
 ### View client: `viewClient`
 
-View a client in your address book. The client to be viewed will appear on the `Dynamic Panel` Section 
+View a client in your address book. The client to be viewed will appear on the `Dynamic Panel` Section
 
 Format: `viewClient INDEX`
 
@@ -167,7 +166,7 @@ Format: `viewClient INDEX`
 
 Edit a client in your address book.
 
-Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]` 
+Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]`
 
 - `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
 
@@ -197,15 +196,15 @@ Format: `deleteClient INDEX`
 
 Updates the last contacted datetime of a client.
 
-Format: `contacted INDEX dt/DATETIME`
+Format: `contacted INDEX lc/DATETIME`
 
 #### Sample Input:
 
-- `contacted 1 dt/21-03-2022 21:03`
+- `contacted 1 lc/21-03-2022 21:03`
 
 #### Sample Output:
 
-### Add/Edit Notes for client: `addNote`
+### Add/Edit Notes for client:` addNote`
 
 Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
 note specified from this command.
@@ -253,7 +252,7 @@ Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
 
 ### Delete preferences from client: `deletePref`
 
-Deletes the preference from the specified client. 
+Deletes the preference from the specified client.
 
 Format: `deletePref INDEX cat/CATEGORY`
 
@@ -267,7 +266,7 @@ Format: `deletePref INDEX cat/CATEGORY`
 
 ### Add policy: `addPolicy`
 
-Adds an insurance policy to a specific client
+Adds an insurance policy to a specified client
 
 Format: `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT`
 
@@ -281,7 +280,7 @@ Format: `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIU
 
 ### Edit policy: `editPolicy`
 
-Updates an insurance policy for a specific client
+Updates an insurance policy for a specified client
 
 Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]`
 
@@ -295,7 +294,7 @@ Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY
 
 ### Delete policy: `deletePolicy`
 
-Deletes an insurance policy from a specific client
+Deletes an insurance policy from a specified client
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
@@ -309,7 +308,7 @@ Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
 ### Add meeting: `addMeeting`
 
-Add a meeting to your schedule.
+Add a meeting to your schedule with a specified client.
 
 Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]`
 
@@ -368,10 +367,9 @@ Format: `meetings [INDEX] [all/]`
 
 ### Edit Meeting Details: `editMeeting`
 
-Edit details of a particular meeting.
+Edit details of a specified meeting.
 
-Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/LABEL]`
-
+Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/NEW_LABEL]`
 - `NEW_START_DATETIME` and `NEW_END_DATETIME` must be in `dd-MM-yyyy HH:mm` format
 
 #### Sample Input:
@@ -384,11 +382,11 @@ Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/LABE
 
 ### Delete meeting: `deleteMeeting`
 
-Deletes a meeting
+Deletes a specified meeting.
 
 Format: `deleteMeeting INDEX`
 
-#### Sample Input: 
+#### Sample Input:
 
 `deleteMeeting 1`
 
@@ -399,7 +397,7 @@ Format: `deleteMeeting INDEX`
 ### Close meeting: `closeMeeting`
 
 Closes a meeting and updates the lastContacted of the client that was met to match the end of the meeting.
-The meeting will remain in the meeting list and not be deleted after it is closed.
+The meeting will remain in the meeting list and **NOT** be deleted after it is closed.
 
 Format: `closeMeeting INDEX`
 
@@ -465,11 +463,11 @@ The `filterClients` command is a complex command involving 3 parameters:
 
 1. Attribute: the attribute to be filtered on
 
-    Supported attributes: `birthMonth`, `age`, `premium`, `company`
+   Supported attributes: `birthMonth`, `age`, `premium`, `company`
 
 2. Operator: the desired filter range
 
-    Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
+   Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
     * Note: The only operator supported for `company` is `equal`
 
 3. Value: the value to be filtered around
@@ -506,13 +504,13 @@ Other Examples:
 
 OnlyFAs’s data is saved in the hard drive automatically after any command that changes the data. There is no need to save manually.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clear all entries in onlyFAs.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exit the program.
 
@@ -541,24 +539,24 @@ If your changes to the data file makes its format invalid, onlyFAs will discard 
 
 ## Command summary
 
-| Action            | Format, Examples                                                                                                                                       |
-|-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                               |
-| **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                            |
-| **editClient**    | `editClient INDEX [n/NEW_NAME p/NEW_PHONE_NUMBER e/NEW_EMAIL a/NEW_ADDRESS]`<br> e.g.,`editClient 1 e/new@email.com`                                   |
-| **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                       |
-| **contacted**     | `contacted INDEX dt/DATETIME` <br> e.g., `contacted 1 dt/21-03-2022 21:03`                                                                             |
-| **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                |
-| **addPref**       | `addPref INDEX cat/CATEGORY pref/PREFERENCE` <br> e.g., `addPref 1 cat/Drink pref/Coke`                                                                |
-| **deletePref**    | `deletePref INDEX cat/CATEGORY` <br> e.g., `deletePref 1 cat/Drink`                                                                                    |
-| **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` |
-| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 pi/1 $/200`        |
-| **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                  |
-| **meetings**      | `meetings [INDEX] [all/]` <br> eg., `meetings 1 all/`                                                                                                  |
-| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`               |
-| **editMeeting**   | `editMeeting INDEX [ms/START_DATETIME] [me/END_DATETIME] [l/LABEL]` <br> e.g., `editMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 18:00 l/Dinner`        |
-| **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                     |
-| **closeMeeting**  | `closeMeeting INDEX` <br> e.g., `closeMeeting 3`                                                                                                       |
-| **sortClients**   | `sortClients ATTRIBUTE` <br> e.g., `sortClients numPolicies`                                                                                           |
-| **filterClients** | `filterClients ATTRIBUTE op/OPERATOR v/VALUE` <br> e.g., `filterClients age op/equal v/25`                                                             |
-| **help**          | `help`                                                                                                                                                 |
+| Action            | Format, Examples                                                                                                                                            |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **addClient**     | `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS]` <br> e.g., `addClient n/N Vijay Narayanan p/99134234 a/abc street`                                  |
+| **viewClient**    | `viewClient INDEX`<br> e.g., `viewClient 1`                                                                                                                 |
+| **editClient**    | `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS]`<br> e.g.,`editClient 1 e/new@email.com`                                  |
+| **deleteClient**  | `deleteClient INDEX` <br> e.g., `deleteClient 1`                                                                                                            |
+| **contacted**     | `contacted INDEX dt/DATETIME` <br> e.g., `contacted 1 dt/21-03-2022 21:03`                                                                                  |
+| **addNote**       | `addNote INDEX nt/NOTE` <br> e.g., `addNote 1 nt/Commando NSF with high risk of injury`                                                                     |
+| **addPref**       | `addPref INDEX cat/CATEGORY pref/PREFERENCE` <br> e.g., `addPref 1 cat/Drink pref/Coke`                                                                     |
+| **deletePref**    | `deletePref INDEX cat/CATEGORY` <br> e.g., `deletePref 1 cat/Drink`                                                                                         |
+| **addPolicy**     | `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT` <br> e.g., `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`      |
+| **editPolicy**    | `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]` <br> e.g., `editPolicy 1 pi/1 $/200`             |
+| **deletePolicy**  | `deletePolicy INDEX pi/POLICY_INDEX` <br> e.g., `deletePolicy 1 pi/1`                                                                                       |
+| **meetings**      | `meetings [INDEX] [all/]` <br> eg., `meetings 1 all/`                                                                                                       |
+| **addMeeting**    | `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]` <br> e.g., `addMeeting 2 ms/27-12-2022 11:00 me/27-12-2022 12:00 l/Lunch`                    |
+| **editMeeting**   | `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/NEW_LABEL]` <br> e.g., `editMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 18:00 l/Dinner` |
+| **deleteMeeting** | `deleteMeeting INDEX` <br> e.g., `deleteMeeting 2`                                                                                                          |
+| **closeMeeting**  | `closeMeeting INDEX` <br> e.g., `closeMeeting 3`                                                                                                            |
+| **sortClients**   | `sortClients ATTRIBUTE` <br> e.g., `sortClients numPolicies`                                                                                                |
+| **filterClients** | `filterClients ATTRIBUTE op/OPERATOR v/VALUE` <br> e.g., `filterClients age op/equal v/25`                                                                  |
+| **help**          | `help`                                                                                                                                                      |

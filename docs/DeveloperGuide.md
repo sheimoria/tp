@@ -233,7 +233,7 @@ Client features support the following operations:
 This feature, which allows the user to track when they have last contacted a client, is enabled through the
 `lastContacted` attribute of type `DateTime` in the `Client` class.
 
-`DateTime` objects such as `lastContacted` only accept strings of the format `dd-MM-yy hh:mm`.
+`DateTime` objects such as `lastContacted` only accept strings of the format `dd-MM-yy HH:mm`.
 
 The `ContactedCommand` allows for the updating of the `lastContacted` of a `Client`.
 
@@ -241,11 +241,11 @@ Below is an example usage scenario:
 
 Step 1. The user launches the application. `Client`s are loaded from persistent memory. If a `Client`'s `lastContacted`
 has been updated previously, the datetime will show on the user interface i.e. `Last contacted: 21-03-2022 21:03`.
-Otherwise, it will show `Last contacted: -`.
+Otherwise, it will show `Last contacted: `.
 
 ![LastContacted1](images/LastContacted1.png)
 
-Step 2. The user inputs `contacted 1 dt/ 21-03-2022 21:03` and presses `Enter`.
+Step 2. The user inputs `contacted 1 lc/ 21-03-2022 21:03` and presses `Enter`.
 
 ![LastContacted2](images/LastContacted2.png)
 
@@ -253,9 +253,8 @@ Step 3. The first client's `lastContacted` is updated to `21-03-2022 21:03`.
 
 ![LastContacted3](images/LastContacted3.png)
 
-Note that when executing `AddCommand`, there is no need to add a parameter for `lastContacted`. When a new `Client` is
-created, its `lastContacted` will be instantiated with a default value of `01:01:0001 00:00`, which the user
-interface recognises as a blank field i.e. `-`.
+When creating a new `Client` through the `addClient` command, indicating their `lastContacted` through the `lc/DATETIME`
+prefix is **optional**. If their `lastContacted` is not indicated, it will just be instantiated as an empty string.
 
 ### Meeting features
 
@@ -276,22 +275,34 @@ The meeting features supports the following operations:
 - Viewing meetings in the sidebar - called via the `ListMeetingCommand`
 - Editing meetings - called via the `EditMeetingCommand`
 - Deleting meetings - called via the `DeleteMeetingCommand`
+- Close meetings - called via the `CloseMeetingCommand`
 
 Given below is an example usage scenario and how the feature behaves:**
 
-Step 1. The user launches the application. The `NonOverlappingMeetingList` is loaded from persistent memory if it exists and be stored in the AddressBook.
+Step 1. The user launches the application. The `NonOverlappingMeetingList` is loaded from persistent memory if it exists and is stored in the AddressBook.
 
-Step 2. The user executes `addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 13:00` to schedule a meeting with the first client in the list on 1st January 2022 from 11:00AM to 1:00PM. The `addMeeting` command instantiates a new `Meeting` object and calls the `Model#addMeeting()` to add the object to the `NonOverlappingMeetingList`.
-![Meeting1Add](images/Meeting1Add.png)
+Step 2. The user executes `addMeeting 1 ms/22-04-2022 11:00 me/22-04-2022 12:00 l/Lunch` to schedule a meeting with the first client in the list on 22nd April 2022 from 11:00AM to 12:00PM for lunch. The `addMeeting` command instantiates a new `Meeting` object and calls the `Model#addMeeting()` to add the object to the `NonOverlappingMeetingList`.
+![Meeting1Add1](images/Meeting1Add1.png)
+The meeting has been added to the list.
+![Meeting1Add2](images/Meeting1Add2.png)
 
-Step 3. The user executes `meetings` to view the meetings on the right sidebar.
-![Meeting2List](images/Meeting2List.png)
+Step 3. The user executes `meetings` to view the meetings on the right sidebar.  The `meetings` command calls `Model#updateFilteredMeetingList()` which displays the meetings on the dynamic panel on the right.
+![Meeting2List1](images/Meeting2List1.png)
 
-Step 4. The user executes `updateMeeting 1 me/2022-01-01,14:00` to edit the meeting to set the end time to 2:00PM.
-![Meeting3Update](images/Meeting3Update.png)
+Step 4. The user executes `editMeeting 1 me/22-04-2022 14:00` to edit the meeting to set the end time to 2:00PM. The `editMeeting` command calls `Model#setMeeting()` which updates the meeting's details.
+![Meeting3Edit1](images/Meeting3Edit1.png)
+The meeting has been modified.
+![Meeting3Edit2](images/Meeting3Edit2.png)
 
-Step 5. The user executes `deleteMeeting 1` to delete the meeting.
-![Meeting4Delete](images/Meeting4Delete.png)
+Step 5. The user calls `closeMeeting 1` to close the meeting. The `closeMeeting` command calls `Client#updateLastContacted()` and `Model#setClient()` to update the client's last contacted and update the client's details.
+![Meeting5Close1](images/Meeting5Close1.png)
+The client's last contacted has been updated to the meeting's end date time.
+![Meeting5Close2](images/Meeting5Close2.png)
+
+Step 6. The user executes `deleteMeeting 1` to delete the meeting. The `deleteMeeting` command calls `Model#deleteMeeting()` to delete the specified meeting from the list.
+![Meeting4Delete1](images/Meeting4Delete1.png)
+The meeting has been deleted.
+![Meeting4Delete2](images/Meeting4Delete2.png)
 
 ### Note features
 
@@ -629,7 +640,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `addPolicy 1 n/Medicare Plus`<br>
       Expected: No policy is added. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `addPolicy`, `addPolicy x n/Medicare Plus c/Medicare pm/Zechary $/100`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect add commands to try: `addPolicy`, `addPolicy x n/Medicare Plus c/Medicare pm/Zechary $/100`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1*{ more test cases …​ }*
@@ -646,7 +657,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `editPolicy 1 pi/1`<br>
       Expected: No policy is edited. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `editPolicy`, `editPolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
+   1. Other incorrect edit commands to try: `editPolicy`, `editPolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
       Expected: Similar to previous.
 
 1*{ more test cases …​ }*
@@ -667,6 +678,99 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1*{ more test cases …​ }*
+
+### Editing a policy
+
+1. Editing a policy of a client in the contact list
+
+    1. Prerequisites: There must be at least one client in the contact list with at least one policy.
+
+    1. Test case: `editPolicy 1 pi/1 n/New Policy`<br>
+       Expected: The first blue tag under the name of the first client in the contact list should now be entitled _New Policy_. Status message shows that the number of policies of the client is the same as before.
+
+    1. Test case: `editPolicy 1 pi/1`<br>
+       Expected: No policy is edited. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `editPolicy`, `editPolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
+       Expected: Similar to previous.
+
+1*{ more test cases …​ }*
+
+### Deleting a policy
+
+1. Deleting a policy of a client in the contact list
+
+    1. Prerequisites: There must be at least one client in the contact list with at least one policy.
+
+    1. Test case: `deletePolicy 1 pi/1`<br>
+       Expected: The first blue tag under the name of the first client in the contact list should disappear. Status message shows that the number of policies of the client is 1 less than before.
+
+    1. Test case: `deletePolicy 1`<br>
+       Expected: No policy is deleted. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `deletePolicy`, `deletePolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
+       Expected: Similar to previous.
+
+1*{ more test cases …​ }*
+
+
+### Adding a meeting
+
+1. Adding a meeting with a client in the contact list
+
+    1. Prerequisites: There must be at least one client in the contact list.
+
+    2. Test case: `addMeeting 1 ms/01-01-2022 10:00 me/01-01-2022 12:00 l/Brunch`<br>
+       Expected: A meeting card with the client's name, label, start date time, and end date time should appear in the dynamic panel on the right. Status message shows that the new **past** meeting has been added.
+
+    3. Test case: `addMeeting 1 ms/01-01-2030 10:00 me/01-01-2030 12:00 l/Brunch`<br>
+       Expected: A meeting card with the client's name, label, start date time, and end date time should appear in the dynamic panel on the right. Status message shows that the new **upcoming** meeting has been added.
+
+    4. Test case: `addMeeting 1 ms/01-01-2022 10:00`<br>
+       Expected: No meeting is added as it is missing end date time. Error details shown in the status message.
+
+    5. Other incorrect add commands to try: `addMeeting`, `addMeeting x ms/01-01-2022 10:00 me/01-01-2022 12:00 l/Brunch`, `...` (where x is larger than the client list size)<br>
+       Expected: Similar to previous.
+
+### Editing a meeting
+
+1. Editing a meeting in the meeting list 
+
+    1. Prerequisites: There must be at least one meeting in the meeting list.
+
+    2. Test case: `editMeeting 1 ms/01-01-2022 10:00 me/01-01-2022 12:00 l/Brunch`<br>
+       Expected: The respective meeting card on the right should have its details updated to match the new meeting details. Status message shows that the meeting has been updated.
+
+    3. Incorrect edit commands to try: `editMeeting`, `editMeeting x ms/01-01-2022 10:00 me/01-01-2022 12:00 l/Brunch`, `...` (where x is larger than the meeting list size)<br>
+        Expected: Similar to previous.
+
+### Deleting a meeting
+
+1. Deleting a meeting in the meeting list
+
+    1. Prerequisites: There must be at least one meeting in the meeting list.
+
+    2. Test case: `deleteMeeting 1`<br>
+       Expected: The respective meeting card on the right should have been deleted. Status message shows that the meeting hsa been deleted.
+
+    3. Incorrect delete commands to try: `deleteMeeting`, `deleteMeeting x`, `...` (where x is larger than the meeting list size)<br>
+       Expected: Similar to previous.
+
+### Closing a meeting
+
+1. Closing a meeting in the meeting list
+
+    1. Prerequisites: There must be at least one meeting in the meeting list.
+
+    2. Test case: `closeMeeting 1` (where the specified meeting is in the past)<br>
+       Expected: The client that the meeting was with will have their last contacted date time be updated to the meeting's end date time. Status message shows that the meeting has been closed.
+   
+    3. Test case: `closeMeeting 1` (where the specified meeting is upcoming)<br> 
+      Expected: The client's last contacted date time has no change. The error details are shown in the status message.
+
+    4. Incorrect close commands to try: `closeMeeting`, `deleteMeeting x`, `...` (where x is larger than the meeting list size)<br>
+       Expected: Similar to previous.
+
 
 ### Saving data
 
