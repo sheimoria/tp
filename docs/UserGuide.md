@@ -24,33 +24,38 @@ dedicated platform catered to helping them manage their clientele. This is where
 - [Quick start](#quick-start)
 - [User Interface Layout](#user-interface-layout)
 - [Features](#features)
-    1. [Viewing help : `help`](#viewing-help--help)
-    2. [Add client: `addClient`](#add-client-addclient)
-    3. [View client: `viewClient`](#view-client-viewclient)
-    4. [Find client by name: `findClient`](#find-client-by-name-findclient)
-    5. [Edit client: `editClient`](#edit-client-editclient)
-    6. [Delete client: `deleteClient`](#delete-client-deleteclient)
-    7. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
-    8. [Add/edit notes for client : `addNote`](#addedit-notes-for-client--addnote)
-    9. [Delete note from client: `deleteNote`](#delete-note-from-client-deletenote)
-    10. [Add/edit preferences to client: `addPref`](#addedit-preferences-to-client-addpref)
-    11. [Delete preferences from client: `deletePref`](#delete-preferences-from-client-deletepref)
-    12. [Add policy: `addPolicy`](#add-policy-addpolicy)
-    13. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-    14. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-    15. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-    16. [View All Meetings: `meetings`](#view-meetings-meetings)
-    17. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
-    18. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-    19. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
-    20. [Sort Clients: `sortClients`](#sort-clients-sortclients)
-    21. [Filter Clients: `filterClients`](#filter-clients-filterclients)
-    22. [Reset Filter/Sort & View all Clients: `clients`](#reset-filtersort--view-all-clients)
-    23. [Clearing all entries : `clear`](#clearing-all-entries-clear)
-    24. [Exiting the program : `exit`](#exiting-the-program-exit)
-    25. [Accessing the Tutorial: `tutorial`](#accessing-the-tutorial-tutorial)
-    26. [Saving the data](#saving-the-data)
-    27. [Editing the data file](#editing-the-data-file)
+  - [Basic Features](#u-basic-features-u)
+    1. [Viewing help: `help`](#viewing-help--help)
+    2. [Exiting the program: `exit`](#exiting-the-program-exit)
+    3. [Accessing the Tutorial: `]
+  - [Client Features](#u-client-features-u)
+      1. [Viewing help : `help`](#viewing-help--help)
+      2. [Add client: `addClient`](#add-client-addclient)
+      3. [View client: `viewClient`](#view-client-viewclient)
+      4. [Find client by name: `findClient`](#find-client-by-name-findclient)
+      5. [Edit client: `editClient`](#edit-client-editclient)
+      6. [Delete client: `deleteClient`](#delete-client-deleteclient)
+      7. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
+      8. [Add/edit notes for client : `addNote`](#addedit-notes-for-client--addnote)
+      9. [Delete note from client: `deleteNote`](#delete-note-from-client-deletenote)
+      10. [Add/edit preferences to client: `addPref`](#addedit-preferences-to-client-addpref)
+      11. [Delete preferences from client: `deletePref`](#delete-preferences-from-client-deletepref)
+      12. [Add policy: `addPolicy`](#add-policy-addpolicy)
+      13. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+      14. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+      15. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+      16. [View All Meetings: `meetings`](#view-meetings-meetings)
+      17. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
+      18. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+      19. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
+      20. [Sort Clients: `sortClients`](#sort-clients-sortclients)
+      21. [Filter Clients: `filterClients`](#filter-clients-filterclients)
+      22. [Reset Filter/Sort & View all Clients: `clients`](#reset-filtersort--view-all-clients)
+      23. [Clearing all entries : `clear`](#clearing-all-entries-clear)
+      24. [Exiting the program : `exit`](#exiting-the-program-exit)
+      25. [Accessing the Tutorial: `tutorial`](#accessing-the-tutorial-tutorial)
+      26. [Saving the data](#saving-the-data)
+      27. [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -124,6 +129,8 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 </div>
 
+### <u> Basic Features </u>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -131,6 +138,37 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+### Exiting the program: `exit`
+
+Exit the program.
+
+Format: `exit`
+
+### Accessing the tutorial: `tutorial`
+
+Opens the tutorial for the program.
+
+#### Sample Input:
+
+`tutorial`
+
+#### Expected Output:
+
+![img.png](images/sample-output/TutorialFeatureSampleOutput.png)
+
+### Saving the data
+
+onlyFAs' data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### <u> Client Features </u>
+
+### <u> Policy Features </u>
+
+### <u> Meeting Features </u>
+
+
+
 
 ### Add client: `addClient`
 
@@ -563,28 +601,6 @@ Clear all entries in onlyFAs.
 ![img.png](images/sample-output/ClearCommandSampleOutput.png)
 
 **NOTE: This command <u>cannot</u> be undone. Please use it with caution**
-
-### Exiting the program: `exit`
-
-Exit the program.
-
-Format: `exit`
-
-### Accessing the tutorial: `tutorial`
-
-Opens the tutorial for the program.
-
-#### Sample Input:
-
-`tutorial`
-
-#### Expected Output:
-
-![img.png](images/sample-output/TutorialFeatureSampleOutput.png)
-
-### Saving the data
-
-onlyFAs' data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
