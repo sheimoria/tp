@@ -16,13 +16,13 @@ Given below are my contributions to the project.
   *My main contribution to onlyFAs was introducing all policy-related features. Listed Below are the various classes
   I have implemented:*
 
-  ####Models
+  ###### Models
   - `Policy` (Pull request [#55](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/55))
   - `Premium` (Pull request [#55](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/55))
   - `UniquePolicyList` (Pull request [#129](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/129))
   - Contributed to `Client` to include UniquePolicyList attribute and all its corresponding functions (Pull request [#129](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/129))
 
-  ####Commands
+  ###### Commands
   - `AddPolicyCommand` (Pull request [#55](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/55))
   - `EditPolicyCommand` (Pull requests [#104](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/104), [#169](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/129))
   - `DeletePolicyCommand` (Pull requests [#103](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/103), [#166](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/166))
@@ -30,28 +30,30 @@ Given below are my contributions to the project.
   - Contributed to `FilterCommand` to include predicates for premium and company (Pull request [#159](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/159))
   - Contributed to `SortCommand` to include comparators for premium and number of policies (Pull requests [#139](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/139), [#146](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/146))
 
-  ####Parsers
+<div style="page-break-after: always;"></div>
+
+  ###### Parsers
   - `AddPolicyCommandParser` (Pull request [#55](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/55))
   - `EditPolicyCommandParser` (Pull requests [#104](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/104), [#169](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/129))
   - `DeletePolicyCommandParser` (Pull request [#103](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/103))
 
-  ####Exceptions
+  ###### Exceptions
   - `DuplicatePolicyException` (Pull request [#55](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/55))
   - `EmptyPolicyListException` (Pull request [#228](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/228))
   - `InvalidPolicyIndexException` (Pull reuqest [#103](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/103))
   - `PolicyNotEditedException` (Pull request [#228](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/228))
   - `PolicyNotFoundException` (Pull request [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253))
 
-  ####Storage
+  ###### Storage
     - `JsonAdaptedPolicy` (Pull request [#70](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/70))
     - Contributed to `JsonAdaptedClient` to include UniquePolicyList attribute and all its corresponding function
       (Pull requests [#70](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/70), [#129](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/129))
 
-  ####Util
+  ###### Util
     - `PolicyBuilder` (Pull request [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253))
     - `TypicalPolicies` (Pull request [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253))
 
-  ####Tests
+  ###### Tests
   - `PolicyTest` (Pull requests [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253), [#274](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/274))
   - `PremiumTest` (Pull requests [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253), [#274](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/274))
   - `UniquePolicyListTest` (Pull requests [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253), [#271](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/271))
@@ -66,6 +68,7 @@ Given below are my contributions to the project.
   - Contributed to `JsonAdaptedClient` (Pull requests [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253), [#274](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/274))
   - Contributed to `AddressBookParserTest` (Pull request [#274](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/274))
 
+<div style="page-break-after: always;"></div>
 
 - **Contributions to the UG**:
 
