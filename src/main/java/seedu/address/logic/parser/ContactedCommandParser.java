@@ -2,10 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FUTURE_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -42,10 +40,6 @@ public class ContactedCommandParser implements Parser<ContactedCommand> {
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
 
         LastContacted lastContacted = ParserUtil.parseLastContacted(argMultimap.getValue(PREFIX_LAST_CONTACTED).get());
-
-        if (lastContacted.getDateTime().isAfter(LocalDateTime.now())) {
-            throw new ParseException(MESSAGE_INVALID_FUTURE_CONTACTED);
-        }
 
         editClientDescriptor.setLastContacted(lastContacted);
         return new ContactedCommand(index, editClientDescriptor);
