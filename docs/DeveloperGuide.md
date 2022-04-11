@@ -106,6 +106,10 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
+Below is a simplified diagram of the UI where the inheritance from the abstract `UiPart` class is removed. Do note that this diagram is just for ease of viewing. The actual diagram should have every component under `MainWindow` inherit from `UiPart` as above.
+
+![Simplified Structure of the UI Component](images/UiClassDiagramSimple.png)
+
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
