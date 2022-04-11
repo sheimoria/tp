@@ -19,6 +19,8 @@ It allows users to:
 Currently, financial advisors might have to rely on apps like Google Calendar or Microsoft Excel, and do not have a
 dedicated platform catered to helping them manage their clientele. This is where *onlyFAs* bridges the gap.
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 - [Quick start](#quick-start)
@@ -57,7 +59,10 @@ dedicated platform catered to helping them manage their clientele. This is where
     5. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
+
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -86,11 +91,15 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 1. Refer to the [Features](#features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
+
 ---
 
 ## User Interface Layout
 
 ![UILayout.png](images/UILayout.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -166,6 +175,8 @@ onlyFAs' data is saved in a JSON file `[JAR file location]/data/data.json`. Adva
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, onlyFAs will discard all data and start with an empty data file at the next run.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### <u> Client Features </u>
 

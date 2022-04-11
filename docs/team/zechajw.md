@@ -10,7 +10,6 @@ onlyFAs is a desktop client-management application used by high achieving financ
 Given below are my contributions to the project.
 
 ## 1. Code contributed:
-
 [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=zechajw&breakdown=true)
 
 ## 2. Enhancements implemented:
