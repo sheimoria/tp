@@ -320,6 +320,8 @@ The `filterClients` command is a complex command involving 3 parameters:
 
 ![FilterClientsSampleOutput1.png](images/sample-output/FilterClientsSampleOutput1.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Sample Input 2: Filtering clients to retrieve those with `birthMonth` before `march`
 
 `filterClients birtMonth op/lesser v/march`
@@ -349,6 +351,7 @@ Other Examples:
 
 ![img.png](images/sample-output/ClientsCommandSampleOutput.png)
 
+
 ### Edit client: `editClient`
 
 Edit a client in your address book.
@@ -356,6 +359,8 @@ Edit a client in your address book.
 Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]`
 
 - `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
+
+<div style="page-break-after: always;"></div>
 
 #### Sample Input:
 
@@ -530,6 +535,8 @@ Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY
 #### Sample Input: Editing premium value of policy
 
 `editPolicy 1 pi/1 $/200`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: Premium value of policy at `pi/1` of Client` at `INDEX: 1` is edited
 
