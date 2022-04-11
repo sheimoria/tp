@@ -33,6 +33,7 @@ public class ClientListPanel extends UiPart<Region> {
      */
     public ClientListPanel(ObservableList<Client> clientList) {
         super(FXML);
+        assert clientList != null;
         this.clientList = clientList;
         clientCount.setText(String.format("%d Clients", clientList.size()));
         sortMethod.setText("Sorted by: Default");

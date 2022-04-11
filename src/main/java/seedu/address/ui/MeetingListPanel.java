@@ -30,6 +30,7 @@ public class MeetingListPanel extends UiPart<Region> {
      */
     public MeetingListPanel(ObservableList<Meeting> meetingList, boolean isShowAll) {
         super(FXML);
+        assert meetingList != null;
         if (isShowAll) {
             meetingsHeader.setText("All Meetings");
         } else {

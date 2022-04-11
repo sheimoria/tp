@@ -40,6 +40,7 @@ public class MeetingCard extends UiPart<Region> {
      */
     public MeetingCard(Meeting meeting, int displayedIndex) {
         super(FXML);
+        assert meeting != null;
         this.meeting = meeting;
         if (!meeting.isUpcoming()) {
             name.setStyle("-fx-text-fill: #ADABBC;");

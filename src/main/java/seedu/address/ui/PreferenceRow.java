@@ -33,6 +33,7 @@ public class PreferenceRow extends UiPart<Region> {
      */
     public PreferenceRow(Map.Entry<String, String> preference) {
         super(FXML);
+        assert preference != null;
         this.preference = preference;
         key.setText(preference.getKey());
         value.setText(preference.getValue());

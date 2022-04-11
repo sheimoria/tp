@@ -42,8 +42,8 @@ public class ClientCard extends UiPart<Region> {
      */
     public ClientCard(Client client, int displayedIndex) {
         super(FXML);
-        this.client = client;
         assert client != null;
+        this.client = client;
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
         if (client.getLastContacted() != null) {

@@ -26,6 +26,7 @@ public class PolicyListPanel extends UiPart<Region> {
      */
     public PolicyListPanel(ObservableList<Policy> policyList) {
         super(FXML);
+        assert policyList != null;
         policyListView.setItems(policyList);
         policyListView.setCellFactory(listView -> new PolicyListViewCell());
     }

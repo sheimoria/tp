@@ -54,6 +54,7 @@ public class ClientDisplay extends UiPart<Region> {
      */
     public ClientDisplay(Client client) {
         super(FXML);
+        assert client != null;
         this.client = client;
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
