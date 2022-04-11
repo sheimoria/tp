@@ -26,8 +26,26 @@ public class PolicyListPanel extends UiPart<Region> {
      */
     public PolicyListPanel(ObservableList<Policy> policyList) {
         super(FXML);
+        assert policyList != null;
         policyListView.setItems(policyList);
         policyListView.setCellFactory(listView -> new PolicyListViewCell());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PolicyListPanel)) {
+            return false;
+        }
+
+        // state check
+        PolicyListPanel panel = (PolicyListPanel) other;
+        return policyListView.getItems().equals(panel.policyListView.getItems());
     }
 
     /**

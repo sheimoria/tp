@@ -42,6 +42,7 @@ public class PolicyCard extends UiPart<Region> {
      */
     public PolicyCard(Policy policy, int displayedIndex) {
         super(FXML);
+        assert policy != null;
         this.policy = policy;
         id.setText(displayedIndex + ". ");
         policyName.setText(policy.getName().fullName);

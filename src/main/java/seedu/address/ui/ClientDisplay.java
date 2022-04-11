@@ -54,6 +54,7 @@ public class ClientDisplay extends UiPart<Region> {
      */
     public ClientDisplay(Client client) {
         super(FXML);
+        assert client != null;
         this.client = client;
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
@@ -83,6 +84,24 @@ public class ClientDisplay extends UiPart<Region> {
         clientDisplayCard.getChildren().add(policyListView);
 
         note.setText(client.getNote().value);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ClientDisplay)) {
+            return false;
+        }
+
+        // state check
+        ClientDisplay display = (ClientDisplay) other;
+        return name.getText().equals(display.name.getText())
+                && client.equals(display.client);
     }
 
     /**
