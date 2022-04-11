@@ -16,8 +16,8 @@ Client *--> Name
 Client *--> Phone
 Client *--> Email
 Client *--> Address
-'Client *--> LastContacted
-'Client *--> Birthday
+Client *--> Birthday
+Client *--> LastContacted
 Client *-up-> "1" UniquePolicyList
 Client *--> PreferenceMap
 Client *--> Note

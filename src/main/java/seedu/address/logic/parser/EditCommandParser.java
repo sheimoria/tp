@@ -52,7 +52,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editClientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
-            editClientDescriptor.setBirthday(ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
+            editClientDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
         }
         if (argMultimap.getValue(PREFIX_LAST_CONTACTED).isPresent()) {
             editClientDescriptor.setLastContacted(ParserUtil.parseLastContacted(argMultimap
