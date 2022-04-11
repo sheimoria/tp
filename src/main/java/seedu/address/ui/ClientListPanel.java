@@ -49,25 +49,6 @@ public class ClientListPanel extends UiPart<Region> {
         sortMethod.setText(String.format("Sorted by: %s", criteria));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof ClientListPanel)) {
-            return false;
-        }
-
-        // state check
-        ClientListPanel panel = (ClientListPanel) other;
-        return sortMethod.getText().equals(panel.sortMethod.getText())
-                && clientCount.getText().equals(panel.clientCount.getText())
-                && clientList.equals(panel.clientList);
-    }
-
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Client} using a {@code ClientCard}.
      */

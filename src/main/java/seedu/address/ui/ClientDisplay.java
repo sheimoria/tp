@@ -86,24 +86,6 @@ public class ClientDisplay extends UiPart<Region> {
         note.setText(client.getNote().value);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof ClientDisplay)) {
-            return false;
-        }
-
-        // state check
-        ClientDisplay display = (ClientDisplay) other;
-        return name.getText().equals(display.name.getText())
-                && client.equals(display.client);
-    }
-
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Policy} using a {@code PolicyCard}.
      */
