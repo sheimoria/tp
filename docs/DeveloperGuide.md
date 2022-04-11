@@ -3,7 +3,6 @@ layout: page
 title: Developer Guide
 ---
 ## Table of Contents
-
 - [**Acknowledgements**](#acknowledgements)
 - [**Setting up, getting started**](#setting-up-getting-started)
 - [**Design**](#design)
@@ -57,6 +56,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -92,11 +93,15 @@ Each of the four main components (also shown in the diagram above),
 - defines its _API_ in an `interface` with the same name as the Component.
 - implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -149,6 +154,8 @@ How the parsing works:
 
 - When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -260,6 +267,8 @@ Step 3. The first client's `lastContacted` is updated to `21-03-2022 21:03`.
 When creating a new `Client` through the `addClient` command, indicating their `lastContacted` through the `lc/DATETIME`
 prefix is **optional**. If their `lastContacted` is not indicated, it will just be instantiated as an empty string.
 
+<div style="page-break-after: always;"></div>
+
 ### Meeting features
 
 The new meeting feature is supported by two new main models `Meeting` and `NonOverlappingMeetingList`. The relationship between `Meeting` to `NonOverlappingMeetingList` is similar to the relationship between `Client` and `UniqueClientList`.
@@ -308,6 +317,8 @@ Step 6. The user executes `deleteMeeting 1` to delete the meeting. The `deleteMe
 The meeting has been deleted.
 ![Meeting4Delete2](images/Meeting4Delete2.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Note features
 
 The new note feature is supported by a new model `Note`. Each `Client` object contains a `Note` attribute to specify a specific `Note` that the user wishes to record about the `Client`.
@@ -327,6 +338,8 @@ Step 1: The user launches the application
 Step 2: The user executes `addNote 1 nt/Likes to gym` to add a `Note` to the existing `Client` object that represents the first client in the list containing `"Likes to gym" as the value.
 
 ![Note1Add](images/Note1Add.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Preference features
 
@@ -352,6 +365,8 @@ Step 2: The user executes `addPref 1 pk/Drink pd/Bubble Tea` to add the Drink: B
 Step 3: If the user would like to remove the `"Drink", "Bubble Tea"` preference as specified in the `addPref` command in Step 2, they can execute `deletePref 1 pk/Drink` to remove the preference specified by the key `"Drink"` from the existing `Client` object represented at the index `1`.
 
 ![Preference2Delete](images/Preference2Delete.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Policy features
 
@@ -390,6 +405,7 @@ Step 4. The user executes `deletePolicy 1 pi/1` to delete the first policy of th
 ![Policy3Delete](images/Policy3Delete.png)
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
