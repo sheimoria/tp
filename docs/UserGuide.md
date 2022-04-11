@@ -267,9 +267,13 @@ Note to Users:
 
 ![SortClientsSampleOutput1.png](images/sample-output/SortClientsSampleOutput1.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Sample Input 2: Sorting clients by the number of `Policies` that they have in `asc` order
 
 `sortClients numPolicies dir/asc`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: `Client` list in the `Static Panel` is sorted in `asc` order
 
@@ -333,6 +337,8 @@ Other Examples:
 
 #### NOTE: `filterClients` and `sortClients` cannot be used simultaneously. Reset with `clients` before switching between filter and sort views.
 
+<div style="page-break-after: always;"></div>
+
 ### Reset Filter/Sort & View All Clients
 
 #### Sample Input:
@@ -355,6 +361,8 @@ Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW
 
 `editClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: `Client` at `INDEX: 1` is edited based on input parameters as seen in the `Dynamic Panel`
 
 ![EditClientSampleOutput1.png](images/sample-output/EditClientSampleOutput1.png)
@@ -369,6 +377,8 @@ Format: `deleteClient INDEX`
 
 `deleteClient 1`
 
+<div style="page-break-after: always;"></div>
+
 #### Sample Output: `Client` at `INDEX: 1` is removed from the application
 
 ![DeleteClientSampleOutput1.png](images/sample-output/DeleteClientSampleOutput1.png)
@@ -380,6 +390,8 @@ Clear all entries in onlyFAs.
 #### Sample Input:
 
 `clear`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output:
 
@@ -397,6 +409,8 @@ Format: `contacted INDEX lc/DATETIME`
 
 - `contacted 1 lc/21-03-2022 21:03`
 
+<div style="page-break-after: always;"></div>
+
 #### Sample Output:
 
 ![img.png](images/sample-output/ContactedFeatureSampleOutput.png)
@@ -412,6 +426,8 @@ Format: `addNote INDEX nt/NOTE`
 
 `addNote 1 nt/Commando NSF with high risk of injury`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: New Note added to `Client` at `INDEX: 1`
 
 ![AddNoteSampleOutput1.png](images/sample-output/AddNoteSampleOutput1.png)
@@ -419,6 +435,8 @@ Format: `addNote INDEX nt/NOTE`
 #### Sample Input 2: Editing existing Note on Client
 
 `addNote 2 nt/Look up on policies for emergency care`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: Existing Note on `Client` at `INDEX: 1` is overwritten
 
@@ -433,6 +451,8 @@ Format: `deleteNote INDEX`
 #### Sample Input:
 
 `deleteNote 1`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output
 
@@ -449,6 +469,8 @@ Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
 
 `addPref 1 cat/Drink pref/Coke`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output:
 
 ![AddPreferenceSampleOutput1.png](images/sample-output/AddPreferenceSampleOutput1.png)
@@ -456,6 +478,8 @@ Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
 #### Sample Input 2: Editing an existing preference on Client
 
 `addPref 2 cat/Drink pref/Beer`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 2` is overwritten
 
@@ -470,6 +494,8 @@ Format: `deletePref INDEX cat/CATEGORY`
 #### Sample Input: Deleting a preference from the Client
 
 `deletePref 1 cat/Drink`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 1` is deleted
 
@@ -486,6 +512,10 @@ Format: `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIU
 #### Sample Input:
 
 `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`
+
+<div style="page-break-after: always;"></div>
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: `Policy` is added to `Client` at `INDEX: 1` and can be viewed under the `Policies` Section of the `Dynamic Panel`
 
@@ -515,6 +545,8 @@ Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
 `deletePolicy 1 pi/1`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: `Policy` at `pi/1` of `Client` at `INDEX: 1` is deleted
 
 ![img.png](images/sample-output/DeletePolicySampleOutput.png)
@@ -534,6 +566,8 @@ Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]`
 
 `addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 12:00`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: `Meeting` is added
 
 ![AddMeetingSampleOutput1.png](images/sample-output/AddMeetingSampleOutput1.png)
@@ -541,6 +575,8 @@ Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]`
 #### Sample Input 2: Adding a meeting with the `l/LABEL parameter`
 
 `addMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 17:00 l/Dinner`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: `Meeting` is added and `l/LABEL` is visible in the `Dynamic Panel`
 
@@ -560,6 +596,8 @@ Format: `meetings [INDEX] [all/]`
 
 `meetings`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: All <u>Upcoming Meetings</u> can be viewed in the panel on the right
 
 ![ViewMeetingsSampleOutput1.png](images/sample-output/ViewMeetingsSampleOutput1.png)
@@ -568,6 +606,8 @@ Format: `meetings [INDEX] [all/]`
 
 `meetings all/`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: All <u>Past</u> and <u>Upcoming</u> Meetings can be viewed in the panel on the right
 
 ![ViewMeetingsSampleOutput2.png](images/sample-output/ViewMeetingsSampleOutput2.png)
@@ -575,6 +615,8 @@ Format: `meetings [INDEX] [all/]`
 #### Sample Input 3: View meetings of specific Client
 
 `meetings 2`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: All <u>Upcoming</u> Meetings with `Client 2` can be viewed in the panel on the right
 
@@ -591,6 +633,8 @@ Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/NEW_
 
 `editMeeting 1 ms/01-01-2022 08:00 me/01-01-2022 10:00 l/Lunch`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: Meeting is edited as seen in the `Dynamic Panel`
 
 ![EditMeetingSampleOutput.png](images/sample-output/EditMeetingSampleOutput.png)
@@ -604,6 +648,8 @@ Format: `deleteMeeting INDEX`
 #### Sample Input:
 
 `deleteMeeting 1`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output: `Meeting` at `INDEX: 1` is deleted
 
@@ -620,6 +666,8 @@ Format: `closeMeeting INDEX`
 
 `closeMeeting 1`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: Last contacted date updated to match the end date of the meeting
 
 ![CloseMeetingSampleOutput.png](images/sample-output/CloseMeetingSampleOutput.png)
@@ -629,6 +677,8 @@ Format: `closeMeeting INDEX`
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous onlyFAs home folder.
+
+<div style="page-break-after: always;"></div>
 
 ---
 
