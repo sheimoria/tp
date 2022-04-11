@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.DateTime;
+import seedu.address.model.client.LastContacted;
 
 /**
  * Parses input arguments and creates a new ContactedCommand object
@@ -39,7 +39,7 @@ public class ContactedCommandParser implements Parser<ContactedCommand> {
 
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
 
-        DateTime lastContacted = ParserUtil.parseLastContacted(argMultimap.getValue(PREFIX_LAST_CONTACTED).get());
+        LastContacted lastContacted = ParserUtil.parseLastContacted(argMultimap.getValue(PREFIX_LAST_CONTACTED).get());
 
         editClientDescriptor.setLastContacted(lastContacted);
         return new ContactedCommand(index, editClientDescriptor);

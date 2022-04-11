@@ -18,10 +18,10 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
@@ -76,7 +76,7 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getClientList();
 
-        if (lastShownList.isEmpty()) {
+        if (model.hasNoClients()) {
             throw new CommandException(String.format(Messages.MESSAGE_EMPTY_CLIENT_LIST, "edit"));
         }
 
@@ -116,8 +116,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
-        Date updatedBirthday = editClientDescriptor.getBirthday().orElse(clientToEdit.getBirthday());
-        DateTime updatedLastContacted = editClientDescriptor.getLastContacted().orElse(clientToEdit.getLastContacted());
+        Birthday updatedBirthday = editClientDescriptor.getBirthday().orElse(clientToEdit.getBirthday());
+        LastContacted updatedLastContacted = editClientDescriptor.getLastContacted().orElse(clientToEdit
+                .getLastContacted());
         Note updatedNote = editClientDescriptor.getNote().orElse(clientToEdit.getNote());
         PreferenceMap updatedPreferences = editClientDescriptor.getPreferenceMap().orElse(clientToEdit
                 .getPreferenceMap());
@@ -153,8 +154,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Date birthday;
-        private DateTime lastContacted;
+        private Birthday birthday;
+        private LastContacted lastContacted;
         private Note note;
         private PreferenceMap preferences;
 
@@ -213,19 +214,19 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setBirthday(Date birthday) {
+        public void setBirthday(Birthday birthday) {
             this.birthday = birthday;
         }
 
-        public Optional<Date> getBirthday() {
+        public Optional<Birthday> getBirthday() {
             return Optional.ofNullable(birthday);
         }
 
-        public void setLastContacted(DateTime lastContacted) {
+        public void setLastContacted(LastContacted lastContacted) {
             this.lastContacted = lastContacted;
         }
 
-        public Optional<DateTime> getLastContacted() {
+        public Optional<LastContacted> getLastContacted() {
             return Optional.ofNullable(lastContacted);
         }
 

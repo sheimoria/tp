@@ -42,6 +42,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        filteredClients.setPredicate(PREDICATE_SHOW_ALL_CLIENTS);
         filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
         sortedClients = new SortedList<>(this.addressBook.getClientList());
     }
@@ -101,6 +102,11 @@ public class ModelManager implements Model {
     public boolean hasClient(Client client) {
         requireNonNull(client);
         return addressBook.hasClient(client);
+    }
+
+    @Override
+    public boolean hasNoClients() {
+        return filteredClients.isEmpty() && filteredClients.getPredicate().equals(PREDICATE_SHOW_ALL_CLIENTS);
     }
 
     @Override

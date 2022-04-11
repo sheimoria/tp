@@ -2,10 +2,10 @@ package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 
@@ -74,7 +74,7 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code birthday} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withBirthday(String birthday) {
-        descriptor.setBirthday(new Date(birthday));
+        descriptor.setBirthday(new Birthday(birthday));
         return this;
     }
 
@@ -82,7 +82,7 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code lastContacted} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withLastContacted(String lastContacted) {
-        descriptor.setLastContacted(new DateTime(lastContacted));
+        descriptor.setLastContacted(new LastContacted(lastContacted));
         return this;
     }
 

@@ -9,10 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
@@ -145,40 +145,41 @@ class JsonAdaptedClient {
         }
 
         if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
         }
 
-        final Date modelBirthday;
+        final Birthday modelBirthday;
 
         if (birthday == "") {
-            modelBirthday = new Date();
+            modelBirthday = new Birthday();
         } else {
-            if (!Date.isValidDate(birthday)) {
-                throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            if (!Birthday.isValidBirthday(birthday)) {
+                throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
             }
-            if (!Date.isPastDate(birthday)) {
-                throw new IllegalValueException(Date.MESSAGE_FUTURE_DATE);
+            if (!Birthday.isPastBirthday(birthday)) {
+                throw new IllegalValueException(Birthday.MESSAGE_FUTURE_DATE);
             }
-            modelBirthday = new Date(birthday);
+            modelBirthday = new Birthday(birthday);
         }
 
         if (lastContacted == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    DateTime.class.getSimpleName()));
+                    LastContacted.class.getSimpleName()));
         }
 
-        final DateTime modelLastContacted;
+        final LastContacted modelLastContacted;
 
         if (lastContacted == "") {
-            modelLastContacted = new DateTime();
+            modelLastContacted = new LastContacted();
         } else {
-            if (!DateTime.isValidDateTime(lastContacted)) {
-                throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+            if (!LastContacted.isValidLastContacted(lastContacted)) {
+                throw new IllegalValueException(LastContacted.MESSAGE_CONSTRAINTS);
             }
-            if (!DateTime.isPastDateTime(lastContacted)) {
-                throw new IllegalValueException(DateTime.MESSAGE_FUTURE_DATETIME);
+            if (!LastContacted.isPastLastContacted(lastContacted)) {
+                throw new IllegalValueException(LastContacted.MESSAGE_FUTURE_DATETIME);
             }
-            modelLastContacted = new DateTime(lastContacted);
+            modelLastContacted = new LastContacted(lastContacted);
         }
 
         assert note != null;

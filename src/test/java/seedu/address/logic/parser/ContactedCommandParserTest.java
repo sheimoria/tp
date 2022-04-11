@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACTED_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LAST_CONTACTED_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.client.LastContacted.MESSAGE_FUTURE_DATETIME;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 
@@ -17,8 +18,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.address.model.client.DateTime;
 import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.model.client.LastContacted;
 
 public class ContactedCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
@@ -92,10 +93,10 @@ public class ContactedCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_CLIENT;
-        String userInput = targetIndex.getOneBased() + INVALID_LAST_CONTACTED_DESC + LAST_CONTACTED_DESC_BOB;
-        EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
-                .withLastContacted(VALID_LAST_CONTACTED_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
+        EditCommand.EditClientDescriptor edc = new EditCommand.EditClientDescriptor();
+        LastContacted lastContacted = new LastContacted("21-03-2022 21:03");
+        edc.setLastContacted(lastContacted);
+        ContactedCommand expectedCommand = new ContactedCommand(targetIndex, edc);
+        assertParseSuccess(parser, "1 lc/21-03-2022 21:03", expectedCommand);
     }
 }
