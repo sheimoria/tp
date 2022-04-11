@@ -24,6 +24,7 @@ I was the sole frontend developer and was in charge of building the entire appli
 
 I also updated the models such as `Preference` and `Client` accordingly to provide suitable data structures for displaying.
 
+<div style="page-break-after: always;"></div>
 
 ### User Interface
 I created the following classes as well as the corresponding `.fxml` files for each component:
