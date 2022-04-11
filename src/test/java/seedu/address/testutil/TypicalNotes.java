@@ -6,7 +6,7 @@ import java.util.List;
 
 import seedu.address.model.client.Note;
 
-public class TypicalNote {
+public class TypicalNotes {
 
     public static final Note SCHOOL = new NoteBuilder()
             .withNote("Studies at NUS")
@@ -16,7 +16,7 @@ public class TypicalNote {
             .withNote("Is travelling to Japan in June")
             .build();
 
-    private TypicalNote() {} // prevents instantiation
+    private TypicalNotes() {} // prevents instantiation
 
     public static List<Note> getTypicalPreferenceMaps() {
         return new ArrayList<>(Arrays.asList(SCHOOL, OVERSEAS));
