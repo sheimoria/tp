@@ -17,16 +17,16 @@ You can reach us at the email `n.vijay.narayanan@u.nus.edu.sg`
 [[portfolio](team/myc37.md)]
 
 * Role: Team Lead
-* Responsibilities: CI/CD + Dev Ops
+* Responsibilities: Policy features
 
 ### Loh Jia Ming, Rayner
 
 <img src="images/raynerljm.png" width="200px">
 
-[[github](http://github.com/raynerljm)] [[portfolio](team/myc37.md)]
+[[github](http://github.com/raynerljm)] [[portfolio](team/raynerljm.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Meeting features
 
 ### Wong Jun Yong, Joel
 
