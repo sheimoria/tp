@@ -136,6 +136,8 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### <u> Basic Features </u>
 
 ### Viewing help : `help`
@@ -159,6 +161,8 @@ Opens the tutorial for the program.
 #### Sample Input:
 
 `tutorial`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output:
 
@@ -201,6 +205,8 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/
 
 `addClient n/Vijay Narayanan p/91234567 e/vijay@email.com a/210 Street 3 b/21-03-1999 lc/21-03-2022 21:03`<br>
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: `Client` with `NAME: Vijay`
 
 ![AddClientSampleOutput1.png](images/sample-output/AddClientSampleOutput1.png)
@@ -215,6 +221,8 @@ Format: `viewClient INDEX`
 
 `viewClient 1`
 
+<div style="page-break-after: always;"></div>
+
 #### Expected Output: `Client` at `INDEX: 1` is displayed in the `Dynamic Panel`
 
 ![ViewClientSampleOutput1.png](images/sample-output/ViewClientSampleOutput1.png)
@@ -226,6 +234,8 @@ Format: `findClient NAME`
 #### Sample Input:
 
 `findClient Alex`
+
+<div style="page-break-after: always;"></div>
 
 #### Expected Output:
 
