@@ -27,38 +27,36 @@ dedicated platform catered to helping them manage their clientele. This is where
   - [Basic Features](#u-basic-features-u)
     1. [Viewing help: `help`](#viewing-help--help)
     2. [Exiting the program: `exit`](#exiting-the-program-exit)
-    3. [Accessing the Tutorial: `]
+    3. [Accessing the Tutorial: `tutorial`](#accessing-the-tutorial-tutorial)
+    4. [Saving the data](#saving-the-data)
+    5. [Editing the data file](#editing-the-data-file)
   - [Client Features](#u-client-features-u)
-      1. [Viewing help : `help`](#viewing-help--help)
-      2. [Add client: `addClient`](#add-client-addclient)
-      3. [View client: `viewClient`](#view-client-viewclient)
-      4. [Find client by name: `findClient`](#find-client-by-name-findclient)
-      5. [Edit client: `editClient`](#edit-client-editclient)
-      6. [Delete client: `deleteClient`](#delete-client-deleteclient)
-      7. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
-      8. [Add/edit notes for client : `addNote`](#addedit-notes-for-client--addnote)
-      9. [Delete note from client: `deleteNote`](#delete-note-from-client-deletenote)
-      10. [Add/edit preferences to client: `addPref`](#addedit-preferences-to-client-addpref)
-      11. [Delete preferences from client: `deletePref`](#delete-preferences-from-client-deletepref)
-      12. [Add policy: `addPolicy`](#add-policy-addpolicy)
-      13. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-      14. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-      15. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-      16. [View All Meetings: `meetings`](#view-meetings-meetings)
-      17. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
-      18. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-      19. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
-      20. [Sort Clients: `sortClients`](#sort-clients-sortclients)
-      21. [Filter Clients: `filterClients`](#filter-clients-filterclients)
-      22. [Reset Filter/Sort & View all Clients: `clients`](#reset-filtersort--view-all-clients)
-      23. [Clearing all entries : `clear`](#clearing-all-entries-clear)
-      24. [Exiting the program : `exit`](#exiting-the-program-exit)
-      25. [Accessing the Tutorial: `tutorial`](#accessing-the-tutorial-tutorial)
-      26. [Saving the data](#saving-the-data)
-      27. [Editing the data file](#editing-the-data-file)
+    1. [Add client: `addClient`](#add-client-addclient)
+    2. [View client: `viewClient`](#view-client-viewclient)
+    3. [Find client by name: `findClient`](#find-client-by-name-findclient)
+    4. [Sort Clients: `sortClients`](#sort-clients-sortclients)
+    5. [Filter Clients: `filterClients`](#filter-clients-filterclients)
+    6. [Reset Filter/Sort & View All Clients: `clients`](#reset-filtersort--view-all-clients)
+    7. [Edit client: `editClient`](#edit-client-editclient)
+    8. [Delete client: `deleteClient`](#delete-client-deleteclient)
+    9. [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    10. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
+    11. [Add/edit notes for client : `addNote`](#addedit-notes-for-client--addnote)
+    12. [Delete note from client: `deleteNote`](#delete-note-from-client-deletenote)
+    13. [Add/edit preferences to client: `addPref`](#addedit-preferences-to-client-addpref)
+    14. [Delete preferences from client: `deletePref`](#delete-preferences-from-client-deletepref)
+  - [Policy Features](#u-policy-features-u)
+    1. [Add policy: `addPolicy`](#add-policy-addpolicy)
+    2. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+    3. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+  - [Meeting Features](#u-meeting-features-u)
+    1. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+    2. [View All Meetings: `meetings`](#view-meetings-meetings)
+    3. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
+    4. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+    5. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
-
 ---
 
 ## Quick start
@@ -161,14 +159,15 @@ Opens the tutorial for the program.
 
 onlyFAs' data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+### Editing the data file
+
+onlyFAs' data is saved in a JSON file `[JAR file location]/data/data.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, onlyFAs will discard all data and start with an empty data file at the next run.
+</div>
+
 ### <u> Client Features </u>
-
-### <u> Policy Features </u>
-
-### <u> Meeting Features </u>
-
-
-
 
 ### Add client: `addClient`
 
@@ -220,267 +219,6 @@ Format: `findClient NAME`
 #### Expected Output:
 
 ![img.png](images/sample-output/FindClientFeatureSampleOutput.png)
-
-### Edit client: `editClient`
-
-Edit a client in your address book.
-
-Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]`
-
-- `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
-
-#### Sample Input:
-
-`editClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
-
-#### Expected Output: `Client` at `INDEX: 1` is edited based on input parameters as seen in the `Dynamic Panel`
-
-![EditClientSampleOutput1.png](images/sample-output/EditClientSampleOutput1.png)
-
-### Delete client: `deleteClient`
-
-Delete a client from your address book.
-
-Format: `deleteClient INDEX`
-
-#### Sample Input:
-
-`deleteClient 1`
-
-#### Sample Output: `Client` at `INDEX: 1` is removed from the application
-
-![DeleteClientSampleOutput1.png](images/sample-output/DeleteClientSampleOutput1.png)
-
-### Update last contacted of client: `contacted`
-
-Updates the last contacted datetime of a client.
-
-Format: `contacted INDEX lc/DATETIME`
-
-#### Sample Input:
-
-- `contacted 1 lc/21-03-2022 21:03`
-
-#### Sample Output:
-
-### Add/edit Notes for client : `addNote`
-
-Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
-note specified from this command.
-
-Format: `addNote INDEX nt/NOTE`
-
-#### Sample Input 1: Adding a new Note to a Client
-
-`addNote 1 nt/Commando NSF with high risk of injury`
-
-#### Expected Output: New Note added to `Client` at `INDEX: 1`
-
-![AddNoteSampleOutput1.png](images/sample-output/AddNoteSampleOutput1.png)
-
-#### Sample Input 2: Editing existing Note on Client
-
-`addNote 2 nt/Look up on policies for emergency care`
-
-#### Expected Output: Existing Note on `Client` at `INDEX: 1` is overwritten
-
-![AddNoteSampleOutput2.png](images/sample-output/AddNoteSampleOutput2.png)
-
-### Delete note from client: `deleteNote`
-
-Delete the note of a specific client.
-
-Format: `deleteNote INDEX`
-
-#### Sample Input:
-
-`deleteNote 1`
-
-#### Expected Output
-
-![DeleteNoteFeatureSampleOutput.png](images/sample-output/DeleteNoteFeatureSampleOutput.png)
-
-### Add/Edit preferences to client: `addPref`
-
-Adds a preference to a specific client. If a preference already exists in that category, **replaces** that preference
-with the preference specified by this command
-
-Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
-
-#### Sample Input 1: Adding a new preference to Client
-
-`addPref 1 cat/Drink pref/Coke`
-
-#### Expected Output:
-
-![AddPreferenceSampleOutput1.png](images/sample-output/AddPreferenceSampleOutput1.png)
-
-#### Sample Input 2: Editing an existing preference on Client
-
-`addPref 2 cat/Drink pref/Beer`
-
-#### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 2` is overwritten
-
-![AddPreferenceSampleOutput2.png](images/sample-output/AddPreferenceSampleOutput2.png)
-
-### Delete preferences from client: `deletePref`
-
-Deletes the preference from the specified client.
-
-Format: `deletePref INDEX cat/CATEGORY`
-
-#### Sample Input: Deleting a preference from the Client
-
-`deletePref 1 cat/Drink`
-
-#### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 1` is deleted
-
-![DeletePreferenceSampleOutput.png](images/sample-output/DeletePreferenceSampleOutput.png)
-
-### Add policy: `addPolicy`
-
-Adds an insurance policy to a specified client
-
-Format: `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT`
-
-#### Sample Input:
-
-`addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`
-
-#### Expected Output: `Policy` is added to `Client` at `INDEX: 1` and can be viewed under the `Policies` Section of the `Dynamic Panel`
-
-![AddPolicySampleOutput.png](images/sample-output/AddPolicySampleOutput.png)
-
-### Edit policy: `editPolicy`
-
-Updates an insurance policy for a specified client
-
-Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]`
-
-#### Sample Input: Editing premium value of policy
-
-`editPolicy 1 pi/1 $/200`
-
-#### Expected Output: Premium value of policy at `pi/1` of Client` at `INDEX: 1` is edited
-
-![EditPolicySampleOutput.png](images/sample-output/EditPolicySampleOutput.png)
-
-### Delete policy: `deletePolicy`
-
-Deletes an insurance policy from a specified client
-
-Format: `deletePolicy INDEX pi/POLICY_INDEX`
-
-#### Sample Input:
-
-`deletePolicy 1 pi/1`
-
-#### Expected Output: `Policy` at `pi/1` of `Client` at `INDEX: 1` is deleted
-
-![img.png](images/sample-output/DeletePolicySampleOutput.png)
-
-### Add meeting: `addMeeting`
-
-Add a meeting to your schedule with a specified client.
-
-Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]`
-
-- `START_DATETIME` and `END_DATETIME` must be in `dd-MM-yyyy HH:mm` format
-- Use `meetings all/` to view your new meeting in the meeting panel on the right
-
-#### Sample Input 1: Adding a meeting without the `l/LABEL` parameter
-
-`addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 12:00`
-
-#### Expected Output: `Meeting` is added
-
-![AddMeetingSampleOutput1.png](images/sample-output/AddMeetingSampleOutput1.png)
-
-#### Sample Input 2: Adding a meeting with the `l/LABEL parameter`
-
-`addMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 17:00 l/Dinner`
-
-#### Expected Output: `Meeting` is added and `l/LABEL` is visible in the `Dynamic Panel`
-
-![img.png](images/sample-output/AddMeetingSampleOutput2.png)
-
-### View Meetings: `meetings`
-
-Shows upcoming or all meetings.
-
-- If an index is provided, only shows meetings with the specified client.
-- If the `all/` flag is omitted, **ONLY** shows upcoming meetings (meetings that start today or in the future).
-- If the `all/` flag is provided, shows all meetings instead of just upcoming meetings.
-
-Format: `meetings [INDEX] [all/]`
-
-#### Sample Input 1: Viewing <u>upcoming</u> meetings
-
-`meetings`
-
-#### Expected Output: All <u>Upcoming Meetings</u> can be viewed in the panel on the right
-
-![ViewMeetingsSampleOutput1.png](images/sample-output/ViewMeetingsSampleOutput1.png)
-
-#### Sample Input 2: View <u>all</u> meetings
-
-`meetings all/`
-
-#### Expected Output: All <u>Past</u> and <u>Upcoming</u> Meetings can be viewed in the panel on the right
-
-![ViewMeetingsSampleOutput2.png](images/sample-output/ViewMeetingsSampleOutput2.png)
-
-#### Sample Input 3: View meetings of specific Client
-
-`meetings 2`
-
-#### Expected Output: All <u>Upcoming</u> Meetings with `Client 2` can be viewed in the panel on the right
-
-![ViewMeetingsSampleOutput3.png](images/sample-output/ViewMeetingsSampleOutput3.png)
-
-### Edit Meeting Details: `editMeeting`
-
-Edit details of a specified meeting.
-
-Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/NEW_LABEL]`
-- `NEW_START_DATETIME` and `NEW_END_DATETIME` must be in `dd-MM-yyyy HH:mm` format
-
-#### Sample Input:
-
-`editMeeting 1 ms/01-01-2022 08:00 me/01-01-2022 10:00 l/Lunch`
-
-#### Expected Output: Meeting is edited as seen in the `Dynamic Panel`
-
-![EditMeetingSampleOutput.png](images/sample-output/EditMeetingSampleOutput.png)
-
-### Delete meeting: `deleteMeeting`
-
-Deletes a specified meeting.
-
-Format: `deleteMeeting INDEX`
-
-#### Sample Input:
-
-`deleteMeeting 1`
-
-#### Expected Output: `Meeting` at `INDEX: 1` is deleted
-
-![img.png](images/sample-output/DeleteMeetingSampleOutput.png)
-
-### Close meeting: `closeMeeting`
-
-Closes a meeting and updates the lastContacted of the client that was met to match the end of the meeting.
-The meeting will remain in the meeting list and **NOT** be deleted after it is closed.
-
-Format: `closeMeeting INDEX`
-
-#### Sample Input:
-
-`closeMeeting 1`
-
-#### Expected Output: Last contacted date updated to match the end date of the meeting
-
-![CloseMeetingSampleOutput.png](images/sample-output/CloseMeetingSampleOutput.png)
 
 ### Sort clients: `sortClients`
 
@@ -584,15 +322,41 @@ Other Examples:
 
 ![img.png](images/sample-output/ClientsCommandSampleOutput.png)
 
-### Save to hard drive
+### Edit client: `editClient`
 
-OnlyFAs’s data is saved in the hard drive automatically after any command that changes the data. There is no need to save manually.
+Edit a client in your address book.
+
+Format: `editClient INDEX [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [a/NEW_ADDRESS] [b/NEW_BIRTHDAY]`
+
+- `NEW_BIRTHDAY` must be in `dd-MM-yyyy` format.
+
+#### Sample Input:
+
+`editClient 1 n/Shem Maleriado p/81234567 e/shem@email.com a/210 Avenue 1 b/21-01-1999 lc/21-01-2022 21:01`
+
+#### Expected Output: `Client` at `INDEX: 1` is edited based on input parameters as seen in the `Dynamic Panel`
+
+![EditClientSampleOutput1.png](images/sample-output/EditClientSampleOutput1.png)
+
+### Delete client: `deleteClient`
+
+Delete a client from your address book.
+
+Format: `deleteClient INDEX`
+
+#### Sample Input:
+
+`deleteClient 1`
+
+#### Sample Output: `Client` at `INDEX: 1` is removed from the application
+
+![DeleteClientSampleOutput1.png](images/sample-output/DeleteClientSampleOutput1.png)
 
 ### Clearing all entries: `clear`
 
 Clear all entries in onlyFAs.
 
-#### Sample Input: 
+#### Sample Input:
 
 `clear`
 
@@ -602,14 +366,242 @@ Clear all entries in onlyFAs.
 
 **NOTE: This command <u>cannot</u> be undone. Please use it with caution**
 
-### Editing the data file
+### Update last contacted of client: `contacted`
 
-onlyFAs' data is saved in a JSON file `[JAR file location]/data/data.json`. Advanced users are welcome to update data directly by editing that data file.
+Updates the last contacted datetime of a client.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, onlyFAs will discard all data and start with an empty data file at the next run.
-</div>
+Format: `contacted INDEX lc/DATETIME`
 
+#### Sample Input:
+
+- `contacted 1 lc/21-03-2022 21:03`
+
+#### Sample Output:
+
+![img.png](images/sample-output/ContactedFeatureSampleOutput.png)
+
+### Add/edit Notes for client : `addNote`
+
+Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
+note specified from this command.
+
+Format: `addNote INDEX nt/NOTE`
+
+#### Sample Input 1: Adding a new Note to a Client
+
+`addNote 1 nt/Commando NSF with high risk of injury`
+
+#### Expected Output: New Note added to `Client` at `INDEX: 1`
+
+![AddNoteSampleOutput1.png](images/sample-output/AddNoteSampleOutput1.png)
+
+#### Sample Input 2: Editing existing Note on Client
+
+`addNote 2 nt/Look up on policies for emergency care`
+
+#### Expected Output: Existing Note on `Client` at `INDEX: 1` is overwritten
+
+![AddNoteSampleOutput2.png](images/sample-output/AddNoteSampleOutput2.png)
+
+### Delete note from client: `deleteNote`
+
+Delete the note of a specific client.
+
+Format: `deleteNote INDEX`
+
+#### Sample Input:
+
+`deleteNote 1`
+
+#### Expected Output
+
+![DeleteNoteFeatureSampleOutput.png](images/sample-output/DeleteNoteFeatureSampleOutput.png)
+
+### Add/Edit preferences to client: `addPref`
+
+Adds a preference to a specific client. If a preference already exists in that category, **replaces** that preference
+with the preference specified by this command
+
+Format: `addPref INDEX cat/CATEGORY pref/PREFERENCE`
+
+#### Sample Input 1: Adding a new preference to Client
+
+`addPref 1 cat/Drink pref/Coke`
+
+#### Expected Output:
+
+![AddPreferenceSampleOutput1.png](images/sample-output/AddPreferenceSampleOutput1.png)
+
+#### Sample Input 2: Editing an existing preference on Client
+
+`addPref 2 cat/Drink pref/Beer`
+
+#### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 2` is overwritten
+
+![AddPreferenceSampleOutput2.png](images/sample-output/AddPreferenceSampleOutput2.png)
+
+### Delete preferences from client: `deletePref`
+
+Deletes the preference from the specified client.
+
+Format: `deletePref INDEX cat/CATEGORY`
+
+#### Sample Input: Deleting a preference from the Client
+
+`deletePref 1 cat/Drink`
+
+#### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 1` is deleted
+
+![DeletePreferenceSampleOutput.png](images/sample-output/DeletePreferenceSampleOutput.png)
+
+### <u> Policy Features </u>
+
+### Add policy: `addPolicy`
+
+Adds an insurance policy to a specified client
+
+Format: `addPolicy INDEX n/POLICY_NAME c/COMPANY pm/POLICY_MANAGER_NAME $/PREMIUM_AMOUNT`
+
+#### Sample Input:
+
+`addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100`
+
+#### Expected Output: `Policy` is added to `Client` at `INDEX: 1` and can be viewed under the `Policies` Section of the `Dynamic Panel`
+
+![AddPolicySampleOutput.png](images/sample-output/AddPolicySampleOutput.png)
+
+### Edit policy: `editPolicy`
+
+Updates an insurance policy for a specified client
+
+Format: `editPolicy INDEX pi/POLICY_INDEX [n/POLICY_NAME] [c/COMPANY] [pm/POLICY_MANAGER_NAME] [$/PREMIUM_AMOUNT]`
+
+#### Sample Input: Editing premium value of policy
+
+`editPolicy 1 pi/1 $/200`
+
+#### Expected Output: Premium value of policy at `pi/1` of Client` at `INDEX: 1` is edited
+
+![EditPolicySampleOutput.png](images/sample-output/EditPolicySampleOutput.png)
+
+### Delete policy: `deletePolicy`
+
+Deletes an insurance policy from a specified client
+
+Format: `deletePolicy INDEX pi/POLICY_INDEX`
+
+#### Sample Input:
+
+`deletePolicy 1 pi/1`
+
+#### Expected Output: `Policy` at `pi/1` of `Client` at `INDEX: 1` is deleted
+
+![img.png](images/sample-output/DeletePolicySampleOutput.png)
+
+### <u> Meeting Features </u>
+
+### Add meeting: `addMeeting`
+
+Add a meeting to your schedule with a specified client.
+
+Format: `addMeeting INDEX ms/START_DATETIME me/END_DATETIME [l/LABEL]`
+
+- `START_DATETIME` and `END_DATETIME` must be in `dd-MM-yyyy HH:mm` format
+- Use `meetings all/` to view your new meeting in the meeting panel on the right
+
+#### Sample Input 1: Adding a meeting without the `l/LABEL` parameter
+
+`addMeeting 1 ms/01-01-2022 11:00 me/01-01-2022 12:00`
+
+#### Expected Output: `Meeting` is added
+
+![AddMeetingSampleOutput1.png](images/sample-output/AddMeetingSampleOutput1.png)
+
+#### Sample Input 2: Adding a meeting with the `l/LABEL parameter`
+
+`addMeeting 2 ms/27-12-2022 16:00 me/27-12-2022 17:00 l/Dinner`
+
+#### Expected Output: `Meeting` is added and `l/LABEL` is visible in the `Dynamic Panel`
+
+![img.png](images/sample-output/AddMeetingSampleOutput2.png)
+
+### View Meetings: `meetings`
+
+Shows upcoming or all meetings.
+
+- If an index is provided, only shows meetings with the specified client.
+- If the `all/` flag is omitted, **ONLY** shows upcoming meetings (meetings that start today or in the future).
+- If the `all/` flag is provided, shows all meetings instead of just upcoming meetings.
+
+Format: `meetings [INDEX] [all/]`
+
+#### Sample Input 1: Viewing <u>upcoming</u> meetings
+
+`meetings`
+
+#### Expected Output: All <u>Upcoming Meetings</u> can be viewed in the panel on the right
+
+![ViewMeetingsSampleOutput1.png](images/sample-output/ViewMeetingsSampleOutput1.png)
+
+#### Sample Input 2: View <u>all</u> meetings
+
+`meetings all/`
+
+#### Expected Output: All <u>Past</u> and <u>Upcoming</u> Meetings can be viewed in the panel on the right
+
+![ViewMeetingsSampleOutput2.png](images/sample-output/ViewMeetingsSampleOutput2.png)
+
+#### Sample Input 3: View meetings of specific Client
+
+`meetings 2`
+
+#### Expected Output: All <u>Upcoming</u> Meetings with `Client 2` can be viewed in the panel on the right
+
+![ViewMeetingsSampleOutput3.png](images/sample-output/ViewMeetingsSampleOutput3.png)
+
+### Edit Meeting Details: `editMeeting`
+
+Edit details of a specified meeting.
+
+Format: `editMeeting INDEX [ms/NEW_START_DATETIME] [me/NEW_END_DATETIME] [l/NEW_LABEL]`
+- `NEW_START_DATETIME` and `NEW_END_DATETIME` must be in `dd-MM-yyyy HH:mm` format
+
+#### Sample Input:
+
+`editMeeting 1 ms/01-01-2022 08:00 me/01-01-2022 10:00 l/Lunch`
+
+#### Expected Output: Meeting is edited as seen in the `Dynamic Panel`
+
+![EditMeetingSampleOutput.png](images/sample-output/EditMeetingSampleOutput.png)
+
+### Delete meeting: `deleteMeeting`
+
+Deletes a specified meeting.
+
+Format: `deleteMeeting INDEX`
+
+#### Sample Input:
+
+`deleteMeeting 1`
+
+#### Expected Output: `Meeting` at `INDEX: 1` is deleted
+
+![img.png](images/sample-output/DeleteMeetingSampleOutput.png)
+
+### Close meeting: `closeMeeting`
+
+Closes a meeting and updates the lastContacted of the client that was met to match the end of the meeting.
+The meeting will remain in the meeting list and **NOT** be deleted after it is closed.
+
+Format: `closeMeeting INDEX`
+
+#### Sample Input:
+
+`closeMeeting 1`
+
+#### Expected Output: Last contacted date updated to match the end date of the meeting
+
+![CloseMeetingSampleOutput.png](images/sample-output/CloseMeetingSampleOutput.png)
 ---
 
 ## FAQ
