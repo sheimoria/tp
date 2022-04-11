@@ -3,8 +3,8 @@ package seedu.address.model.client;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalNote.OVERSEAS;
-import static seedu.address.testutil.TypicalNote.SCHOOL;
+import static seedu.address.testutil.TypicalNotes.OVERSEAS;
+import static seedu.address.testutil.TypicalNotes.SCHOOL;
 
 import org.junit.jupiter.api.Test;
 

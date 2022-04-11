@@ -76,7 +76,7 @@ Whenever a client is edited, this feature also goes through the list of all meet
   - `deleteMeeting`
 - Adding commands and snippets of their example usage into the summary table at the bottom
 - Read through the UG to fix grammatical issues, formatting issues, and consistency issues
-  
+
 ## 4. Contributions to the DG:
 - Our team came together to discuss and draw the architectural models together
   - ModelClassDiagram.png

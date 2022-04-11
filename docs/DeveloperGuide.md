@@ -372,7 +372,7 @@ Step 1. The user launches the application.
 
 Step 2. The user executes `addPolicy 1 n/Medicare Plus c/Medicare pm/Zechary $/100` to add the Medicare Plus policy to
 the first client in the contact list.
-- The `addPolicy` command instantiates a new `Policy` object which will be added to the `UniquePolicyList` of the 
+- The `addPolicy` command instantiates a new `Policy` object which will be added to the `UniquePolicyList` of the
   existing`Client` object that represents the first client in the list.
 
 ![Policy1Add](images/Policy1Add.png)
@@ -734,7 +734,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a meeting
 
-1. Editing a meeting in the meeting list 
+1. Editing a meeting in the meeting list
 
     1. Prerequisites: There must be at least one meeting in the meeting list.
 
@@ -764,8 +764,8 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `closeMeeting 1` (where the specified meeting is in the past)<br>
        Expected: The client that the meeting was with will have their last contacted date time be updated to the meeting's end date time. Status message shows that the meeting has been closed.
-   
-    3. Test case: `closeMeeting 1` (where the specified meeting is upcoming)<br> 
+
+    3. Test case: `closeMeeting 1` (where the specified meeting is upcoming)<br>
       Expected: The client's last contacted date time has no change. The error details are shown in the status message.
 
     4. Incorrect close commands to try: `closeMeeting`, `deleteMeeting x`, `...` (where x is larger than the meeting list size)<br>

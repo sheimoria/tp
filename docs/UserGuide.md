@@ -22,32 +22,41 @@ dedicated platform catered to helping them manage their clientele. This is where
 ## Table of Contents
 
 - [Quick start](#quick-start)
+- [User Interface Layout](#user-interface-layout)
 - [Features](#features)
-    1. [Viewing help : `help`](#viewing-help--help)
-    2. [Add client: `addClient`](#add-client-addclient)
-    3. [View client: `viewClient`](#view-client-viewclient)
-    4. [Edit client: `editClient`](#edit-client-editclient)
-    5. [Delete client: `deleteClient`](#delete-client-deleteclient)
-    6. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
-    7. [Add/edit notes for client: `addNote`](#add-edit-notes-for-client-addnote)
-    8. [Add/edit preferences to client: `addPref`](#add-edit-preferences-to-client-addpref)
-    9. [Add policy: `addPolicy`](#add-policy-addpolicy)
-    10. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
-    11. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
-    12. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
-    13. [View All Meetings: `meetings`](#view-meetings-meetings)
-    14. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
-    15. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
-    16. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
-    17. [Sort Clients: `sortClients`](#sort-clients-sortclients)
-    18. [Filter Clients: `filterClients`](#filter-clients-filterclients)
-    19. [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    20. [Exiting the program : `exit`](#exiting-the-program--exit)
-    21. [Saving the data](#saving-the-data)
-    22. [Editing the data file](#editing-the-data-file)
+  - [Basic Features](#u-basic-features-u)
+    1. [Viewing help: `help`](#viewing-help--help)
+    2. [Exiting the program: `exit`](#exiting-the-program-exit)
+    3. [Accessing the Tutorial: `tutorial`](#accessing-the-tutorial-tutorial)
+    4. [Saving the data](#saving-the-data)
+    5. [Editing the data file](#editing-the-data-file)
+  - [Client Features](#u-client-features-u)
+    1. [Add client: `addClient`](#add-client-addclient)
+    2. [View client: `viewClient`](#view-client-viewclient)
+    3. [Find client by name: `findClient`](#find-client-by-name-findclient)
+    4. [Sort Clients: `sortClients`](#sort-clients-sortclients)
+    5. [Filter Clients: `filterClients`](#filter-clients-filterclients)
+    6. [Reset Filter/Sort & View All Clients: `clients`](#reset-filtersort--view-all-clients)
+    7. [Edit client: `editClient`](#edit-client-editclient)
+    8. [Delete client: `deleteClient`](#delete-client-deleteclient)
+    9. [Clearing all entries: `clear`](#clearing-all-entries-clear)
+    10. [Update last contacted of client: `contacted`](#update-last-contacted-of-client-contacted)
+    11. [Add/edit notes for client : `addNote`](#addedit-notes-for-client--addnote)
+    12. [Delete note from client: `deleteNote`](#delete-note-from-client-deletenote)
+    13. [Add/edit preferences to client: `addPref`](#addedit-preferences-to-client-addpref)
+    14. [Delete preferences from client: `deletePref`](#delete-preferences-from-client-deletepref)
+  - [Policy Features](#u-policy-features-u)
+    1. [Add policy: `addPolicy`](#add-policy-addpolicy)
+    2. [Edit policy: `editPolicy`](#edit-policy-editpolicy)
+    3. [Delete policy: `deletePolicy`](#delete-policy-deletepolicy)
+  - [Meeting Features](#u-meeting-features-u)
+    1. [Add meeting: `addMeeting`](#add-meeting-addmeeting)
+    2. [View All Meetings: `meetings`](#view-meetings-meetings)
+    3. [Edit Meeting Details: `editMeeting`](#edit-meeting-details-editmeeting)
+    4. [Delete Meeting: `deleteMeeting`](#delete-meeting-deletemeeting)
+    5. [Close Meeting: `closeMeeting`](#close-meeting-closemeeting)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
-
 ---
 
 ## Quick start
@@ -78,6 +87,10 @@ dedicated platform catered to helping them manage their clientele. This is where
 1. Refer to the [Features](#features) below for details of each command.
 
 ---
+
+## User Interface Layout
+
+![UILayout.png](images/UILayout.png)
 
 ## Features
 
@@ -114,6 +127,8 @@ dedicated platform catered to helping them manage their clientele. This is where
 
 </div>
 
+### <u> Basic Features </u>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -121,6 +136,38 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+### Exiting the program: `exit`
+
+Exit the program.
+
+Format: `exit`
+
+### Accessing the tutorial: `tutorial`
+
+Opens the tutorial for the program.
+
+#### Sample Input:
+
+`tutorial`
+
+#### Expected Output:
+
+![img.png](images/sample-output/TutorialFeatureSampleOutput.png)
+
+### Saving the data
+
+onlyFAs' data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+onlyFAs' data is saved in a JSON file `[JAR file location]/data/data.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, onlyFAs will discard all data and start with an empty data file at the next run.
+</div>
+
+### <u> Client Features </u>
 
 ### Add client: `addClient`
 
@@ -138,7 +185,6 @@ Format: `addClient n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [lc/
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 - `BIRTHDAY` must be in `dd-MM-yyyy` format.
 - `LAST_CONTACTED` must be in `dd-MM-yyyy hh:mm` format.
-
 
 #### Sample Input:
 
@@ -161,6 +207,120 @@ Format: `viewClient INDEX`
 #### Expected Output: `Client` at `INDEX: 1` is displayed in the `Dynamic Panel`
 
 ![ViewClientSampleOutput1.png](images/sample-output/ViewClientSampleOutput1.png)
+
+### Find client by name: `findClient`
+
+Format: `findClient NAME`
+
+#### Sample Input:
+
+`findClient Alex`
+
+#### Expected Output:
+
+![img.png](images/sample-output/FindClientFeatureSampleOutput.png)
+
+### Sort clients: `sortClients`
+
+Retrieve a sorted list of clients based on the provided attribute and sort direction.
+
+Format: `sortClients [ATTRIBUTE] [dir/SORT_DIRECTION]`
+
+Supported attributes:
+1. `numPolicies`, clients will be sorted based on the number of policies that they have.
+2. `premium`, clients will be sorted based on their total premium sum for all their policies.
+3. `lastContacted` clients will be sorted based on when they were last contacted.
+
+Note to Users:
+
+1. Sort direction refers to either `asc` (short for ascending) or `desc` (short for descending).
+2. If no sort direction is provided, the default sort direction will be `desc`
+3. If no attribute is provided, the list of clients will be sorted by default in the order that the clients were added
+   to the list.
+
+#### Sample Input 1: Sorting clients by the number of `Policies` that they have
+
+`sortClients numPolicies`
+
+#### Expected Output: `Client` list in the `Static Panel` is sorted in `desc` order
+
+![SortClientsSampleOutput1.png](images/sample-output/SortClientsSampleOutput1.png)
+
+#### Sample Input 2: Sorting clients by the number of `Policies` that they have in `asc` order
+
+`sortClients numPolicies dir/asc`
+
+#### Expected Output: `Client` list in the `Static Panel` is sorted in `asc` order
+
+![img.png](images/sample-output/SortClientsSampleOutput2.png)
+
+Other Examples:
+
+- `sortClients`
+- `sortClients numPolicies`
+- `sortClients premium`
+- `sortClients lastContacted`
+
+### Filter clients: `filterClients`
+
+Retrieve a filtered list of clients based on the provided operator and value.
+
+Format: `filterClients ATTRIBUTE op/OPERATOR v/VALUE`
+
+Note to Users:
+
+The `filterClients` command is a complex command involving 3 parameters:
+
+1. Attribute: the attribute to be filtered on
+
+   Supported attributes: `birthMonth`, `age`, `premium`, `company`
+
+2. Operator: the desired filter range
+
+   Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
+    * Note: The only operator supported for `company` is `equal`
+
+3. Value: the value to be filtered around
+
+- `birthMonth`: Accepts text inputs represent months of the year. Example: `february`, `march`
+- `age`: Accepts integer values. Example: `25`, `27`
+- `premium`: Accepts integer values. Example: `25`, `27`
+- `company`: Accepts text inputs represent companies. Example: `Great Eastern`, `AAM`
+
+#### Sample Input 1: Filtering clients to retrieve those with `age: 23`
+
+`filterClients age op/equal v/23`
+
+#### Expected Output: `Client` list is filtered to retrieve those with `age: 23`
+
+![FilterClientsSampleOutput1.png](images/sample-output/FilterClientsSampleOutput1.png)
+
+#### Sample Input 2: Filtering clients to retrieve those with `birthMonth` before `march`
+
+`filterClients birtMonth op/lesser v/march`
+
+![FilterClientsSampleOutput2.png](images/sample-output/FilterClientsSampleOutput2.png)
+
+Other Examples:
+
+1. `filterClients age op/equal v/25`: Retrieves all clients of `age` = `25`
+2. `filterClients birthMonth op/lesser v/february`: Retrieves all clients with birthdays before `february`
+3. `filterClients premium op/greater v/10000` Retrieves all clients that pay at least $`10000` in `premium`s
+   annually
+4. `filterClients company op/equal v/Great Eastern` Retrieves all clients who own at least one policy from `Great
+   Eastern`
+
+#### NOTE: `filterClients` and `sortClients` cannot be used simultaneously. Reset with `clients` before switching between filter and sort views.
+
+### Reset Filter/Sort & View All Clients
+
+#### Sample Input:
+
+`clients`
+
+#### Expected Output:
+
+![img.png](images/sample-output/ClientsCommandSampleOutput.png)
 
 ### Edit client: `editClient`
 
@@ -192,6 +352,20 @@ Format: `deleteClient INDEX`
 
 ![DeleteClientSampleOutput1.png](images/sample-output/DeleteClientSampleOutput1.png)
 
+### Clearing all entries: `clear`
+
+Clear all entries in onlyFAs.
+
+#### Sample Input:
+
+`clear`
+
+#### Expected Output:
+
+![img.png](images/sample-output/ClearCommandSampleOutput.png)
+
+**NOTE: This command <u>cannot</u> be undone. Please use it with caution**
+
 ### Update last contacted of client: `contacted`
 
 Updates the last contacted datetime of a client.
@@ -204,12 +378,14 @@ Format: `contacted INDEX lc/DATETIME`
 
 #### Sample Output:
 
-### Add/Edit Notes for client:` addNote`
+![img.png](images/sample-output/ContactedFeatureSampleOutput.png)
+
+### Add/edit Notes for client : `addNote`
 
 Adds a plaintext note to a specific client. If the client already has an existing note, **replaces** that note with the
 note specified from this command.
 
-Format: `addNote 1 nt/NOTE`
+Format: `addNote INDEX nt/NOTE`
 
 #### Sample Input 1: Adding a new Note to a Client
 
@@ -226,6 +402,20 @@ Format: `addNote 1 nt/NOTE`
 #### Expected Output: Existing Note on `Client` at `INDEX: 1` is overwritten
 
 ![AddNoteSampleOutput2.png](images/sample-output/AddNoteSampleOutput2.png)
+
+### Delete note from client: `deleteNote`
+
+Delete the note of a specific client.
+
+Format: `deleteNote INDEX`
+
+#### Sample Input:
+
+`deleteNote 1`
+
+#### Expected Output
+
+![DeleteNoteFeatureSampleOutput.png](images/sample-output/DeleteNoteFeatureSampleOutput.png)
 
 ### Add/Edit preferences to client: `addPref`
 
@@ -263,6 +453,8 @@ Format: `deletePref INDEX cat/CATEGORY`
 #### Expected Output: `cat/Drink` Preference of `Client` at `INDEX: 1` is deleted
 
 ![DeletePreferenceSampleOutput.png](images/sample-output/DeletePreferenceSampleOutput.png)
+
+### <u> Policy Features </u>
 
 ### Add policy: `addPolicy`
 
@@ -305,6 +497,8 @@ Format: `deletePolicy INDEX pi/POLICY_INDEX`
 #### Expected Output: `Policy` at `pi/1` of `Client` at `INDEX: 1` is deleted
 
 ![img.png](images/sample-output/DeletePolicySampleOutput.png)
+
+### <u> Meeting Features </u>
 
 ### Add meeting: `addMeeting`
 
@@ -408,126 +602,6 @@ Format: `closeMeeting INDEX`
 #### Expected Output: Last contacted date updated to match the end date of the meeting
 
 ![CloseMeetingSampleOutput.png](images/sample-output/CloseMeetingSampleOutput.png)
-
-### Sort clients: `sortClients`
-
-Retrieve a sorted list of clients based on the provided attribute and sort direction.
-
-Format: `sortClients [ATTRIBUTE] [dir/SORT_DIRECTION]`
-
-Supported attributes:
-1. `numPolicies`, clients will be sorted based on the number of policies that they have.
-2. `premium`, clients will be sorted based on their total premium sum for all their policies.
-3. `lastContacted` clients will be sorted based on when they were last contacted.
-
-Note to Users:
-
-1. Sort direction refers to either `asc` (short for ascending) or `desc` (short for descending).
-2. If no sort direction is provided, the default sort direction will be `desc`
-3. If no attribute is provided, the list of clients will be sorted by default in the order that the clients were added
-   to the list.
-
-
-#### Sample Input 1: Sorting clients by the number of `Policies` that they have
-
-`sortClients numPolicies`
-
-#### Expected Output: `Client` list in the `Static Panel` is sorted in `desc` order
-
-![SortClientsSampleOutput1.png](images/sample-output/SortClientsSampleOutput1.png)
-
-#### Sample Input 2: Sorting clients by the number of `Policies` that they have in `asc` order
-
-`sortClients numPolicies dir/asc`
-
-#### Expected Output: `Client` list in the `Static Panel` is sorted in `asc` order
-
-![img.png](images/sample-output/SortClientsSampleOutput2.png)
-
-Other Examples:
-
-- `sortClients`
-- `sortClients numPolicies`
-- `sortClients premium`
-- `sortClients lastContacted`
-
-### Filter clients: `filterClients`
-
-Retrieve a filtered list of clients based on the provided operator and value.
-
-Format: `filterClients ATTRIBUTE op/OPERATOR v/VALUE`
-
-Note to Users:
-
-The `filterClients` command is a complex command involving 3 parameters:
-
-1. Attribute: the attribute to be filtered on
-
-   Supported attributes: `birthMonth`, `age`, `premium`, `company`
-
-2. Operator: the desired filter range
-
-   Supported operators: `greaterorequal`, `greater`, `equal`, `lesser`, `lesserorequal`
-    * Note: The only operator supported for `company` is `equal`
-
-3. Value: the value to be filtered around
-
-- `birthMonth`: Accepts text inputs represent months of the year. Example: `february`, `march`
-- `age`: Accepts integer values. Example: `25`, `27`
-- `premium`: Accepts integer values. Example: `25`, `27`
-- `company`: Accepts text inputs represent companies. Example: `Great Eastern`, `AAM`
-
-#### Sample Input 1: Filtering clients to retrieve those with `age: 23`
-
-`filterClients age op/equal v/23`
-
-#### Expected Output: `Client` list is filtered to retrieve those with `age: 23`
-
-![FilterClientsSampleOutput1.png](images/sample-output/FilterClientsSampleOutput1.png)
-
-#### Sample Input 2: Filtering clients to retrieve those with `birthMonth` before `march`
-
-`filterClients birtMonth op/lesser v/march`
-
-![FilterClientsSampleOutput2.png](images/sample-output/FilterClientsSampleOutput2.png)
-
-Other Examples:
-
-1. `filterClients age op/equal v/25`: Retrieves all clients of `age` = `25`
-2. `filterClients birthMonth op/lesser v/february`: Retrieves all clients with birthdays before `february`
-3. `filterClients premium op/greater v/10000` Retrieves all clients that pay at least $`10000` in `premium`s
-   annually
-4. `filterClients company op/equal v/Great Eastern` Retrieves all clients who own at least one policy from `Great
-   Eastern`
-
-### Save to hard drive
-
-OnlyFAs’s data is saved in the hard drive automatically after any command that changes the data. There is no need to save manually.
-
-### Clearing all entries: `clear`
-
-Clear all entries in onlyFAs.
-
-Format: `clear`
-
-### Exiting the program: `exit`
-
-Exit the program.
-
-Format: `exit`
-
-### Saving the data
-
-onlyFAs' data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-onlyFAs' data is saved in a JSON file `[JAR file location]/data/data.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, onlyFAs will discard all data and start with an empty data file at the next run.
-</div>
-
 ---
 
 ## FAQ

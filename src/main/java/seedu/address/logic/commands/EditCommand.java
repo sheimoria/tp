@@ -35,7 +35,7 @@ import seedu.address.model.policy.exceptions.InvalidPolicyIndexException;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "updateClient";
+    public static final String COMMAND_WORD = "editClient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list.\n"

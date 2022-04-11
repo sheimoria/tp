@@ -9,112 +9,127 @@ onlyFAs is a desktop client-management application used by high achieving financ
 
 Given below are my contributions to the project.
 
-- **Code contributed**: [RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=zechajw&breakdown=true)
+## 1. Code contributed:
 
-- **Enhancements implemented**:
+[RepoSense link](https://nus-cs2103-ay2122s2.github.io/tp-dashboard/?search=zechajw&breakdown=true)
 
-#### 1. Notes Feature
-Related User Stories:
+## 2. Enhancements implemented:
+
+### 1. Notes Feature
+#### Related User Stories:
 - As a first time user, I can add notes about my clients so that I can have a better personal understanding of each of my clients
 - As a user, I can delete notes from a specific client so that I can remove notes that are no longer useful
 
+#### Classes Implemented:
+Models:
+- [x] `Note` to present a note with the attribute `value` to represent its `String` value
 
-Description of Feature: <br>
-`Note` is an additional attribute added to the main `Client` class. Users can call the command `addNote` to add/edit
-an existing note on the `Client`, and they can call the `deleteNote` command to delete the current note on the client
+Commands:
+- [x] `AddNoteCommand` with command word `addNote`
+- [x] `DeleteNoteCommand` with command word `deleteNote`
 
-Implementation:
-1. Creation of a `Note` class in the object model that forms an aggregation relationship with the `Client` class.
-The inner implementation of `Note` uses a simple `String` value with no formatting checks.
-2. Integrating it into the current `Client`. This involved adding a new parameter to the existing `Client` constructor and
-changing any test cases to prevent regression bugs. Furthermore, the `ClientBuilder` had to be updated to add a Note to the
-`Client` when building during test cases.
+Parsers:
+- [x] `AddNoteCommandParser`
+- [x] `DeleteNoteCommandParser`
 
-Example of Usage:
+Tests:
+- [x] `NoteTest`
+- [x] `AddNoteCommandTest`
+- [x] `DeleteNoteCommandTest`
+- [x] `AddNoteCommandParserTest`
+- [x] `DeleteNoteCommandParserTest`
 
-![PPPNotesFeatureInitial.png](../images/zech-ppp/PPPNotesFeatureInitial.png)
+Test Utils:
+- [x] `NoteBuilder`
+- [x] `TypicalNotes`
 
-Command to add a note to the client, e.g. `addNote 1 nt/This is a new note` is called
+### 2. Preferences Feature
 
-![img.png](../images/zech-ppp/PPPNotesFeatureOutput.png)
+#### Related User Stories:
+- As an intermediate user, I can record my clients' individual preferences so that I can better cater to their needs
+- As an intermediate user, I can obtain my client's preferences so that I have a quick and easy way to obtain information on my client's preferences
+- As an intermediate user, I can delete preferences from a specific client so that I can maintain an updated list of my client's preferences for easy access at all times.
 
-The note is added to the client, and can be seen in the `NOTE` section in the right panel.
+#### Classes Implemented:
 
-If `deleteNote 1` is called to delete the note,
+Models:
+- [x] `PreferenceMap` to represent preferences with attributes `HashMap<String, String>` to contain the preference mappings
 
-![img.png](../images/zech-ppp/PPPNotesFeatureDeleted.png)
+Commands:
+- [x] `AddPreferenceCommand` with command word `addPref`
+- [x] `DeletePreferenceCommand` with command word `deletePref`
 
-#### 2. Preferences Feature
+Parsers:
+- [x] `AddPreferenceCommandParser`
+- [x] `DeletePreferenceCommandParser`
 
-Related User Stories:
-1. As an intermediate user, I can record my clients' individual preferences so that I can better cater to their needs
-2. As an intermediate user, I can obtain my client's preferences so that I have a quick and easy way to obtain information on my client's preferences
-3. As an intermediate user, I can delete preferences from a specific client so that I can maintain an updated list of my client's preferences for easy access at all times.
+Storage:
+- [x] `JsonAdaptedPreferenceMap` to support storage of preferences in persistent memory
 
-Description of Feature: <br>
-`PreferenceMap` is an additional attribute to the main `Client` class. The `PreferenceMap` stores a `HashMap` of `String, String` pairs
-that allow users to call the `addPref` command to add key, value pairs to the `PreferenceMap`. For example, the user can call
-`addPref 1 cat/Drink pref/Beer` to indicate the `Client` has a `Drink` preference of `Beer`
+Tests:
+- [x] `PreferenceMapTest`
+- [x] `AddPreferenceCommandTest`
+- [x] `DeletePreferenceCommandTest`
+- [x] `AddPreferenceCommandParserTest`
+- [x] `DeletePreferenceCommandParserTest`
 
-Implementation:
-1. Creation of a `PreferenceMap` class in the object model that contains a `HashMap<String, String>` and handles the inner implementation
-of the preferences `HashMap`. The `PreferenceMap` has a method `addPreference(String, String)` that the client can call to add
-a new preference to the `PreferenceMap`. It also has a method `deletePreference(String)` that checks whether there is an existing preference
-in that category. If there is, delete the preference. Otherwise, throw an error indicating the there is no such preference and prompt
-the user to try again.
-2. Integrating it into the current `addressbook.json` format by creating a `JSONAdaptedPreferenceMap` class that allows the inner `HashMap`
-to be stored as a JSON. On application reopen, the constructor will take in the `JSON::HashMap` from the storage and reinitialize
-the `PreferenceMap`
-3. Integrating it into the current `Client`. This involved adding a new parameter to the existing `Client` constructor and
-   changing any test cases to prevent regression bugs. Furthermore, the `ClientBuilder` had to be updated to add a PreferenceMap to the
-   `Client` when building during test cases.
+Test Utils:
+- [x] `TypicalPreferenceMap` to support testing of preferences by providing default preferences
+- [x] `PreferenceMapBuilder` to support testing of preferences by providign custom preferences
 
-Example of Usage:
+### 3. Filter Feature
 
-![img.png](../images/zech-ppp/PPPPreferenceFeatureInitial.png)
-
-Command to add a preference to the client, e.g. `addPref 1 cat/Drink pref/Beer` is called
-
-![img.png](../images/sample-output/PPPPreferenceFeatureOutput.png)
-
-The preference is added to the client, as can be seen in the panel on the right.
-
-If `deletePref 1 cat/Drink` is called to delete the preference with `cat/Beer`
-
-![img_1.png](../images/sample-output/PPPPreferenceFeatureDeleted.png)
-
-The preference is deleted.
-
-#### 3. Filter Feature
-
-Related User Stories:
+#### Related User Stories:
 - As an intermediate user, I can retrieve a list of filtered clients by age so that I can market specific policies to certain age groups
 - As an intermediate user, I can retrieve a filtered list of clients by birth month so that I can have a better understanding of when my
-clients' birthdays are for better birthday gift planning
+  clients' birthdays are for better birthday gift planning
 
-Description of Feature:
-The `FilterList` has an Observable-Observer Relationship with the master `ClientList` that is used in the UI view.
-WHen a `Predicate<Client` is passed to the `FilterList`, the UI is updated to show only the `Client` entries that match
-the given `Predicate<Client>`.
+#### Classes Implemented:
+Commands:
+- [x] FilterCommand with the command word `filterClients`
 
-Implementation:
-1. Creation of a `FilterCommand` class that has three attributes `predicateGreater`, `predicateEqual`, `predicateLesser`
-2. The execution of a `FilterCommand` contains 2 steps. In the first step, we use the `attribute`; e.g. `age` and the 
-`value`; e.g. 25 to construct three `Predicate<Client>` objects that are stored in the attributes. In the second phase, 
-the `op`; e.g. `greater`, `equal`, `lesser` is used to choose which `Predicate<Client>` to be passed to the `ClientList`.
-Predicate chaining using the `.or()` method in the `Predicate` class is used to implement `lesserOrEqual` and `greaterOrEqual`
+Parsers:
+- [x] FilterCommandParser
 
-Example of Usage:
+Tests:
+- [x] FilterCommandTest
+- [x] FilterCommandParserTest
 
-If we have a list of clients, and we only want to find those with `age = 25`
+### 4. Test Code
 
-![img.png](../images/zech-ppp/PPPFilterFeatureInitial.png)
+#### Classes Implemented:
 
+Tests:
+- [x] CommandResultTest
+- [x] ContactedCommandParserTest
+- [x] SortCommandParserTest
+- [x] ViewClientCommandParserTest
+- [x] SortCriteriaTest
 
-- **Contributions to the UG**:
+## 3. Contributions to the UG:
+- Improving the `Features` section
+  - After feedback received from our CS2101 tutor, I added a `Sample Input` and `Expected Output` to each feature in the
+    `Features` section. Furthermore, I added a screenshot of our application in the `Expected Output` to provide users with visual
+    feedback of the correct usage of each command
+  - Other groups also mentioned that our `Feetures` section is too long and confusing, hence I split the `Features` section into
+    4 portions, `Basic`, `Client`, `Policy`, `Meeting` to make the section easier to read.
+- Explanation of the `Note`, `Preference` and `Filter` features
+  - Introducing the feature
+  - Explaining the proper usage of each command for the features
+  - Giving a detailed example usage scenario for each command
+- Fixing grammatical errors, formatting issues and consistency bugs
 
-- **Contributions to the DG**:
+## 4. Contributions to the DG:
+- Our team came together to discuss and draw the architectural models together
+   - ModelClassDiagram.png
+   - BetterModelClassDiagram.png
+   - StorageClassDiagram.png
 
-- **Review/mentoring contributions**:
+## 5. Review/mentoring contributions:
+- Our team conceptualized a round-robin system of reviewing code where everyone was responsible for reviewing a certain person's code so that everyone's code had a dedicated reviewer.
+- Therefore, I was assigned to review all of Rayner's pull requests.
+- On top of that, we reviewed other's code as well even if we were not assigned if we had the bandwidth or the pull request was tangentially related to our primary responsibilities.
 
-- **Contributions beyond the project team:**:
+## 6. Contributions beyond the project team:
+- Striving to give useful feedback on other UGs/DGs from teams in our tutorial group
+- Trying my best to provide as many useful bug reports as possible during the `PE-D`
