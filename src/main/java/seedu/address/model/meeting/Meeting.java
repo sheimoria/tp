@@ -11,7 +11,7 @@ import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import seedu.address.model.client.Client;
-import seedu.address.model.client.DateTime;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 
 
@@ -149,7 +149,7 @@ public class Meeting {
     public Meeting closeMeeting() {
         Client client = getClient();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        DateTime endDateTime = new DateTime(getEndDateTime().format(dtf));
+        LastContacted endDateTime = new LastContacted(getEndDateTime().format(dtf));
 
         return updateClient(client.updateLastContacted(endDateTime));
     }

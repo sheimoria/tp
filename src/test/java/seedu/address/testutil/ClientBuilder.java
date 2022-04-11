@@ -3,10 +3,10 @@ package seedu.address.testutil;
 import java.util.List;
 
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
@@ -39,8 +39,8 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Date birthday;
-    private DateTime lastContacted;
+    private Birthday birthday;
+    private LastContacted lastContacted;
     private UniquePolicyList policies = new UniquePolicyList();
     private Note note;
     private PreferenceMap preferences = new PreferenceMap();
@@ -53,8 +53,8 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        birthday = new Date(DEFAULT_BIRTHDAY);
-        lastContacted = new DateTime(DEFAULT_LAST_CONTACTED);
+        birthday = new Birthday(DEFAULT_BIRTHDAY);
+        lastContacted = new LastContacted(DEFAULT_LAST_CONTACTED);
 
         Policy defaultPolicy = new Policy(new Name(DEFAULT_POLICY_NAME), new Name(DEFAULT_COMPANY),
                 new Name(DEFAULT_POLICY_MANAGER),
@@ -107,7 +107,7 @@ public class ClientBuilder {
      * Sets the {@code birthday} of the {@code Client} that we are building to an empty string.
      */
     public ClientBuilder withBirthday() {
-        this.birthday = new Date();
+        this.birthday = new Birthday();
         return this;
     }
 
@@ -115,7 +115,7 @@ public class ClientBuilder {
      * Sets the {@code birthday} of the {@code Client} that we are building.
      */
     public ClientBuilder withBirthday(String birthday) {
-        this.birthday = birthday == "" ? new Date() : new Date(birthday);
+        this.birthday = birthday == "" ? new Birthday() : new Birthday(birthday);
         return this;
     }
 
@@ -123,7 +123,7 @@ public class ClientBuilder {
      * Sets the {@code lastContacted} of the {@code Client} that we are building to an empty string.
      */
     public ClientBuilder withLastContacted() {
-        this.lastContacted = new DateTime();
+        this.lastContacted = new LastContacted();
         return this;
     }
 
@@ -131,7 +131,7 @@ public class ClientBuilder {
      * Sets the {@code lastContacted} of the {@code Client} that we are building.
      */
     public ClientBuilder withLastContacted(String lastContacted) {
-        this.lastContacted = lastContacted.isEmpty() ? new DateTime() : new DateTime(lastContacted);
+        this.lastContacted = lastContacted.isEmpty() ? new LastContacted() : new LastContacted(lastContacted);
         return this;
     }
 

@@ -8,9 +8,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Note;
 import seedu.address.model.client.Phone;
@@ -87,43 +87,43 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code Date}.
+     * Parses a {@code String date} into a {@code Birthday}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Date parseDate(String date) throws ParseException {
+    public static Birthday parseBirthday(String date) throws ParseException {
         if (date == null) {
-            return new Date();
+            return new Birthday();
         }
-        String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        String trimmedBirthday = date.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
-        if (!Date.isPastDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_FUTURE_DATE);
+        if (!Birthday.isPastBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_FUTURE_DATE);
         }
-        return new Date(trimmedDate);
+        return new Birthday(trimmedBirthday);
     }
 
     /**
-     * Parses a {@code String dateTime} into a {@code DateTime}.
+     * Parses a {@code String dateTime} into a {@code LastContacted}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static DateTime parseLastContacted(String dateTime) throws ParseException {
+    public static LastContacted parseLastContacted(String dateTime) throws ParseException {
         if (dateTime == null) {
-            return new DateTime();
+            return new LastContacted();
         }
-        String trimmedDateTime = dateTime.trim();
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        String trimmedLastContacted = dateTime.trim();
+        if (!LastContacted.isValidLastContacted(trimmedLastContacted)) {
+            throw new ParseException(LastContacted.MESSAGE_CONSTRAINTS);
         }
-        if (!DateTime.isPastDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_FUTURE_DATETIME);
+        if (!LastContacted.isPastLastContacted(trimmedLastContacted)) {
+            throw new ParseException(LastContacted.MESSAGE_FUTURE_DATETIME);
         }
-        return new DateTime(trimmedDateTime);
+        return new LastContacted(trimmedLastContacted);
     }
 
     /**

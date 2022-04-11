@@ -37,9 +37,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.testutil.EditClientDescriptorBuilder;
@@ -83,9 +83,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_BIRTHDAY_DESC, Date.MESSAGE_CONSTRAINTS); // invalid birthday
+        assertParseFailure(parser, "1" + INVALID_BIRTHDAY_DESC, Birthday.MESSAGE_CONSTRAINTS); // invalid birthday
         // invalid last contacted
-        assertParseFailure(parser, "1" + INVALID_LAST_CONTACTED_DESC, DateTime.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_LAST_CONTACTED_DESC, LastContacted.MESSAGE_CONSTRAINTS);
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 

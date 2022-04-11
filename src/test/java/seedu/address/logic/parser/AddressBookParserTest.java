@@ -45,7 +45,7 @@ import seedu.address.logic.commands.policy.EditPolicyCommand;
 import seedu.address.logic.commands.policy.EditPolicyCommand.EditPolicyDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.DateTime;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.client.Note;
@@ -89,7 +89,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_contacted() throws Exception {
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().build();
-        descriptor.setLastContacted(new DateTime(DEFAULT_LAST_CONTACTED));
+        descriptor.setLastContacted(new LastContacted(DEFAULT_LAST_CONTACTED));
         ContactedCommand command = (ContactedCommand) parser.parseCommand(ContactedCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
         assertEquals(new ContactedCommand(INDEX_FIRST_CLIENT, descriptor), command);

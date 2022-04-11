@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Date;
-import seedu.address.model.client.DateTime;
 import seedu.address.model.client.Email;
+import seedu.address.model.client.LastContacted;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.testutil.ClientBuilder;
@@ -127,11 +127,11 @@ public class AddCommandParserTest {
 
         // invalid birthday
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + INVALID_BIRTHDAY_DESC + LAST_CONTACTED_DESC_BOB, Date.MESSAGE_CONSTRAINTS);
+                        + INVALID_BIRTHDAY_DESC + LAST_CONTACTED_DESC_BOB, Birthday.MESSAGE_CONSTRAINTS);
 
         // invalid last contacted
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + BIRTHDAY_DESC_BOB + INVALID_LAST_CONTACTED_DESC, DateTime.MESSAGE_CONSTRAINTS);
+                        + BIRTHDAY_DESC_BOB + INVALID_LAST_CONTACTED_DESC, LastContacted.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC

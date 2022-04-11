@@ -2,17 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FUTURE_CONTACTED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAST_CONTACTED;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ContactedCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.DateTime;
+import seedu.address.model.client.LastContacted;
 
 /**
  * Parses input arguments and creates a new ContactedCommand object
@@ -41,11 +39,7 @@ public class ContactedCommandParser implements Parser<ContactedCommand> {
 
         EditCommand.EditClientDescriptor editClientDescriptor = new EditCommand.EditClientDescriptor();
 
-        DateTime lastContacted = ParserUtil.parseLastContacted(argMultimap.getValue(PREFIX_LAST_CONTACTED).get());
-
-        if (lastContacted.getDateTime().isAfter(LocalDateTime.now())) {
-            throw new ParseException(MESSAGE_INVALID_FUTURE_CONTACTED);
-        }
+        LastContacted lastContacted = ParserUtil.parseLastContacted(argMultimap.getValue(PREFIX_LAST_CONTACTED).get());
 
         editClientDescriptor.setLastContacted(lastContacted);
         return new ContactedCommand(index, editClientDescriptor);
