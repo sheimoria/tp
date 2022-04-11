@@ -32,7 +32,10 @@ title: Developer Guide
     * [Adding a policy](#adding-a-policy)
     * [Editing a policy](#editing-a-policy)
     * [Deleting a policy](#deleting-a-policy)
-    * [Saving data](#saving-data)
+    * [Adding a meeting](#adding-a-meeting)
+    * [Editing a meeting](#editing-a-meeting)
+    * [Deleting a meeting](#deleting-a-meeting)
+    * [Closing a meeting](#closing-a-meeting)
 
 ---
 
@@ -124,6 +127,8 @@ The `UI` component,
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -194,6 +199,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -629,8 +635,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a client
 
 1. Deleting a client while all clients are being shown
@@ -645,8 +649,6 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-   5. _{ more test cases …​ }_
 
 ### Adding a policy
 
@@ -663,8 +665,6 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect add commands to try: `addPolicy`, `addPolicy x n/Medicare Plus c/Medicare pm/Zechary $/100`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1*{ more test cases …​ }*
-
 ### Editing a policy
 
 1. Editing a policy of a client in the contact list
@@ -679,9 +679,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect edit commands to try: `editPolicy`, `editPolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
       Expected: Similar to previous.
-
-1*{ more test cases …​ }*
-
+   
 ### Deleting a policy
 
 1. Deleting a policy of a client in the contact list
@@ -696,43 +694,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `deletePolicy`, `deletePolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
       Expected: Similar to previous.
-
-1*{ more test cases …​ }*
-
-### Editing a policy
-
-1. Editing a policy of a client in the contact list
-
-    1. Prerequisites: There must be at least one client in the contact list with at least one policy.
-
-    1. Test case: `editPolicy 1 pi/1 n/New Policy`<br>
-       Expected: The first blue tag under the name of the first client in the contact list should now be entitled _New Policy_. Status message shows that the number of policies of the client is the same as before.
-
-    1. Test case: `editPolicy 1 pi/1`<br>
-       Expected: No policy is edited. Error details shown in the status message.
-
-    1. Other incorrect delete commands to try: `editPolicy`, `editPolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
-       Expected: Similar to previous.
-
-1*{ more test cases …​ }*
-
-### Deleting a policy
-
-1. Deleting a policy of a client in the contact list
-
-    1. Prerequisites: There must be at least one client in the contact list with at least one policy.
-
-    1. Test case: `deletePolicy 1 pi/1`<br>
-       Expected: The first blue tag under the name of the first client in the contact list should disappear. Status message shows that the number of policies of the client is 1 less than before.
-
-    1. Test case: `deletePolicy 1`<br>
-       Expected: No policy is deleted. Error details shown in the status message.
-
-    1. Other incorrect delete commands to try: `deletePolicy`, `deletePolicy x pi/y`, `...` (where x is larger than the list size or y is larger than client's policy list size)<br>
-       Expected: Similar to previous.
-
-1*{ more test cases …​ }*
-
 
 ### Adding a meeting
 
@@ -790,12 +751,3 @@ testers are expected to do more *exploratory* testing.
 
     4. Incorrect close commands to try: `closeMeeting`, `deleteMeeting x`, `...` (where x is larger than the meeting list size)<br>
        Expected: Similar to previous.
-
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
