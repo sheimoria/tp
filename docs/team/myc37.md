@@ -30,8 +30,6 @@ Given below are my contributions to the project.
   - Contributed to `FilterCommand` to include predicates for premium and company (Pull request [#159](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/159))
   - Contributed to `SortCommand` to include comparators for premium and number of policies (Pull requests [#139](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/139), [#146](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/146))
 
-<div style="page-break-after: always;"></div>
-
   #### Parsers
   - `AddPolicyCommandParser` (Pull request [#55](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/55))
   - `EditPolicyCommandParser` (Pull requests [#104](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/104), [#169](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/129))
@@ -52,7 +50,7 @@ Given below are my contributions to the project.
   #### Util
   - `PolicyBuilder` (Pull request [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253))
   - `TypicalPolicies` (Pull request [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253))
-
+  
   #### Tests
   - `PolicyTest` (Pull requests [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253), [#274](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/274))
   - `PremiumTest` (Pull requests [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253), [#274](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/274))
@@ -67,8 +65,7 @@ Given below are my contributions to the project.
   - `CloseMeeting` (Pull request [#267](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/267))
   - Contributed to `JsonAdaptedClient` (Pull requests [#253](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/253), [#274](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/274))
   - Contributed to `AddressBookParserTest` (Pull request [#274](https://github.com/AY2122S2-CS2103T-W13-4/tp/pull/274))
-
-<div style="page-break-after: always;"></div>
+  
 
 - **Contributions to the UG**:
 
