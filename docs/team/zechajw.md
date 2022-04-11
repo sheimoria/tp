@@ -20,6 +20,8 @@ Given below are my contributions to the project.
 - As a first time user, I can add notes about my clients so that I can have a better personal understanding of each of my clients
 - As a user, I can delete notes from a specific client so that I can remove notes that are no longer useful
 
+<div style="page-break-after: always;"></div>
+
 #### Classes Implemented:
 Models:
 - [x] `Note` to present a note with the attribute `value` to represent its `String` value
@@ -42,6 +44,8 @@ Tests:
 Test Utils:
 - [x] `NoteBuilder`
 - [x] `TypicalNotes`
+
+<div style="page-break-after: always;"></div>
 
 ### 2. Preferences Feature
 
@@ -77,6 +81,8 @@ Test Utils:
 - [x] `TypicalPreferenceMap` to support testing of preferences by providing default preferences
 - [x] `PreferenceMapBuilder` to support testing of preferences by providign custom preferences
 
+<div style="page-break-after: always;"></div>
+
 ### 3. Filter Feature
 
 #### Related User Stories:
@@ -94,6 +100,8 @@ Parsers:
 Tests:
 - [x] FilterCommandTest
 - [x] FilterCommandParserTest
+
+<div style="page-break-after: always;"></div>
 
 ### 4. Test Code
 

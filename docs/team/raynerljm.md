@@ -49,6 +49,8 @@ Whenever a client is edited, this feature also goes through the list of all meet
 - [x] `MeetingNotFoundException`
 - [x] `OverlappingMeetingsException`
 
+<div style="page-break-after: always;"></div>
+
 #### Tests: ###
 - [x] `MeetingTest`
 - [x] `NonOverlappingMeetingListTest`
@@ -76,6 +78,8 @@ Whenever a client is edited, this feature also goes through the list of all meet
   - `deleteMeeting`
 - Adding commands and snippets of their example usage into the summary table at the bottom
 - Read through the UG to fix grammatical issues, formatting issues, and consistency issues
+
+<div style="page-break-after: always;"></div>
 
 ## 4. Contributions to the DG:
 - Our team came together to discuss and draw the architectural models together
