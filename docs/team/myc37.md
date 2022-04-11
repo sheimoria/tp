@@ -87,5 +87,5 @@ Given below are my contributions to the project.
 
 - **Review/mentoring contributions**:
 
-  - Reviewed pull requests made by `zechajw` as part of our forking workflow.
+  - Reviewed pull requests made by `zechajw` as part of our forking workflow
 
